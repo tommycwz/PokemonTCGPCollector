@@ -147,22 +147,7 @@ h4 {
 	box-shadow: 0 0 18px rgba(91, 168, 255, 0.65);
 }
 
-/* Make Set Completion Progress and Collection by Rarity sections seamless as well */
-.set-progress,
-.rarity-breakdown {
-	background: transparent;
-	border: none;
-	box-shadow: none;
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.set-progress:hover,
-.rarity-breakdown:hover {
-	transform: none;
-	box-shadow: none;
-	border-color: transparent;
-}
+/* Previously made seamless; restored to match Pack Suggestions card style */
 
 .pack-suggestions summary::-webkit-details-marker,
 .set-progress summary::-webkit-details-marker,
@@ -212,6 +197,12 @@ h4 {
 	align-items: center;
 	gap: 12px;
 	margin-bottom: 8px;
+}
+
+.pack-set {
+	margin-left: 6px;
+	color: var(--text-muted);
+	font-size: 0.9rem;
 }
 
 .rank-number {

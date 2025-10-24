@@ -33,6 +33,7 @@
                 <span class="rank-number">#{{ i + 1 }}</span>
                 <span *ngIf="i === 0" class="top-pick-badge">🏆 TOP PICK</span>
                 <strong>{{ suggestion.packName }}</strong>
+                <span class="pack-set" *ngIf="suggestion.primarySetCode">[{{ suggestion.primarySetCode }}] - {{ suggestion.primarySetName }}</span>
               </div>
               <div class="suggestion-summary">
                 <span class="missing-count">{{ suggestion.missingCards }} missing cards</span>
@@ -47,7 +48,7 @@
 
     <!-- Set Progress -->
     <div class="set-progress" *ngIf="setProgress.length > 0">
-      <details open>
+      <details>
         <summary>📦 Set Completion Progress</summary>
         <div class="progress-list">
           <ng-container *ngFor="let set of setProgress">
@@ -86,7 +87,7 @@
 
     <!-- Rarity Breakdown -->
     <div class="rarity-breakdown" *ngIf="userRarityStats.length > 0">
-      <details open>
+      <details>
         <summary>⭐ Collection by Rarity</summary>
         <div class="rarity-grid">
           <ng-container *ngFor="let rarity of userRarityStats">

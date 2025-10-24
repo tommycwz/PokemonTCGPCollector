@@ -355,6 +355,27 @@ export class DashboardComponent implements OnInit {
         card.packs && card.packs.includes(packName)
       );
 
+      // Infer primary set for this pack based on majority of cards
+      const setCounts = new Map<string, number>();
+      cardsInPack.forEach(card => {
+        if (card.set) {
+          setCounts.set(card.set, (setCounts.get(card.set) || 0) + 1);
+        }
+      });
+      let primarySetCode: string | null = null;
+      let primarySetCount = 0;
+      setCounts.forEach((count, code) => {
+        if (count > primarySetCount) {
+          primarySetCount = count;
+          primarySetCode = code;
+        }
+      });
+      let primarySetName = '';
+      if (primarySetCode) {
+        const setInfo = this.sets.find(s => s.code === primarySetCode);
+        primarySetName = (setInfo?.label as any)?.en || (setInfo?.label as any)?.eng || setInfo?.code || primarySetCode;
+      }
+
       const missingCards = cardsInPack.filter(card =>
         !ownedCardMap.has(this.getCardId(card))
       );
@@ -379,6 +400,8 @@ export class DashboardComponent implements OnInit {
 
       return {
         packName,
+        primarySetCode,
+        primarySetName,
         totalCards: cardsInPack.length,
         missingCards: missingCards.length,
         ownedCards: cardsInPack.length - missingCards.length,
