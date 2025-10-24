@@ -3,35 +3,34 @@
   padding: 20px;
   max-width: 1400px;
   margin: 0 auto;
-  background-color: #000000;
+  background-color: #000;
   min-height: 100vh;
-  color: white;
+  color: #fff;
 }
 
 /* Sync Progress */
 .sync-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background: linear-gradient(135deg, #1a4d3a 0%, #0f2d1f 100%);
   border: 1px solid #28a745;
-  border-radius: 8px;
-  padding: 15px 20px;
+  border-radius: 10px;
+  padding: 16px 22px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 10px rgba(40, 167, 69, 0.2);
+  box-shadow: 0 4px 18px rgba(40, 167, 69, 0.25);
 }
 
 .sync-message {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  flex: 1;
 }
 
 .sync-icon {
-  font-size: 20px;
+  font-size: 22px;
   animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .sync-text {
@@ -47,7 +46,16 @@
 
 .sync-count {
   font-size: 12px;
-  color: #6c757d;
+  color: #9fb8aa;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Collection Actions */
@@ -64,7 +72,7 @@
   border: 1px solid #444;
   border-radius: 6px;
   background-color: #333;
-  color: white;
+  color: #fff;
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s ease;
@@ -85,12 +93,31 @@
   border-color: #0056b3;
 }
 
+.btn-secondary {
+  background-color: #555;
+  border-color: #666;
+}
+
+.btn-secondary:hover {
+  background-color: #666;
+  border-color: #777;
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: #555;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .btn-outline-small {
   padding: 4px 12px;
   border: 1px solid #666;
   border-radius: 4px;
   background-color: transparent;
-  color: #cccccc;
+  color: #ccc;
   cursor: pointer;
   font-size: 12px;
   transition: all 0.2s ease;
@@ -99,7 +126,21 @@
 .btn-outline-small:hover {
   background-color: #dc3545;
   border-color: #dc3545;
-  color: white;
+  color: #fff;
+}
+
+.btn-icon {
+  margin-right: 6px;
+}
+
+.btn:disabled,
+.btn-outline-small:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.import-btn input {
+  display: none;
 }
 
 /* Filters */
@@ -118,7 +159,7 @@
 
 .search-box {
   position: relative;
-  max-width: 400px;
+  max-width: 420px;
   margin: 0 auto;
 }
 
@@ -128,7 +169,7 @@
   border: 2px solid #444;
   border-radius: 25px;
   background-color: #333;
-  color: white;
+  color: #fff;
   font-size: 16px;
   transition: all 0.3s ease;
 }
@@ -155,7 +196,7 @@
 .filter-label {
   font-size: 14px;
   font-weight: 600;
-  color: #cccccc;
+  color: #ccc;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -173,10 +214,15 @@
   border: 2px solid #444;
   border-radius: 8px;
   background-color: #333;
-  color: white;
+  color: #fff;
   font-size: 14px;
   transition: all 0.3s ease;
   cursor: pointer;
+}
+
+.filter-select:hover {
+  border-color: #555;
+  background-color: #3a3a3a;
 }
 
 .filter-select:focus {
@@ -185,19 +231,10 @@
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
 }
 
-.filter-select:hover {
-  border-color: #555;
-  background-color: #3a3a3a;
-}
-
 .filter-actions {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.btn-icon {
-  margin-right: 6px;
 }
 
 .results-info {
@@ -209,16 +246,17 @@
 }
 
 .results-text {
-  color: #cccccc;
+  color: #ccc;
   font-size: 14px;
   font-weight: 500;
 }
 
 /* Loading and Error States */
-.loading-container, .error-container {
+.loading-container,
+.error-container {
   text-align: center;
   padding: 60px 20px;
-  color: #cccccc;
+  color: #ccc;
 }
 
 .loading-spinner {
@@ -231,17 +269,11 @@
   margin: 0 auto 20px;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 /* Cards Container */
 .cards-container {
   width: 100%;
 }
 
-/* Card Group Styling */
 .card-group {
   margin-bottom: 40px;
 }
@@ -259,18 +291,17 @@
 
 .group-title {
   font-size: 1.6rem;
-  font-weight: bold;
-  color: #ffffff;
+  font-weight: 700;
+  color: #fff;
   margin: 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   flex: 1;
-  min-width: 300px;
+  min-width: 280px;
   position: relative;
   padding-left: 30px;
   line-height: 1.3;
 }
 
-/* Add a set icon before each group title */
 .group-title::before {
   content: "📋";
   position: absolute;
@@ -288,7 +319,7 @@
 }
 
 .group-count {
-  color: #cccccc;
+  color: #ccc;
   font-size: 14px;
   padding: 4px 8px;
   background-color: #333;
@@ -296,44 +327,19 @@
   white-space: nowrap;
 }
 
-/* Responsive adjustments for group headers */
-@media (max-width: 768px) {
-  .group-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .group-title {
-    font-size: 1.3rem;
-    min-width: unset;
-    padding-left: 25px;
-    line-height: 1.2;
-  }
-  
-  .group-title::before {
-    font-size: 1rem;
-  }
-  
-  .group-stats {
-    align-self: flex-end;
-  }
-}
-
 /* Cards Grid */
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 18px;
   padding: 20px 0;
 }
 
-/* Individual Card Item */
 .card-item {
   display: flex;
   flex-direction: column;
-  background: transparent;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   transition: transform 0.2s ease;
 }
@@ -342,29 +348,33 @@
   transform: translateY(-5px);
 }
 
-/* Card Image */
 .card-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 2/3; /* Pokemon card ratio */
+  aspect-ratio: 2 / 3;
   overflow: hidden;
-  border-radius: 8px;
-  background: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pokemon-card-img {
-  width: 100%;
-  height: 100%;
+  width: 90%;
   object-fit: cover;
   object-position: center;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: transform 0.3s ease, opacity 0.3s ease;
   background-color: #222;
-  min-height: 200px;
 }
 
-/* Loading state for images */
-.pokemon-card-img:not([src]) {
+.card-item:hover .pokemon-card-img {
+  transform: scale(1.05);
+}
+
+.pokemon-card-img:not([src]),
+.pokemon-card-img[src=""] {
   opacity: 0.5;
   background: linear-gradient(45deg, #333, #555, #333);
   background-size: 200% 200%;
@@ -372,20 +382,15 @@
 }
 
 @keyframes loading-shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Grayscale effect for cards with quantity 0 */
-.pokemon-card-img.no-quantity {
-  filter: grayscale(100%) opacity(0.5);
-  transition: filter 0.3s ease, transform 0.3s ease;
-}
-
-/* Hover effect for cards with no quantity - shows them in color temporarily */
-.card-item.no-quantity:hover .pokemon-card-img.no-quantity {
-  filter: grayscale(0%) opacity(0.8);
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .card-item.no-quantity {
@@ -393,29 +398,28 @@
   transition: opacity 0.3s ease;
 }
 
+.card-item.no-quantity .pokemon-card-img {
+  filter: grayscale(100%) opacity(0.5);
+}
+
 .card-item.no-quantity:hover {
   opacity: 0.9;
 }
 
-.card-item.no-quantity .card-title {
-  color: #888;
-  transition: color 0.3s ease;
+.card-item.no-quantity:hover .pokemon-card-img {
+  filter: grayscale(0%) opacity(0.8);
 }
 
-.card-item.no-quantity:hover .card-title {
+.card-item.no-quantity .card-title,
+.card-item.no-quantity .count-display {
+  color: #888;
+}
+
+.card-item.no-quantity:hover .card-title,
+.card-item.no-quantity:hover .count-display {
   color: #bbb;
 }
 
-.card-item.no-quantity .count {
-  color: #888;
-  transition: color 0.3s ease;
-}
-
-.card-item.no-quantity:hover .count {
-  color: #bbb;
-}
-
-/* Card Info */
 .card-info {
   padding: 10px 0;
   text-align: center;
@@ -424,14 +428,13 @@
 .card-title {
   font-size: 14px;
   font-weight: 500;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 8px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Ownership Controls */
 .ownership-controls {
   display: flex;
   align-items: center;
@@ -445,7 +448,7 @@
   border: 1px solid #555;
   border-radius: 4px;
   background-color: #444;
-  color: white;
+  color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -475,12 +478,43 @@
   border-color: #28a745;
 }
 
-.count {
+.count-display {
+  min-width: 32px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px dashed #666;
+  background: rgba(51, 51, 51, 0.65);
+  color: #fff;
   font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
-  min-width: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.count-display:hover,
+.count-display:focus-visible {
+  border-color: #007bff;
+  background: rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+.count-input {
+  width: 56px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #777;
+  background: rgba(24, 24, 24, 0.95);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
   text-align: center;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.count-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
 }
 
 /* Empty State */
@@ -493,61 +527,6 @@
 .empty-icon {
   font-size: 64px;
   margin-bottom: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .cards-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-  }
-}
-
-@media (max-width: 768px) {
-  .cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  
-  .collection-container {
-    padding: 15px;
-  }
-  
-  .header-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .title-section {
-    align-items: center;
-  }
-  
-  .collection-title {
-    font-size: 2rem;
-  }
-  
-  .collection-stats {
-    gap: 20px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  
-  .card-title {
-    font-size: 12px;
-  }
-  
-  .count-btn {
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-  }
 }
 
 /* Lazy Loading States */
@@ -577,38 +556,67 @@
   }
 }
 
-/* Responsive Design for Filters */
-@media (max-width: 768px) {
-  .filter-controls {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .search-box {
-    max-width: 100%;
-  }
-  
-  .filters-section {
-    padding: 20px;
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .collection-container {
+    padding: 15px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .ownership-controls {
+    gap: 8px;
+  }
+
+  .filters-section {
+    padding: 20px;
+  }
+
+  .filter-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .count-display,
+  .count-input {
+    width: 48px;
+  }
+
   .filters-section {
     padding: 15px;
     margin-bottom: 20px;
   }
-  
+
   .search-input {
     padding: 10px 14px;
     font-size: 14px;
   }
-  
+
   .filter-select {
     padding: 8px 12px;
     font-size: 13px;
   }
-  
+
   .filter-label {
     font-size: 12px;
   }

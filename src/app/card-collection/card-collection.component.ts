@@ -43,6 +43,8 @@ export class CardCollectionComponent implements OnInit {
   syncMessage = '';
   error: string | null = null;
   viewMode: 'grid' | 'list' = 'grid';
+  editingCardId: string | null = null;
+  editingCountValue = 0;
   
   // Statistics
   totalCards = 0;
@@ -324,60 +326,92 @@ export class CardCollectionComponent implements OnInit {
     if (!this.currentUser) return;
 
     const cardId = this.getCardId(card);
-    const newQuantity = (this.ownedCards[cardId] || 0) + 1;
-    
-    // Update locally first for immediate UI feedback
-    this.ownedCards[cardId] = newQuantity;
-    this.saveOwnedCards();
+    const currentQuantity = this.getOwnedCount(card);
+    const newQuantity = currentQuantity + 1;
 
-    // Manually trigger change detection only for this specific change
-    this.cdr.detectChanges();
-
-    // Sync with Supabase
-    try {
-      await this.supabaseService.updateCardQuantity(this.currentUser.id, cardId, newQuantity);
-    } catch (error) {
-      console.error('Error updating card quantity in database:', error);
-      // Revert local change if database update fails
-      this.ownedCards[cardId] = newQuantity - 1;
-      if (this.ownedCards[cardId] === 0) {
-        delete this.ownedCards[cardId];
-      }
-      this.saveOwnedCards();
-      this.cdr.detectChanges();
-    }
+    this.updateLocalQuantity(cardId, newQuantity);
+    await this.persistQuantity(cardId, newQuantity, currentQuantity);
   }
 
   async decreaseOwned(card: Card): Promise<void> {
     if (!this.currentUser) return;
 
     const cardId = this.getCardId(card);
-    const currentQuantity = this.ownedCards[cardId] || 0;
-    
-    if (currentQuantity > 0) {
-      const newQuantity = currentQuantity - 1;
-      
-      // Update locally first for immediate UI feedback
-      if (newQuantity === 0) {
+    const currentQuantity = this.getOwnedCount(card);
+
+    if (currentQuantity === 0) {
+      return;
+    }
+
+    const newQuantity = currentQuantity - 1;
+    this.updateLocalQuantity(cardId, newQuantity);
+    await this.persistQuantity(cardId, newQuantity, currentQuantity);
+  }
+
+  startEditingCount(card: Card): void {
+    this.editingCardId = this.getCardId(card);
+    this.editingCountValue = this.getOwnedCount(card);
+    this.cdr.detectChanges();
+  }
+
+  cancelEditingCount(): void {
+    this.editingCardId = null;
+    this.editingCountValue = 0;
+    this.cdr.detectChanges();
+  }
+
+  async commitCount(card: Card): Promise<void> {
+    if (!this.currentUser) {
+      return;
+    }
+
+    const cardId = this.getCardId(card);
+    if (this.editingCardId !== cardId) {
+      return;
+    }
+
+    const sanitizedValue = Math.max(0, Math.floor(Number(this.editingCountValue) || 0));
+    const previousQuantity = this.getOwnedCount(card);
+
+    if (sanitizedValue === previousQuantity) {
+      this.cancelEditingCount();
+      return;
+    }
+
+    this.updateLocalQuantity(cardId, sanitizedValue);
+    await this.persistQuantity(cardId, sanitizedValue, previousQuantity);
+    this.cancelEditingCount();
+  }
+
+  private updateLocalQuantity(cardId: string, quantity: number): void {
+    if (quantity <= 0) {
+      delete this.ownedCards[cardId];
+    } else {
+      this.ownedCards[cardId] = quantity;
+    }
+
+    this.saveOwnedCards();
+    this.cdr.detectChanges();
+  }
+
+  private async persistQuantity(cardId: string, newQuantity: number, previousQuantity: number): Promise<void> {
+    if (!this.currentUser) {
+      return;
+    }
+
+    try {
+      await this.supabaseService.updateCardQuantity(this.currentUser.id, cardId, newQuantity);
+    } catch (error) {
+      console.error('Error updating card quantity in database:', error);
+
+      if (previousQuantity <= 0) {
         delete this.ownedCards[cardId];
       } else {
-        this.ownedCards[cardId] = newQuantity;
+        this.ownedCards[cardId] = previousQuantity;
       }
+
       this.saveOwnedCards();
-
-      // Manually trigger change detection only for this specific change
       this.cdr.detectChanges();
-
-      // Sync with Supabase
-      try {
-        await this.supabaseService.updateCardQuantity(this.currentUser.id, cardId, newQuantity);
-      } catch (error) {
-        console.error('Error updating card quantity in database:', error);
-        // Revert local change if database update fails
-        this.ownedCards[cardId] = currentQuantity;
-        this.saveOwnedCards();
-        this.cdr.detectChanges();
-      }
     }
   }
 
