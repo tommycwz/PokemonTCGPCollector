@@ -1,13 +1,23 @@
 <div class="collection-container">
   <!-- Collection Management Actions -->
   <div class="collection-actions">
-    <button (click)="exportCollection()" class="btn btn-secondary">
-      📤 Export Collection
-    </button>
-    <label class="btn btn-secondary import-btn">
-      📥 Import Collection
-      <input type="file" accept=".csv" (change)="importCollection($event)" hidden>
-    </label>
+    <div class="actions-left">
+      <button (click)="exportCollection()" class="btn btn-secondary">
+        📤 Export Collection
+      </button>
+      <label class="btn btn-secondary import-btn">
+        📥 Import Collection
+        <input type="file" accept=".csv" (change)="importCollection($event)" hidden>
+      </label>
+    </div>
+    <div class="actions-right">
+      <div class="view-other-controls">
+        <input type="text" [(ngModel)]="otherUsername" placeholder="View username…" class="search-input compact"
+          (keydown.enter)="viewOtherCollection()" />
+        <button class="btn btn-outline" (click)="viewOtherCollection()">View</button>
+        <button class="btn btn-outline" *ngIf="isViewingOther" (click)="backToMyCollection()">My collection</button>
+      </div>
+    </div>
   </div>
 
   <!-- Sync Progress -->
@@ -20,6 +30,14 @@
       </div>
     </div>
   </div>
+
+    <!-- View another user's collection -->
+    <div class="view-other-banner" *ngIf="isViewingOther" style="margin-bottom:12px; padding:10px 14px; border-radius:12px; background:rgba(46,204,113,0.12); border:1px solid rgba(46,204,113,0.35); display:flex; align-items:center; justify-content:space-between; gap:12px;">
+      <div>Viewing <strong>{{ viewingUser?.username }}</strong>'s collection (read-only)</div>
+      <button class="btn btn-outline" (click)="backToMyCollection()">Back to my collection</button>
+    </div>
+
+
 
   <!-- Filters Section -->
   <div class="filters-section">
@@ -54,7 +72,8 @@
       <div class="filter-group">
         <label class="filter-label">
           Pack
-          <span *ngIf="selectedSet !== 'all'" class="filter-dependency">(filtered by {{ getSetName(selectedSet) }})</span>
+          <span *ngIf="selectedSet !== 'all'" class="filter-dependency">(filtered by {{ getSetName(selectedSet)
+            }})</span>
         </label>
         <select [(ngModel)]="selectedPack" (change)="onFilterChange()" class="filter-select">
           <option value="all">All Packs</option>
@@ -99,7 +118,8 @@
 
       <!-- Cards Grid for this group -->
       <div class="cards-grid">
-        <div *ngFor="let card of group.cards; trackBy: trackByCardInGroup" class="card-item" [class.no-quantity]="getOwnedCount(card) === 0" [attr.data-cardid]="getCardId(card)">
+        <div *ngFor="let card of group.cards; trackBy: trackByCardInGroup" class="card-item"
+          [class.no-quantity]="getOwnedCount(card) === 0" [attr.data-cardid]="getCardId(card)">
 
           <!-- Card Image -->
           <div class="card-image" [class.no-quantity]="getOwnedCount(card) === 0">
@@ -114,30 +134,25 @@
             <div class="card-title">{{ getCardDisplayName(card) }}</div>
             <!-- Ownership Controls -->
             <div class="ownership-controls">
-              <button (click)="decreaseOwned(card)" class="count-btn decrease" [disabled]="getOwnedCount(card) === 0">
+              <button (click)="decreaseOwned(card)" class="count-btn decrease"
+                [disabled]="isViewingOther || getOwnedCount(card) === 0">
                 −
               </button>
 
               <ng-container *ngIf="editingCardId === getCardId(card); else displayCount">
-                <input
-                  type="number"
-                  class="count-input"
-                  min="0"
-                  [(ngModel)]="editingCountValue"
-                  (keydown.enter)="commitCount(card)"
-                  (keydown)="onCountInputKeydown($event, card)"
-                  (keydown.escape)="cancelEditingCount()"
-                  (blur)="commitCount(card)"
-                />
+                <input type="number" class="count-input" min="0" [(ngModel)]="editingCountValue"
+                  (keydown.enter)="commitCount(card)" (keydown)="onCountInputKeydown($event, card)"
+                  (keydown.escape)="cancelEditingCount()" (blur)="commitCount(card)" />
               </ng-container>
 
               <ng-template #displayCount>
-                <button type="button" class="count-display" (click)="startEditingCount(card)">
+                <button type="button" class="count-display" [disabled]="isViewingOther"
+                  (click)="isViewingOther ? null : startEditingCount(card)">
                   {{ getOwnedCount(card) }}
                 </button>
               </ng-template>
 
-              <button (click)="increaseOwned(card)" class="count-btn increase">
+              <button (click)="increaseOwned(card)" class="count-btn increase" [disabled]="isViewingOther">
                 +
               </button>
             </div>

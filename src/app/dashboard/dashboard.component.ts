@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   loading = false;
   error: string | null = null;
   dataLoaded = false;
-  
+
   // User collection data
   userCollectionLoaded = false;
   userCards: any[] = [];
@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
     missingCommons: 0,
     missingRares: 0
   };
-  
+
   setProgress: any[] = [];
   userRarityStats: any[] = [];
   recentCards: any[] = [];
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
     private supabaseService: SupabaseService,
     private router: Router,
     private rarityService: RarityService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Check authentication
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
   loadCards(): void {
     this.loading = true;
     this.error = null;
-    
+
     this.dataManager.initializeCardData().subscribe({
       next: (cards) => {
         this.cards = cards;
@@ -78,17 +78,17 @@ export class DashboardComponent implements OnInit {
   loadAllData(): void {
     this.loading = true;
     this.error = null;
-    
+
     this.dataManager.loadAllPokemonData().subscribe({
       next: (data) => {
         this.cards = data.cards;
         this.sets = data.sets;
         this.dataLoaded = true;
         this.loading = false;
-        
+
         // Load statistics
         this.loadStats();
-        
+
         // Load user collection data
         this.loadUserCollection();
       },
@@ -149,22 +149,26 @@ export class DashboardComponent implements OnInit {
     try {
       // Use syncUserCollection which returns the correct format
       const collection = await this.supabaseService.syncUserCollection(user.id);
-      
+
       // Convert to array format for easier processing
       this.userCards = Object.entries(collection).map(([cardDefKey, quantity]) => ({
         card_def_key: cardDefKey,
         quantity: quantity
       }));
-      
+
       this.userCollectionLoaded = true;
-      this.calculateUserStats();
       this.calculateSetProgress();
       this.calculateUserRarityStats();
-      this.loadRecentCards();
       this.calculatePackSuggestions();
     } catch (error) {
       console.error('Error loading user collection:', error);
     }
+  }
+
+  excludeModelChange() {
+    this.calculateSetProgress();
+    this.calculateUserRarityStats();
+    this.calculatePackSuggestions();
   }
 
   /**
@@ -172,64 +176,6 @@ export class DashboardComponent implements OnInit {
    */
   private getCardId(card: any): string {
     return `${card.set}-${card.number}`;
-  }
-
-  /**
-   * Calculate user collection statistics
-   */
-  calculateUserStats(): void {
-    if (!this.userCards || !this.cards.length) return;
-
-    // Create a map of owned cards
-    const ownedCardMap = new Map();
-    let totalOwned = 0;
-    
-    this.userCards.forEach(card => {
-      ownedCardMap.set(card.card_def_key, card.quantity);
-      totalOwned += card.quantity;
-    });
-
-    const uniqueCards = this.userCards.length;
-    const completionPercentage = Math.round((uniqueCards / this.cards.length) * 100);
-
-    // Count rare cards using standardized rarity service
-    const rareCards = this.userCards.filter(userCard => {
-      const fullCard = this.cards.find(c => this.getCardId(c) === userCard.card_def_key);
-      if (!fullCard || !fullCard.rarityCode) return false;
-      
-      const normalizedCode = this.rarityService.getNormalizedCode(fullCard.rarityCode);
-      return this.rarityService.isSuperRare(normalizedCode);
-    }).length;
-
-    // Count recent sets (assume sets are ordered by release date)
-    const recentSetCodes = this.sets.slice(-3).map(set => set.code); // Last 3 sets
-    const recentSetsOwned = this.userCards.filter(userCard => {
-      const fullCard = this.cards.find(c => this.getCardId(c) === userCard.card_def_key);
-      return fullCard && recentSetCodes.includes(fullCard.set);
-    }).length;
-
-    // Count missing commons and rares using standardized rarity service
-    const missingCards = this.cards.filter(card => !ownedCardMap.has(this.getCardId(card)));
-    const missingCommons = missingCards.filter(card => {
-      if (!card.rarityCode) return false;
-      const normalizedCode = this.rarityService.getNormalizedCode(card.rarityCode);
-      return normalizedCode === 'C'; // Only commons
-    }).length;
-    const missingRares = missingCards.filter(card => {
-      if (!card.rarityCode) return false;
-      const normalizedCode = this.rarityService.getNormalizedCode(card.rarityCode);
-      return this.rarityService.isSuperRare(normalizedCode);
-    }).length;
-
-    this.userStats = {
-      totalOwned,
-      uniqueCards,
-      completionPercentage,
-      rareCards,
-      recentSetsOwned,
-      missingCommons,
-      missingRares
-    };
   }
 
   /**
@@ -244,14 +190,18 @@ export class DashboardComponent implements OnInit {
     });
 
     this.setProgress = this.sets.map(set => {
-      const setCards = this.cards.filter(card => card.set === set.code);
+      const setCardsAll = this.cards.filter(card => card.set === set.code);
+      // Optionally exclude cards belonging to the A4B - DELUXE PACK from set progress
+      const setCards = this.excludeDeluxePack
+        ? setCardsAll.filter(card => !(card.packs && card.packs.some(pack => this.isDeluxeA4B(pack))))
+        : setCardsAll;
       const ownedInSet = setCards.filter(card => ownedCardMap.has(this.getCardId(card)));
-      
+
       const percentage = setCards.length > 0 ? Math.round((ownedInSet.length / setCards.length) * 100) : 0;
-      
+
       // Calculate rarity breakdown for this set
       const rarityBreakdown = this.calculateSetRarityBreakdown(setCards, ownedCardMap);
-      
+
       return {
         name: set.label?.en || set.code,
         code: set.code,
@@ -272,13 +222,13 @@ export class DashboardComponent implements OnInit {
   private calculateSetRarityBreakdown(setCards: any[], ownedCardMap: Map<string, boolean>): any[] {
     // Group cards by normalized rarity using the rarity service
     const rarityGroups = this.rarityService.groupCardsByNormalizedRarity(setCards);
-    
+
     // Convert to array with percentages
     const breakdown: any[] = [];
     rarityGroups.forEach((cards, normalizedCode) => {
       const ownedInRarity = cards.filter(card => ownedCardMap.has(this.getCardId(card)));
       const percentage = cards.length > 0 ? Math.round((ownedInRarity.length / cards.length) * 100) : 0;
-      
+
       // Use standardized display name
       const displayName = this.rarityService.getStandardizedDisplayName(normalizedCode);
       breakdown.push({
@@ -289,9 +239,9 @@ export class DashboardComponent implements OnInit {
         percentage
       });
     });
-    
+
     // Sort by rarity order
-    return breakdown.sort((a, b) => 
+    return breakdown.sort((a, b) =>
       this.rarityService.getRarityOrder(a.code) - this.rarityService.getRarityOrder(b.code)
     );
   }
@@ -307,18 +257,23 @@ export class DashboardComponent implements OnInit {
       ownedCardMap.set(card.card_def_key, true);
     });
 
-    // Group all cards by normalized rarity using the rarity service
-    const rarityGroups = this.rarityService.groupCardsByNormalizedRarity(this.cards);
+    // Optionally exclude cards from the A4B - DELUXE PACK
+    const cardsForStats = this.excludeDeluxePack
+      ? this.cards.filter(card => !(card.packs && card.packs.some(pack => this.isDeluxeA4B(pack))))
+      : this.cards;
 
-    // Convert to array with percentages
-    this.userRarityStats = [];
+    // Group all remaining cards by normalized rarity using the rarity service
+    const rarityGroups = this.rarityService.groupCardsByNormalizedRarity(cardsForStats);
+
+    // Build array with percentages
+    const tempStats: any[] = [];
     rarityGroups.forEach((cards, normalizedCode) => {
       const ownedInRarity = cards.filter(card => ownedCardMap.has(this.getCardId(card)));
       const percentage = cards.length > 0 ? Math.round((ownedInRarity.length / cards.length) * 100) : 0;
-      
+
       // Use standardized display name
       const displayName = this.rarityService.getStandardizedDisplayName(normalizedCode);
-      this.userRarityStats.push({
+      tempStats.push({
         name: displayName,
         code: normalizedCode,
         owned: ownedInRarity.length,
@@ -327,8 +282,28 @@ export class DashboardComponent implements OnInit {
       });
     });
 
+    // Deduplicate by code (merge any accidental duplicates)
+    const merged = new Map<string, { name: string; code: string; owned: number; total: number }>();
+    tempStats.forEach(item => {
+      const prev = merged.get(item.code);
+      if (prev) {
+        prev.owned += item.owned;
+        prev.total += item.total;
+      } else {
+        merged.set(item.code, { name: item.name, code: item.code, owned: item.owned, total: item.total });
+      }
+    });
+
+    this.userRarityStats = Array.from(merged.values()).map(i => ({
+      name: i.name,
+      code: i.code,
+      owned: i.owned,
+      total: i.total,
+      percentage: i.total > 0 ? Math.round((i.owned / i.total) * 100) : 0
+    }));
+
     // Sort by rarity order
-    this.userRarityStats.sort((a, b) => 
+    this.userRarityStats.sort((a, b) =>
       this.rarityService.getRarityOrder(a.code) - this.rarityService.getRarityOrder(b.code)
     );
   }
@@ -374,15 +349,13 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    console.log(allPacks)
-
     // Calculate missing cards per pack
     const packAnalysis = Array.from(allPacks).map(packName => {
-      const cardsInPack = this.cards.filter(card => 
+      const cardsInPack = this.cards.filter(card =>
         card.packs && card.packs.includes(packName)
       );
-      
-      const missingCards = cardsInPack.filter(card => 
+
+      const missingCards = cardsInPack.filter(card =>
         !ownedCardMap.has(this.getCardId(card))
       );
 
@@ -409,7 +382,7 @@ export class DashboardComponent implements OnInit {
         totalCards: cardsInPack.length,
         missingCards: missingCards.length,
         ownedCards: cardsInPack.length - missingCards.length,
-        completionPercentage: cardsInPack.length > 0 ? 
+        completionPercentage: cardsInPack.length > 0 ?
           Math.round(((cardsInPack.length - missingCards.length) / cardsInPack.length) * 100) : 100,
         rarityBreakdown: Array.from(rarityBreakdown.entries()).map(([code, count]) => ({
           code,
@@ -432,7 +405,7 @@ export class DashboardComponent implements OnInit {
   /**
    * Robust matcher for the A4B - DELUXE PACK name across variations
    */
-  private isDeluxeA4B(packName: string | undefined | null): boolean {
+  isDeluxeA4B(packName: string | undefined | null): boolean {
     if (!packName) return false;
     // Normalize case, whitespace, and dash types
     const norm = packName
@@ -440,7 +413,7 @@ export class DashboardComponent implements OnInit {
       .replace(/[\u2012\u2013\u2014\u2015\-]/g, '-') // various dashes to hyphen-minus
       .replace(/\s+/g, ' ') // collapse spaces
       .trim();
-    
+
 
     return norm.includes('DELUXE');
   }
@@ -456,7 +429,7 @@ export class DashboardComponent implements OnInit {
 
     // Create CSV content
     const csvContent = this.generateCollectionCSV();
-    
+
     // Create download
     const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');

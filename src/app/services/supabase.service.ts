@@ -192,6 +192,48 @@ export class SupabaseService {
   }
 
   /**
+   * Get a user's profile by username
+   */
+  async getProfileByUsername(username: string): Promise<Profile | null> {
+    try {
+      // Ensure client is initialized
+      if (!this.isInitialized) {
+        await new Promise<void>(resolve => {
+          const check = (): void => {
+            if (this.isInitialized) {
+              resolve();
+            } else {
+              setTimeout(check, 50);
+            }
+          };
+          check();
+        });
+      }
+
+      const { data, error } = await this.supabase
+        .from('profiles')
+        .select('*')
+        .eq('username', username)
+        .maybeSingle();
+
+      if (error) {
+        console.warn('getProfileByUsername fallback due to error:', error.message);
+        // Fallback dev users
+        const testUsers: Profile[] = [
+          { id: '1', username: 'test', password: 'test', role: 'user', created_at: new Date().toISOString() },
+          { id: '2', username: 'admin', password: 'admin', role: 'admin', created_at: new Date().toISOString() }
+        ];
+        return testUsers.find(u => u.username === username) || null;
+      }
+
+      return data || null;
+    } catch (e) {
+      console.error('Error in getProfileByUsername:', e);
+      return null;
+    }
+  }
+
+  /**
    * Get user's cards from the database
    */
   async getUserCards(userId: string, progressCallback?: (loaded: number, total?: number) => void): Promise<{ cards: UserCard[], error: string | null }> {

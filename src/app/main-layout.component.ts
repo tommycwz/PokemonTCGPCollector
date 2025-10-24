@@ -9,7 +9,7 @@ import { SupabaseService, Profile } from './services/supabase.service';
       <nav class="navbar">
         <div class="nav-container">
           <div class="nav-brand">
-            <h2>Pokemon TCG Pocket Collector</h2>
+            <h2>Pokemon TCG Pocket Collector</h2><p>v1.0.0</p>
           </div>
           <div class="nav-center">
             <div class="nav-links">
@@ -63,6 +63,19 @@ import { SupabaseService, Profile } from './services/supabase.service';
       font-size: 1.5rem;
       font-weight: bold;
       color: white;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .nav-brand p {
+      margin: 0;
+      color: #f0f0f0;
+      opacity: 0.9;
+      font-size: 0.95rem;
     }
 
     .nav-center {

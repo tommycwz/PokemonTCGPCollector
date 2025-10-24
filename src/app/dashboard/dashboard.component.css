@@ -6,16 +6,11 @@
 	margin: 0 auto;
 	min-height: 100vh;
 	color: var(--text);
-	background: var(--dashboard-bg);
-	overflow: hidden;
-	border-radius: 28px;
-	box-shadow: 0 30px 80px rgba(7, 12, 24, 0.6);
-  margin-top: 30px;
-}
-
-.container > * {
-	position: relative;
-	z-index: 1;
+	background: transparent; /* remove outer panel layer */
+	overflow: visible;
+	border-radius: 0; /* no rounded frame */
+	box-shadow: none; /* no outer shadow */
+	margin-top: 30px;
 }
 
 h1,
@@ -48,11 +43,6 @@ h4 {
 	gap: 12px;
 	box-shadow: 0 16px 32px rgba(12, 20, 36, 0.28);
 	transition: transform 160ms ease, border-color 160ms ease;
-}
-
-.stat-card:hover {
-	transform: translateY(-3px);
-	border-color: rgba(91, 168, 255, 0.45);
 }
 
 .stat-card.highlight {
@@ -124,14 +114,6 @@ h4 {
 	transition: transform 160ms ease, box-shadow 160ms ease, border-color 180ms ease;
 }
 
-.pack-suggestions:hover,
-.set-progress:hover,
-.rarity-breakdown:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 24px 48px rgba(12, 22, 41, 0.45);
-	border-color: rgba(91, 168, 255, 0.55);
-}
-
 .pack-suggestions details,
 .set-progress details,
 .rarity-breakdown details {
@@ -163,6 +145,23 @@ h4 {
 	border-radius: 50%;
 	background: var(--accent);
 	box-shadow: 0 0 18px rgba(91, 168, 255, 0.65);
+}
+
+/* Make Set Completion Progress and Collection by Rarity sections seamless as well */
+.set-progress,
+.rarity-breakdown {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.set-progress:hover,
+.rarity-breakdown:hover {
+	transform: none;
+	box-shadow: none;
+	border-color: transparent;
 }
 
 .pack-suggestions summary::-webkit-details-marker,

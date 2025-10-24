@@ -46,6 +46,11 @@ export class CardCollectionComponent implements OnInit {
   editingCardId: string | null = null;
   editingCountValue = 0;
   private lastFlatOrder: Card[] = [];
+
+  // Viewing another user's collection
+  isViewingOther = false;
+  otherUsername = '';
+  viewingUser: Profile | null = null;
   
   // Statistics
   totalCards = 0;
@@ -256,6 +261,14 @@ export class CardCollectionComponent implements OnInit {
   // Card ownership management
   async loadOwnedCards(): Promise<void> {
     if (!this.currentUser) return;
+    await this.loadOwnedCardsForUser(this.currentUser.id, this.currentUser.username);
+  }
+
+  private async loadOwnedCardsForUser(userId: string, labelUsername?: string): Promise<void> {
+    this.loadingOwnedCards = true;
+    this.syncingCards = true;
+    this.syncProgress = 0;
+    this.syncMessage = labelUsername ? `Loading ${labelUsername}'s collection...` : 'Starting sync...';
 
     this.loadingOwnedCards = true;
     this.syncingCards = true;
@@ -265,14 +278,14 @@ export class CardCollectionComponent implements OnInit {
     try {
       // Load from Supabase with progress callback
       const collection = await this.supabaseService.syncUserCollection(
-        this.currentUser.id, 
+        userId,
         (loaded: number) => {
           this.syncProgress = loaded;
           this.syncMessage = `Syncing cards... ${loaded} loaded`;
           this.cdr.detectChanges();
         }
       );
-      
+
       this.ownedCards = collection;
       this.calculateStatistics();
       this.syncMessage = `Sync completed! ${Object.keys(collection).length} cards loaded`;
@@ -324,6 +337,7 @@ export class CardCollectionComponent implements OnInit {
   }
 
   async increaseOwned(card: Card): Promise<void> {
+    if (this.isViewingOther) return; // read-only when viewing others
     if (!this.currentUser) return;
 
     const cardId = this.getCardId(card);
@@ -335,6 +349,7 @@ export class CardCollectionComponent implements OnInit {
   }
 
   async decreaseOwned(card: Card): Promise<void> {
+    if (this.isViewingOther) return; // read-only when viewing others
     if (!this.currentUser) return;
 
     const cardId = this.getCardId(card);
@@ -350,6 +365,7 @@ export class CardCollectionComponent implements OnInit {
   }
 
   startEditingCount(card: Card): void {
+    if (this.isViewingOther) return; // read-only when viewing others
     this.editingCardId = this.getCardId(card);
     this.editingCountValue = this.getOwnedCount(card);
     this.cdr.detectChanges();
@@ -363,6 +379,7 @@ export class CardCollectionComponent implements OnInit {
   }
 
   async commitCount(card: Card): Promise<void> {
+    if (this.isViewingOther) { this.cancelEditingCount(); return; }
     if (!this.currentUser) {
       return;
     }
@@ -494,6 +511,10 @@ export class CardCollectionComponent implements OnInit {
 
   // Export/Import collection
   exportCollection(): void {
+    if (this.isViewingOther) {
+      alert('Export is disabled when viewing another user\'s collection');
+      return;
+    }
     // CSV Header with UTF-8 BOM for Excel compatibility
     let csvContent = '\uFEFF'; // UTF-8 BOM
     csvContent += 'Id,CardName,NumberOwn,Expansion,Pack,Rarity\n';
@@ -520,6 +541,10 @@ export class CardCollectionComponent implements OnInit {
   }
 
   importCollection(event: any): void {
+    if (this.isViewingOther) {
+      alert('Import is disabled when viewing another user\'s collection');
+      return;
+    }
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -646,6 +671,38 @@ export class CardCollectionComponent implements OnInit {
         }
       };
       reader.readAsText(file);
+    }
+  }
+
+  async viewOtherCollection(): Promise<void> {
+    const username = (this.otherUsername || '').trim();
+    if (!username) {
+      alert('Please enter a username');
+      return;
+    }
+    if (this.currentUser && username === this.currentUser.username) {
+      // same as current user -> reset to own
+      this.backToMyCollection();
+      return;
+    }
+
+    const profile = await this.supabaseService.getProfileByUsername(username);
+    if (!profile) {
+      alert(`User '${username}' not found`);
+      return;
+    }
+
+    this.isViewingOther = true;
+    this.viewingUser = profile;
+    await this.loadOwnedCardsForUser(profile.id, profile.username);
+  }
+
+  async backToMyCollection(): Promise<void> {
+    this.isViewingOther = false;
+    this.viewingUser = null;
+    this.otherUsername = '';
+    if (this.currentUser) {
+      await this.loadOwnedCardsForUser(this.currentUser.id, this.currentUser.username);
     }
   }
 
