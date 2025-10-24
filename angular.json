@@ -13,7 +13,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/pokemon-tcgpcollector",
+            "outputPath": "docs",
+            "baseHref": "/PokemonTCGPCollector/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
