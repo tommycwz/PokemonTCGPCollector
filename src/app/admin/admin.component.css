@@ -1,0 +1,295 @@
+/* Admin Container */
+.admin-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #000000;
+  min-height: 100vh;
+  color: white;
+}
+
+.admin-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* User Info */
+.user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 15px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  border-radius: 10px;
+  border: 1px solid #404040;
+}
+
+.role-badge {
+  background: linear-gradient(45deg, #ff6b6b, #ff8787);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Messages */
+.message {
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: #1a4d3a;
+  border: 1px solid #28a745;
+  color: #28a745;
+}
+
+.message.error {
+  background-color: #4d1a1a;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+}
+
+/* JSON Management */
+.json-management {
+  margin-bottom: 40px;
+}
+
+.json-management h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #4ecdc4;
+}
+
+/* JSON Sections */
+.json-section {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  border-radius: 12px;
+  border: 1px solid #404040;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.json-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
+  border-bottom: 1px solid #404040;
+}
+
+.json-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.json-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(45deg, #0056b3, #004085);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: linear-gradient(45deg, #6c757d, #5a6268);
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(45deg, #5a6268, #495057);
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: linear-gradient(45deg, #28a745, #1e7e34);
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: linear-gradient(45deg, #1e7e34, #155724);
+  transform: translateY(-1px);
+}
+
+.btn-info {
+  background: linear-gradient(45deg, #17a2b8, #138496);
+  color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+  background: linear-gradient(45deg, #138496, #117a8b);
+  transform: translateY(-1px);
+}
+
+/* JSON Editor */
+.json-editor {
+  padding: 0;
+}
+
+.json-textarea {
+  width: 100%;
+  min-height: 300px;
+  max-height: 500px;
+  padding: 20px;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.json-textarea:focus {
+  background-color: #222;
+}
+
+.json-textarea:readonly {
+  background-color: #0f0f0f;
+  color: #999;
+}
+
+/* Instructions */
+.instructions {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+  border-radius: 12px;
+  border: 1px solid #404040;
+  padding: 25px;
+}
+
+.instructions h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #4ecdc4;
+}
+
+.instructions ul {
+  margin-bottom: 20px;
+}
+
+.instructions li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.instructions strong {
+  color: #fff;
+}
+
+.workflow-steps {
+  margin-bottom: 25px;
+}
+
+.workflow-steps h4 {
+  color: #4ecdc4;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.workflow-steps ol {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.workflow-steps li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.workflow-steps code {
+  background-color: #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.workflow-note {
+  background-color: #1a4d3a;
+  border: 1px solid #28a745;
+  color: #28a745;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.warning {
+  background-color: #4d3319;
+  border: 1px solid #ffc107;
+  color: #ffc107;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 15px;
+  }
+  
+  .json-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .json-actions {
+    justify-content: center;
+  }
+  
+  .btn {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .admin-container h1 {
+    font-size: 2rem;
+  }
+}

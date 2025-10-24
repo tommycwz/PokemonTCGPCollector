@@ -1,0 +1,138 @@
+<div class="collection-container">
+  <!-- Collection Management Actions -->
+  <div class="collection-actions">
+    <button (click)="exportCollection()" class="btn btn-secondary">
+      📤 Export Collection
+    </button>
+    <label class="btn btn-secondary import-btn">
+      📥 Import Collection
+      <input type="file" accept=".csv" (change)="importCollection($event)" hidden>
+    </label>
+  </div>
+
+  <!-- Sync Progress -->
+  <div *ngIf="syncingCards" class="sync-progress">
+    <div class="sync-message">
+      <div class="sync-icon">⏳</div>
+      <div class="sync-text">
+        <div class="sync-title">{{ syncMessage }}</div>
+        <div class="sync-count" *ngIf="syncProgress > 0">{{ syncProgress }} cards loaded</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" placeholder="🔍 Search Pokemon cards..." [(ngModel)]="searchTerm" (input)="onSearchChange()"
+          class="search-input">
+      </div>
+    </div>
+
+    <div class="filter-controls">
+      <div class="filter-group">
+        <label class="filter-label">Set</label>
+        <select [(ngModel)]="selectedSet" (change)="onSetChange()" class="filter-select">
+          <option value="all">All Sets</option>
+          <option *ngFor="let set of availableSets" [value]="set">
+            {{ getSetName(set) }} ({{ set }})
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Rarity</label>
+        <select [(ngModel)]="selectedRarity" (change)="onFilterChange()" class="filter-select">
+          <option value="all">All Rarities</option>
+          <option *ngFor="let rarityGroup of availableRaritySymbols" [value]="rarityGroup.symbol">
+            {{ rarityGroup.displayName }}
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">
+          Pack
+          <span *ngIf="selectedSet !== 'all'" class="filter-dependency">(filtered by {{ getSetName(selectedSet) }})</span>
+        </label>
+        <select [(ngModel)]="selectedPack" (change)="onFilterChange()" class="filter-select">
+          <option value="all">All Packs</option>
+          <option *ngFor="let pack of availablePacks" [value]="pack">
+            {{ pack }}
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-actions">
+        <button (click)="clearFilters()" class="btn btn-outline">
+          <span class="btn-icon">🗑️</span>
+          Clear Filters
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading Pokemon cards...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-container">
+    <p>{{ error }}</p>
+    <button (click)="loadAllData()" class="btn btn-primary">Retry</button>
+  </div>
+
+  <!-- Cards Grid with Group Headers -->
+  <div *ngIf="!loading && !error" class="cards-container">
+    <div *ngFor="let group of getGroupedCards(); trackBy: trackByGroupTitle" class="card-group">
+
+      <!-- Group Title -->
+      <div class="group-header">
+        <h3 class="group-title">{{ getGroupDisplayName(group.groupTitle, group.cards) }}</h3>
+        <div class="group-stats">
+          <span class="group-count">{{ group.cards.length }} card{{ group.cards.length !== 1 ? 's' : '' }}</span>
+        </div>
+      </div>
+
+      <!-- Cards Grid for this group -->
+      <div class="cards-grid">
+        <div *ngFor="let card of group.cards; trackBy: trackByCardInGroup" class="card-item" [class.no-quantity]="getOwnedCount(card) === 0">
+
+          <!-- Card Image -->
+          <div class="card-image" [class.no-quantity]="getOwnedCount(card) === 0">
+            <!-- TEMP: Test direct loading -->
+            <img [src]="getCardImageUrl(card.imageName)" [alt]="card.label.eng + ' Pokemon Card'"
+              class="pokemon-card-img" [class.no-quantity]="getOwnedCount(card) === 0" loading="lazy"
+              (error)="onImageError($event, card)" />
+          </div>
+
+          <!-- Card Info -->
+          <div class="card-info">
+            <div class="card-title">{{ getCardDisplayName(card) }}</div>
+            <!-- Ownership Controls -->
+            <div class="ownership-controls">
+              <button (click)="decreaseOwned(card)" class="count-btn decrease" [disabled]="getOwnedCount(card) === 0">
+                −
+              </button>
+              <span class="count">{{ getOwnedCount(card) }}</span>
+              <button (click)="increaseOwned(card)" class="count-btn increase">
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && getGroupedCards().length === 0" class="empty-state">
+    <div class="empty-icon">🔍</div>
+    <h3>No cards found</h3>
+    <p>Try adjusting your search or filter criteria</p>
+    <button (click)="clearFilters()" class="btn btn-primary">Clear All Filters</button>
+  </div>
+</div>

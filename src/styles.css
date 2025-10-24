@@ -1,0 +1,39 @@
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000000 !important;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000 !important;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Ensure all main elements have black background */
+app-root {
+  background-color: #000000 !important;
+  display: block;
+  min-height: 100vh;
+}
+
+/* Universal black background enforcement */
+* {
+  box-sizing: border-box;
+}
+
+/* Override any remaining white or light backgrounds */
+div, section, main, article, aside, header, footer, nav {
+  background-color: inherit;
+}
+
+/* Force black background on common UI elements */
+.container, .main-content, .page-content, .wrapper {
+  background-color: #000000 !important;
+}
