@@ -45,6 +45,7 @@ export class CardCollectionComponent implements OnInit {
   viewMode: 'grid' | 'list' = 'grid';
   editingCardId: string | null = null;
   editingCountValue = 0;
+  private lastFlatOrder: Card[] = [];
   
   // Statistics
   totalCards = 0;
@@ -352,6 +353,7 @@ export class CardCollectionComponent implements OnInit {
     this.editingCardId = this.getCardId(card);
     this.editingCountValue = this.getOwnedCount(card);
     this.cdr.detectChanges();
+    this.focusEditingInput();
   }
 
   cancelEditingCount(): void {
@@ -381,6 +383,42 @@ export class CardCollectionComponent implements OnInit {
     this.updateLocalQuantity(cardId, sanitizedValue);
     await this.persistQuantity(cardId, sanitizedValue, previousQuantity);
     this.cancelEditingCount();
+  }
+
+  onCountInputKeydown(event: KeyboardEvent, card: Card): void {
+    if (event.key !== 'Tab') return;
+    event.preventDefault();
+    const ordered = this.getFlatOrderedCards();
+    const currentId = this.getCardId(card);
+    const idx = ordered.findIndex(c => this.getCardId(c) === currentId);
+    if (idx === -1) return;
+    const nextIdx = event.shiftKey ? idx - 1 : idx + 1;
+    // Commit current value before moving
+    this.commitCount(card).then(() => {
+      const target = ordered[nextIdx];
+      if (target) {
+        this.startEditingCount(target);
+      }
+    });
+  }
+
+  private focusEditingInput(): void {
+    const id = this.editingCardId;
+    if (!id) return;
+    setTimeout(() => {
+      const el = document.querySelector(`.card-item[data-cardid="${id}"] .count-input`) as HTMLInputElement | null;
+      if (el) {
+        el.focus();
+        el.select();
+      }
+    });
+  }
+
+  private getFlatOrderedCards(): Card[] {
+    // Cache last computed order to minimize work if needed
+    const groups = this.getGroupedCards();
+    this.lastFlatOrder = groups.flatMap(g => g.cards);
+    return this.lastFlatOrder;
   }
 
   private updateLocalQuantity(cardId: string, quantity: number): void {

@@ -99,7 +99,7 @@
 
       <!-- Cards Grid for this group -->
       <div class="cards-grid">
-        <div *ngFor="let card of group.cards; trackBy: trackByCardInGroup" class="card-item" [class.no-quantity]="getOwnedCount(card) === 0">
+        <div *ngFor="let card of group.cards; trackBy: trackByCardInGroup" class="card-item" [class.no-quantity]="getOwnedCount(card) === 0" [attr.data-cardid]="getCardId(card)">
 
           <!-- Card Image -->
           <div class="card-image" [class.no-quantity]="getOwnedCount(card) === 0">
@@ -125,6 +125,7 @@
                   min="0"
                   [(ngModel)]="editingCountValue"
                   (keydown.enter)="commitCount(card)"
+                  (keydown)="onCountInputKeydown($event, card)"
                   (keydown.escape)="cancelEditingCount()"
                   (blur)="commitCount(card)"
                 />
