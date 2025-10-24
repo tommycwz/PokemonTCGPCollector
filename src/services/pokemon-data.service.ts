@@ -164,7 +164,8 @@ export class PokemonDataService {
         const distribution: { [key: string]: number } = {};
         
         cards.forEach(card => {
-          card.packs.forEach((pack: string) => {
+          const packs = Array.isArray(card.packs) ? card.packs : [];
+          packs.forEach((pack: string) => {
             if (pack && pack.trim()) { // Filter out empty strings
               distribution[pack] = (distribution[pack] || 0) + 1;
             }
@@ -176,7 +177,7 @@ export class PokemonDataService {
         return Object.entries(distribution).map(([pack, count]) => ({
           pack,
           count,
-          percentage: Math.round((count / total) * 100 * 100) / 100
+          percentage: total > 0 ? Math.round((count / total) * 100 * 100) / 100 : 0
         })).sort((a, b) => b.count - a.count);
       })
     );
@@ -255,7 +256,8 @@ export class PokemonDataService {
     const distribution: { [key: string]: number } = {};
     
     cards.forEach(card => {
-      card.packs.forEach((pack: string) => {
+      const packs = Array.isArray(card.packs) ? card.packs : [];
+      packs.forEach((pack: string) => {
         if (pack && pack.trim()) {
           distribution[pack] = (distribution[pack] || 0) + 1;
         }

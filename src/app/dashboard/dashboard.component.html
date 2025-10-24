@@ -13,9 +13,15 @@
   <div *ngIf="!loading" class="dashboard-content">
     
     <!-- Pack Suggestions -->
-    <div class="pack-suggestions" *ngIf="packSuggestions.length > 0">
+  <div class="pack-suggestions" *ngIf="packSuggestions.length > 0">
       <details open>
         <summary>🎁 Pack Opening Suggestions</summary>
+        <div class="suggestion-controls" style="margin: 8px 0 16px; display: flex; align-items: center; gap: 12px;">
+          <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer;">
+            <input type="checkbox" [(ngModel)]="excludeDeluxePack" (ngModelChange)="calculatePackSuggestions()" />
+            Exclude A4B - DELUXE PACK
+          </label>
+        </div>
         <p class="suggestion-subtitle">Optimized recommendations based on your missing cards</p>
         <div class="suggestions-list">
           <div *ngFor="let suggestion of packSuggestions; let i = index" class="suggestion-item" [class.top-pick]="i === 0">
@@ -53,7 +59,7 @@
             <div class="set-rarity-breakdown" *ngIf="set.rarityBreakdown && set.rarityBreakdown.length > 0">
               <h5>Rarity Progress:</h5>
               <div class="set-rarity-grid">
-                <div *ngFor="let rarity of set.rarityBreakdown" class="set-rarity-item">
+                <div *ngFor="let rarity of set.rarityBreakdown" class="set-rarity-item" [ngClass]="'rarity-' + rarity.code" [attr.title]="rarity.name + ': ' + rarity.owned + '/' + rarity.total + ' (' + rarity.percentage + '%)'">
                   <span class="rarity-name">{{ rarity.name }}</span>
                   <div class="rarity-mini-progress">
                     <div class="rarity-mini-bar">
@@ -74,7 +80,7 @@
       <details open>
         <summary>⭐ Collection by Rarity</summary>
         <div class="rarity-grid">
-          <div *ngFor="let rarity of userRarityStats" class="rarity-card">
+          <div *ngFor="let rarity of userRarityStats" class="rarity-card" [ngClass]="'rarity-' + rarity.code" [attr.title]="rarity.name + ': ' + rarity.owned + '/' + rarity.total + ' (' + rarity.percentage + '%)'">
             <div class="rarity-header">
               <h4>{{ rarity.name }}</h4>
               <span class="rarity-count">{{ rarity.owned }}/{{ rarity.total }}</span>

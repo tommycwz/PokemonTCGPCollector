@@ -1,20 +1,7 @@
-:root {
-	--dashboard-bg: radial-gradient(circle at top, #1b2b4b 0%, #0b1224 45%, #070910 100%);
-	--surface: rgba(21, 29, 46, 0.85);
-	--surface-strong: rgba(27, 38, 61, 0.95);
-	--border: rgba(98, 120, 161, 0.35);
-	--accent: #5ba8ff;
-	--accent-strong: #4c8aff;
-	--text: #f5f7ff;
-	--text-muted: #adb9d9;
-	--success: #2ecc71;
-	--warning: #f1c40f;
-	--danger: #ff6b6b;
-}
+/* Theme variables moved to global styles.css to reduce component bundle size */
 
 .container {
 	position: relative;
-	padding: 32px clamp(16px, 3vw, 40px) 48px;
 	max-width: 1280px;
 	margin: 0 auto;
 	min-height: 100vh;
@@ -23,14 +10,7 @@
 	overflow: hidden;
 	border-radius: 28px;
 	box-shadow: 0 30px 80px rgba(7, 12, 24, 0.6);
-}
-
-.container::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	backdrop-filter: blur(24px) saturate(135%);
-	opacity: 0.9;
+  margin-top: 30px;
 }
 
 .container > * {
@@ -360,6 +340,10 @@ h4 {
 	border-radius: 16px;
 	padding: 12px 14px;
 	text-align: center;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 6px 14px rgba(8, 12, 22, 0.35);
+	display: flex;
+	flex-direction: column;
+	min-height: 96px;
 }
 
 .rarity-name {
@@ -373,26 +357,40 @@ h4 {
 .rarity-mini-progress {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 10px;
+	margin-top: auto; /* keep progress at bottom */
 }
 
 .rarity-mini-bar {
 	flex: 1;
-	height: 6px;
+	height: 8px;
 	border-radius: 999px;
-	background: rgba(91, 168, 255, 0.18);
+	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(91, 168, 255, 0.12));
+	border: 1px solid rgba(91, 168, 255, 0.22);
 	overflow: hidden;
+	position: relative;
 }
 
 .rarity-mini-fill {
 	height: 100%;
-	background: linear-gradient(90deg, var(--accent) 0%, var(--accent-strong) 100%);
+	background: linear-gradient(90deg, var(--rarity-start, var(--accent)) 0%, var(--rarity-end, var(--accent-strong)) 100%);
 	border-radius: 999px;
+	box-shadow: 0 0 8px var(--rarity-glow, rgba(76, 138, 255, 0.6));
+	transition: width 260ms ease;
 }
 
+/* Per-rarity colors now come from CSS variables defined on the parent class (see global styles.css) */
+
 .rarity-mini-text {
-	font-size: 0.75rem;
-	color: var(--text-muted);
+	font-size: 0.72rem;
+	color: var(--text);
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(91, 168, 255, 0.18);
+	padding: 2px 8px;
+	border-radius: 999px;
+	font-weight: 600;
+	letter-spacing: 0.01em;
+	font-variant-numeric: tabular-nums;
 }
 
 .rarity-grid {
@@ -406,8 +404,10 @@ h4 {
 	border: 1px solid rgba(91, 168, 255, 0.18);
 	border-radius: 18px;
 	padding: 20px;
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	gap: 14px;
+	min-height: 140px;
 	transition: transform 160ms ease, border-color 160ms ease;
 }
 
@@ -431,36 +431,40 @@ h4 {
 	display: flex;
 	align-items: center;
 	gap: 12px;
+	margin-top: auto; /* keep progress at bottom */
 }
 
 .rarity-bar {
 	flex: 1;
-	height: 8px;
+	height: 10px;
 	border-radius: 999px;
-	background: rgba(91, 168, 255, 0.18);
+	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(91, 168, 255, 0.12));
+	border: 1px solid rgba(91, 168, 255, 0.22);
 	overflow: hidden;
 }
 
 .rarity-fill {
 	height: 100%;
-	background: linear-gradient(90deg, var(--accent) 0%, var(--accent-strong) 100%);
+	background: linear-gradient(90deg, var(--rarity-start, var(--accent)) 0%, var(--rarity-end, var(--accent-strong)) 100%);
 	border-radius: 999px;
-	transition: width 220ms ease-in-out;
+	box-shadow: 0 0 10px var(--rarity-glow, rgba(76, 138, 255, 0.65));
+	transition: width 260ms ease-in-out;
 }
 
+/* Per-rarity colors for collection bars provided via CSS variables (see global styles.css) */
+
 .percentage {
-	min-width: 44px;
+	min-width: 48px;
 	text-align: right;
 	font-weight: 700;
 	color: var(--success);
+	background: rgba(46, 204, 113, 0.1);
+	border: 1px solid rgba(46, 204, 113, 0.25);
+	padding: 2px 8px;
+	border-radius: 999px;
 }
 
 @media (max-width: 768px) {
-	.container {
-		padding: 24px clamp(12px, 4vw, 20px);
-		border-radius: 18px;
-	}
-
 	.suggestion-summary,
 	.progress-header {
 		flex-direction: column;

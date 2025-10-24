@@ -487,54 +487,72 @@ export class CardCollectionComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = async (e) => {
         try {
-          const csvData = e.target?.result as string;
-          const lines = csvData.split('\n');
-          
-          // Skip header row
-          const dataLines = lines.slice(1).filter(line => line.trim());
-          
+          const csvData = (e.target?.result as string) || '';
+          const rawLines = csvData.split(/\r?\n/);
+          const lines = rawLines.filter(l => l.trim().length > 0);
+
+          if (lines.length === 0) {
+            alert('CSV file appears to be empty.');
+            return;
+          }
+
+          // Build ID index using normalized IDs (case-insensitive + set aliases)
+          const idIndex = new Map<string, string>();
+          this.cards.forEach(c => {
+            const canonical = this.getCardId(c);
+            idIndex.set(this.normalizeId(canonical), canonical);
+          });
+
+          // Determine if first row is a header
+          const headerCandidates = this.parseCSVLine(lines[0]);
+          const headerRegex = /(id|card|name|expansion|set|rarity|qty|quantity|owned|count|number|no)/i;
+          const hasHeader = headerCandidates.some(h => headerRegex.test(h));
+
+          const startIndex = hasHeader ? 1 : 0;
+          const headerMap = hasHeader ? this.buildHeaderMap(headerCandidates) : null;
+
           let importedCount = 0;
           let errorCount = 0;
-          
-          dataLines.forEach(line => {
+          let missingCardCount = 0;
+
+          for (let i = startIndex; i < lines.length; i++) {
+            const line = lines[i];
             try {
-              // Parse CSV line - handle quoted values
               const columns = this.parseCSVLine(line);
-              
-              if (columns.length >= 3) {
-                const cardId = columns[0].trim();
-                const numberOwn = parseInt(columns[2].trim());
-                
-                // Validate card ID format and quantity
-                if (cardId && !isNaN(numberOwn) && numberOwn >= 0) {
-                  // Check if this card ID exists in our collection
-                  const cardExists = this.cards.some(card => this.getCardId(card) === cardId);
-                  
-                  if (cardExists) {
-                    if (numberOwn > 0) {
-                      this.ownedCards[cardId] = numberOwn;
-                    } else {
-                      delete this.ownedCards[cardId];
-                    }
-                    importedCount++;
-                  } else {
-                    console.warn(`Card ID ${cardId} not found in collection`);
-                    errorCount++;
-                  }
+
+              // Resolve cardId and quantity flexibly
+              const { cardId, quantity } = this.resolveCsvRow(columns, headerMap);
+
+              if (!cardId) {
+                errorCount++;
+                continue;
+              }
+
+              const numberOwn = Math.max(0, Math.floor(Number(quantity)) || 0);
+
+              // Normalize input id (case-insensitive + set aliases) and map to canonical id
+              const canonicalId = idIndex.get(this.normalizeId(cardId)) || null;
+
+              if (canonicalId) {
+                if (numberOwn > 0) {
+                  this.ownedCards[canonicalId] = numberOwn;
                 } else {
-                  console.warn(`Invalid data in line: ${line}`);
-                  errorCount++;
+                  delete this.ownedCards[canonicalId];
                 }
+                importedCount++;
+              } else {
+                console.log(cardId)
+                missingCardCount++;
               }
             } catch (lineError) {
               console.error(`Error parsing line: ${line}`, lineError);
               errorCount++;
             }
-          });
-          
+          }
+
           // Save the updated collection to localStorage
           this.saveOwnedCards();
-          
+
           // Bulk sync to Supabase if user is logged in
           if (this.currentUser) {
             try {
@@ -548,10 +566,11 @@ export class CardCollectionComponent implements OnInit {
                 // Show success message
                 let message = `Import completed!\n${importedCount} cards updated`;
                 message += `\nCollection synced to database successfully`;
-                if (errorCount > 0) {
-                  message += `\n${errorCount} import errors encountered`;
-                }
-                
+                if (missingCardCount > 0) message += `\n${missingCardCount} rows referenced unknown cards (skipped)`;
+                if (errorCount > 0) message += `\n${errorCount} parse errors encountered`;
+                // Refresh owned cards from database to reflect server state
+                await this.loadOwnedCards();
+
                 alert(message);
               } else {
                 console.error('❌ Failed to sync collection to database:', result.error);
@@ -559,9 +578,8 @@ export class CardCollectionComponent implements OnInit {
                 // Show partial success message
                 let message = `Import completed!\n${importedCount} cards updated locally`;
                 message += `\nDatabase sync failed: ${result.error}`;
-                if (errorCount > 0) {
-                  message += `\n${errorCount} import errors encountered`;
-                }
+                if (missingCardCount > 0) message += `\n${missingCardCount} unknown cards (skipped)`;
+                if (errorCount > 0) message += `\n${errorCount} parse errors encountered`;
                 
                 alert(message);
               }
@@ -571,18 +589,16 @@ export class CardCollectionComponent implements OnInit {
               // Show error message
               let message = `Import completed!\n${importedCount} cards updated locally`;
               message += `\nDatabase sync failed - please try again`;
-              if (errorCount > 0) {
-                message += `\n${errorCount} import errors encountered`;
-              }
+              if (missingCardCount > 0) message += `\n${missingCardCount} unknown cards (skipped)`;
+              if (errorCount > 0) message += `\n${errorCount} parse errors encountered`;
               
               alert(message);
             }
           } else {
             // Show result message if not logged in
             let message = `Import completed!\n${importedCount} cards updated`;
-            if (errorCount > 0) {
-              message += `\n${errorCount} errors encountered`;
-            }
+            if (missingCardCount > 0) message += `\n${missingCardCount} unknown cards (skipped)`;
+            if (errorCount > 0) message += `\n${errorCount} parse errors encountered`;
             
             alert(message);
           }
@@ -593,6 +609,115 @@ export class CardCollectionComponent implements OnInit {
       };
       reader.readAsText(file);
     }
+  }
+
+  /**
+   * Build a simple header map (case-insensitive)
+   */
+  private buildHeaderMap(headers: string[]): { [key: string]: number } {
+    const map: { [key: string]: number } = {};
+    headers.forEach((h, idx) => {
+      const key = h.trim().toLowerCase();
+      map[key] = idx;
+    });
+    return map;
+  }
+
+  /**
+   * Resolve a row into a cardId and quantity using flexible headers
+   */
+  private resolveCsvRow(columns: string[], headerMap: { [key: string]: number } | null): { cardId: string | null, quantity: number } {
+    const getByKeys = (keys: string[]): string | undefined => {
+      if (!headerMap) return undefined;
+      for (const k of keys) {
+        const idx = headerMap[k];
+        if (idx !== undefined && idx >= 0 && idx < columns.length) {
+          const val = (columns[idx] || '').trim();
+          if (val) return val;
+        }
+      }
+      return undefined;
+    };
+
+    // Quantity candidates
+    const qtyStr = getByKeys([
+      'numberown','quantity','qty','owned','count','number own','number_owned'
+    ]);
+    let quantity = 0;
+    if (qtyStr !== undefined) {
+      quantity = Math.max(0, Math.floor(Number(qtyStr) || 0));
+    } else if (columns.length >= 3) {
+      // Fallback to our original export format (col 2)
+      quantity = Math.max(0, Math.floor(Number(columns[2]) || 0));
+    }
+
+    // Card ID direct
+    let cardId = getByKeys(['id','cardid','card id']);
+
+    if (!cardId) {
+      // Derive from Set/Expansion + Number
+      let setVal = getByKeys(['set','expansion']);
+      let numVal = getByKeys(['number','no','card number','card no','card#']);
+
+      if (!setVal && columns.length >= 4) {
+        // Fallback to our export format (col 3 is set)
+        setVal = (columns[3] || '').trim();
+      }
+      if (!numVal && columns.length >= 1) {
+        // If file has no explicit number column and no direct id, try the first column
+        // (not ideal, just a final fallback)
+        const maybeNum = (columns[1] || '').trim();
+        if (/^\d+/.test(maybeNum)) numVal = maybeNum;
+      }
+
+      if (setVal && numVal) {
+        const setCode = this.mapToSetCode(setVal);
+        const num = this.extractLeadingInt(numVal);
+        if (setCode && num !== null) {
+          cardId = `${setCode}-${num}`;
+        }
+      }
+    }
+
+    // Fallback to column 0 as id if nothing else
+    if (!cardId && columns.length > 0) {
+      const c0 = (columns[0] || '').trim();
+      if (c0) cardId = c0;
+    }
+
+    return { cardId: cardId || null, quantity };
+  }
+
+  private extractLeadingInt(val: string): number | null {
+    const m = (val || '').match(/\d+/);
+    return m ? parseInt(m[0], 10) : null;
+  }
+
+  private mapToSetCode(value: string): string | null {
+    const v = (value || '').trim();
+    const upper = v.toUpperCase();
+
+    // Special alias: PROMO-A => P-A
+    if (upper === 'PROMO-A') {
+      return 'P-A';
+    }
+
+    // Case-insensitive code match, return canonical code from sets list
+    const codeMatch = this.sets.find(s => (s.code || '').toUpperCase() === upper);
+    if (codeMatch) return codeMatch.code;
+
+    // Case-insensitive name match (English)
+    const nameMatch = this.sets.find(s => (s.label?.en || '').toUpperCase() === upper);
+    if (nameMatch) return nameMatch.code;
+
+    return null;
+  }
+
+  private normalizeId(id: string): string {
+    let s = (id || '').trim().toUpperCase();
+    // Apply set alias for PROMO-A within IDs like "PROMO-A-12" => "P-A-12"
+    s = s.replace(/^PROMO-A(?=-)/, 'P-A');
+    return s;
   }
 
   /**

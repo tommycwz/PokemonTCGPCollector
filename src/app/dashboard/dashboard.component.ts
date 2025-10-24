@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
   recentCards: any[] = [];
   nearestCompleteSet: any = null;
   packSuggestions: any[] = [];
+  excludeDeluxePack = true; // UI toggle to exclude A4B - DELUXE PACK by default
 
   constructor(
     private dataManager: DataManagerService,
@@ -365,9 +366,15 @@ export class DashboardComponent implements OnInit {
     const allPacks = new Set<string>();
     this.cards.forEach(card => {
       if (card.packs && card.packs.length > 0) {
-        card.packs.forEach(pack => allPacks.add(pack));
+        card.packs.forEach(pack => {
+          // Optionally exclude deluxe pack when toggled (robust match)
+          if (this.excludeDeluxePack && this.isDeluxeA4B(pack)) return;
+          allPacks.add(pack);
+        });
       }
     });
+
+    console.log(allPacks)
 
     // Calculate missing cards per pack
     const packAnalysis = Array.from(allPacks).map(packName => {
@@ -420,6 +427,22 @@ export class DashboardComponent implements OnInit {
       .filter(pack => pack.missingCards > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 5); // Show top 5 suggestions
+  }
+
+  /**
+   * Robust matcher for the A4B - DELUXE PACK name across variations
+   */
+  private isDeluxeA4B(packName: string | undefined | null): boolean {
+    if (!packName) return false;
+    // Normalize case, whitespace, and dash types
+    const norm = packName
+      .toUpperCase()
+      .replace(/[\u2012\u2013\u2014\u2015\-]/g, '-') // various dashes to hyphen-minus
+      .replace(/\s+/g, ' ') // collapse spaces
+      .trim();
+    
+
+    return norm.includes('DELUXE');
   }
 
   /**
