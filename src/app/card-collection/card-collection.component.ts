@@ -25,9 +25,13 @@ export class CardCollectionComponent implements OnInit {
   
   // Filter options
   selectedSet: string = 'all';
-  selectedRarity: string = 'all';
+  // Multi-select rarity filter by symbol (e.g., C, U, R, RR, AR, etc.)
+  selectedRarities: string[] = [];
   selectedPack: string = 'all';
   searchTerm: string = '';
+  sortBy: 'latest' | 'oldest' = 'latest';
+  ownershipFilter: 'all' | 'missing' | 'owned' = 'all';
+  // Advanced modal removed
   
   // Available filter values
   availableSets: string[] = [];
@@ -61,6 +65,9 @@ export class CardCollectionComponent implements OnInit {
   // User data
   currentUser: Profile | null = null;
 
+  // Filters visibility (mobile toggle)
+  filtersOpen = true;
+
   constructor(
     private pokemonDataService: PokemonDataService,
     private dataManager: DataManagerService,
@@ -78,6 +85,13 @@ export class CardCollectionComponent implements OnInit {
       this.router.navigate(['/signin']);
       return;
     }
+
+    // Set initial filters visibility based on viewport
+    try {
+      if (typeof window !== 'undefined' && window?.innerWidth <= 768) {
+        this.filtersOpen = false; // collapsed by default on mobile
+      }
+    } catch {}
 
     // Load data first, then owned cards
     this.loadAllData();
@@ -184,8 +198,10 @@ export class CardCollectionComponent implements OnInit {
       cardsToCheck = this.cards.filter(card => card.set === this.selectedSet);
     }
     
-    // Extract unique packs from filtered cards
-    const allPacks = cardsToCheck.flatMap(card => card.packs).filter(pack => pack && pack.trim());
+    // Extract unique packs from filtered cards (guard against undefined/null packs)
+    const allPacks = cardsToCheck
+      .flatMap(card => Array.isArray((card as any).packs) ? (card as any).packs : [])
+      .filter(pack => typeof pack === 'string' && pack.trim());
     this.availablePacks = [...new Set(allPacks)];
     
     // Reset pack selection if current selection is no longer available
@@ -195,43 +211,85 @@ export class CardCollectionComponent implements OnInit {
   }
 
   applyFilters(): void {
-    this.filteredCards = this.cards.filter(card => {
+  this.filteredCards = this.cards.filter(card => {
       // Set filter
       if (this.selectedSet !== 'all' && card.set !== this.selectedSet) {
         return false;
       }
       
-      // Rarity filter - check if card rarity matches selected symbol
-      if (this.selectedRarity !== 'all') {
-        const selectedRarityGroup = this.availableRaritySymbols.find(group => group.symbol === this.selectedRarity);
-        if (selectedRarityGroup) {
-          // Check if card rarityCode normalized matches the selected symbol group
-          const normalizedCode = card.rarityCode ? this.rarityService.getNormalizedCode(card.rarityCode) : '';
-          if (!selectedRarityGroup.rarities.includes(normalizedCode)) {
-            return false;
-          }
-        } else {
-          // Fallback to direct rarityCode match
-          const cardSymbol = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
-          if (cardSymbol !== this.selectedRarity) {
-            return false;
-          }
+      // Rarity filter (multi-select by symbol). If none selected -> no filter
+      if (this.selectedRarities.length > 0) {
+        const cardSymbol = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+        if (!cardSymbol || !this.selectedRarities.includes(cardSymbol)) {
+          return false;
         }
       }
       
-      // Pack filter
-      if (this.selectedPack !== 'all' && !card.packs.includes(this.selectedPack)) {
-        return false;
-      }
+      // Pack filter (only when a specific set is selected)
+        // Pack filter (only when a specific set is selected); guard against undefined packs
+        if (this.selectedSet !== 'all' && this.selectedPack !== 'all') {
+          const packs = Array.isArray((card as any).packs) ? (card as any).packs as string[] : [];
+          if (!packs.includes(this.selectedPack)) {
+            return false;
+          }
+        }
       
       // Search filter
       if (this.searchTerm && !card.label.eng.toLowerCase().includes(this.searchTerm.toLowerCase())) {
         return false;
       }
+
+      // Ownership filter
+      if (this.ownershipFilter === 'missing' && this.getOwnedCount(card) > 0) return false;
+      if (this.ownershipFilter === 'owned' && this.getOwnedCount(card) === 0) return false;
       
       return true;
     });
 
+    // Sorting
+    const isPromoSetCode = (code: string) => {
+      const c = (code || '').toUpperCase();
+      // Covers P-*, *-P (e.g., SV-P, S-P), explicit P-A, and PROMO-* (e.g., PROMO-A)
+      return c.startsWith('P-') || c.endsWith('-P') || c === 'P-A' || c.startsWith('PROMO');
+    };
+    const compareSetKeyAsc = (as: string, bs: string) => {
+      const pattern = /^([A-Z]+)(\d+)([a-z]*)$/;
+      const pa = (as || '').match(pattern);
+      const pb = (bs || '').match(pattern);
+      if (pa && pb) {
+        if (pa[1] !== pb[1]) return pa[1].localeCompare(pb[1]);
+        const na = parseInt(pa[2], 10); const nb = parseInt(pb[2], 10);
+        if (na !== nb) return na - nb;
+        return (pa[3] || '').localeCompare(pb[3] || '');
+      }
+      return (as || '').localeCompare(bs || '');
+    };
+
+    switch (this.sortBy) {
+      case 'oldest':
+        // Oldest set first (ascending), promo sets always last
+        this.filteredCards.sort((a, b) => {
+          const aPromo = isPromoSetCode(a.set), bPromo = isPromoSetCode(b.set);
+          if (aPromo && !bPromo) return 1;
+          if (!aPromo && bPromo) return -1;
+          const cmp = compareSetKeyAsc(a.set, b.set);
+          if (cmp !== 0) return cmp;
+          return a.number - b.number;
+        });
+        break;
+      case 'latest':
+      default:
+        // Latest set first (descending), promo sets always last
+        this.filteredCards.sort((a, b) => {
+          const aPromo = isPromoSetCode(a.set), bPromo = isPromoSetCode(b.set);
+          if (aPromo && !bPromo) return 1;
+          if (!aPromo && bPromo) return -1;
+          const cmp = compareSetKeyAsc(b.set, a.set);
+          if (cmp !== 0) return cmp;
+          return b.number - a.number;
+        });
+        break;
+    }
   }
 
   onFilterChange(): void {
@@ -243,6 +301,10 @@ export class CardCollectionComponent implements OnInit {
   onSetChange(): void {
     // When set changes, update available packs and apply filters
     this.extractAvailablePacks();
+    // If switching back to 'all' sets, disable pack filtering explicitly
+    if (this.selectedSet === 'all') {
+      this.selectedPack = 'all';
+    }
     this.applyFilters();
   }
 
@@ -252,10 +314,27 @@ export class CardCollectionComponent implements OnInit {
 
   clearFilters(): void {
     this.selectedSet = 'all';
-    this.selectedRarity = 'all';
+  this.selectedRarities = [];
     this.selectedPack = 'all';
     this.searchTerm = '';
+    this.sortBy = 'latest';
+    this.ownershipFilter = 'all';
     this.applyFilters();
+  }
+
+  toggleFilters(): void {
+    this.filtersOpen = !this.filtersOpen;
+    this.cdr.detectChanges();
+    if (this.filtersOpen) {
+      // Ensure filters are in view when opened on mobile
+      setTimeout(() => {
+        const panel = document.querySelector('.filters-panel') as HTMLElement | null;
+        if (panel) {
+          const top = panel.getBoundingClientRect().top + window.scrollY - 8;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    }
   }
 
   // Card ownership management
@@ -880,40 +959,53 @@ export class CardCollectionComponent implements OnInit {
       groups[setKey].push(card);
     });
     
-    // Convert to array and sort by set name
+    // Helper: compare set keys (A1, A2, A4a, A4b, etc.) ascending
+    const compareSetKeyAsc = (x: string, y: string) => {
+      const xm = x.match(/^([A-Z]+)(\d+)([a-z]*)$/);
+      const ym = y.match(/^([A-Z]+)(\d+)([a-z]*)$/);
+      if (xm && ym) {
+        if (xm[1] !== ym[1]) return xm[1].localeCompare(ym[1]);
+        const xn = parseInt(xm[2], 10), yn = parseInt(ym[2], 10);
+        if (xn !== yn) return xn - yn;
+        return (xm[3] || '').localeCompare(ym[3] || '');
+      }
+      return x.localeCompare(y);
+    };
+
+    // Decide group (set) order based on sortBy
+    const groupComparator = (a: string, b: string) => {
+      const isPromoSet = (code: string) => {
+        const c = (code || '').toUpperCase();
+        return c.startsWith('P-') || c.endsWith('-P') || c === 'P-A' || c.startsWith('PROMO');
+      };
+      const aPromo = isPromoSet(a), bPromo = isPromoSet(b);
+      // Promo always at bottom
+      if (aPromo && !bPromo) return 1;
+      if (!aPromo && bPromo) return -1;
+      switch (this.sortBy) {
+        case 'latest':
+          // Latest set first => descending set order
+          return compareSetKeyAsc(b, a);
+        case 'oldest':
+        default:
+          // Oldest/name sorts keep ascending set order
+          return compareSetKeyAsc(a, b);
+      }
+    };
+
+    // Decide card order within a set based on sortBy
+    const cardComparator = (a: Card, b: Card) => {
+      // Default within-set order: number ascending then name
+      if (a.number !== b.number) return a.number - b.number;
+      return a.label.eng.localeCompare(b.label.eng);
+    };
+
+    // Convert to array honoring current sort mode
     return Object.keys(groups)
-      .sort((a, b) => {
-        // Custom sort for set names (A1, A2, A4a, A4b, etc.)
-        const aMatch = a.match(/^([A-Z]+)(\d+)([a-z]*)$/);
-        const bMatch = b.match(/^([A-Z]+)(\d+)([a-z]*)$/);
-        
-        if (aMatch && bMatch) {
-          // Compare letter part first
-          if (aMatch[1] !== bMatch[1]) {
-            return aMatch[1].localeCompare(bMatch[1]);
-          }
-          // Then compare number part
-          const aNum = parseInt(aMatch[2]);
-          const bNum = parseInt(bMatch[2]);
-          if (aNum !== bNum) {
-            return aNum - bNum;
-          }
-          // Finally compare suffix (a, b, etc.)
-          return (aMatch[3] || '').localeCompare(bMatch[3] || '');
-        }
-        
-        // Fallback to simple string comparison
-        return a.localeCompare(b);
-      })
+      .sort(groupComparator)
       .map(setKey => ({
         groupTitle: setKey,
-        cards: groups[setKey].sort((a, b) => {
-          // Sort cards within set by number, then by name
-          if (a.number !== b.number) {
-            return a.number - b.number;
-          }
-          return a.label.eng.localeCompare(b.label.eng);
-        })
+        cards: groups[setKey].sort(cardComparator)
       }));
   }
 
@@ -933,6 +1025,36 @@ export class CardCollectionComponent implements OnInit {
     return `Set ${groupTitle}`;
   }
 
+  // Ownership segmented control
+  setOwnership(val: 'all' | 'missing' | 'owned') {
+    if (this.ownershipFilter !== val) {
+      this.ownershipFilter = val;
+      this.applyFilters();
+      this.cdr.detectChanges();
+    }
+  }
+
+  // Rarity chip helpers
+  isRaritySelected(symbol: string): boolean {
+    return this.selectedRarities.includes(symbol);
+  }
+  toggleRarity(symbol: string): void {
+    const idx = this.selectedRarities.indexOf(symbol);
+    if (idx >= 0) {
+      this.selectedRarities.splice(idx, 1);
+    } else {
+      this.selectedRarities.push(symbol);
+    }
+    this.applyFilters();
+    this.cdr.detectChanges();
+  }
+  clearRarity(): void {
+    if (this.selectedRarities.length > 0) {
+      this.selectedRarities = [];
+      this.applyFilters();
+      this.cdr.detectChanges();
+    }
+  }
   /**
    * Sign out the current user
    */

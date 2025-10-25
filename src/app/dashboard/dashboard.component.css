@@ -11,6 +11,9 @@
 	border-radius: 0; /* no rounded frame */
 	box-shadow: none; /* no outer shadow */
 	margin-top: 30px;
+	padding: 0 20px;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 h1,
@@ -112,6 +115,8 @@ h4 {
 	padding: clamp(20px, 2.4vw, 28px);
 	box-shadow: 0 18px 36px rgba(7, 12, 24, 0.35);
 	transition: transform 160ms ease, box-shadow 160ms ease, border-color 180ms ease;
+	max-width: 100%;
+	box-sizing: border-box;
 }
 
 .pack-suggestions details,
@@ -200,9 +205,9 @@ h4 {
 }
 
 .pack-set {
-	margin-left: 6px;
 	color: var(--text-muted);
 	font-size: 0.9rem;
+	font-weight: bold;
 }
 
 .rank-number {
@@ -455,11 +460,55 @@ h4 {
 }
 
 @media (max-width: 768px) {
+	/* Force container gutters on mobile (override any global container rules) */
+	.container {
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+	}
+
+	/* Ensure cards don't touch screen edges on small screens */
+	.pack-suggestions,
+	.set-progress,
+	.rarity-breakdown {
+		margin-inline: 8px; /* left/right space inside container */
+	}
+
 	.suggestion-summary,
 	.progress-header {
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 8px;
+	}
+
+	/* Make suggestions more compact on small screens */
+	.suggestions-list {
+		gap: 10px;
+	}
+
+	.suggestion-item {
+		padding: 14px 16px;
+		box-sizing: border-box;
+		max-width: 100%;
+	}
+
+	/* Top pick variant: slightly tighter padding and radius on mobile */
+	.suggestion-item.top-pick {
+		padding: 12px 14px;
+		border-radius: 16px;
+	}
+
+	/* Tweak header spacing and badges for compact layout */
+	.suggestion-header {
+		gap: 10px;
+	}
+
+	.top-pick-badge {
+		font-size: 0.68rem;
+		padding: 3px 8px;
+	}
+
+	.pack-set {
+		font-size: 0.85rem;
 	}
 
 	.rarity-grid,
@@ -468,6 +517,68 @@ h4 {
 	}
 
 	.rank-number {
-		min-width: 28px;
+		min-width: 24px;
+		padding: 3px 8px;
+		font-size: 0.9rem;
+	}
+
+	/* Ensure long text doesn't cause horizontal overflow */
+	.suggestion-summary {
+		gap: 10px;
+		font-size: 0.88rem;
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+
+	/* 10% size reduction on mobile for key dashboard cards and text */
+	.pack-suggestions,
+	.set-progress,
+	.rarity-breakdown {
+		padding: clamp(18px, 2.16vw, 25px); /* ~10% smaller than default */
+		font-size: 0.9em; /* scale down inner text slightly */
+	}
+
+	.pack-suggestions summary,
+	.set-progress summary,
+	.rarity-breakdown summary {
+		font-size: 0.9em; /* headlines ~10% smaller */
+	}
+
+	/* Suggestion items ~10% tighter */
+	.suggestion-item {
+		padding: 12px 14px; /* was 14px 16px */
+	}
+
+	.suggestion-item.top-pick {
+		padding: 10px 12px; /* was 12px 14px */
+	}
+
+	/* Progress and rarity cards ~10% tighter */
+	.progress-item {
+		padding: 18px 20px; /* was 20px 22px */
+	}
+
+	.rarity-card {
+		padding: 18px; /* was 20px */
+	}
+
+	/* Text and badges ~10% smaller */
+	.suggestion-summary {
+		font-size: 0.8rem; /* was 0.88rem */
+	}
+
+	.top-pick-badge {
+		font-size: 0.62rem; /* was 0.68rem */
+		padding: 3px 7px; /* slightly tighter */
+	}
+
+	.rank-number {
+		min-width: 22px; /* was 24px */
+		padding: 2px 7px; /* was 3px 8px */
+		font-size: 0.82rem; /* was 0.9rem */
+	}
+
+	.pack-set {
+		font-size: 0.78rem; /* was 0.85rem */
 	}
 }

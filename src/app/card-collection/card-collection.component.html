@@ -20,78 +20,78 @@
     </div>
   </div>
 
-  <!-- Sync Progress -->
-  <div *ngIf="syncingCards" class="sync-progress">
-    <div class="sync-message">
-      <div class="sync-icon">⏳</div>
-      <div class="sync-text">
-        <div class="sync-title">{{ syncMessage }}</div>
-        <div class="sync-count" *ngIf="syncProgress > 0">{{ syncProgress }} cards loaded</div>
-      </div>
-    </div>
+  <!-- View another user's collection -->
+  <div class="view-other-banner" *ngIf="isViewingOther"
+    style="margin-bottom:12px; padding:10px 14px; border-radius:12px; background:rgba(46,204,113,0.12); border:1px solid rgba(46,204,113,0.35); display:flex; align-items:center; justify-content:space-between; gap:12px;">
+    <div>Viewing <strong>{{ viewingUser?.username }}</strong>'s collection (read-only)</div>
+    <button class="btn btn-outline" (click)="backToMyCollection()">Back to my collection</button>
   </div>
 
-    <!-- View another user's collection -->
-    <div class="view-other-banner" *ngIf="isViewingOther" style="margin-bottom:12px; padding:10px 14px; border-radius:12px; background:rgba(46,204,113,0.12); border:1px solid rgba(46,204,113,0.35); display:flex; align-items:center; justify-content:space-between; gap:12px;">
-      <div>Viewing <strong>{{ viewingUser?.username }}</strong>'s collection (read-only)</div>
-      <button class="btn btn-outline" (click)="backToMyCollection()">Back to my collection</button>
+
+
+  <!-- Filters Section (compact bar + controls) -->
+  <div class="filters-panel" [class.collapsed]="!filtersOpen" role="region" aria-label="Collection filters">
+    <!-- Row 1: Search only -->
+    <div class="filters-row">
+      <input class="filter-input" type="text" placeholder="Search cards…" aria-label="Search cards"
+        [(ngModel)]="searchTerm" (input)="onSearchChange()" />
     </div>
 
-
-
-  <!-- Filters Section -->
-  <div class="filters-section">
-    <div class="search-container">
-      <div class="search-box">
-        <input type="text" placeholder="🔍 Search Pokemon cards..." [(ngModel)]="searchTerm" (input)="onSearchChange()"
-          class="search-input">
-      </div>
-    </div>
-
-    <div class="filter-controls">
-      <div class="filter-group">
-        <label class="filter-label">Set</label>
-        <select [(ngModel)]="selectedSet" (change)="onSetChange()" class="filter-select">
+    <!-- Row 2: Set + Pack (pack enabled only when a set is chosen) -->
+    <div class="filters-row wrap sets-row">
+      <div class="sort-group">
+        <label for="set-select">Set</label>
+        <select id="set-select" class="filter-select compact" aria-label="Select set" [(ngModel)]="selectedSet"
+          (change)="onSetChange()">
           <option value="all">All Sets</option>
-          <option *ngFor="let set of availableSets" [value]="set">
-            {{ getSetName(set) }} ({{ set }})
-          </option>
+          <option *ngFor="let set of availableSets" [value]="set">{{ getSetName(set) }}</option>
         </select>
       </div>
-
-      <div class="filter-group">
-        <label class="filter-label">Rarity</label>
-        <select [(ngModel)]="selectedRarity" (change)="onFilterChange()" class="filter-select">
-          <option value="all">All Rarities</option>
-          <option *ngFor="let rarityGroup of availableRaritySymbols" [value]="rarityGroup.symbol">
-            {{ rarityGroup.displayName }}
-          </option>
-        </select>
-      </div>
-
-      <div class="filter-group">
-        <label class="filter-label">
-          Pack
-          <span *ngIf="selectedSet !== 'all'" class="filter-dependency">(filtered by {{ getSetName(selectedSet)
-            }})</span>
-        </label>
-        <select [(ngModel)]="selectedPack" (change)="onFilterChange()" class="filter-select">
+      <div class="sort-group">
+        <label for="pack-select">Pack</label>
+        <select id="pack-select" class="filter-select compact" aria-label="Select pack"
+          [disabled]="selectedSet === 'all'" [(ngModel)]="selectedPack" (change)="applyFilters()">
           <option value="all">All Packs</option>
-          <option *ngFor="let pack of availablePacks" [value]="pack">
-            {{ pack }}
-          </option>
+          <option *ngFor="let pack of availablePacks" [value]="pack">{{ pack }}</option>
         </select>
       </div>
+    </div>
 
-      <div class="filter-actions">
-        <button (click)="clearFilters()" class="btn btn-outline">
-          <span class="btn-icon">🗑️</span>
-          Clear Filters
+    <!-- Row 2: Rarity chips -->
+    <div class="filters-row rarity-row">
+      <label class="filter-label" for="rarity-chips">Rarity</label>
+      <div id="rarity-chips" class="segmented multi chips-scroll" aria-label="Rarity filter">
+        <button type="button" class="chip" [class.active]="selectedRarities.length===0" (click)="clearRarity()"
+          title="All rarities">ALL</button>
+        <button type="button" class="chip" *ngFor="let group of availableRaritySymbols"
+          [class.active]="isRaritySelected(group.symbol)" (click)="toggleRarity(group.symbol)"
+          [title]="group.displayName">
+          {{ group.symbol }}
         </button>
       </div>
     </div>
-  </div>
 
+    <!-- Row 4: Sort + Ownership + Reset -->
+    <div class="filters-row wrap">
+      <div class="sort-group">
+        <label for="sort-select">Sort By</label>
+        <select id="sort-select" class="filter-select compact" [(ngModel)]="sortBy" (change)="applyFilters()"
+          aria-label="Sort order">
+          <option value="latest">Latest Set</option>
+          <option value="oldest">Oldest Set</option>
+        </select>
+      </div>
+      <div class="segmented ownership" role="tablist" aria-label="Ownership filter">
+        <button type="button" [class.active]="ownershipFilter==='all'" (click)="setOwnership('all')">ALL</button>
+        <button type="button" [class.active]="ownershipFilter==='missing'"
+          (click)="setOwnership('missing')">MISSING</button>
+        <button type="button" [class.active]="ownershipFilter==='owned'" (click)="setOwnership('owned')">OWNED</button>
+      </div>
+      <div class="row-spacer"></div>
+      <button type="button" class="btn btn-outline reset-btn" (click)="clearFilters()"
+        aria-label="Reset filters">Reset</button>
+    </div>
+  </div>
   <!-- Loading State -->
   <div *ngIf="loading" class="loading-container">
     <div class="loading-spinner"></div>
@@ -104,9 +104,21 @@
     <button (click)="loadAllData()" class="btn btn-primary">Retry</button>
   </div>
 
+  <!-- Sync Progress -->
+  <div *ngIf="syncingCards" class="sync-progress">
+    <div class="sync-message">
+      <div class="sync-icon">⏳</div>
+      <div class="sync-text">
+        <div class="sync-title">{{ syncMessage }}</div>
+        <div class="sync-count" *ngIf="syncProgress > 0">{{ syncProgress }} cards loaded</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Cards Grid with Group Headers -->
   <div *ngIf="!loading && !error" class="cards-container">
-    <div *ngFor="let group of getGroupedCards(); trackBy: trackByGroupTitle" class="card-group" [attr.id]="'set-' + group.groupTitle">
+    <div *ngFor="let group of getGroupedCards(); trackBy: trackByGroupTitle" class="card-group"
+      [attr.id]="'set-' + group.groupTitle">
 
       <!-- Group Title -->
       <div class="group-header">
@@ -176,5 +188,11 @@
     <button type="button" class="fab" title="Previous set" (click)="scrollToPrevSet()">↑</button>
     <button type="button" class="fab" title="Next set" (click)="scrollToNextSet()">↓</button>
     <button type="button" class="fab" title="Bottom" (click)="scrollToBottom()">⤓</button>
+  </div>
+
+  <!-- Floating Action Button: filter toggle (mobile, bottom-left) -->
+  <div class="fab-stack-left" aria-label="Filter controls">
+    <button type="button" class="fab mobile-only" [attr.aria-pressed]="filtersOpen" title="Filters"
+      (click)="toggleFilters()">🔎</button>
   </div>
 </div>

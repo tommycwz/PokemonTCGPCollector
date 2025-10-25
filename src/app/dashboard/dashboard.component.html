@@ -12,7 +12,7 @@
   <!-- Main Dashboard Content -->
   <div *ngIf="!loading" class="dashboard-content">
 
-    <div class="suggestion-controls" style="margin: 8px 0 16px; display: flex; justify-content: flex-end; align-items: center; gap: 12px;">
+    <div class="suggestion-controls" style="display: flex; justify-content: flex-end; align-items: center; gap: 12px;">
       <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer;">
         <input type="checkbox" [(ngModel)]="excludeDeluxePack" (ngModelChange)="excludeModelChange()" />
         Exclude A4B - DELUXE PACK
@@ -31,11 +31,10 @@
                  [class.top-pick]="i === 0">
               <div class="suggestion-header">
                 <span class="rank-number">#{{ i + 1 }}</span>
-                <span *ngIf="i === 0" class="top-pick-badge">🏆 TOP PICK</span>
                 <strong>{{ suggestion.packName }}</strong>
-                <span class="pack-set" *ngIf="suggestion.primarySetCode">[{{ suggestion.primarySetCode }}] - {{ suggestion.primarySetName }}</span>
               </div>
               <div class="suggestion-summary">
+                <span class="pack-set" *ngIf="suggestion.primarySetCode">[{{ suggestion.primarySetCode }}] - {{ suggestion.primarySetName }}</span>
                 <span class="missing-count">{{ suggestion.missingCards }} missing cards</span>
                 <span class="completion-rate">{{ suggestion.completionPercentage }}% complete</span>
                 <span class="progress-count">({{ suggestion.ownedCards }}/{{ suggestion.totalCards }})</span>

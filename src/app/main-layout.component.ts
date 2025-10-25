@@ -10,9 +10,11 @@ import { APP_VERSION } from './version';
       <nav class="navbar">
         <div class="nav-container">
           <div class="nav-brand">
-            <h2>Pokemon TCG Pocket Collector</h2><p>v{{ appVersion }}</p>
+            <h2>Pokemon TCGP Collector</h2><p>v{{ appVersion }}</p>
           </div>
-          <div class="nav-center">
+
+          <!-- Desktop nav -->
+          <div class="nav-center desktop-only">
             <div class="nav-links">
               <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
                 📊 Dashboard
@@ -25,10 +27,36 @@ import { APP_VERSION } from './version';
               </a>
             </div>
           </div>
-          <div class="nav-user" *ngIf="currentUser">
+
+          <div class="nav-user desktop-only" *ngIf="currentUser">
             <span class="username">👤 {{ currentUser.username }}</span>
             <button (click)="signOut()" class="btn-signout">Sign Out</button>
           </div>
+
+          <!-- Mobile hamburger -->
+          <button class="hamburger mobile-only" type="button" (click)="toggleMobileMenu()"
+                  [attr.aria-expanded]="isMobileMenuOpen" aria-controls="mobileMenu" aria-label="Menu">
+            ☰
+          </button>
+        </div>
+
+        <!-- Mobile menu panel -->
+        <div id="mobileMenu" class="mobile-menu mobile-only" [class.open]="isMobileMenuOpen">
+          <div class="mobile-menu-header" *ngIf="currentUser">
+            <span class="username">👤 {{ currentUser.username }}</span>
+          </div>
+          <a routerLink="/dashboard" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
+            📊 Dashboard
+          </a>
+          <a routerLink="/collection" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
+            🗂️ Collection
+          </a>
+          <a *ngIf="currentUser?.role === 'admin'" routerLink="/admin" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
+            🔧 Admin
+          </a>
+          <button *ngIf="currentUser" (click)="signOut(); closeMobileMenu()" class="mobile-link signout">
+            🚪 Sign Out
+          </button>
         </div>
       </nav>
       
@@ -48,15 +76,14 @@ import { APP_VERSION } from './version';
       color: white;
       padding: 0 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative; /* anchor mobile dropdown */
     }
 
     .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 0;
+      padding: 5px 0;
     }
 
     .nav-brand h2 {
@@ -143,27 +170,66 @@ import { APP_VERSION } from './version';
       background-color: #000000;
     }
 
+    /* Responsive helpers */
+    .desktop-only { display: flex; }
+    .mobile-only { display: none; }
+
+    /* Mobile menu */
+    .hamburger {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none !important;
+      position: absolute;
+      right: 12px;
+      top: 100%;
+      margin-top: 8px;
+      width: 220px;
+      z-index: 100;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px 12px 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 10px;
+      background: #1b1f2a;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    }
+
+    .mobile-menu.open { display: flex !important; }
+
+  .mobile-menu .username { margin-bottom: 4px; display: inline-block; opacity: 0.9; }
+
+    .mobile-link {
+      text-align: left;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+      font-size: 14px;
+    }
+
+    .mobile-link.signout { border-color: #dc3545; background: rgba(220,53,69,0.15); }
+
     @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: column;
-        gap: 15px;
+      .desktop-only { display: none !important; }
+      .mobile-only { display: inline-flex; }
+      .nav-container { padding: 8px 0; }
+      
+      .nav-brand h2 {
+        font-size: 1.1rem;
       }
       
-      .nav-center {
-        order: 3;
-      }
-      
-      .nav-user {
-        order: 2;
-      }
-      
-      .nav-links {
-        gap: 15px;
-      }
-      
-      .nav-link {
-        padding: 8px 15px;
-        font-size: 14px;
+      .nav-brand p {
+        font-size: 0.85rem;
       }
     }
   `]
@@ -171,6 +237,7 @@ import { APP_VERSION } from './version';
 export class MainLayoutComponent implements OnInit {
   currentUser: Profile | null = null;
   appVersion: string = APP_VERSION;
+  isMobileMenuOpen = false;
 
   constructor(
     private supabaseService: SupabaseService,
@@ -182,10 +249,22 @@ export class MainLayoutComponent implements OnInit {
     this.supabaseService.currentUser$.subscribe(user => {
       this.currentUser = user;
     });
+    // Close mobile menu on route change
+    this.router.events.subscribe(() => {
+      this.isMobileMenuOpen = false;
+    });
   }
 
   signOut(): void {
     this.supabaseService.signOut();
     this.router.navigate(['/signin']);
+  }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
   }
 }
