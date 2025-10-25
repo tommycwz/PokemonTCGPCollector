@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SupabaseService, Profile } from './services/supabase.service';
+import { APP_VERSION } from './version';
 
 @Component({
   selector: 'app-main-layout',
@@ -9,7 +10,7 @@ import { SupabaseService, Profile } from './services/supabase.service';
       <nav class="navbar">
         <div class="nav-container">
           <div class="nav-brand">
-            <h2>Pokemon TCG Pocket Collector</h2><p>v1.0.0</p>
+            <h2>Pokemon TCG Pocket Collector</h2><p>v{{ appVersion }}</p>
           </div>
           <div class="nav-center">
             <div class="nav-links">
@@ -169,6 +170,7 @@ import { SupabaseService, Profile } from './services/supabase.service';
 })
 export class MainLayoutComponent implements OnInit {
   currentUser: Profile | null = null;
+  appVersion: string = APP_VERSION;
 
   constructor(
     private supabaseService: SupabaseService,
