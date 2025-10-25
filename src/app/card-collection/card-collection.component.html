@@ -106,7 +106,7 @@
 
   <!-- Cards Grid with Group Headers -->
   <div *ngIf="!loading && !error" class="cards-container">
-    <div *ngFor="let group of getGroupedCards(); trackBy: trackByGroupTitle" class="card-group">
+    <div *ngFor="let group of getGroupedCards(); trackBy: trackByGroupTitle" class="card-group" [attr.id]="'set-' + group.groupTitle">
 
       <!-- Group Title -->
       <div class="group-header">
@@ -168,5 +168,13 @@
     <h3>No cards found</h3>
     <p>Try adjusting your search or filter criteria</p>
     <button (click)="clearFilters()" class="btn btn-primary">Clear All Filters</button>
+  </div>
+
+  <!-- Floating Action Buttons: navigation -->
+  <div class="fab-stack" aria-label="Collection navigation controls">
+    <button type="button" class="fab" title="Top" (click)="scrollToTop()">⤒</button>
+    <button type="button" class="fab" title="Previous set" (click)="scrollToPrevSet()">↑</button>
+    <button type="button" class="fab" title="Next set" (click)="scrollToNextSet()">↓</button>
+    <button type="button" class="fab" title="Bottom" (click)="scrollToBottom()">⤓</button>
   </div>
 </div>

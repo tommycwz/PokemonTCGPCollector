@@ -653,3 +653,49 @@
     font-size: 12px;
   }
 }
+
+/* Floating Action Buttons (FAB) for quick navigation */
+.fab-stack {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+  background-color: transparent;
+}
+
+.fab {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #3a5f8f;
+  background: linear-gradient(135deg, rgb(91, 168, 255), rgba(34,46,70,0.85));
+  color: #e7eefc;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(7, 12, 24, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+
+.fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(7, 12, 24, 0.45);
+  border-color: rgba(91, 168, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .fab-stack {
+    right: 16px;
+    bottom: 16px;
+    gap: 8px;
+  }
+  .fab {
+    width: 44px;
+    height: 44px;
+  }
+}

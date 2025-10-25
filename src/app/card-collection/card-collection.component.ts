@@ -951,4 +951,58 @@ export class CardCollectionComponent implements OnInit {
   trackByCardInGroup = (index: number, card: Card): string => {
     return this.getCardId(card);
   }
+
+  // -------- Navigation: Top/Bottom and between Sets --------
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  scrollToBottom(): void {
+    const max = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    );
+    window.scrollTo({ top: max, behavior: 'smooth' });
+  }
+
+  private getSetElements(): HTMLElement[] {
+    return Array.from(document.querySelectorAll('.cards-container .card-group')) as HTMLElement[];
+  }
+
+  private getCurrentSetIndex(offset: number = 80): number {
+    const y = window.scrollY || window.pageYOffset || 0;
+    const sections = this.getSetElements();
+    let currentIdx = -1;
+    for (let i = 0; i < sections.length; i++) {
+      const top = sections[i].getBoundingClientRect().top + window.scrollY;
+      if (top - offset <= y) {
+        currentIdx = i;
+      } else {
+        break;
+      }
+    }
+    return currentIdx;
+  }
+
+  scrollToNextSet(): void {
+    const sections = this.getSetElements();
+    if (sections.length === 0) return;
+    const idx = this.getCurrentSetIndex();
+    const nextIdx = Math.min(idx + 1, sections.length - 1);
+    if (nextIdx >= 0) {
+      const el = sections[nextIdx];
+      const top = el.getBoundingClientRect().top + window.scrollY - 12; // small padding
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+
+  scrollToPrevSet(): void {
+    const sections = this.getSetElements();
+    if (sections.length === 0) return;
+    const idx = this.getCurrentSetIndex();
+    const prevIdx = Math.max(idx - 1, 0);
+    const el = sections[prevIdx];
+    const top = el.getBoundingClientRect().top + window.scrollY - 12;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
 }
