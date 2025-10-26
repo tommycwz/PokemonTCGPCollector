@@ -1,12 +1,12 @@
 {
   "name": "pokemon-tcgpcollector",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "prebuild": "node tools/write-version.js",
     "build": "ng build",
-    "build:docs": "node tools/write-version.js && ng build --output-path docs --base-href /PokemonTCGPCollector/",
+    "build:docs": "node tools/write-version.js && ng build --output-path docs --base-href /PokemonTCGPCollector/ && node -e \"require('fs').copyFileSync('docs/index.html', 'docs/404.html')\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "fetch-cards": "node fetch-cards.js"
