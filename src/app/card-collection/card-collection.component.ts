@@ -19,10 +19,10 @@ export class CardCollectionComponent implements OnInit {
   filteredCards: Card[] = [];
   sets: SetInfo[] = [];
   rarityMapping: RarityMapping = {};
-  
+
   // Collection tracking
   ownedCards: { [key: string]: number } = {};
-  
+
   // Filter options
   selectedSet: string = 'all';
   // Multi-select rarity filter by symbol (e.g., C, U, R, RR, AR, etc.)
@@ -32,13 +32,13 @@ export class CardCollectionComponent implements OnInit {
   sortBy: 'latest' | 'oldest' = 'latest';
   ownershipFilter: 'all' | 'missing' | 'owned' = 'all';
   // Advanced modal removed
-  
+
   // Available filter values
   availableSets: string[] = [];
   availableRarities: string[] = [];
   availableRaritySymbols: { symbol: string, rarities: string[], displayName: string }[] = [];
   availablePacks: string[] = [];
-  
+
   // UI state
   loading = true;
   loadingOwnedCards = false;
@@ -55,7 +55,7 @@ export class CardCollectionComponent implements OnInit {
   isViewingOther = false;
   otherUsername = '';
   viewingUser: Profile | null = null;
-  
+
   // Statistics
   totalCards = 0;
   ownedCount = 0;
@@ -66,7 +66,23 @@ export class CardCollectionComponent implements OnInit {
   currentUser: Profile | null = null;
 
   // Filters visibility (mobile toggle)
-  filtersOpen = true;
+  filtersOpen = false;
+
+  // Trade modal state
+  showTradeModal = false;
+  selectedTradeRarities: string[] = [];
+  tradeQuantityMin = 2;
+  // Friend code shown/edited in Trade modal (not persisted)
+  tradeFriendCode: string = '';
+  // Optional template text appended to copied trade text (not persisted)
+  tradeTemplateText: string = 'Please ping me if there is any possible trades. \nENGLISH cards only please.';
+  // Rarity symbols that are not tradable
+  private readonly excludedTradeSymbols = new Set<string>(['☆☆☆', '👑']);
+  // Exclude special packs toggle (Trade modal only)
+  excludeSpecialPacks: boolean = true;
+
+  // View Others modal state
+  showViewOthersModal = false;
 
   constructor(
     private pokemonDataService: PokemonDataService,
@@ -76,7 +92,7 @@ export class CardCollectionComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private rarityService: RarityService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Check if user is signed in
@@ -91,7 +107,7 @@ export class CardCollectionComponent implements OnInit {
       if (typeof window !== 'undefined' && window?.innerWidth <= 768) {
         this.filtersOpen = false; // collapsed by default on mobile
       }
-    } catch {}
+    } catch { }
 
     // Load data first, then owned cards
     this.loadAllData();
@@ -107,11 +123,11 @@ export class CardCollectionComponent implements OnInit {
         this.filteredCards = [...this.cards];
         this.sets = data.sets;
         this.rarityMapping = data.rarities;
-        
+
         this.extractFilterOptions();
         this.calculateStatistics();
         this.loading = false;
-        
+
         this.cdr.detectChanges();
         this.loadOwnedCards();
       },
@@ -127,14 +143,14 @@ export class CardCollectionComponent implements OnInit {
   extractFilterOptions(): void {
     // Extract unique sets (keep original order, no sorting)
     this.availableSets = [...new Set(this.cards.map(card => card.set))];
-    
+
     // Extract unique rarities and group by symbols (preserve original order)
     const uniqueRarities = [...new Set(this.cards.map(card => card.rarityCode).filter(code => code))];
     this.availableRarities = uniqueRarities;
-    
+
     // Use standardized rarity service to group rarities by symbols
     this.availableRaritySymbols = [];
-    
+
     // Get unique rarity codes from cards (use rarityCode only for consistency)
     const normalizedCodes = new Set<string>();
     this.cards.forEach(card => {
@@ -143,10 +159,10 @@ export class CardCollectionComponent implements OnInit {
         normalizedCodes.add(normalizedCode);
       }
     });
-    
+
     // Convert to available rarity symbols using unified rarities, ensuring no duplicates
     const symbolMap = new Map<string, { symbol: string, rarities: string[], displayName: string }>();
-    
+
     const unifiedRarities = this.rarityService.getUnifiedRarities();
     unifiedRarities.forEach(rarityInfo => {
       if (normalizedCodes.has(rarityInfo.code)) {
@@ -158,14 +174,14 @@ export class CardCollectionComponent implements OnInit {
         });
       }
     });
-    
+
     this.availableRaritySymbols = Array.from(symbolMap.values())
       .sort((a, b) => {
         const orderA = this.rarityService.getRarityOrder(a.rarities[0]);
         const orderB = this.rarityService.getRarityOrder(b.rarities[0]);
         return orderA - orderB;
       });
-    
+
     // Extract all packs for initial load
     this.extractAvailablePacks();
   }
@@ -192,18 +208,18 @@ export class CardCollectionComponent implements OnInit {
 
   extractAvailablePacks(): void {
     let cardsToCheck = this.cards;
-    
+
     // If a set is selected, filter cards by that set first
     if (this.selectedSet !== 'all') {
       cardsToCheck = this.cards.filter(card => card.set === this.selectedSet);
     }
-    
+
     // Extract unique packs from filtered cards (guard against undefined/null packs)
     const allPacks = cardsToCheck
       .flatMap(card => Array.isArray((card as any).packs) ? (card as any).packs : [])
       .filter(pack => typeof pack === 'string' && pack.trim());
     this.availablePacks = [...new Set(allPacks)];
-    
+
     // Reset pack selection if current selection is no longer available
     if (this.selectedPack !== 'all' && !this.availablePacks.includes(this.selectedPack)) {
       this.selectedPack = 'all';
@@ -211,12 +227,12 @@ export class CardCollectionComponent implements OnInit {
   }
 
   applyFilters(): void {
-  this.filteredCards = this.cards.filter(card => {
+    this.filteredCards = this.cards.filter(card => {
       // Set filter
       if (this.selectedSet !== 'all' && card.set !== this.selectedSet) {
         return false;
       }
-      
+
       // Rarity filter (multi-select by symbol). If none selected -> no filter
       if (this.selectedRarities.length > 0) {
         const cardSymbol = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
@@ -224,16 +240,16 @@ export class CardCollectionComponent implements OnInit {
           return false;
         }
       }
-      
+
       // Pack filter (only when a specific set is selected)
-        // Pack filter (only when a specific set is selected); guard against undefined packs
-        if (this.selectedSet !== 'all' && this.selectedPack !== 'all') {
-          const packs = Array.isArray((card as any).packs) ? (card as any).packs as string[] : [];
-          if (!packs.includes(this.selectedPack)) {
-            return false;
-          }
+      // Pack filter (only when a specific set is selected); guard against undefined packs
+      if (this.selectedSet !== 'all' && this.selectedPack !== 'all') {
+        const packs = Array.isArray((card as any).packs) ? (card as any).packs as string[] : [];
+        if (!packs.includes(this.selectedPack)) {
+          return false;
         }
-      
+      }
+
       // Search filter
       if (this.searchTerm && !card.label.eng.toLowerCase().includes(this.searchTerm.toLowerCase())) {
         return false;
@@ -242,16 +258,12 @@ export class CardCollectionComponent implements OnInit {
       // Ownership filter
       if (this.ownershipFilter === 'missing' && this.getOwnedCount(card) > 0) return false;
       if (this.ownershipFilter === 'owned' && this.getOwnedCount(card) === 0) return false;
-      
+
       return true;
     });
 
     // Sorting
-    const isPromoSetCode = (code: string) => {
-      const c = (code || '').toUpperCase();
-      // Covers P-*, *-P (e.g., SV-P, S-P), explicit P-A, and PROMO-* (e.g., PROMO-A)
-      return c.startsWith('P-') || c.endsWith('-P') || c === 'P-A' || c.startsWith('PROMO');
-    };
+    const isPromoSetCode = (code: string) => this.isSpecialSet(code);
     const compareSetKeyAsc = (as: string, bs: string) => {
       const pattern = /^([A-Z]+)(\d+)([a-z]*)$/;
       const pa = (as || '').match(pattern);
@@ -314,7 +326,7 @@ export class CardCollectionComponent implements OnInit {
 
   clearFilters(): void {
     this.selectedSet = 'all';
-  this.selectedRarities = [];
+    this.selectedRarities = [];
     this.selectedPack = 'all';
     this.searchTerm = '';
     this.sortBy = 'latest';
@@ -337,6 +349,179 @@ export class CardCollectionComponent implements OnInit {
     }
   }
 
+  /** Determine if a set should be treated as a special/blocked set.
+   *  Centralized so all features use the same logic.
+   *  Rules:
+   *  - Promo-style codes (P-*, *-P, P-A, PROMO-*)
+   *  - A4B (kept for backward compatibility with previous logic)
+   */
+  private isSpecialSet(code: string): boolean {
+    const c = (code || '').toUpperCase();
+    return c.startsWith('P-') || c.endsWith('-P') || c === 'P-A' || c.startsWith('PROMO') || c.startsWith('A4B');
+  }
+
+  // Trade modal methods
+  openTradeModal(): void {
+    if (this.isViewingOther) return;
+    // Initialize modal friend code from current profile (do not persist changes)
+    this.tradeFriendCode = this.currentUser?.friend_code || '';
+    // Remove any excluded rarities from current selection
+    this.selectedTradeRarities = this.selectedTradeRarities.filter(s => !this.isTradeRarityDisabled(s));
+    this.showTradeModal = true;
+    this.cdr.detectChanges();
+  }
+
+  closeTradeModal(): void {
+    this.showTradeModal = false;
+    this.cdr.detectChanges();
+  }
+
+  isTradeRaritySelected(symbol: string): boolean {
+    return this.selectedTradeRarities.includes(symbol);
+  }
+
+  toggleTradeRarity(symbol: string): void {
+    if (this.isTradeRarityDisabled(symbol)) { return; }
+    const idx = this.selectedTradeRarities.indexOf(symbol);
+    if (idx >= 0) {
+      this.selectedTradeRarities.splice(idx, 1);
+    } else {
+      this.selectedTradeRarities.push(symbol);
+    }
+    this.cdr.detectChanges();
+  }
+
+  isTradeRarityDisabled(symbol: string): boolean {
+    return this.excludedTradeSymbols.has(symbol);
+  }
+
+  // Rarity symbols to display in Trade modal (exclude non-tradable ones)
+  getAvailableTradeRaritySymbols(): { symbol: string, rarities: string[], displayName: string }[] {
+    return (this.availableRaritySymbols || []).filter(g => !this.excludedTradeSymbols.has(g.symbol));
+  }
+
+  clearTradeRarities(): void {
+    this.selectedTradeRarities = [];
+    this.cdr.detectChanges();
+  }
+
+  // View Others modal methods
+  openViewOthersModal(): void {
+    if (this.isViewingOther) return;
+    this.showViewOthersModal = true;
+    this.cdr.detectChanges();
+  }
+
+  closeViewOthersModal(): void {
+    this.showViewOthersModal = false;
+    this.cdr.detectChanges();
+  }
+
+  async viewOtherCollectionFromModal(): Promise<void> {
+    await this.viewOtherCollection();
+    this.closeViewOthersModal();
+  }
+
+  async generateAndCopyTradeText(): Promise<void> {
+    try {
+      const tradeText = this.generateTradeText();
+      await navigator.clipboard.writeText(tradeText);
+
+      this.closeTradeModal();
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error);
+      alert('Failed to copy to clipboard. Please try again.');
+    }
+  }
+
+  private generateTradeText(): string {
+    // Determine active rarity filter without mutating component state
+    const defaultTradeRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆', '✵', '✵✵'];
+    const activeRarities = (this.selectedTradeRarities && this.selectedTradeRarities.length > 0)
+      ? this.selectedTradeRarities
+      : defaultTradeRarities;
+
+
+    // Looking for: missing cards (owned = 0), matching active rarities, excluding blocked sets (and optional special packs)
+    const lookingForCards = this.cards.filter(card => {
+      if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
+      const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+      if (sym && !activeRarities.includes(sym)) return false;
+      return this.getOwnedCount(card) === 0;
+    });
+
+    const lookingBySet = lookingForCards.reduce((groups: { [key: string]: Card[] }, card) => {
+      (groups[card.set] ||= []).push(card);
+      return groups;
+    }, {} as { [key: string]: Card[] });
+
+    let result = '';
+    result += '\n=============================================================================';
+    result += '\nLooking for cards:';
+    result += '\n=============================================================================\n\n';
+    for (const [setCode, setCards] of Object.entries(lookingBySet)) {
+      if (setCards.length === 0) continue;
+      const setName = this.getSetName(setCode);
+      result += `[${setName}]:\n`;
+      for (const card of setCards) {
+        const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+        result += `${sym} ${this.getCardDisplayName(card)}\n`;
+      }
+      result += '\n';
+    }
+
+    result += '\n=============================================================================';
+    result += '\nCards for trade:';
+    result += '\n=============================================================================\n\n';
+
+    // For trade: quantity >= threshold, matching active rarities, excluding blocked/special sets and excluded symbols
+    const forTradeCards = this.cards.filter(card => {
+      if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
+      const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+      if (sym && !activeRarities.includes(sym)) return false;
+      if (sym && this.excludedTradeSymbols.has(sym)) return false;
+      return this.getOwnedCount(card) >= this.tradeQuantityMin;
+    });
+
+    const tradeBySet = forTradeCards.reduce((groups: { [key: string]: Card[] }, card) => {
+      (groups[card.set] ||= []).push(card);
+      return groups;
+    }, {} as { [key: string]: Card[] });
+
+    for (const [setCode, setCards] of Object.entries(tradeBySet)) {
+      if (setCards.length === 0) continue;
+      const setName = this.getSetName(setCode);
+      result += `[${setName}]:\n`;
+      for (const card of setCards) {
+        const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+        result += `${sym} ${this.getCardDisplayName(card)}\n`;
+      }
+      result += '\n';
+    }
+
+    const templateLine = (this.tradeTemplateText || '').trim();
+    const friendLine = (this.tradeFriendCode || '').trim();
+    const usernameLine = (this.currentUser?.username || '').trim();
+
+    result += '\n=============================================================================';
+    if (templateLine) {
+      result += `\n${templateLine}\n`;
+    }
+
+    if (friendLine || usernameLine) {
+      if (usernameLine) {
+        result += `\nIGN: ${usernameLine}`;
+      }
+      if (friendLine) {
+        result += `\nFriend code: ${friendLine}`;
+      }
+    }
+
+    result += '\n=============================================================================\n';
+
+    return result.trim();
+  }
+
   // Card ownership management
   async loadOwnedCards(): Promise<void> {
     if (!this.currentUser) return;
@@ -353,7 +538,7 @@ export class CardCollectionComponent implements OnInit {
     this.syncingCards = true;
     this.syncProgress = 0;
     this.syncMessage = 'Starting sync...';
-    
+
     try {
       // Load from Supabase with progress callback
       const collection = await this.supabaseService.syncUserCollection(
@@ -369,27 +554,27 @@ export class CardCollectionComponent implements OnInit {
       this.calculateStatistics();
       this.syncMessage = `Sync completed! ${Object.keys(collection).length} cards loaded`;
       this.cdr.detectChanges();
-      
+
       // Hide sync message after a short delay
       setTimeout(() => {
         this.syncingCards = false;
         this.syncMessage = '';
         this.cdr.detectChanges();
       }, 1500);
-      
+
     } catch (error) {
       console.error('Error loading owned cards:', error);
       this.syncMessage = 'Sync failed, using local data...';
-      
+
       // Fallback to localStorage
       const saved = localStorage.getItem('ownedPokemonCards');
       if (saved) {
         this.ownedCards = JSON.parse(saved);
         this.calculateStatistics();
       }
-      
+
       this.cdr.detectChanges();
-      
+
       // Hide sync message after delay
       setTimeout(() => {
         this.syncingCards = false;
@@ -580,7 +765,7 @@ export class CardCollectionComponent implements OnInit {
       'Shiny': 'rarity-shiny',
       'Shiny Super Rare': 'rarity-shiny-super-rare'
     };
-    
+
     return rarityClasses[rarity] || 'rarity-default';
   }
 
@@ -597,22 +782,22 @@ export class CardCollectionComponent implements OnInit {
     // CSV Header with UTF-8 BOM for Excel compatibility
     let csvContent = '\uFEFF'; // UTF-8 BOM
     csvContent += 'Id,CardName,NumberOwn,Expansion,Pack,Rarity\n';
-    
+
     // Add all cards with their owned quantities (including 0)
     this.cards.forEach(card => {
       const cardId = this.getCardId(card);
       const ownedCount = this.getOwnedCount(card);
       const raritySymbol = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : 'Unknown';
       const primaryPack = (card.packs && card.packs.length > 0) ? card.packs[0] : '';
-      
+
       // Escape commas in card names
       const cardName = card.label.eng.replace(/,/g, '""');
-      
+
       csvContent += `${cardId},"${cardName}",${ownedCount},${card.set},"${primaryPack}",${raritySymbol}\n`;
     });
-    
+
     const dataBlob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
-    
+
     const link = document.createElement('a');
     link.href = URL.createObjectURL(dataBlob);
     link.download = 'pokemon-tcg-collection.csv';
@@ -699,12 +884,12 @@ export class CardCollectionComponent implements OnInit {
           if (this.currentUser) {
             try {
               const result = await this.supabaseService.bulkReplaceUserCollection(
-                this.currentUser.id, 
+                this.currentUser.id,
                 this.ownedCards
               );
-              
+
               if (result.success) {
-                
+
                 // Show success message
                 let message = `Import completed!\n${importedCount} cards updated`;
                 message += `\nCollection synced to database successfully`;
@@ -716,24 +901,24 @@ export class CardCollectionComponent implements OnInit {
                 alert(message);
               } else {
                 console.error('❌ Failed to sync collection to database:', result.error);
-                
+
                 // Show partial success message
                 let message = `Import completed!\n${importedCount} cards updated locally`;
                 message += `\nDatabase sync failed: ${result.error}`;
                 if (missingCardCount > 0) message += `\n${missingCardCount} unknown cards (skipped)`;
                 if (errorCount > 0) message += `\n${errorCount} parse errors encountered`;
-                
+
                 alert(message);
               }
             } catch (error) {
               console.error('❌ Error during bulk sync:', error);
-              
+
               // Show error message
               let message = `Import completed!\n${importedCount} cards updated locally`;
               message += `\nDatabase sync failed - please try again`;
               if (missingCardCount > 0) message += `\n${missingCardCount} unknown cards (skipped)`;
               if (errorCount > 0) message += `\n${errorCount} parse errors encountered`;
-              
+
               alert(message);
             }
           } else {
@@ -741,7 +926,7 @@ export class CardCollectionComponent implements OnInit {
             let message = `Import completed!\n${importedCount} cards updated`;
             if (missingCardCount > 0) message += `\n${missingCardCount} unknown cards (skipped)`;
             if (errorCount > 0) message += `\n${errorCount} parse errors encountered`;
-            
+
             alert(message);
           }
         } catch (error) {
@@ -815,7 +1000,7 @@ export class CardCollectionComponent implements OnInit {
 
     // Quantity candidates
     const qtyStr = getByKeys([
-      'numberown','quantity','qty','owned','count','number own','number_owned'
+      'numberown', 'quantity', 'qty', 'owned', 'count', 'number own', 'number_owned'
     ]);
     let quantity = 0;
     if (qtyStr !== undefined) {
@@ -826,12 +1011,12 @@ export class CardCollectionComponent implements OnInit {
     }
 
     // Card ID direct
-    let cardId = getByKeys(['id','cardid','card id']);
+    let cardId = getByKeys(['id', 'cardid', 'card id']);
 
     if (!cardId) {
       // Derive from Set/Expansion + Number
-      let setVal = getByKeys(['set','expansion']);
-      let numVal = getByKeys(['number','no','card number','card no','card#']);
+      let setVal = getByKeys(['set', 'expansion']);
+      let numVal = getByKeys(['number', 'no', 'card number', 'card no', 'card#']);
 
       if (!setVal && columns.length >= 4) {
         // Fallback to our export format (col 3 is set)
@@ -901,10 +1086,10 @@ export class CardCollectionComponent implements OnInit {
     const result: string[] = [];
     let current = '';
     let inQuotes = false;
-    
+
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
-      
+
       if (char === '"') {
         inQuotes = !inQuotes;
       } else if (char === ',' && !inQuotes) {
@@ -914,10 +1099,10 @@ export class CardCollectionComponent implements OnInit {
         current += char;
       }
     }
-    
+
     // Add the last field
     result.push(current);
-    
+
     return result;
   }
 
@@ -949,7 +1134,7 @@ export class CardCollectionComponent implements OnInit {
    */
   getGroupedCards(): { groupTitle: string; cards: Card[] }[] {
     const groups: { [key: string]: Card[] } = {};
-    
+
     // Group cards by their set (A1, A2, A4a, A4b, etc.)
     this.filteredCards.forEach(card => {
       const setKey = card.set;
@@ -958,7 +1143,7 @@ export class CardCollectionComponent implements OnInit {
       }
       groups[setKey].push(card);
     });
-    
+
     // Helper: compare set keys (A1, A2, A4a, A4b, etc.) ascending
     const compareSetKeyAsc = (x: string, y: string) => {
       const xm = x.match(/^([A-Z]+)(\d+)([a-z]*)$/);
@@ -974,10 +1159,7 @@ export class CardCollectionComponent implements OnInit {
 
     // Decide group (set) order based on sortBy
     const groupComparator = (a: string, b: string) => {
-      const isPromoSet = (code: string) => {
-        const c = (code || '').toUpperCase();
-        return c.startsWith('P-') || c.endsWith('-P') || c === 'P-A' || c.startsWith('PROMO');
-      };
+      const isPromoSet = (code: string) => this.isSpecialSet(code);
       const aPromo = isPromoSet(a), bPromo = isPromoSet(b);
       // Promo always at bottom
       if (aPromo && !bPromo) return 1;
@@ -1015,12 +1197,12 @@ export class CardCollectionComponent implements OnInit {
   getGroupDisplayName(groupTitle: string, cards: Card[]): string {
     // Get the set name from sets data
     const setName = this.getSetName(groupTitle);
-    
+
     // Format: "A1 - Genetic Apex"
     if (setName && setName !== groupTitle) {
       return `${groupTitle} - ${setName}`;
     }
-    
+
     // Fallback if set name not found
     return `Set ${groupTitle}`;
   }

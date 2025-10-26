@@ -22,9 +22,7 @@ import { APP_VERSION } from './version';
               <a routerLink="/collection" routerLinkActive="active" class="nav-link">
                 🗂️ Collection
               </a>
-              <a *ngIf="currentUser?.role === 'admin'" routerLink="/admin" routerLinkActive="active" class="nav-link admin-link">
-                🔧 Admin
-              </a>
+              
             </div>
           </div>
 
@@ -51,9 +49,7 @@ import { APP_VERSION } from './version';
           <a routerLink="/collection" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
             🗂️ Collection
           </a>
-          <a *ngIf="currentUser?.role === 'admin'" routerLink="/admin" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
-            🔧 Admin
-          </a>
+          
           <button *ngIf="currentUser" (click)="signOut(); closeMobileMenu()" class="mobile-link signout">
             🚪 Sign Out
           </button>

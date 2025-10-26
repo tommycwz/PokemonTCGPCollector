@@ -4,7 +4,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardCollectionComponent } from './card-collection/card-collection.component';
 import { SigninComponent } from './signin/signin.component';
 import { MainLayoutComponent } from './main-layout.component';
-import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -16,8 +15,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'collection', component: CardCollectionComponent },
-      { path: 'admin', component: AdminComponent }
+  { path: 'collection', component: CardCollectionComponent }
     ]
   },
   { path: '**', redirectTo: '/signin' }

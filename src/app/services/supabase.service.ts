@@ -8,6 +8,7 @@ export interface Profile {
   username: string;
   password: string;
   role: string;
+  friend_code: string;
   created_at: string;
 }
 
@@ -80,6 +81,7 @@ export class SupabaseService {
           username: 'test',
           password: 'test',
           role: 'user',
+          friend_code: 'FRIEND123',
           created_at: new Date().toISOString()
         },
         {
@@ -87,6 +89,7 @@ export class SupabaseService {
           username: 'admin',
           password: 'admin',
           role: 'admin',
+          friend_code: 'FRIEND456',
           created_at: new Date().toISOString()
         }
       ];
@@ -220,8 +223,8 @@ export class SupabaseService {
         console.warn('getProfileByUsername fallback due to error:', error.message);
         // Fallback dev users
         const testUsers: Profile[] = [
-          { id: '1', username: 'test', password: 'test', role: 'user', created_at: new Date().toISOString() },
-          { id: '2', username: 'admin', password: 'admin', role: 'admin', created_at: new Date().toISOString() }
+          { id: '1', username: 'test', password: 'test', role: 'user', friend_code: 'FRIEND123', created_at: new Date().toISOString() },
+          { id: '2', username: 'admin', password: 'admin', role: 'admin', friend_code: 'FRIEND456', created_at: new Date().toISOString() }
         ];
         return testUsers.find(u => u.username === username) || null;
       }

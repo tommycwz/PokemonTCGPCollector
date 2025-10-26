@@ -9,14 +9,12 @@
         📥 Import Collection
         <input type="file" accept=".csv" (change)="importCollection($event)" hidden>
       </label>
-    </div>
-    <div class="actions-right">
-      <div class="view-other-controls">
-        <input type="text" [(ngModel)]="otherUsername" placeholder="View username…" class="search-input compact"
-          (keydown.enter)="viewOtherCollection()" />
-        <button class="btn btn-outline" (click)="viewOtherCollection()">View</button>
-        <button class="btn btn-outline" *ngIf="isViewingOther" (click)="backToMyCollection()">My collection</button>
-      </div>
+      <button class="btn btn-secondary" (click)="openTradeModal()" [disabled]="isViewingOther">
+        📋 Copy For Trade
+      </button>
+      <button class="btn btn-secondary" (click)="openViewOthersModal()" [disabled]="isViewingOther">
+        👤 View Others Collection
+      </button>
     </div>
   </div>
 
@@ -194,5 +192,90 @@
   <div class="fab-stack-left" aria-label="Filter controls">
     <button type="button" class="fab mobile-only" [attr.aria-pressed]="filtersOpen" title="Filters"
       (click)="toggleFilters()">🔎</button>
+    <button type="button" class="fab mobile-only" title="Copy For Trade" [disabled]="isViewingOther"
+      (click)="openTradeModal()">📋</button>
+    <button type="button" class="fab mobile-only" title="View Others Collection" [disabled]="isViewingOther"
+      (click)="openViewOthersModal()">👤</button>
+  </div>
+
+  <!-- View Others Collection Modal -->
+  <div class="modal-backdrop" *ngIf="showViewOthersModal" (click)="closeViewOthersModal()">
+    <div class="modal-content view-others-modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>View Others Collection</h3>
+        <button class="modal-close" (click)="closeViewOthersModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="view-others-config">
+          <div class="config-section">
+            <label class="config-label" for="other-username-input">Username:</label>
+            <input type="text" id="other-username-input" class="config-input-wide" [(ngModel)]="otherUsername"
+              placeholder="Enter username to view their collection…" (keydown.enter)="viewOtherCollectionFromModal()" />
+            <span class="config-hint">Enter the username of the collection you want to view</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" (click)="closeViewOthersModal()">Cancel</button>
+        <button class="btn btn-primary" (click)="viewOtherCollectionFromModal()" [disabled]="!otherUsername.trim()">
+          👤 View Collection
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trade Modal -->
+  <div class="modal-backdrop" *ngIf="showTradeModal" (click)="closeTradeModal()">
+    <div class="modal-content trade-modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Copy For Trade</h3>
+        <button class="modal-close" (click)="closeTradeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="trade-config">
+          <div class="config-section">
+            <label class="config-label" for="exclude-special-toggle">
+              <input type="checkbox" id="exclude-special-toggle" [(ngModel)]="excludeSpecialPacks" />
+              Exclude Special packs
+            </label>
+            <span class="config-hint">When enabled, cards from packs with "PROMO" and "A4b" are omitted.</span>
+          </div>
+          <div class="config-section">
+            <label class="config-label">Include rarities:</label>
+            <div class="rarity-chips">
+              <button type="button" class="chip" [class.active]="selectedTradeRarities.length === 0"
+                (click)="clearTradeRarities()">ALL</button>
+              <button type="button" class="chip" *ngFor="let group of getAvailableTradeRaritySymbols()"
+                [class.active]="isTradeRaritySelected(group.symbol)" (click)="toggleTradeRarity(group.symbol)"
+                [title]="group.displayName">
+                {{ group.symbol }}
+              </button>
+            </div>
+          </div>
+          <div class="config-section">
+            <label class="config-label" for="trade-qty-min">Trade cards (quantity ≥):</label>
+            <input type="number" id="trade-qty-min" class="config-input" [(ngModel)]="tradeQuantityMin" min="1"
+              max="10">
+            <span class="config-hint">Cards with this quantity or more will be listed as "for trade"</span>
+          </div>
+          <div class="config-section">
+            <label class="config-label" for="friend-code-input">Friend Code:</label>
+            <input type="text" id="friend-code-input" class="config-input-wide" [(ngModel)]="tradeFriendCode"
+              placeholder="Enter your friend code to include in the copy…" />
+            <span class="config-hint">This is not saved. It's only used in the copied text.</span>
+          </div>
+          <div class="config-section">
+            <label class="config-label" for="trade-template-text">Template text:</label>
+            <textarea id="trade-template-text" class="config-input-wide" rows="2" [(ngModel)]="tradeTemplateText"
+              placeholder="Add an extra note to include in the copied text…"></textarea>
+            <span class="config-hint">Not saved. Will be appended to the copied text.</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" (click)="closeTradeModal()">Cancel</button>
+        <button class="btn btn-primary" (click)="generateAndCopyTradeText()">📋 Copy Trade Text</button>
+      </div>
+    </div>
   </div>
 </div>

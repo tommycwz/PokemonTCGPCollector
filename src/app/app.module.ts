@@ -9,7 +9,6 @@ import { CardCollectionComponent } from './card-collection/card-collection.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainLayoutComponent } from './main-layout.component';
 import { SigninComponent } from './signin/signin.component';
-import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LazyImageDirective } from './directives/lazy-image.directive';
 
@@ -20,7 +19,6 @@ import { LazyImageDirective } from './directives/lazy-image.directive';
     DashboardComponent,
     MainLayoutComponent,
     SigninComponent,
-    AdminComponent,
     LazyImageDirective
   ],
   imports: [

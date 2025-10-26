@@ -3,7 +3,7 @@
   padding: 20px;
   max-width: 1400px;
   margin: 0 auto;
-  background-color: #000;
+  background-color: transparent;
   min-height: 100vh;
   color: #fff;
 }
@@ -317,21 +317,22 @@
   inset: 0;
   background: rgba(0,0,0,0.6);
   z-index: 1000;
+  /* Center modal content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px; /* breathing room on small screens */
 }
 
-.modal {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+/* Generic modal content wrapper (used by both View Others and Trade modals) */
+.modal-content {
   width: min(520px, 92vw);
-  max-height: 80vh;
+  max-height: 85vh;
   overflow: auto;
   background: #121317;
   border: 1px solid #3e4654;
   border-radius: 10px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  z-index: 1001;
 }
 
 .modal-header {
@@ -360,6 +361,83 @@
   justify-content: flex-end;
   gap: 10px;
   border-top: 1px solid #2c3240;
+}
+
+/* Trade modal specific styles */
+.trade-modal .modal-body {
+  padding: 20px;
+}
+
+.trade-config {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.config-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.config-label {
+  font-weight: 600;
+  color: #ddd;
+  font-size: 14px;
+}
+
+.rarity-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rarity-chips .chip {
+  padding: 6px 12px;
+  border: 1px solid #4a4f5a;
+  border-radius: 6px;
+  background: #1b1e24;
+  color: #cfd6e4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rarity-chips .chip:hover {
+  border-color: #007bff;
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.rarity-chips .chip.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.config-input {
+  width: 80px;
+  padding: 8px 10px;
+  background: #1d1f24;
+  border: 1px solid #4a4f5a;
+  border-radius: 4px;
+  color: #eaeaea;
+  font-size: 14px;
+}
+
+.config-input-wide {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 10px;
+  background: #1d1f24;
+  border: 1px solid #4a4f5a;
+  border-radius: 4px;
+  color: #eaeaea;
+  font-size: 14px;
+}
+
+.config-hint {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
 }
 
 .search-container {
