@@ -25,8 +25,6 @@
     <button class="btn btn-outline" (click)="backToMyCollection()">Back to my collection</button>
   </div>
 
-
-
   <!-- Filters Section (compact bar + controls) -->
   <div class="filters-panel" [class.collapsed]="!filtersOpen" role="region" aria-label="Collection filters">
     <!-- Row 1: Search only -->
@@ -90,6 +88,7 @@
         aria-label="Reset filters">Reset</button>
     </div>
   </div>
+  
   <!-- Loading State -->
   <div *ngIf="loading" class="loading-container">
     <div class="loading-spinner"></div>

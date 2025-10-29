@@ -1,0 +1,151 @@
+[
+    {
+        "code": "PROMO-A",
+        "name": "Promos-A",
+        "count": 100,
+        "logo": "https://assets.tcgdex.net/en/tcgp/P-A/logo.webp",
+        "symbol": null,
+        "releaseDate": "2024-10-30",
+        "packs": [
+            "Vol. 1",
+            "Vol. 2",
+            "Vol. 3",
+            "Vol. 4",
+            "Vol. 5",
+            "Vol. 6",
+            "Vol. 7",
+            "Vol. 8",
+            "Vol. 9",
+            "Vol. 10",
+            "Vol. 11",
+            "Vol. 12",
+            "Vol. 13"
+        ]
+    },
+    {
+        "code": "A1",
+        "name": "Genetic Apex",
+        "count": 286,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A1/logo.webp",
+        "symbol": "https://assets.tcgdex.net/univ/tcgp/A1/symbol.webp",
+        "releaseDate": "2024-10-30",
+        "packs": [
+            "Charizard",
+            "Mewtwo",
+            "Pikachu"
+        ]
+    },
+    {
+        "code": "A1A",
+        "name": "Mythical Island",
+        "count": 86,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A1a/logo.webp",
+        "symbol": null,
+        "releaseDate": "2024-12-17",
+        "packs": [
+            "Mew"
+        ]
+    },
+    {
+        "code": "A2",
+        "name": "Space-Time Smackdown",
+        "count": 207,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A2/logo.webp",
+        "symbol": null,
+        "releaseDate": "2025-01-29",
+        "packs": [
+            "Dialga",
+            "Palkia"
+        ]
+    },
+    {
+        "code": "A2A",
+        "name": "Triumphant Light",
+        "count": 96,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A2a/logo.webp",
+        "symbol": "https://assets.tcgdex.net/univ/tcgp/A2a/symbol.webp",
+        "releaseDate": "2025-02-28",
+        "packs": [
+            "Arceus"
+        ]
+    },
+    {
+        "code": "A2B",
+        "name": "Shining Revelry",
+        "count": 111,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A2b/logo.webp",
+        "symbol": "https://assets.tcgdex.net/univ/tcgp/A2b/symbol.webp",
+        "releaseDate": "2025-03-27",
+        "packs": [
+            "Shining"
+        ]
+    },
+    {
+        "code": "A3",
+        "name": "Celestial Guardians",
+        "count": 239,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A3/logo.webp",
+        "symbol": null,
+        "releaseDate": "2025-04-30",
+        "packs": [
+            "Lunala",
+            "Solgaleo"
+        ]
+    },
+    {
+        "code": "A3A",
+        "name": "Extradimensional Crisis",
+        "count": 103,
+        "logo": null,
+        "symbol": null,
+        "releaseDate": "2025-05-29",
+        "packs": [
+            "Extradimensional"
+        ]
+    },
+    {
+        "code": "A3B",
+        "name": "Eevee Grove",
+        "count": 107,
+        "logo": null,
+        "symbol": null,
+        "releaseDate": "2025-06-26",
+        "packs": [
+            "Eevee"
+        ]
+    },
+    {
+        "code": "A4",
+        "name": "Wisdom of Sea and Sky",
+        "count": 241,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A4/logo.webp",
+        "symbol": null,
+        "releaseDate": "2025-07-30",
+        "packs": [
+            "Ho-Oh",
+            "Lugia"
+        ]
+    },
+    {
+        "code": "A4A",
+        "name": "Secluded Springs",
+        "count": 105,
+        "logo": "https://assets.tcgdex.net/en/tcgp/A4a/logo.webp",
+        "symbol": "https://assets.tcgdex.net/univ/tcgp/A4a/symbol.webp",
+        "releaseDate": "2025-08-28",
+        "packs": [
+            "Secluded"
+        ]
+    },
+    {
+        "code": "A4B",
+        "name": "Deluxe Pack: ex",
+        "count": 0,
+        "logo": null,
+        "symbol": null,
+        "releaseDate": "2025-09-30",
+        "packs": [
+            "Deluxe"
+        ]
+    }
+]
