@@ -6,11 +6,7 @@
     "label": {
       "en": "Genetic Apex"
     },
-    "packs": [
-      "Charizard",
-      "Mewtwo",
-      "Pikachu"
-    ]
+    "packs": ["Charizard", "Mewtwo", "Pikachu"]
   },
   {
     "code": "A1A",
@@ -19,9 +15,7 @@
     "label": {
       "en": "Mythical Island"
     },
-    "packs": [
-      "Mew"
-    ]
+    "packs": ["Mew"]
   },
   {
     "code": "A2",
@@ -30,10 +24,7 @@
     "label": {
       "en": "Space-Time Smackdown"
     },
-    "packs": [
-      "Dialga",
-      "Palkia"
-    ]
+    "packs": ["Dialga", "Palkia"]
   },
   {
     "code": "A2A",
@@ -44,9 +35,7 @@
       "fr": "Lumière Triomphante",
       "es": "Luz Triunfal"
     },
-    "packs": [
-      "Arceus"
-    ]
+    "packs": ["Arceus"]
   },
   {
     "code": "A2B",
@@ -55,9 +44,7 @@
     "label": {
       "en": "Shining Revelry"
     },
-    "packs": [
-      "Shining"
-    ]
+    "packs": ["Shining"]
   },
   {
     "code": "A3",
@@ -66,10 +53,7 @@
     "label": {
       "en": "Celestial Guardians"
     },
-    "packs": [
-      "Lunala",
-      "Solgaleo"
-    ]
+    "packs": ["Lunala", "Solgaleo"]
   },
   {
     "code": "A3A",
@@ -78,9 +62,7 @@
     "label": {
       "en": "Extradimensional Crisis"
     },
-    "packs": [
-      "Extradimensional"
-    ]
+    "packs": ["Extradimensional"]
   },
   {
     "code": "A3B",
@@ -89,9 +71,7 @@
     "label": {
       "en": "Eevee Grove"
     },
-    "packs": [
-      "Eevee"
-    ]
+    "packs": ["Eevee"]
   },
   {
     "code": "A4",
@@ -100,10 +80,7 @@
     "label": {
       "en": "Wisdom of Sea and Sky"
     },
-    "packs": [
-      "Ho-Oh",
-      "Lugia"
-    ]
+    "packs": ["Ho-Oh", "Lugia"]
   },
   {
     "code": "A4A",
@@ -112,9 +89,7 @@
     "label": {
       "en": "Secluded Springs"
     },
-    "packs": [
-      "Secluded"
-    ]
+    "packs": ["Secluded"]
   },
   {
     "code": "A4B",
@@ -123,13 +98,12 @@
     "label": {
       "en": "Deluxe Pack: ex"
     },
-    "packs": [
-      "Deluxe"
-    ]
+    "packs": ["Deluxe"]
   },
   {
     "code": "PROMO-A",
     "releaseDate": "2024-10-30",
+    "count": 117,
     "label": {
       "en": "Promo A"
     },
@@ -148,5 +122,22 @@
       "Vol. 12",
       "Vol. 13"
     ]
+  },
+  {
+    "code": "B1",
+    "releaseDate": "2025-10-30",
+    "count": 331,
+    "label": {
+      "en": "Mega Rising"
+    },
+    "packs": ["Mega Altaria", "Mega Blaziken", "Mega Gyarados"]
+  },
+  {
+    "code": "PROMO-B",
+    "releaseDate": "2025-10-30",
+    "label": {
+      "en": "Promo B"
+    },
+    "packs": []
   }
 ]
