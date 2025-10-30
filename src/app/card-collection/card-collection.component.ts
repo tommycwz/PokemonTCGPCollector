@@ -25,16 +25,19 @@ export class CardCollectionComponent implements OnInit {
 
   // Filter options
   selectedSet: string = 'all';
+  selectedSeries: string = 'all';
   // Multi-select rarity filter by symbol (e.g., C, U, R, RR, AR, etc.)
   selectedRarities: string[] = [];
   selectedPack: string = 'all';
   searchTerm: string = '';
   sortBy: 'latest' | 'oldest' = 'latest';
   ownershipFilter: 'all' | 'missing' | 'owned' = 'all';
+  groupBy: 'none' | 'rarity' | 'pack' | 'type' = 'none';
   // Advanced modal removed
 
   // Available filter values
   availableSets: string[] = [];
+  availableSeries: string[] = [];
   availableRarities: string[] = [];
   availableRaritySymbols: { symbol: string, rarities: string[], displayName: string }[] = [];
   availablePacks: string[] = [];
@@ -141,22 +144,29 @@ export class CardCollectionComponent implements OnInit {
   }
 
   extractFilterOptions(): void {
-    // Extract unique sets (keep original order, no sorting)
-    this.availableSets = [...new Set(this.cards.map(card => card.set))];
+    // Extract unique series (keep original order, no sorting)
+    this.availableSeries = [...new Set(this.cards.map(card => card.series).filter((series): series is string => !!series))];
 
     // Extract unique rarities and group by symbols (preserve original order)
-    const uniqueRarities = [...new Set(this.cards.map(card => card.rarityCode).filter(code => code))];
-    this.availableRarities = uniqueRarities;
+    const uniqueRaritySymbols = [...new Set(this.cards.map(card => card.rarity).filter(symbol => symbol))];
+    
+    // Map rarity symbols to codes using the rarity mapping
+    const rarityCodeMap = this.createRaritySymbolToCodeMap();
+    
+    this.availableRarities = uniqueRaritySymbols.map(symbol => rarityCodeMap.get(symbol) || symbol);
 
     // Use standardized rarity service to group rarities by symbols
     this.availableRaritySymbols = [];
 
-    // Get unique rarity codes from cards (use rarityCode only for consistency)
+    // Get unique rarity codes from symbols
     const normalizedCodes = new Set<string>();
     this.cards.forEach(card => {
-      if (card.rarityCode) {
-        const normalizedCode = this.rarityService.getNormalizedCode(card.rarityCode);
-        normalizedCodes.add(normalizedCode);
+      if (card.rarity) {
+        const code = rarityCodeMap.get(card.rarity);
+        if (code) {
+          const normalizedCode = this.rarityService.getNormalizedCode(code);
+          normalizedCodes.add(normalizedCode);
+        }
       }
     });
 
@@ -184,6 +194,49 @@ export class CardCollectionComponent implements OnInit {
 
     // Extract all packs for initial load
     this.extractAvailablePacks();
+    
+    // Extract sets for initial load (all sets)
+    this.extractAvailableSets();
+  }
+
+  /**
+   * Extract available sets based on selected series
+   */
+  extractAvailableSets(): void {
+    if (this.selectedSeries === 'all') {
+      // Show all sets when no series is selected
+      this.availableSets = [...new Set(this.cards.map(card => card.set))];
+    } else {
+      // Show only sets from the selected series
+      this.availableSets = [...new Set(
+        this.cards
+          .filter(card => card.series === this.selectedSeries)
+          .map(card => card.set)
+      )];
+    }
+  }
+
+  /**
+   * Create a mapping from rarity symbols to codes based on rarity service
+   */
+  private createRaritySymbolToCodeMap(): Map<string, string> {
+    const map = new Map<string, string>();
+    
+    // Use the rarity service's unified rarities to create the mapping
+    const unifiedRarities = this.rarityService.getUnifiedRarities();
+    for (const rarityInfo of unifiedRarities) {
+      map.set(rarityInfo.symbol, rarityInfo.code);
+    }
+    
+    return map;
+  }
+
+  /**
+   * Get rarity code from card's rarity symbol
+   */
+  private getCardRarityCode(card: Card): string {
+    const rarityCodeMap = this.createRaritySymbolToCodeMap();
+    return rarityCodeMap.get(card.rarity) || card.rarity;
   }
 
   /**
@@ -209,9 +262,14 @@ export class CardCollectionComponent implements OnInit {
   extractAvailablePacks(): void {
     let cardsToCheck = this.cards;
 
-    // If a set is selected, filter cards by that set first
+    // If a series is selected, filter cards by that series first
+    if (this.selectedSeries !== 'all') {
+      cardsToCheck = cardsToCheck.filter(card => card.series === this.selectedSeries);
+    }
+
+    // If a set is selected, filter cards by that set
     if (this.selectedSet !== 'all') {
-      cardsToCheck = this.cards.filter(card => card.set === this.selectedSet);
+      cardsToCheck = cardsToCheck.filter(card => card.set === this.selectedSet);
     }
 
     // Extract unique packs from filtered cards (guard against undefined/null packs)
@@ -233,9 +291,15 @@ export class CardCollectionComponent implements OnInit {
         return false;
       }
 
+      // Series filter
+      if (this.selectedSeries !== 'all' && card.series !== this.selectedSeries) {
+        return false;
+      }
+
       // Rarity filter (multi-select by symbol). If none selected -> no filter
       if (this.selectedRarities.length > 0) {
-        const cardSymbol = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+        const cardRarityCode = this.getCardRarityCode(card);
+        const cardSymbol = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
         if (!cardSymbol || !this.selectedRarities.includes(cardSymbol)) {
           return false;
         }
@@ -316,7 +380,18 @@ export class CardCollectionComponent implements OnInit {
     // If switching back to 'all' sets, disable pack filtering explicitly
     if (this.selectedSet === 'all') {
       this.selectedPack = 'all';
+      this.groupBy = 'none'; // Reset grouping when viewing all sets
     }
+    this.applyFilters();
+  }
+
+  onSeriesChange(): void {
+    // When series changes, update available sets and reset set/pack selections
+    this.extractAvailableSets();
+    this.selectedSet = 'all';
+    this.selectedPack = 'all';
+    this.groupBy = 'none'; // Reset grouping when changing series
+    this.extractAvailablePacks();
     this.applyFilters();
   }
 
@@ -324,13 +399,23 @@ export class CardCollectionComponent implements OnInit {
     this.applyFilters();
   }
 
+  onGroupByChange(): void {
+    this.applyFilters();
+  }
+
   clearFilters(): void {
     this.selectedSet = 'all';
+    this.selectedSeries = 'all';
     this.selectedRarities = [];
     this.selectedPack = 'all';
     this.searchTerm = '';
     this.sortBy = 'latest';
     this.ownershipFilter = 'all';
+    this.groupBy = 'none';
+    
+    // Re-extract available options when clearing filters
+    this.extractAvailableSets();
+    this.extractAvailablePacks();
     this.applyFilters();
   }
 
@@ -445,7 +530,8 @@ export class CardCollectionComponent implements OnInit {
     // Looking for: missing cards (owned = 0), matching active rarities, excluding blocked sets (and optional special packs)
     const lookingForCards = this.cards.filter(card => {
       if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
-      const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+      const cardRarityCode = this.getCardRarityCode(card);
+      const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
       if (sym && !activeRarities.includes(sym)) return false;
       return this.getOwnedCount(card) === 0;
     });
@@ -464,7 +550,8 @@ export class CardCollectionComponent implements OnInit {
       const setName = this.getSetName(setCode);
       result += `[${setName}]:\n`;
       for (const card of setCards) {
-        const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+        const cardRarityCode = this.getCardRarityCode(card);
+        const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
         result += `${sym} ${this.getCardDisplayName(card)}\n`;
       }
       result += '\n';
@@ -477,7 +564,8 @@ export class CardCollectionComponent implements OnInit {
     // For trade: quantity >= threshold, matching active rarities, excluding blocked/special sets and excluded symbols
     const forTradeCards = this.cards.filter(card => {
       if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
-      const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+      const cardRarityCode = this.getCardRarityCode(card);
+      const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
       if (sym && !activeRarities.includes(sym)) return false;
       if (sym && this.excludedTradeSymbols.has(sym)) return false;
       return this.getOwnedCount(card) >= this.tradeQuantityMin;
@@ -493,7 +581,8 @@ export class CardCollectionComponent implements OnInit {
       const setName = this.getSetName(setCode);
       result += `[${setName}]:\n`;
       for (const card of setCards) {
-        const sym = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : '';
+        const cardRarityCode = this.getCardRarityCode(card);
+        const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
         result += `${sym} ${this.getCardDisplayName(card)}\n`;
       }
       result += '\n';
@@ -744,7 +833,7 @@ export class CardCollectionComponent implements OnInit {
   // Utility methods
   getSetName(setCode: string): string {
     const set = this.sets.find(s => s.code === setCode);
-    return set ? set.label.en : setCode;
+    return set ? set.name : setCode;
   }
 
   getFullRarityName(rarityCode: string): string {
@@ -787,7 +876,8 @@ export class CardCollectionComponent implements OnInit {
     this.cards.forEach(card => {
       const cardId = this.getCardId(card);
       const ownedCount = this.getOwnedCount(card);
-      const raritySymbol = card.rarityCode ? this.rarityService.getSymbol(card.rarityCode) : 'Unknown';
+      const cardRarityCode = this.getCardRarityCode(card);
+      const raritySymbol = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : 'Unknown';
       const primaryPack = (card.packs && card.packs.length > 0) ? card.packs[0] : '';
 
       // Escape commas in card names
@@ -1066,7 +1156,7 @@ export class CardCollectionComponent implements OnInit {
     if (codeMatch) return codeMatch.code;
 
     // Case-insensitive name match (English)
-    const nameMatch = this.sets.find(s => (s.label?.en || '').toUpperCase() === upper);
+    const nameMatch = this.sets.find(s => (s.name || '').toUpperCase() === upper);
     if (nameMatch) return nameMatch.code;
 
     return null;
@@ -1130,9 +1220,15 @@ export class CardCollectionComponent implements OnInit {
   }
 
   /**
-   * Group filtered cards by their sets for display
+   * Group filtered cards by their sets or other criteria for display
    */
   getGroupedCards(): { groupTitle: string; cards: Card[] }[] {
+    // If a specific set is selected and groupBy is not 'none', use the specified grouping
+    if (this.selectedSet !== 'all' && this.groupBy !== 'none') {
+      return this.getGroupedCardsByCategory();
+    }
+    
+    // Default behavior: group by set
     const groups: { [key: string]: Card[] } = {};
 
     // Group cards by their set (A1, A2, A4a, A4b, etc.)
@@ -1189,6 +1285,68 @@ export class CardCollectionComponent implements OnInit {
         groupTitle: setKey,
         cards: groups[setKey].sort(cardComparator)
       }));
+  }
+
+  /**
+   * Group cards by the selected category (rarity, pack, type)
+   */
+  getGroupedCardsByCategory(): { groupTitle: string; cards: Card[] }[] {
+    const groups: { [key: string]: Card[] } = {};
+
+    this.filteredCards.forEach(card => {
+      let groupKey: string;
+      
+      switch (this.groupBy) {
+        case 'rarity':
+          const rarityCode = this.getCardRarityCode(card);
+          const raritySymbol = rarityCode ? this.rarityService.getSymbol(rarityCode) : 'Unknown';
+          const rarityDisplayName = rarityCode ? this.rarityService.getDisplayName(rarityCode) : 'Unknown';
+          groupKey = `${raritySymbol} ${rarityDisplayName}`;
+          break;
+          
+        case 'pack':
+          groupKey = (card.packs && card.packs.length > 0) ? card.packs[0] : 'No Pack';
+          break;
+          
+        case 'type':
+          groupKey = (card.types && card.types.length > 0) ? card.types[0] : 'No Type';
+          break;
+          
+        default:
+          groupKey = 'All Cards';
+      }
+
+      if (!groups[groupKey]) {
+        groups[groupKey] = [];
+      }
+      groups[groupKey].push(card);
+    });
+
+    // Sort groups by logical order
+    const sortedGroupKeys = Object.keys(groups).sort((a, b) => {
+      if (this.groupBy === 'rarity') {
+        // Sort by rarity order
+        const getOrder = (key: string) => {
+          const symbol = key.split(' ')[0];
+          return this.rarityService.getRarityOrder(symbol) || 999;
+        };
+        return getOrder(a) - getOrder(b);
+      } else {
+        // Alphabetical for pack and type
+        return a.localeCompare(b);
+      }
+    });
+
+    // Sort cards within each group
+    const cardComparator = (a: Card, b: Card) => {
+      if (a.number !== b.number) return a.number - b.number;
+      return a.label.eng.localeCompare(b.label.eng);
+    };
+
+    return sortedGroupKeys.map(groupKey => ({
+      groupTitle: groupKey,
+      cards: groups[groupKey].sort(cardComparator)
+    }));
   }
 
   /**

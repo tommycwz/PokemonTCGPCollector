@@ -107,7 +107,7 @@ export class DataManagerService {
     return new Observable(observer => {
       Promise.all([
         this.cardDataService.getUniqueSets().toPromise(),
-        this.cardDataService.getUniqueTypes().toPromise(),
+        this.cardDataService.getAvailableTypes().toPromise(),
         this.cardDataService.getUniqueRarities().toPromise(),
         this.cardDataService.getUniquePacks().toPromise()
       ]).then(([sets, types, rarities, packs]) => {

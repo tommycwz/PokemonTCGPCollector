@@ -48,6 +48,20 @@ export class DashboardComponent implements OnInit {
     private rarityService: RarityService
   ) { }
 
+  /**
+   * Get rarity code from card's rarity symbol
+   */
+  private getCardRarityCode(card: Card): string {
+    // Create a mapping from rarity symbols to codes based on rarity service
+    const unifiedRarities = this.rarityService.getUnifiedRarities();
+    for (const rarityInfo of unifiedRarities) {
+      if (rarityInfo.symbol === card.rarity) {
+        return rarityInfo.code;
+      }
+    }
+    return card.rarity || 'Unknown';
+  }
+
   ngOnInit(): void {
     // Check authentication
     if (!this.supabaseService.isSignedIn()) {
@@ -203,7 +217,7 @@ export class DashboardComponent implements OnInit {
       const rarityBreakdown = this.calculateSetRarityBreakdown(setCards, ownedCardMap);
 
       return {
-        name: set.label?.en || set.code,
+        name: set.name || set.code,
         code: set.code,
         owned: ownedInSet.length,
         total: setCards.length,
@@ -373,7 +387,7 @@ export class DashboardComponent implements OnInit {
       let primarySetName = '';
       if (primarySetCode) {
         const setInfo = this.sets.find(s => s.code === primarySetCode);
-        primarySetName = (setInfo?.label as any)?.en || (setInfo?.label as any)?.eng || setInfo?.code || primarySetCode;
+        primarySetName = setInfo?.name || setInfo?.code || primarySetCode;
       }
 
       const missingCards = cardsInPack.filter(card =>
@@ -383,7 +397,7 @@ export class DashboardComponent implements OnInit {
       // Calculate rarity breakdown of missing cards
       const rarityBreakdown = new Map();
       missingCards.forEach(card => {
-        const rarityCode = card.rarityCode || 'Unknown';
+        const rarityCode = this.getCardRarityCode(card);
         const normalizedCode = this.rarityService.getNormalizedCode(rarityCode);
         const current = rarityBreakdown.get(normalizedCode) || 0;
         rarityBreakdown.set(normalizedCode, current + 1);

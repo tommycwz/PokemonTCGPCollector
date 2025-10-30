@@ -5,11 +5,10 @@ import { map, tap } from 'rxjs/operators';
 
 export interface SetInfo {
   code: string;
+  name: string;
+  series: string;
   releaseDate: string;
   count: number;
-  label: {
-    en: string;
-  };
   packs: string[];
 }
 
@@ -31,6 +30,21 @@ export class PokemonDataService {
   private readonly API_BASE = 'https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/';
 
   constructor(private http: HttpClient) { }
+
+  /**
+   * Get rarity code from card's rarity symbol
+   */
+  private getCardRarityCode(card: any, rarities: RarityMapping): string {
+    // Find the code that matches this symbol
+    for (const [code, description] of Object.entries(rarities)) {
+      // Extract symbol from description (e.g., "◊ - Common" -> "◊")
+      const symbol = description.split(' - ')[0];
+      if (symbol === card.rarity) {
+        return code;
+      }
+    }
+    return card.rarity || 'Unknown';
+  }
 
   /**
    * Load sets data from local assets
@@ -101,7 +115,7 @@ export class PokemonDataService {
           .map(card => ({
             ...card,
             setInfo,
-            fullRarityName: rarities[card.rarityCode] || card.rarity
+            fullRarityName: rarities[this.getCardRarityCode(card, rarities)] || card.rarity
           }));
       })
     );
@@ -139,7 +153,7 @@ export class PokemonDataService {
         const distribution: { [key: string]: number } = {};
         
         cards.forEach(card => {
-          const rarityCode = card.rarityCode;
+          const rarityCode = this.getCardRarityCode(card, rarities);
           distribution[rarityCode] = (distribution[rarityCode] || 0) + 1;
         });
 
@@ -202,7 +216,7 @@ export class PokemonDataService {
           return {
             ...card,
             setInfo,
-            fullRarityName: rarities[card.rarityCode] || card.rarity
+            fullRarityName: rarities[this.getCardRarityCode(card, rarities)] || card.rarity
           };
         });
       })
@@ -232,7 +246,7 @@ export class PokemonDataService {
           rarityBreakdown: Object.entries(rarities).map(([code, name]) => ({
             code,
             name,
-            count: cards.filter(card => card.rarityCode === code).length
+            count: cards.filter(card => this.getCardRarityCode(card, rarities) === code).length
           })),
           
           packBreakdown: this.calculatePackDistribution(cards),

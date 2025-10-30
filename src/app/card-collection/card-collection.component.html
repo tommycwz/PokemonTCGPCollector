@@ -33,21 +33,29 @@
         [(ngModel)]="searchTerm" (input)="onSearchChange()" />
     </div>
 
-    <!-- Row 2: Set + Pack (pack enabled only when a set is chosen) -->
+    <!-- Row 2: Series + Set + Pack (pack enabled only when a set is chosen) -->
     <div class="filters-row wrap sets-row">
       <div class="sort-group">
-        <label for="set-select">Set</label>
+        <label for="series-select">Series</label>
+        <select id="series-select" class="filter-select compact" aria-label="Select series" [(ngModel)]="selectedSeries"
+          (change)="onSeriesChange()">
+          <option value="all">All Series</option>
+          <option *ngFor="let series of availableSeries" [value]="series">{{ series }}</option>
+        </select>
+      </div>
+      <div class="sort-group">
+        <label for="set-select">Set {{ selectedSeries !== 'all' ? '(in ' + selectedSeries + ')' : '' }}</label>
         <select id="set-select" class="filter-select compact" aria-label="Select set" [(ngModel)]="selectedSet"
           (change)="onSetChange()">
-          <option value="all">All Sets</option>
+          <option value="all">{{ selectedSeries !== 'all' ? 'All Sets in ' + selectedSeries : 'All Sets' }}</option>
           <option *ngFor="let set of availableSets" [value]="set">{{ getSetName(set) }}</option>
         </select>
       </div>
       <div class="sort-group">
-        <label for="pack-select">Pack</label>
+        <label for="pack-select">Pack {{ selectedSet !== 'all' ? '(in ' + getSetName(selectedSet) + ')' : '' }}</label>
         <select id="pack-select" class="filter-select compact" aria-label="Select pack"
           [disabled]="selectedSet === 'all'" [(ngModel)]="selectedPack" (change)="applyFilters()">
-          <option value="all">All Packs</option>
+          <option value="all">{{ selectedSet !== 'all' ? 'All Packs in ' + getSetName(selectedSet) : 'All Packs' }}</option>
           <option *ngFor="let pack of availablePacks" [value]="pack">{{ pack }}</option>
         </select>
       </div>
@@ -67,7 +75,7 @@
       </div>
     </div>
 
-    <!-- Row 4: Sort + Ownership + Reset -->
+    <!-- Row 4: Sort + Group By + Ownership + Reset -->
     <div class="filters-row wrap">
       <div class="sort-group">
         <label for="sort-select">Sort By</label>
@@ -75,6 +83,16 @@
           aria-label="Sort order">
           <option value="latest">Latest Set</option>
           <option value="oldest">Oldest Set</option>
+        </select>
+      </div>
+      <div class="sort-group" *ngIf="selectedSet !== 'all'">
+        <label for="group-select">Group By</label>
+        <select id="group-select" class="filter-select compact" [(ngModel)]="groupBy" (change)="onGroupByChange()"
+          aria-label="Group by">
+          <option value="none">No Grouping</option>
+          <option value="rarity">Rarity</option>
+          <option value="pack">Pack</option>
+          <option value="type">Type</option>
         </select>
       </div>
       <div class="segmented ownership" role="tablist" aria-label="Ownership filter">

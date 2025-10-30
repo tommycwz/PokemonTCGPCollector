@@ -3,24 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map, tap } from 'rxjs';
 
 export interface Card {
+  series?: string;
   set: string;
   number: number;
-  rarity: string;
-  rarityCode: string;
+  rarity: string; // Now contains symbols like "◊", "◊◊", "☆", etc.
   imageName: string;
   label: {
     slug: string;
     eng: string;
   };
   packs: string[];
-  type?: string;
+  types?: string[];
   hp?: number;
-  retreat_cost?: number;
+  retreat?: number;
   stage?: string;
   evolves_from?: string;
   abilities?: any[];
   attacks?: any[];
-  weakness?: any;
+  weaknesses?: any[];
   resistance?: any;
   artist?: string;
   description?: string;
@@ -88,7 +88,7 @@ export class CardDataService {
    */
   getCardsByType(type: string): Observable<Card[]> {
     return this.loadCards().pipe(
-      map(cards => cards.filter(card => card.type === type))
+      map(cards => cards.filter(card => card.types && card.types.includes(type)))
     );
   }
 
@@ -124,9 +124,9 @@ export class CardDataService {
   /**
    * Gets unique types from all cards
    */
-  getUniqueTypes(): Observable<string[]> {
+  getAvailableTypes(): Observable<string[]> {
     return this.loadCards().pipe(
-      map(cards => [...new Set(cards.map(card => card.type).filter((type): type is string => !!type))])
+      map(cards => [...new Set(cards.flatMap(card => card.types || []).filter((type): type is string => !!type))])
     );
   }
 

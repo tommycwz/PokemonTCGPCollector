@@ -140,15 +140,29 @@ export class RarityService {
   }
 
   /**
-   * Group cards by normalized rarity code (using rarityCode field only)
+   * Get rarity code from symbol
+   */
+  getCodeFromSymbol(symbol: string): string {
+    for (const [, rarityInfo] of this.rarityMap) {
+      if (rarityInfo.symbol === symbol) {
+        return rarityInfo.code;
+      }
+    }
+    return symbol; // Return original if not found
+  }
+
+  /**
+   * Group cards by normalized rarity code (using rarity symbol field)
    */
   groupCardsByNormalizedRarity(cards: any[]): Map<string, any[]> {
     const groups = new Map<string, any[]>();
     
     cards.forEach(card => {
-      if (!card.rarityCode) return; // Skip cards without rarityCode
+      if (!card.rarity) return; // Skip cards without rarity
       
-      const normalizedCode = this.getNormalizedCode(card.rarityCode);
+      // Convert rarity symbol to code
+      const rarityCode = this.getCodeFromSymbol(card.rarity);
+      const normalizedCode = this.getNormalizedCode(rarityCode);
       
       if (!groups.has(normalizedCode)) {
         groups.set(normalizedCode, []);
