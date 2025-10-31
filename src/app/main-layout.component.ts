@@ -64,7 +64,7 @@ import { APP_VERSION } from './version';
   styles: [`
     .app-layout {
       min-height: 100vh;
-      background-color: #000000;
+      background-color: #1d1b1bff;
     }
 
     .navbar {
@@ -163,7 +163,7 @@ import { APP_VERSION } from './version';
 
     .main-content {
       min-height: calc(100vh - 80px);
-      background-color: #000000;
+      background-color: #1d1b1bff;
     }
 
     /* Responsive helpers */

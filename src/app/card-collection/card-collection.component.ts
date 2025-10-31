@@ -155,10 +155,10 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
     // Extract unique rarities and group by symbols (preserve original order)
     const uniqueRaritySymbols = [...new Set(this.cards.map(card => card.rarity).filter(symbol => symbol))];
-    
+
     // Map rarity symbols to codes using the rarity mapping
     const rarityCodeMap = this.createRaritySymbolToCodeMap();
-    
+
     this.availableRarities = uniqueRaritySymbols.map(symbol => rarityCodeMap.get(symbol) || symbol);
 
     // Use standardized rarity service to group rarities by symbols
@@ -200,10 +200,10 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
     // Extract all packs for initial load
     this.extractAvailablePacks();
-    
+
     // Extract types for initial load
     this.extractAvailableTypes();
-    
+
     // Extract sets for initial load (all sets)
     this.extractAvailableSets();
   }
@@ -230,13 +230,13 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
    */
   private createRaritySymbolToCodeMap(): Map<string, string> {
     const map = new Map<string, string>();
-    
+
     // Use the rarity service's unified rarities to create the mapping
     const unifiedRarities = this.rarityService.getUnifiedRarities();
     for (const rarityInfo of unifiedRarities) {
       map.set(rarityInfo.symbol, rarityInfo.code);
     }
-    
+
     return map;
   }
 
@@ -298,7 +298,19 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     const allTypes = this.cards
       .flatMap(card => Array.isArray(card.types) ? card.types : [])
       .filter(type => typeof type === 'string' && type.trim());
-    this.availableTypes = [...new Set(allTypes)].sort();
+
+    const specialLast = ['Item', 'Tool', 'Supporter'];
+
+    this.availableTypes = [...new Set(allTypes)].sort((a, b) => {
+      const isSpecialA = specialLast.includes(a);
+      const isSpecialB = specialLast.includes(b);
+
+      if (isSpecialA && !isSpecialB) return 1;   // A goes after B
+      if (!isSpecialA && isSpecialB) return -1;  // A goes before B
+      return a.localeCompare(b);                 // normal alphabetical order
+    });
+
+    console.log('Available types extracted:', this.availableTypes);
   }
 
   applyFilters(): void {
@@ -439,7 +451,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     this.sortBy = 'latest';
     this.ownershipFilter = 'all';
     this.groupBy = 'none';
-    
+
     // Re-extract available options when clearing filters
     this.extractAvailableSets();
     this.extractAvailablePacks();
@@ -1254,7 +1266,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     if (this.selectedSet !== 'all' && this.groupBy !== 'none') {
       return this.getGroupedCardsByCategory();
     }
-    
+
     // Default behavior: group by set
     const groups: { [key: string]: Card[] } = {};
 
@@ -1322,7 +1334,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
     this.filteredCards.forEach(card => {
       let groupKey: string;
-      
+
       switch (this.groupBy) {
         case 'rarity':
           const rarityCode = this.getCardRarityCode(card);
@@ -1330,15 +1342,15 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
           const rarityDisplayName = rarityCode ? this.rarityService.getDisplayName(rarityCode) : 'Unknown';
           groupKey = `${raritySymbol} ${rarityDisplayName}`;
           break;
-          
+
         case 'pack':
           groupKey = (card.packs && card.packs.length > 0) ? card.packs[0] : 'No Pack';
           break;
-          
+
         case 'type':
           groupKey = (card.types && card.types.length > 0) ? card.types[0] : 'No Type';
           break;
-          
+
         default:
           groupKey = 'All Cards';
       }

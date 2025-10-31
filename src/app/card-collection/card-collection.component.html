@@ -52,10 +52,12 @@
         </select>
       </div>
       <div class="sort-group">
-        <label for="pack-select">Pack {{ selectedSet !== 'all' ? '(in ' + getSetName(selectedSet) + ')' : '(select a set first)' }}</label>
+        <label for="pack-select">Pack {{ selectedSet !== 'all' ? '(in ' + getSetName(selectedSet) + ')' : '(select a set
+          first)' }}</label>
         <select id="pack-select" class="filter-select compact" aria-label="Select pack"
           [disabled]="selectedSet === 'all'" [(ngModel)]="selectedPack" (change)="applyFilters()">
-          <option value="all">{{ selectedSet !== 'all' ? 'All Packs in ' + getSetName(selectedSet) : 'Select a set first' }}</option>
+          <option value="all">{{ selectedSet !== 'all' ? 'All Packs in ' + getSetName(selectedSet) : 'Select a set
+            first' }}</option>
           <option *ngFor="let pack of availablePacks" [value]="pack">{{ pack }}</option>
         </select>
       </div>
@@ -80,14 +82,32 @@
       <label class="filter-label" for="types-chips">Types</label>
       <div id="types-chips" class="segmented multi chips-scroll" aria-label="Types filter">
         <button type="button" class="chip" [class.active]="selectedTypes.length===0" (click)="clearTypes()"
-          title="All types">ALL</button>
+          title="All types">
+          ALL
+        </button>
+
         <button type="button" class="chip type-chip" *ngFor="let type of availableTypes"
-          [class.active]="isTypeSelected(type)" (click)="toggleType(type)"
-          [title]="type">
-          <img [src]="'assets/energy/' + type.toLowerCase() + '.webp'" [alt]="type" class="type-icon">
+          [class.active]="isTypeSelected(type)" (click)="toggleType(type)" [title]="type">
+
+          <!-- Show text instead of image for special types -->
+          <ng-container *ngIf="['Item', 'Tool', 'Supporter'].includes(type); else normalType">
+            <span [ngClass]="{
+              'trainer-item': type === 'Item',
+              'trainer-tool': type === 'Tool',
+              'trainer-supporter': type === 'Supporter'
+            }" class="trainer-label">
+              {{ type }}
+            </span>
+          </ng-container>
+
+          <!-- Normal types (with icon image) -->
+          <ng-template #normalType>
+            <img [src]="'assets/energy/' + type.toLowerCase() + '.webp'" [alt]="type" class="type-icon">
+          </ng-template>
         </button>
       </div>
     </div>
+
 
     <!-- Row 4: Sort + Group By + Ownership + Reset -->
     <div class="filters-row wrap">
@@ -120,7 +140,7 @@
         aria-label="Reset filters">Reset</button>
     </div>
   </div>
-  
+
   <!-- Loading State -->
   <div *ngIf="loading" class="loading-container">
     <div class="loading-spinner"></div>
@@ -167,20 +187,13 @@
             <!-- TEMP: Test direct loading -->
             <img [src]="getCardImageUrl(card.imageName)" [alt]="card.label.eng + ' Pokemon Card'"
               class="pokemon-card-img" [class.no-quantity]="getOwnedCount(card) === 0" loading="lazy"
-              (error)="onImageError($event, card)" 
-              (click)="openCardModal(card)"
-              style="cursor: pointer;" />
+              (error)="onImageError($event, card)" (click)="openCardModal(card)" style="cursor: pointer;" />
           </div>
 
           <!-- Card Info -->
           <div class="card-info">
             <div class="card-title">{{ getCardDisplayName(card) }}</div>
-            
-            <!-- Pack Badge -->
-            <div class="pack-badges" *ngIf="card.packs && card.packs.length > 0">
-              <span class="pack-badge" *ngFor="let pack of card.packs">{{ pack }}</span>
-            </div>
-            
+
             <!-- Ownership Controls -->
             <div class="ownership-controls">
               <button (click)="decreaseOwned(card)" class="count-btn decrease"
@@ -323,9 +336,8 @@
     <div class="modal-content card-modal" (click)="$event.stopPropagation()">
       <button class="modal-close" (click)="closeCardModal()" aria-label="Close modal">×</button>
       <div class="card-modal-image">
-        <img [src]="getCardImageUrl(selectedCardForModal.imageName)" 
-             [alt]="getCardDisplayName(selectedCardForModal)"
-             class="modal-card-image">
+        <img [src]="getCardImageUrl(selectedCardForModal.imageName)" [alt]="getCardDisplayName(selectedCardForModal)"
+          class="modal-card-image">
       </div>
       <div class="card-modal-info">
         <h3>{{ getCardDisplayName(selectedCardForModal) }}</h3>
