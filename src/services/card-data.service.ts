@@ -17,8 +17,12 @@ export interface Card {
   hp?: number;
   retreat?: number;
   stage?: string;
-  evolves_from?: string;
-  abilities?: any[];
+  evolveFrom?: string;
+  abilities?: {
+    type: string;
+    name: string;
+    effect: string;
+  }[];
   attacks?: any[];
   weaknesses?: any[];
   resistance?: any;

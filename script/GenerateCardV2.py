@@ -11,6 +11,9 @@ from urllib3.util.retry import Retry
 EXPORT_SET_PATH = r"D:\\Project\\Angular\\PokemonTCGPCollector\\src\\assets\\cards\\sets.json"
 EXPORT_CARD_PATH = r"D:\\Project\\Angular\\PokemonTCGPCollector\\src\\assets\\cards\\cards.json"
 
+# EXPORT_SET_PATH = r"D:\\Project\\Angular\\PokemonTCGPCollector\\script\\cards\\sets.json"
+# EXPORT_CARD_PATH = r"D:\\Project\\Angular\\PokemonTCGPCollector\\script\\cards\\cards.json"
+
 # Data source URLs
 POCKETDB_SET_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/sets.json"
 POCKETDB_CARD_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.json"
@@ -223,9 +226,9 @@ def generate_cards():
         set_updates = 0
         details_fetched = 0
         
-        # For testing, only process first 10 cards with TCGDX enrichment
+        # Process more cards with TCGDX enrichment to get abilities and evolveFrom data
         ENABLE_TCGDX_ENRICHMENT = True
-        MAX_CARDS_TO_ENRICH = 50  # Limit for testing
+        MAX_CARDS_TO_ENRICH = 500  # Increased limit to get more cards with abilities
         
         for i, card in enumerate(cards_data):
             # Normalize rarity
@@ -281,7 +284,7 @@ def generate_cards():
                     
                     if tcgdx_details:
                         # Add TCGDX fields if they exist
-                        tcgdx_fields = ["hp", "types", "description", "stage", "attacks", "weaknesses", "retreat"]
+                        tcgdx_fields = ["hp", "types", "description", "stage", "attacks", "weaknesses", "retreat", "abilities", "evolveFrom"]
                         for field in tcgdx_fields:
                             if field in tcgdx_details:
                                 card[field] = tcgdx_details[field]

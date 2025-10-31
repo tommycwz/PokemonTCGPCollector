@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { PokemonDataService } from '../../services/pokemon-data.service';
 import { DataManagerService } from '../../services/data-manager.service';
 import { ImageService } from '../services/image.service';
@@ -14,7 +14,7 @@ import { RarityService } from '../services/rarity.service';
   styleUrls: ['./card-collection.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardCollectionComponent implements OnInit {
+export class CardCollectionComponent implements OnInit, OnDestroy {
   cards: Card[] = [];
   filteredCards: Card[] = [];
   sets: SetInfo[] = [];
@@ -28,6 +28,8 @@ export class CardCollectionComponent implements OnInit {
   selectedSeries: string = 'all';
   // Multi-select rarity filter by symbol (e.g., C, U, R, RR, AR, etc.)
   selectedRarities: string[] = [];
+  // Multi-select types filter (e.g., Grass, Fire, Water, etc.)
+  selectedTypes: string[] = [];
   selectedPack: string = 'all';
   searchTerm: string = '';
   sortBy: 'latest' | 'oldest' = 'latest';
@@ -40,6 +42,7 @@ export class CardCollectionComponent implements OnInit {
   availableSeries: string[] = [];
   availableRarities: string[] = [];
   availableRaritySymbols: { symbol: string, rarities: string[], displayName: string }[] = [];
+  availableTypes: string[] = [];
   availablePacks: string[] = [];
 
   // UI state
@@ -53,6 +56,9 @@ export class CardCollectionComponent implements OnInit {
   editingCardId: string | null = null;
   editingCountValue = 0;
   private lastFlatOrder: Card[] = [];
+
+  // Card modal
+  selectedCardForModal: Card | null = null;
 
   // Viewing another user's collection
   isViewingOther = false;
@@ -195,6 +201,9 @@ export class CardCollectionComponent implements OnInit {
     // Extract all packs for initial load
     this.extractAvailablePacks();
     
+    // Extract types for initial load
+    this.extractAvailableTypes();
+    
     // Extract sets for initial load (all sets)
     this.extractAvailableSets();
   }
@@ -284,6 +293,14 @@ export class CardCollectionComponent implements OnInit {
     }
   }
 
+  extractAvailableTypes(): void {
+    // Extract unique types from all cards
+    const allTypes = this.cards
+      .flatMap(card => Array.isArray(card.types) ? card.types : [])
+      .filter(type => typeof type === 'string' && type.trim());
+    this.availableTypes = [...new Set(allTypes)].sort();
+  }
+
   applyFilters(): void {
     this.filteredCards = this.cards.filter(card => {
       // Set filter
@@ -301,6 +318,15 @@ export class CardCollectionComponent implements OnInit {
         const cardRarityCode = this.getCardRarityCode(card);
         const cardSymbol = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
         if (!cardSymbol || !this.selectedRarities.includes(cardSymbol)) {
+          return false;
+        }
+      }
+
+      // Types filter (multi-select). If none selected -> no filter
+      if (this.selectedTypes.length > 0) {
+        const cardTypes = Array.isArray(card.types) ? card.types : [];
+        const hasMatchingType = cardTypes.some(type => this.selectedTypes.includes(type));
+        if (!hasMatchingType) {
           return false;
         }
       }
@@ -407,6 +433,7 @@ export class CardCollectionComponent implements OnInit {
     this.selectedSet = 'all';
     this.selectedSeries = 'all';
     this.selectedRarities = [];
+    this.selectedTypes = [];
     this.selectedPack = 'all';
     this.searchTerm = '';
     this.sortBy = 'latest';
@@ -1365,6 +1392,15 @@ export class CardCollectionComponent implements OnInit {
     return `Set ${groupTitle}`;
   }
 
+  /**
+   * Get the collected/total count display for a group of cards
+   */
+  getGroupCollectedCount(cards: Card[]): string {
+    const collectedCount = cards.filter(card => this.getOwnedCount(card) > 0).length;
+    const totalCount = cards.length;
+    return `${collectedCount}/${totalCount}`;
+  }
+
   // Ownership segmented control
   setOwnership(val: 'all' | 'missing' | 'owned') {
     if (this.ownershipFilter !== val) {
@@ -1395,6 +1431,52 @@ export class CardCollectionComponent implements OnInit {
       this.cdr.detectChanges();
     }
   }
+
+  // Types chip helpers
+  isTypeSelected(type: string): boolean {
+    return this.selectedTypes.includes(type);
+  }
+  toggleType(type: string): void {
+    const idx = this.selectedTypes.indexOf(type);
+    if (idx >= 0) {
+      this.selectedTypes.splice(idx, 1);
+    } else {
+      this.selectedTypes.push(type);
+    }
+    this.applyFilters();
+    this.cdr.detectChanges();
+  }
+  clearTypes(): void {
+    if (this.selectedTypes.length > 0) {
+      this.selectedTypes = [];
+      this.applyFilters();
+      this.cdr.detectChanges();
+    }
+  }
+
+  // Card modal methods
+  openCardModal(card: Card): void {
+    this.selectedCardForModal = card;
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+    // Add ESC key listener
+    document.addEventListener('keydown', this.handleModalKeydown);
+  }
+
+  closeCardModal(): void {
+    this.selectedCardForModal = null;
+    // Restore body scrolling
+    document.body.style.overflow = 'auto';
+    // Remove ESC key listener
+    document.removeEventListener('keydown', this.handleModalKeydown);
+  }
+
+  private handleModalKeydown = (event: KeyboardEvent): void => {
+    if (event.key === 'Escape' && this.selectedCardForModal) {
+      this.closeCardModal();
+    }
+  }
+
   /**
    * Sign out the current user
    */
@@ -1466,5 +1548,13 @@ export class CardCollectionComponent implements OnInit {
     const el = sections[prevIdx];
     const top = el.getBoundingClientRect().top + window.scrollY - 12;
     window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  ngOnDestroy(): void {
+    // Clean up modal event listener if component is destroyed while modal is open
+    if (this.selectedCardForModal) {
+      document.removeEventListener('keydown', this.handleModalKeydown);
+      document.body.style.overflow = 'auto';
+    }
   }
 }

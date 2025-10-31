@@ -74,7 +74,8 @@
         "value": "+20"
       }
     ],
-    "retreat": 2
+    "retreat": 2,
+    "evolveFrom": "Bulbasaur"
   },
   {
     "series": "A",
@@ -115,7 +116,8 @@
         "value": "+20"
       }
     ],
-    "retreat": 3
+    "retreat": 3,
+    "evolveFrom": "Ivysaur"
   },
   {
     "series": "A",
@@ -164,7 +166,8 @@
         "value": "+20"
       }
     ],
-    "retreat": 3
+    "retreat": 3,
+    "evolveFrom": "Ivysaur"
   },
   {
     "series": "A",
@@ -239,7 +242,8 @@
         "value": "+20"
       }
     ],
-    "retreat": 2
+    "retreat": 2,
+    "evolveFrom": "Caterpie"
   },
   {
     "series": "A",
@@ -278,7 +282,15 @@
         "value": "+20"
       }
     ],
-    "retreat": 1
+    "retreat": 1,
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Powder Heal",
+        "effect": "Once during your turn, you may heal 20 damage from each of your Pokémon."
+      }
+    ],
+    "evolveFrom": "Metapod"
   },
   {
     "series": "A",
@@ -352,7 +364,8 @@
         "value": "+20"
       }
     ],
-    "retreat": 2
+    "retreat": 2,
+    "evolveFrom": "Weedle"
   },
   {
     "series": "A",
@@ -389,7 +402,8 @@
         "value": "+20"
       }
     ],
-    "retreat": 1
+    "retreat": 1,
+    "evolveFrom": "Kakuna"
   },
   {
     "series": "A",
@@ -404,29 +418,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 60,
-    "types": [
-      "Grass"
-    ],
-    "description": "If exposed to moonlight, it starts to move. It roams far and wide at night to scatter its seeds.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Ram",
-        "damage": "20"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -441,30 +433,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 80,
-    "types": [
-      "Grass"
-    ],
-    "description": "Its pistils exude an incredibly foul odor. The horrid stench can cause fainting at a distance of 1.25 miles.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Colorless"
-        ],
-        "name": "Drool",
-        "damage": "40"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -479,32 +448,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 140,
-    "types": [
-      "Grass"
-    ],
-    "description": "It has the world's largest petals. With every step, the petals shake out heavy clouds of toxic pollen.",
-    "stage": "Stage2",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Grass",
-          "Colorless"
-        ],
-        "name": "Soothing Scent",
-        "effect": "Your opponent's Active Pokémon is now Asleep.",
-        "damage": "80"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 3
+    ]
   },
   {
     "series": "A",
@@ -519,30 +463,7 @@
     },
     "packs": [
       "Pikachu"
-    ],
-    "hp": 70,
-    "types": [
-      "Grass"
-    ],
-    "description": "The mushrooms, known as tochukaso, are controlling the bug. Even if the bug bugs the mushrooms, they tell it to bug off.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Colorless"
-        ],
-        "name": "Scratch",
-        "damage": "30"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -557,31 +478,7 @@
     },
     "packs": [
       "Pikachu"
-    ],
-    "hp": 120,
-    "types": [
-      "Grass"
-    ],
-    "description": "The bug is mostly dead, with the mushroom on its back having become the main body. If the mushroom comes off, the bug stops moving.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Grass",
-          "Colorless"
-        ],
-        "name": "Slash",
-        "damage": "80"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -596,29 +493,7 @@
     },
     "packs": [
       "Mewtwo"
-    ],
-    "hp": 60,
-    "types": [
-      "Grass"
-    ],
-    "description": "Poison oozes from all over its body. It catches small bug Pokémon at night that are attracted by light.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Tackle",
-        "damage": "20"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -633,30 +508,7 @@
     },
     "packs": [
       "Mewtwo"
-    ],
-    "hp": 80,
-    "types": [
-      "Grass"
-    ],
-    "description": "The wings are covered with dustlike scales. Every time it flaps its wings, it looses highly toxic dust.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Poison Powder",
-        "effect": "Your opponent's Active Pokémon is now Poisoned.",
-        "damage": "30"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -671,29 +523,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 60,
-    "types": [
-      "Grass"
-    ],
-    "description": "Even though its body is extremely skinny, it is blindingly fast when catching its prey.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Vine Whip",
-        "damage": "20"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -708,30 +538,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 90,
-    "types": [
-      "Grass"
-    ],
-    "description": "The leafy parts act as cutters for slashing foes. It spits a fluid that dissolves everything.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Colorless"
-        ],
-        "name": "Razor Leaf",
-        "damage": "40"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -746,30 +553,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 140,
-    "types": [
-      "Grass"
-    ],
-    "description": "Said to live in huge colonies deep in jungles, although no one has ever returned from there.",
-    "stage": "Stage2",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Colorless"
-        ],
-        "name": "Vine Whip",
-        "damage": "60"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -784,29 +568,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 50,
-    "types": [
-      "Grass"
-    ],
-    "description": "Though it may look like it's just a bunch of eggs, it's a proper Pokémon. Exeggcute communicates with others of its kind via telepathy, apparently.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Seed Bomb",
-        "damage": "20"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -821,30 +583,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 130,
-    "types": [
-      "Grass"
-    ],
-    "description": "Each of Exeggutor's three heads is thinking different thoughts. The three don't seem to be very interested in one another.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Stomp",
-        "effect": "Flip a coin. If heads, this attack does 30 more damage.",
-        "damage": "30+"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 3
+    ]
   },
   {
     "series": "A",
@@ -859,29 +598,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 160,
-    "types": [
-      "Grass"
-    ],
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Tropical Swing",
-        "effect": "Flip a coin. If heads, this attack does 40 more damage.",
-        "damage": "40+"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 3
+    ]
   },
   {
     "series": "A",
@@ -896,31 +613,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 80,
-    "types": [
-      "Grass"
-    ],
-    "description": "Hidden beneath a tangle of vines that grows nonstop even if the vines are torn off, this Pokémon's true appearance remains a mystery.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Colorless"
-        ],
-        "name": "Absorb",
-        "effect": "Heal 10 damage from this Pokémon.",
-        "damage": "40"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -935,29 +628,7 @@
     },
     "packs": [
       "Mewtwo"
-    ],
-    "hp": 70,
-    "types": [
-      "Grass"
-    ],
-    "description": "It slashes through grass with its sharp scythes, moving too fast for the human eye to track.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Sharp Scythe",
-        "damage": "30"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -974,31 +645,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 90,
-    "types": [
-      "Grass"
-    ],
-    "description": "These Pokémon judge one another based on pincers. Thicker, more impressive pincers make for more popularity with the opposite gender.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Grass"
-        ],
-        "name": "Double Horn",
-        "effect": "Flip 2 coins. This attack does 50 damage for each heads.",
-        "damage": "50×"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1015,29 +662,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 50,
-    "types": [
-      "Grass"
-    ],
-    "description": "It shoots cotton from its body to protect itself. If it gets caught up in hurricane-strength winds, it can get sent to the other side of the Earth.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Colorless"
-        ],
-        "name": "Attach",
-        "damage": "10"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1054,29 +679,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 80,
-    "types": [
-      "Grass"
-    ],
-    "description": "It scatters cotton all over the place as a prank. If it gets wet, it'll become too heavy to move and have no choice but to answer for its mischief.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Colorless"
-        ],
-        "name": "Rolling Tackle",
-        "damage": "40"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1093,30 +696,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 60,
-    "types": [
-      "Grass"
-    ],
-    "description": "The leaves on its head grow right back even if they fall out. These bitter leaves refresh those who eat them.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Grass"
-        ],
-        "name": "Blot",
-        "effect": "Heal 10 damage from this Pokémon.",
-        "damage": "10"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1133,31 +713,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 100,
-    "types": [
-      "Grass"
-    ],
-    "description": "The fragrance of the garland on its head has a relaxing effect, but taking care of it is very difficult.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Grass"
-        ],
-        "name": "Leaf Supply",
-        "effect": "Take a {G} Energy from your Energy Zone and attach it to 1 of your Benched {G} Pokémon.",
-        "damage": "50"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1172,30 +728,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 70,
-    "types": [
-      "Grass"
-    ],
-    "description": "Until recently, people living in the mountains would ride on the backs of these Pokémon to traverse the mountain paths.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Colorless"
-        ],
-        "name": "Surprise Attack",
-        "effect": "Flip a coin. If tails, this attack does nothing.",
-        "damage": "40"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1210,31 +743,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 120,
-    "types": [
-      "Grass"
-    ],
-    "description": "It can sense the feelings of others by touching them with its horns. This species has assisted people with their work since 5,000 years ago.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Grass",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Razor Leaf",
-        "damage": "70"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Fire",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1249,30 +758,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 60,
-    "types": [
-      "Fire"
-    ],
-    "description": "It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Fire"
-        ],
-        "name": "Ember",
-        "effect": "Discard a {R} Energy from this Pokémon.",
-        "damage": "30"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1287,31 +773,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 90,
-    "types": [
-      "Fire"
-    ],
-    "description": "It has a barbaric nature. In battle, it whips its fiery tail around and slashes away with sharp claws.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Fire Claws",
-        "damage": "60"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1326,33 +788,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 150,
-    "types": [
-      "Fire"
-    ],
-    "description": "It spits fire that is hot enough to melt boulders. It may cause forest fires by blowing flames.",
-    "stage": "Stage2",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Fire",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Fire Spin",
-        "effect": "Discard 2 {R} Energy from this Pokémon.",
-        "damage": "150"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1367,41 +803,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 180,
-    "types": [
-      "Fire"
-    ],
-    "stage": "Stage2",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Slash",
-        "damage": "60"
-      },
-      {
-        "cost": [
-          "Fire",
-          "Fire",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Crimson Storm",
-        "effect": "Discard 2 {R} Energy from this Pokémon.",
-        "damage": "200"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1416,29 +818,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 50,
-    "types": [
-      "Fire"
-    ],
-    "description": "While young, it has six gorgeous tails. When it grows, several new tails are sprouted.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Colorless"
-        ],
-        "name": "Tail Whip",
-        "effect": "Flip a coin. If heads, the Defending Pokémon can't attack during your opponent's next turn."
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1453,31 +833,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 90,
-    "types": [
-      "Fire"
-    ],
-    "description": "It is said to live 1,000 years, and each of its tails is loaded with supernatural powers.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Fire"
-        ],
-        "name": "Flamethrower",
-        "effect": "Discard 1 {R} Energy from this Pokémon.",
-        "damage": "90"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1492,30 +848,7 @@
     },
     "packs": [
       "Pikachu"
-    ],
-    "hp": 70,
-    "types": [
-      "Fire"
-    ],
-    "description": "It has a brave and trustworthy nature. It fearlessly stands up to bigger and stronger foes.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Bite",
-        "damage": "20"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1530,32 +863,7 @@
     },
     "packs": [
       "Pikachu"
-    ],
-    "hp": 130,
-    "types": [
-      "Fire"
-    ],
-    "description": "An ancient picture scroll shows that people were captivated by its movement as it ran through prairies.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Fire",
-          "Colorless"
-        ],
-        "name": "Heat Tackle",
-        "effect": "This Pokémon also does 20 damage to itself.",
-        "damage": "100"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1570,31 +878,7 @@
     },
     "packs": [
       "Pikachu"
-    ],
-    "hp": 150,
-    "types": [
-      "Fire"
-    ],
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Fire",
-          "Colorless"
-        ],
-        "name": "Inferno Onrush",
-        "effect": "This Pokémon also does 20 damage to itself.",
-        "damage": "120"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1611,29 +895,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 60,
-    "types": [
-      "Fire"
-    ],
-    "description": "It can't run properly when it's newly born. As it races around with others of its kind, its legs grow stronger.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Fire"
-        ],
-        "name": "Flare",
-        "damage": "20"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1650,29 +912,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 100,
-    "types": [
-      "Fire"
-    ],
-    "description": "This Pokémon can be seen galloping through fields at speeds of up to 150 mph, its fiery mane fluttering in the wind.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Fire"
-        ],
-        "name": "Fire Mane",
-        "damage": "40"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1687,30 +927,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 80,
-    "types": [
-      "Fire"
-    ],
-    "description": "Magmar dispatches its prey with fire. But it regrets this habit once it realizes that it has burned its intended prey to a charred crisp.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Fire"
-        ],
-        "name": "Magma Punch",
-        "damage": "50"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1725,32 +942,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 120,
-    "types": [
-      "Fire"
-    ],
-    "description": "Inhaled air is carried to its flame sac, heated, and exhaled as fire that reaches over 3,000 degrees Fahrenheit.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Flamethrower",
-        "effect": "Discard 1 {R} Energy from this Pokémon.",
-        "damage": "110"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1765,32 +957,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 100,
-    "types": [
-      "Fire"
-    ],
-    "description": "It's one of the legendary bird Pokémon. When Moltres flaps its flaming wings, they glimmer with a dazzling red glow.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Sky Attack",
-        "effect": "Flip a coin. If tails, this attack does nothing.",
-        "damage": "130"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Lightning",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1805,37 +972,7 @@
     },
     "packs": [
       "Charizard"
-    ],
-    "hp": 140,
-    "types": [
-      "Fire"
-    ],
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Fire"
-        ],
-        "name": "Inferno Dance",
-        "effect": "Flip 3 coins. Take an amount of {R} Energy from your Energy Zone equal to the number of heads and attach it to your Benched {R} Pokémon in any way you like."
-      },
-      {
-        "cost": [
-          "Fire",
-          "Colorless",
-          "Colorless"
-        ],
-        "name": "Heat Blast",
-        "damage": "70"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Lightning",
-        "value": "+20"
-      }
-    ],
-    "retreat": 2
+    ]
   },
   {
     "series": "A",
@@ -1852,29 +989,7 @@
       "Charizard",
       "Mewtwo",
       "Pikachu"
-    ],
-    "hp": 80,
-    "types": [
-      "Fire"
-    ],
-    "description": "There's a hole in its tail that allows it to draw in the air it needs to keep its fire burning. If the hole gets blocked, this Pokémon will fall ill.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Fire"
-        ],
-        "name": "Combustion",
-        "damage": "30"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1889,29 +1004,7 @@
     },
     "packs": [
       "Mewtwo"
-    ],
-    "hp": 60,
-    "types": [
-      "Fire"
-    ],
-    "description": "It taunts its prey and lures them into narrow, rocky areas where it then sprays them with toxic gas to make them dizzy and take them down.",
-    "stage": "Basic",
-    "attacks": [
-      {
-        "cost": [
-          "Fire"
-        ],
-        "name": "Scratch",
-        "damage": "20"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
@@ -1926,30 +1019,7 @@
     },
     "packs": [
       "Mewtwo"
-    ],
-    "hp": 90,
-    "types": [
-      "Fire"
-    ],
-    "description": "Salazzle makes its opponents light-headed with poisonous gas, then captivates them with alluring movements to turn them into loyal servants.",
-    "stage": "Stage1",
-    "attacks": [
-      {
-        "cost": [
-          "Fire",
-          "Colorless"
-        ],
-        "name": "Fire Claws",
-        "damage": "60"
-      }
-    ],
-    "weaknesses": [
-      {
-        "type": "Water",
-        "value": "+20"
-      }
-    ],
-    "retreat": 1
+    ]
   },
   {
     "series": "A",
