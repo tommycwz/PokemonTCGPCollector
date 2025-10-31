@@ -173,6 +173,18 @@
       <div class="group-header">
         <h3 class="group-title">{{ getGroupDisplayName(group.groupTitle, group.cards) }}</h3>
         <div class="group-stats">
+          <span class="group-count" style="margin-left:10px; color:#b9eaff;">
+            ◊ {{ getOwnedRarityCount(group.cards, '◊', group.groupTitle) }}
+          </span>
+          <span class="group-count" style="margin-left:10px; color:#ffe066;">
+            ☆ {{ getOwnedRarityCount(group.cards, '☆', group.groupTitle) }}
+          </span>
+          <span class="group-count" style="margin-left:10px; color:#f7a6ff;">
+            ✵ {{ getOwnedRarityCount(group.cards, '✵', group.groupTitle) }}
+          </span>
+          <span class="group-count" style="margin-left:10px; color:#ffd700;">
+            👑 {{ getOwnedRarityCount(group.cards, '👑', group.groupTitle) }}
+          </span>
           <span class="group-count">{{ getGroupCollectedCount(group.cards) }} cards</span>
         </div>
       </div>
@@ -234,20 +246,20 @@
 
   <!-- Floating Action Buttons: navigation -->
   <div class="fab-stack" aria-label="Collection navigation controls">
-    <button type="button" class="fab" title="Top" (click)="scrollToTop()">⤒</button>
-    <button type="button" class="fab" title="Previous set" (click)="scrollToPrevSet()">↑</button>
-    <button type="button" class="fab" title="Next set" (click)="scrollToNextSet()">↓</button>
-    <button type="button" class="fab" title="Bottom" (click)="scrollToBottom()">⤓</button>
+  <button type="button" class="fab" title="Top" (click)="scrollToTop()"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+  <button type="button" class="fab" title="Previous set" (click)="scrollToPrevSet()"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
+  <button type="button" class="fab" title="Next set" (click)="scrollToNextSet()"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+  <button type="button" class="fab" title="Bottom" (click)="scrollToBottom()"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
   </div>
 
   <!-- Floating Action Button: filter toggle (mobile, bottom-left) -->
   <div class="fab-stack-left" aria-label="Filter controls">
     <button type="button" class="fab mobile-only" [attr.aria-pressed]="filtersOpen" title="Filters"
-      (click)="toggleFilters()">🔎</button>
+      (click)="toggleFilters()"><i class="fa fa-filter" aria-hidden="true"></i></button>
     <button type="button" class="fab mobile-only" title="Copy For Trade" [disabled]="isViewingOther"
-      (click)="openTradeModal()">📋</button>
+      (click)="openTradeModal()"><i class="fa fa-exchange-alt" aria-hidden="true"></i></button>
     <button type="button" class="fab mobile-only" title="View Others Collection" [disabled]="isViewingOther"
-      (click)="openViewOthersModal()">👤</button>
+      (click)="openViewOthersModal()"><i class="fa fa-user" aria-hidden="true"></i></button>
   </div>
 
   <!-- View Others Collection Modal -->

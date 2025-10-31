@@ -7,6 +7,7 @@ import { Card } from '../../services/card-data.service';
 import { SetInfo, RarityMapping } from '../../services/pokemon-data.service';
 import { Router } from '@angular/router';
 import { RarityService } from '../services/rarity.service';
+import test from 'node:test';
 
 @Component({
   selector: 'app-card-collection',
@@ -15,6 +16,38 @@ import { RarityService } from '../services/rarity.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardCollectionComponent implements OnInit, OnDestroy {
+  /**
+   * Get owned/total count for a given rarity and set
+   */
+  getOwnedRarityCount(cards: Card[], rarity: string, set: string): string {
+    if (!cards) return '0/0';
+
+    // Define grouped rarities
+    const rarityGroups: Record<string, string[]> = {
+      '◊': ['◊', '◊◊', '◊◊◊', '◊◊◊◊'],
+      '☆': ['☆', '☆☆', '☆☆☆'],
+      '✵': ['✵', '✵✵'],
+    };
+
+    // Extract the set code before the " - " (e.g. "B1 - Mega Rising" -> "B1")
+    const setId = set.split(' - ')[0].trim().toUpperCase();
+
+    // Get valid rarities
+    const matchList = rarityGroups[rarity] || [rarity];
+
+    // Filter cards by rarity and set
+    const filtered = cards.filter((card: Card) => {
+      if (!card) return false;
+      const matchesRarity = matchList.includes(card.rarity);
+      const matchesSet = set === 'all' || (card.set && card.set.toUpperCase() === setId);
+      return matchesRarity && matchesSet;
+    });
+
+    // Count owned
+    const owned = filtered.filter((card: Card) => this.getOwnedCount(card) > 0).length;
+    return `${owned}/${filtered.length}`;
+  }
+
   private touchStartX: number | null = null;
   private touchEndX: number | null = null;
 
@@ -72,9 +105,9 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     if (event) event.stopPropagation();
     const cards = this.getAllModalCards();
     if (!this.selectedCardForModal || !cards.length) return;
-  if (!this.selectedCardForModal) return;
-  const selectedId = this.getCardId(this.selectedCardForModal);
-  const idx = cards.findIndex(card => this.getCardId(card) === selectedId);
+    if (!this.selectedCardForModal) return;
+    const selectedId = this.getCardId(this.selectedCardForModal);
+    const idx = cards.findIndex(card => this.getCardId(card) === selectedId);
     if (idx > 0) {
       this.selectedCardForModal = cards[idx - 1];
     } else {
@@ -90,9 +123,9 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     if (event) event.stopPropagation();
     const cards = this.getAllModalCards();
     if (!this.selectedCardForModal || !cards.length) return;
-  if (!this.selectedCardForModal) return;
-  const selectedId = this.getCardId(this.selectedCardForModal);
-  const idx = cards.findIndex(card => this.getCardId(card) === selectedId);
+    if (!this.selectedCardForModal) return;
+    const selectedId = this.getCardId(this.selectedCardForModal);
+    const idx = cards.findIndex(card => this.getCardId(card) === selectedId);
     if (idx < cards.length - 1) {
       this.selectedCardForModal = cards[idx + 1];
     } else {
