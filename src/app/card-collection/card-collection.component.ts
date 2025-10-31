@@ -15,6 +15,100 @@ import { RarityService } from '../services/rarity.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardCollectionComponent implements OnInit, OnDestroy {
+  private touchStartX: number | null = null;
+  private touchEndX: number | null = null;
+
+  // Add swipe listeners when modal opens
+  openCardModal(card: Card): void {
+    this.selectedCardForModal = card;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', this.handleModalKeydown);
+    setTimeout(() => {
+      const modal = document.querySelector('.modal-content.card-modal');
+      if (modal) {
+        modal.addEventListener('touchstart', (e) => this.handleModalTouchStart(e as TouchEvent), { passive: true });
+        modal.addEventListener('touchend', (e) => this.handleModalTouchEnd(e as TouchEvent), { passive: true });
+      }
+    }, 0);
+  }
+
+  // Remove swipe listeners when modal closes
+  closeCardModal(): void {
+    this.selectedCardForModal = null;
+    document.body.style.overflow = 'auto';
+    document.removeEventListener('keydown', this.handleModalKeydown);
+    const modal = document.querySelector('.modal-content.card-modal');
+    if (modal) {
+      // Remove all listeners by cloning the node (safe for modal)
+      const clone = modal.cloneNode(true);
+      modal.parentNode?.replaceChild(clone, modal);
+    }
+  }
+
+  private handleModalTouchStart = (event: TouchEvent): void => {
+    if (event.touches.length === 1) {
+      this.touchStartX = event.touches[0].clientX;
+    }
+  }
+
+  private handleModalTouchEnd = (event: TouchEvent): void => {
+    if (this.touchStartX === null) return;
+    this.touchEndX = event.changedTouches[0].clientX;
+    const deltaX = this.touchEndX - this.touchStartX;
+    if (Math.abs(deltaX) > 50) { // threshold for swipe
+      if (deltaX < 0) {
+        this.showNextCardInModal(); // swipe left
+      } else {
+        this.showPrevCardInModal(); // swipe right
+      }
+    }
+    this.touchStartX = null;
+    this.touchEndX = null;
+  }
+  /**
+   * Show previous card in modal
+   */
+  showPrevCardInModal(event?: MouseEvent) {
+    if (event) event.stopPropagation();
+    const cards = this.getAllModalCards();
+    if (!this.selectedCardForModal || !cards.length) return;
+  if (!this.selectedCardForModal) return;
+  const selectedId = this.getCardId(this.selectedCardForModal);
+  const idx = cards.findIndex(card => this.getCardId(card) === selectedId);
+    if (idx > 0) {
+      this.selectedCardForModal = cards[idx - 1];
+    } else {
+      this.selectedCardForModal = cards[cards.length - 1]; // wrap around
+    }
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Show next card in modal
+   */
+  showNextCardInModal(event?: MouseEvent) {
+    if (event) event.stopPropagation();
+    const cards = this.getAllModalCards();
+    if (!this.selectedCardForModal || !cards.length) return;
+  if (!this.selectedCardForModal) return;
+  const selectedId = this.getCardId(this.selectedCardForModal);
+  const idx = cards.findIndex(card => this.getCardId(card) === selectedId);
+    if (idx < cards.length - 1) {
+      this.selectedCardForModal = cards[idx + 1];
+    } else {
+      this.selectedCardForModal = cards[0]; // wrap around
+    }
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Get all cards currently shown in modal navigation (filtered/grouped)
+   */
+  getAllModalCards(): Card[] {
+    // Flatten all grouped cards into a single array
+    const groups = this.getGroupedCards();
+    return Array.isArray(groups) ? groups.flatMap(group => group.cards) : [];
+  }
   cards: Card[] = [];
   filteredCards: Card[] = [];
   sets: SetInfo[] = [];
@@ -309,8 +403,6 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       if (!isSpecialA && isSpecialB) return -1;  // A goes before B
       return a.localeCompare(b);                 // normal alphabetical order
     });
-
-    console.log('Available types extracted:', this.availableTypes);
   }
 
   applyFilters(): void {
@@ -1467,21 +1559,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   }
 
   // Card modal methods
-  openCardModal(card: Card): void {
-    this.selectedCardForModal = card;
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden';
-    // Add ESC key listener
-    document.addEventListener('keydown', this.handleModalKeydown);
-  }
 
-  closeCardModal(): void {
-    this.selectedCardForModal = null;
-    // Restore body scrolling
-    document.body.style.overflow = 'auto';
-    // Remove ESC key listener
-    document.removeEventListener('keydown', this.handleModalKeydown);
-  }
 
   private handleModalKeydown = (event: KeyboardEvent): void => {
     if (event.key === 'Escape' && this.selectedCardForModal) {
