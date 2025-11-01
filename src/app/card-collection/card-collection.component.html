@@ -21,7 +21,8 @@
   <!-- View another user's collection -->
   <div class="view-other-banner" *ngIf="isViewingOther"
     style="margin-bottom:12px; padding:10px 14px; border-radius:12px; background:rgba(46,204,113,0.12); border:1px solid rgba(46,204,113,0.35); display:flex; align-items:center; justify-content:space-between; gap:12px;">
-    <div style="background-color: transparent;">Viewing <strong>{{ viewingUser?.username }}</strong>'s collection (read-only)</div>
+    <div style="background-color: transparent;">Viewing <strong>{{ viewingUser?.username }}</strong>'s collection
+      (read-only)</div>
     <button class="btn btn-outline" (click)="backToMyCollection()">Back to my collection</button>
   </div>
 
@@ -173,21 +174,30 @@
       <div class="group-header">
         <h3 class="group-title">{{ getGroupDisplayName(group.groupTitle, group.cards) }}</h3>
         <div class="group-stats">
-          <span class="group-count" style="margin-left:10px; color:#b9eaff;">
+          <span class="group-count" style="margin-left:10px; color:#b9eaff;"
+            *ngIf="getOwnedRarityCount(group.cards, '◊', group.groupTitle) && !getOwnedRarityCount(group.cards, '◊', group.groupTitle).endsWith('/0')">
             ◊ {{ getOwnedRarityCount(group.cards, '◊', group.groupTitle) }}
           </span>
-          <span class="group-count" style="margin-left:10px; color:#ffe066;">
+
+          <span class="group-count" style="margin-left:10px; color:#ffe066;"
+            *ngIf="getOwnedRarityCount(group.cards, '☆', group.groupTitle) && !getOwnedRarityCount(group.cards, '☆', group.groupTitle).endsWith('/0')">
             ☆ {{ getOwnedRarityCount(group.cards, '☆', group.groupTitle) }}
           </span>
-          <span class="group-count" style="margin-left:10px; color:#f7a6ff;">
+
+          <span class="group-count" style="margin-left:10px; color:#f7a6ff;"
+            *ngIf="getOwnedRarityCount(group.cards, '✵', group.groupTitle) && !getOwnedRarityCount(group.cards, '✵', group.groupTitle).endsWith('/0')">
             ✵ {{ getOwnedRarityCount(group.cards, '✵', group.groupTitle) }}
           </span>
-          <span class="group-count" style="margin-left:10px; color:#ffd700;">
+
+          <span class="group-count" style="margin-left:10px; color:#ffd700;"
+            *ngIf="getOwnedRarityCount(group.cards, '👑', group.groupTitle) && !getOwnedRarityCount(group.cards, '👑', group.groupTitle).endsWith('/0')">
             👑 {{ getOwnedRarityCount(group.cards, '👑', group.groupTitle) }}
           </span>
+
           <span class="group-count">{{ getGroupCollectedCount(group.cards) }} cards</span>
         </div>
       </div>
+
 
       <!-- Cards Grid for this group -->
       <div class="cards-grid">
@@ -246,10 +256,14 @@
 
   <!-- Floating Action Buttons: navigation -->
   <div class="fab-stack" aria-label="Collection navigation controls">
-  <button type="button" class="fab" title="Top" (click)="scrollToTop()"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
-  <button type="button" class="fab" title="Previous set" (click)="scrollToPrevSet()"><i class="fa fa-angle-up" aria-hidden="true"></i></button>
-  <button type="button" class="fab" title="Next set" (click)="scrollToNextSet()"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
-  <button type="button" class="fab" title="Bottom" (click)="scrollToBottom()"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>
+    <button type="button" class="fab" title="Top" (click)="scrollToTop()"><i class="fa fa-angle-double-up"
+        aria-hidden="true"></i></button>
+    <button type="button" class="fab" title="Previous set" (click)="scrollToPrevSet()"><i class="fa fa-angle-up"
+        aria-hidden="true"></i></button>
+    <button type="button" class="fab" title="Next set" (click)="scrollToNextSet()"><i class="fa fa-angle-down"
+        aria-hidden="true"></i></button>
+    <button type="button" class="fab" title="Bottom" (click)="scrollToBottom()"><i class="fa fa-angle-double-down"
+        aria-hidden="true"></i></button>
   </div>
 
   <!-- Floating Action Button: filter toggle (mobile, bottom-left) -->
@@ -348,12 +362,14 @@
     <div class="modal-content card-modal" (click)="$event.stopPropagation()">
       <button class="modal-close" (click)="closeCardModal()" aria-label="Close modal">×</button>
       <div class="card-modal-image" style="display: flex; align-items: center; justify-content: center; gap: 16px;">
-        <button class="modal-nav-btn" (click)="showPrevCardInModal($event)" aria-label="Previous card" style="font-size:2rem; color: white; background:none; border:none; cursor:pointer;">
+        <button class="modal-nav-btn" (click)="showPrevCardInModal($event)" aria-label="Previous card"
+          style="font-size:2rem; color: white; background:none; border:none; cursor:pointer;">
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </button>
         <img [src]="getCardImageUrl(selectedCardForModal.imageName)" [alt]="getCardDisplayName(selectedCardForModal)"
           class="modal-card-image">
-        <button class="modal-nav-btn" (click)="showNextCardInModal($event)" aria-label="Next card" style="font-size:2rem; color: white; background:none; border:none; cursor:pointer;">
+        <button class="modal-nav-btn" (click)="showNextCardInModal($event)" aria-label="Next card"
+          style="font-size:2rem; color: white; background:none; border:none; cursor:pointer;">
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
       </div>
