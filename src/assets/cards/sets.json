@@ -2,6 +2,7 @@
     {
         "code": "A1",
         "name": "Genetic Apex",
+        "shortName": "GA",
         "series": "A",
         "count": 286,
         "releaseDate": "2024-10-30",
@@ -14,6 +15,7 @@
     {
         "code": "A1A",
         "name": "Mythical Island",
+        "shortName": "MI",
         "series": "A",
         "count": 86,
         "releaseDate": "2024-12-17",
@@ -24,6 +26,7 @@
     {
         "code": "A2",
         "name": "Space-Time Smackdown",
+        "shortName": "STS",
         "series": "A",
         "count": 207,
         "releaseDate": "2025-01-29",
@@ -35,6 +38,7 @@
     {
         "code": "A2A",
         "name": "Triumphant Light",
+        "shortName": "TL",
         "series": "A",
         "count": 96,
         "releaseDate": "2025-02-28",
@@ -45,6 +49,7 @@
     {
         "code": "A2B",
         "name": "Shining Revelry",
+        "shortName": "SR",
         "series": "A",
         "count": 111,
         "releaseDate": "2025-03-27",
@@ -55,6 +60,7 @@
     {
         "code": "A3",
         "name": "Celestial Guardians",
+        "shortName": "CG",
         "series": "A",
         "count": 239,
         "releaseDate": "2025-04-30",
@@ -66,6 +72,7 @@
     {
         "code": "A3A",
         "name": "Extradimensional Crisis",
+        "shortName": "EC",
         "series": "A",
         "count": 103,
         "releaseDate": "2025-05-29",
@@ -76,6 +83,7 @@
     {
         "code": "A3B",
         "name": "Eevee Grove",
+        "shortName": "EG",
         "series": "A",
         "count": 107,
         "releaseDate": "2025-06-26",
@@ -86,6 +94,7 @@
     {
         "code": "A4",
         "name": "Wisdom of Sea and Sky",
+        "shortName": "WSS",
         "series": "A",
         "count": 241,
         "releaseDate": "2025-07-30",
@@ -97,6 +106,7 @@
     {
         "code": "A4A",
         "name": "Secluded Springs",
+        "shortName": "SS",
         "series": "A",
         "count": 105,
         "releaseDate": "2025-08-28",
@@ -107,6 +117,7 @@
     {
         "code": "A4B",
         "name": "Deluxe Pack: ex",
+        "shortName": "DPE",
         "series": "A",
         "count": 0,
         "releaseDate": "2025-09-30",
@@ -116,7 +127,8 @@
     },
     {
         "code": "P-A",
-        "name": "Promos-A",
+        "name": "Promo A",
+        "shortName": "PA",
         "series": "A",
         "count": 100,
         "releaseDate": "2024-10-30",
@@ -139,6 +151,7 @@
     {
         "code": "B1",
         "name": "Mega Rising",
+        "shortName": "MR",
         "series": "B",
         "count": 331,
         "releaseDate": "2025-10-30",
@@ -151,6 +164,7 @@
     {
         "code": "P-B",
         "name": "Promo B",
+        "shortName": "PB",
         "series": "B",
         "count": 0,
         "releaseDate": "2025-10-30",

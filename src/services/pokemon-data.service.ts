@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 export interface SetInfo {
   code: string;
   name: string;
+  shortName: string;
   series: string;
   releaseDate: string;
   count: number;

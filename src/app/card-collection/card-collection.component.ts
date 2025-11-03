@@ -706,25 +706,29 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     }, {} as { [key: string]: Card[] });
 
     let result = '';
-    result += '\n=============================================================================';
-    result += '\nLooking for cards:';
-    result += '\n=============================================================================\n\n';
-    for (const [setCode, setCards] of Object.entries(lookingBySet)) {
-      if (setCards.length === 0) continue;
-      const setName = this.getSetName(setCode);
-      result += `[${setName}]:\n`;
-      for (const card of setCards) {
-        const cardRarityCode = this.getCardRarityCode(card);
-        const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
-        result += `${sym} ${this.getCardDisplayName(card)}\n`;
-      }
-      result += '\n';
+    // Helper to format card name list per rules: 1 -> single name, 2 -> 'A & B', >2 -> 'A, B, C'
+    // includeId toggles whether to include the card id (set-number) prefix
+    const formatNames = (cards: Card[], includeId: boolean = true) => {
+      const names = cards.map(c => includeId ? this.getCardDisplayName(c) : (c.label?.eng || ''));
+      if (names.length === 0) return '';
+      if (names.length === 1) return names[0];
+      if (names.length === 2) return `${names[0]} & ${names[1]}`;
+      return names.join(', ');
+    };
+
+    result += 'LF:\n';
+    // Sort sets by their short name for consistent output
+    const lfEntries = Object.entries(lookingBySet).filter(([, cards]) => cards.length > 0)
+      .sort((a, b) => this.getSetShortName(a[0]).localeCompare(this.getSetShortName(b[0])));
+    for (const [setCode, setCards] of lfEntries) {
+      const setLabel = this.getSetShortName(setCode);
+      // LF: keep the hyphen but do not include card ids
+      const line = formatNames(setCards, false);
+      if (!line) continue;
+      result += `[${setLabel}] ${line}\n`;
     }
 
-    result += '\n=============================================================================';
-    result += '\nCards for trade:';
-    result += '\n=============================================================================\n\n';
-
+    result += '\nFT:\n';
     // For trade: quantity >= threshold, matching active rarities, excluding blocked/special sets and excluded symbols
     const forTradeCards = this.cards.filter(card => {
       if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
@@ -740,16 +744,15 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       return groups;
     }, {} as { [key: string]: Card[] });
 
-    for (const [setCode, setCards] of Object.entries(tradeBySet)) {
-      if (setCards.length === 0) continue;
-      const setName = this.getSetName(setCode);
-      result += `[${setName}]:\n`;
-      for (const card of setCards) {
-        const cardRarityCode = this.getCardRarityCode(card);
-        const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
-        result += `${sym} ${this.getCardDisplayName(card)}\n`;
-      }
-      result += '\n';
+    // Format FT entries similarly to LF (one line per set)
+    const ftEntries = Object.entries(tradeBySet).filter(([, cards]) => cards.length > 0)
+      .sort((a, b) => this.getSetShortName(a[0]).localeCompare(this.getSetShortName(b[0])));
+    for (const [setCode, setCards] of ftEntries) {
+      const setLabel = this.getSetShortName(setCode);
+      // FT: remove the hyphen and do not include card ids
+      const line = formatNames(setCards, false);
+      if (!line) continue;
+      result += `[${setLabel}] ${line}\n`;
     }
 
     const templateLine = (this.tradeTemplateText || '').trim();
@@ -769,8 +772,6 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         result += `\nFriend code: ${friendLine}`;
       }
     }
-
-    result += '\n=============================================================================\n';
 
     return result.trim();
   }
@@ -998,6 +999,11 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   getSetName(setCode: string): string {
     const set = this.sets.find(s => s.code === setCode);
     return set ? set.name : setCode;
+  }
+
+  getSetShortName(setCode: string): string {
+    const set = this.sets.find(s => s.code === setCode);
+    return set ? set.shortName : setCode;
   }
 
   getFullRarityName(rarityCode: string): string {
