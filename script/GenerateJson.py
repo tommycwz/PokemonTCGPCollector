@@ -255,35 +255,62 @@ def generate_cards():
             print(f"[generate_cards] Enriching with TCGDX ({MAX_WORKERS_CARDS} threads)...")
             card_tasks = [(card, card["id"]) for card in cards_data if card.get("id")]
 
-            with ThreadPoolExecutor(max_workers=MAX_WORKERS_CARDS) as executor:
-                future_to_card = {
-                    executor.submit(fetch_card_details, card_id): (card, card_id)
-                    for card, card_id in card_tasks
-                    if card_id not in cache
-                }
+            # First, apply existing cached data to all cards
+            cached_applied = 0
+            for card, card_id in card_tasks:
+                if card_id in cache:
+                    tcgdx_details = cache[card_id]
+                    tcgdx_fields = ["hp", "types", "description", "stage", "attacks",
+                                    "weaknesses", "retreat", "abilities", "evolveFrom"]
+                    for field in tcgdx_fields:
+                        if field in tcgdx_details:
+                            card[field] = tcgdx_details[field]
+                    if tcgdx_details.get("category", "").lower() == "trainer":
+                        trainer_type = tcgdx_details.get("trainerType", "").lower()
+                        if trainer_type == "item":
+                            card["types"] = ["Item"]
+                        elif trainer_type == "supporter":
+                            card["types"] = ["Supporter"]
+                        elif trainer_type == "tool":
+                            card["types"] = ["Tool"]
+                        else:
+                            card["types"] = ["Trainer"]
+                    cached_applied += 1
 
-                for i, future in enumerate(as_completed(future_to_card)):
-                    card, card_id = future_to_card[future]
-                    tcgdx_details = future.result()
-                    if tcgdx_details:
-                        updated_cache[card_id] = tcgdx_details
-                        tcgdx_fields = ["hp", "types", "description", "stage", "attacks",
-                                        "weaknesses", "retreat", "abilities", "evolveFrom"]
-                        for field in tcgdx_fields:
-                            if field in tcgdx_details:
-                                card[field] = tcgdx_details[field]
-                        if tcgdx_details.get("category", "").lower() == "trainer":
-                            trainer_type = tcgdx_details.get("trainerType", "").lower()
-                            if trainer_type == "item":
-                                card["types"] = ["Item"]
-                            elif trainer_type == "supporter":
-                                card["types"] = ["Supporter"]
-                            elif trainer_type == "tool":
-                                card["types"] = ["Tool"]
-                            else:
-                                card["types"] = ["Trainer"]
-                    if (i + 1) % 100 == 0:
-                        print(f"  ...{i + 1}/{len(card_tasks)} cards enriched")
+            print(f"[generate_cards] Applied cached data to {cached_applied} cards")
+
+            # Then, fetch missing cards
+            missing_cards = [(card, card_id) for card, card_id in card_tasks if card_id not in cache]
+            if missing_cards:
+                print(f"[generate_cards] Fetching {len(missing_cards)} new cards...")
+                with ThreadPoolExecutor(max_workers=MAX_WORKERS_CARDS) as executor:
+                    future_to_card = {
+                        executor.submit(fetch_card_details, card_id): (card, card_id)
+                        for card, card_id in missing_cards
+                    }
+
+                    for i, future in enumerate(as_completed(future_to_card)):
+                        card, card_id = future_to_card[future]
+                        tcgdx_details = future.result()
+                        if tcgdx_details:
+                            updated_cache[card_id] = tcgdx_details
+                            tcgdx_fields = ["hp", "types", "description", "stage", "attacks",
+                                            "weaknesses", "retreat", "abilities", "evolveFrom"]
+                            for field in tcgdx_fields:
+                                if field in tcgdx_details:
+                                    card[field] = tcgdx_details[field]
+                            if tcgdx_details.get("category", "").lower() == "trainer":
+                                trainer_type = tcgdx_details.get("trainerType", "").lower()
+                                if trainer_type == "item":
+                                    card["types"] = ["Item"]
+                                elif trainer_type == "supporter":
+                                    card["types"] = ["Supporter"]
+                                elif trainer_type == "tool":
+                                    card["types"] = ["Tool"]
+                                else:
+                                    card["types"] = ["Trainer"]
+                        if (i + 1) % 100 == 0:
+                            print(f"  ...{i + 1}/{len(missing_cards)} new cards fetched")
 
             save_cache(updated_cache)
             print(f"[generate_cards] Cache updated with {len(updated_cache)} entries")
@@ -309,7 +336,7 @@ def main():
     print("=== Pokémon TCG Pocket Data Generation ===")
 
     generate_sets()
-    # generate_cards()
+    generate_cards()
 
     print(f"✅ Completed in {datetime.now() - start}")
 

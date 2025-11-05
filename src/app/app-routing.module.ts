@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardCollectionComponent } from './card-collection/card-collection.component';
+import { SuggestionComponent } from './suggestion/suggestion.component';
 import { SigninComponent } from './signin/signin.component';
 import { MainLayoutComponent } from './main-layout.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -15,7 +16,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'collection', component: CardCollectionComponent }
+      { path: 'collection', component: CardCollectionComponent },
+      { path: 'suggestion', component: SuggestionComponent }
     ]
   },
   { path: '**', redirectTo: '/signin' }

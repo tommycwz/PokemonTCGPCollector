@@ -1,0 +1,235 @@
+<div class="suggestion-container">
+
+    <div class="filter-section">
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="loading-state">
+            <div class="spinner"></div>
+            <p>Calculating pack suggestions...</p>
+        </div>
+
+        <!-- No User State -->
+        <div *ngIf="!isLoading && !currentUser" class="no-user-state">
+            <p>Please sign in to get personalized pack suggestions.</p>
+        </div>
+
+        <!-- Suggestions List -->
+        <div *ngIf="!isLoading && currentUser && packSuggestions.length > 0" class="suggestions-list">
+            <div class="suggestions-header-row">
+                <h3>Recommended Packs ({{ packSuggestions.length }} available)</h3>
+                <select class="set-filter" [(ngModel)]="selectedSeriesFilter" (change)="onSeriesFilterChange()">
+                    <option value="top-3">Top 3 Suggestions</option>
+                    <optgroup label="Series">
+                        <option *ngFor="let ser of seriesList" [value]="ser">{{ ser }}</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="suggestion-item" *ngFor="let suggestion of packSuggestions; let i = index">
+                <div class="suggestion-content">
+                    <div class="suggestion-header">
+                        <div class="header-left">
+                            <h4 class="pack-name">{{ i + 1 }}. {{ suggestion.packName }}</h4>
+                        </div>
+                        <div class="header-right">
+                            <span class="set-code">{{ suggestion.setCode }}</span>
+                            <span class="set-name">{{ suggestion.setName }}</span>
+                        </div>
+                    </div>
+
+                    <div class="suggestion-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Score</span>
+                            <span class="stat-value score">{{ suggestion.score }}</span>
+                        </div>
+
+                        <div class="stat-item">
+                            <span class="stat-label">New Card Chance</span>
+                            <span class="stat-value chance">{{ suggestion.newCardChance.toFixed(1) }}%</span>
+                        </div>
+
+                        <div class="stat-item">
+                            <span class="stat-label">Missing Cards</span>
+                            <span class="stat-value missing">{{ suggestion.missingCards }}/{{ suggestion.totalCards
+                                }}</span>
+                        </div>
+
+                        <div class="stat-item">
+                            <span class="stat-label">Collection</span>
+                            <span class="stat-value percentage">{{ suggestion.percentage.toFixed(1) }}% complete</span>
+                        </div>
+                    </div>
+
+                    <!-- Rarity Breakdown -->
+                    <div *ngIf="suggestion.rarityBreakdown.length > 0" class="rarity-breakdown">
+                        <h5>Rarity Breakdown:</h5>
+                        <div class="rarity-grid">
+                            <div *ngFor="let breakdown of suggestion.rarityBreakdown" class="rarity-item clickable" [class.complete]="breakdown.percentage === 100" (click)="onRarityClick(suggestion, breakdown)" tabindex="0">
+                                <span class="rarity-symbol" [title]="getRarityDisplayName(breakdown.rarity)">
+                                    {{ breakdown.rarity }}
+                                </span>
+                                <span class="rarity-count">
+                                    {{ breakdown.owned }}/{{ breakdown.total }}
+                                </span>
+                                <span class="rarity-percentage" [class.complete]="breakdown.percentage === 100">
+                                    {{ breakdown.percentage.toFixed(0) }}%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- No Suggestions State -->
+    <div *ngIf="!isLoading && currentUser && packSuggestions.length === 0" class="no-suggestions">
+        <p>🎉 Congratulations! You have completed your collection according to the selected algorithm.</p>
+        <p>Try a different algorithm to find more cards to collect.</p>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <button class="fab algorithm-fab" (click)="toggleAlgorithmSelection()" title="Algorithm Selection">
+        ⚙️
+    </button>
+
+    <button class="fab help-fab" (click)="toggleAlgorithmExplanation()" title="Algorithm Explanation">
+        ❓
+    </button>
+
+    <!-- Algorithm Selection Modal -->
+    <div *ngIf="showAlgorithmSelection" class="modal-overlay" (click)="toggleAlgorithmSelection()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>⚙️ Algorithm Selection</h3>
+                <button class="close-button" (click)="toggleAlgorithmSelection()">×</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="algorithm-selector">
+                    <label class="radio-option">
+                        <input type="radio" name="algorithm" value="all-cards" [(ngModel)]="selectedAlgorithm"
+                            (change)="onAlgorithmChange()">
+                        <span class="radio-label">
+                            <strong>All Cards</strong>
+                            <small>{{ getAlgorithmDescription('all-cards') }}</small>
+                        </span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="algorithm" value="tradables-only" [(ngModel)]="selectedAlgorithm"
+                            (change)="onAlgorithmChange()">
+                        <span class="radio-label">
+                            <strong>Tradables Only</strong>
+                            <small>{{ getAlgorithmDescription('tradables-only') }}</small>
+                        </span>
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="algorithm" value="priority-easy" [(ngModel)]="selectedAlgorithm"
+                            (change)="onAlgorithmChange()">
+                        <span class="radio-label">
+                            <strong>Priority Easy First</strong>
+                            <small>{{ getAlgorithmDescription('priority-easy') }}</small>
+                        </span>
+                    </label>
+                </div>
+
+                
+                <!-- Also allow excluding special packs inside the modal -->
+                <div class="modal-filter" style="margin-top: 100px;">
+                    <label class="checkbox-option">
+                        <input type="checkbox" [(ngModel)]="excludeSpecialPacks" (change)="onExcludeSpecialPacksChange()">
+                        <span class="checkbox-label">
+                            <strong>Exclude Special Packs</strong>
+                            <small>Hide Deluxe and promo packs from suggestions</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="modal-button" (click)="toggleAlgorithmSelection()">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Algorithm Explanation Modal -->
+    <div *ngIf="showAlgorithmExplanation" class="modal-overlay" (click)="toggleAlgorithmExplanation()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Algorithm Explanation</h3>
+                <button class="close-button" (click)="toggleAlgorithmExplanation()">×</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="algorithm-detail">
+                    <h4>🎯 All Cards Algorithm</h4>
+                    <p>Considers every card in the game, including crown cards (👑). Best for completionist collectors
+                        who want to collect everything.</p>
+                    <ul>
+                        <li>Prioritizes packs with the most missing cards across all rarities</li>
+                        <li>Crown cards receive the highest priority bonus (20 points)</li>
+                        <li>Calculates new card chance based on all available cards</li>
+                    </ul>
+                </div>
+
+                <div class="algorithm-detail">
+                    <h4>💎 Tradables Only Algorithm</h4>
+                    <p>Focuses only on tradable cards (excludes crown cards). Perfect for players who prioritize trading
+                        and competitive play.</p>
+                    <ul>
+                        <li>Excludes crown rarities from consideration</li>
+                        <li>Prioritizes cards that can be traded with other players</li>
+                        <li>Best for building competitive decks</li>
+                    </ul>
+                </div>
+
+                <div class="algorithm-detail">
+                    <h4>📈 Priority Easy First Algorithm</h4>
+                    <p>Completes easier rarities before moving to harder ones. Great for steady progression and
+                        completion satisfaction.</p>
+                    <ul>
+                        <li><strong>Step 1:</strong> Complete all Diamond rarities (◊ → ◊◊ → ◊◊◊ → ◊◊◊◊)</li>
+                        <li><strong>Step 2:</strong> Complete all Star rarities (☆ → ☆☆ → ☆☆☆)</li>
+                        <li><strong>Step 3:</strong> Complete all Shiny rarities (✵ → ✵✵)</li>
+                        <li><strong>Step 4:</strong> Complete Crown rarities (👑)</li>
+                    </ul>
+                    <p><em>Only suggests packs for your current priority level until that rarity group is complete.</em>
+                    </p>
+                </div>
+
+                <div class="scoring-detail">
+                    <h4>📊 How Scoring Works</h4>
+                    <p>Each pack receives a score based on:</p>
+                    <ol>
+                        <li><strong>Missing Card Percentage:</strong> Higher percentage = better score</li>
+                        <li><strong>Rarity Bonus:</strong> Each missing card adds points based on rarity</li>
+                        <li><strong>Pack Density:</strong> Bonus for packs containing more relevant cards</li>
+                    </ol>
+
+                    <div class="rarity-points">
+                        <h5>Rarity Point Values:</h5>
+                        <div class="points-grid">
+                            <span>◊ Common: +1</span>
+                            <span>◊◊ Uncommon: +2</span>
+                            <span>◊◊◊ Rare: +4</span>
+                            <span>◊◊◊◊ Double Rare: +6</span>
+                            <span>☆ Art Rare: +8</span>
+                            <span>☆☆ Super/Special Art: +12</span>
+                            <span>☆☆☆ Immersive: +16</span>
+                            <span>👑 Crown: +20</span>
+                            <span>✵ Shiny: +10</span>
+                            <span>✵✵ Shiny Super: +15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="modal-button" (click)="toggleAlgorithmExplanation()">Got it!</button>
+            </div>
+        </div>
+    </div>
+</div>

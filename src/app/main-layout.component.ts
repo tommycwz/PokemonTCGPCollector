@@ -22,6 +22,9 @@ import { APP_VERSION } from './version';
               <a routerLink="/collection" routerLinkActive="active" class="nav-link">
                 🗂️ Collection
               </a>
+              <a routerLink="/suggestion" routerLinkActive="active" class="nav-link">
+                📊 New Dashboard (Beta)
+              </a>
               
             </div>
           </div>
@@ -48,6 +51,9 @@ import { APP_VERSION } from './version';
           </a>
           <a routerLink="/collection" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
             🗂️ Collection
+          </a>
+          <a routerLink="/suggestion" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
+            📦 Suggestion
           </a>
           
           <button *ngIf="currentUser" (click)="signOut(); closeMobileMenu()" class="mobile-link signout">

@@ -5,7 +5,7 @@ import { ImageService } from '../services/image.service';
 import { SupabaseService, Profile } from '../services/supabase.service';
 import { Card } from '../../services/card-data.service';
 import { SetInfo, RarityMapping } from '../../services/pokemon-data.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RarityService } from '../services/rarity.service';
 import test from 'node:test';
 
@@ -226,6 +226,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     private imageService: ImageService,
     private supabaseService: SupabaseService,
     private router: Router,
+    private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private rarityService: RarityService
   ) { }
@@ -265,6 +266,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         this.loading = false;
 
         this.cdr.detectChanges();
+        // Apply query params (if any) after data is available
+        this.applyQueryParamsIfAny();
         this.loadOwnedCards();
       },
       error: (error) => {
@@ -274,6 +277,47 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         console.error('Error loading card collection:', error);
       }
     });
+  }
+
+  private applyQueryParamsIfAny(): void {
+    const qp = this.route.snapshot.queryParams || {};
+    const qpSeries = qp['series'];
+    const qpSet = qp['set'];
+    const qpPack = qp['pack'];
+    const qpRarity = qp['rarity']; // symbol expected (e.g., ◊, ☆, ✵)
+
+    let changed = false;
+
+    if (typeof qpSeries === 'string' && qpSeries.trim()) {
+      this.selectedSeries = qpSeries;
+      changed = true;
+    }
+
+    // Update sets based on series before setting set/pack
+    this.extractAvailableSets();
+
+    if (typeof qpSet === 'string' && qpSet.trim()) {
+      this.selectedSet = qpSet;
+      changed = true;
+    }
+
+    // Update packs based on set before setting pack
+    this.extractAvailablePacks();
+
+    if (typeof qpPack === 'string' && qpPack.trim()) {
+      this.selectedPack = qpPack;
+      changed = true;
+    }
+
+    if (typeof qpRarity === 'string' && qpRarity.trim()) {
+      this.selectedRarities = [qpRarity];
+      changed = true;
+    }
+
+    if (changed) {
+      this.applyFilters();
+      this.cdr.detectChanges();
+    }
   }
 
   extractFilterOptions(): void {

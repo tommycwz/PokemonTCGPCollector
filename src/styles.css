@@ -3,21 +3,17 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #1d1b1bff !important;
-  color: white;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+/* Dark theme everywhere except sign-in */
+body:not(.signin-page) {
   background-color: #1d1b1bff !important;
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Ensure all main elements have dark navy background */
-app-root {
+/* Ensure all main elements have dark navy background (except sign-in) */
+body:not(.signin-page) app-root {
   background-color: #1d1b1bff !important;
   display: block;
   min-height: 100vh;
@@ -28,13 +24,23 @@ app-root {
   box-sizing: border-box;
 }
 
-/* Override any remaining white or light backgrounds */
-div, section, main, article, aside, header, footer, nav {
+/* Override any remaining white or light backgrounds (except sign-in) */
+body:not(.signin-page) div, 
+body:not(.signin-page) section, 
+body:not(.signin-page) main, 
+body:not(.signin-page) article, 
+body:not(.signin-page) aside, 
+body:not(.signin-page) header, 
+body:not(.signin-page) footer, 
+body:not(.signin-page) nav {
   background-color: inherit;
 }
 
-/* Force dark navy background on common UI elements */
-.container, .main-content, .page-content, .wrapper {
+/* Force dark navy background on common UI elements (except sign-in) */
+body:not(.signin-page) .container, 
+body:not(.signin-page) .main-content, 
+body:not(.signin-page) .page-content, 
+body:not(.signin-page) .wrapper {
   background-color: #1d1b1bff !important;
 }
 

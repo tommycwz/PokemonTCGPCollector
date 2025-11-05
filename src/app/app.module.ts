@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CardCollectionComponent } from './card-collection/card-collection.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SuggestionComponent } from './suggestion/suggestion.component';
 import { MainLayoutComponent } from './main-layout.component';
 import { SigninComponent } from './signin/signin.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { LazyImageDirective } from './directives/lazy-image.directive';
     AppComponent,
     CardCollectionComponent,
     DashboardComponent,
+    SuggestionComponent,
     MainLayoutComponent,
     SigninComponent,
     LazyImageDirective
