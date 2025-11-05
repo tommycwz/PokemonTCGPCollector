@@ -282,7 +282,7 @@
 }
 
 .segmented button.active {
-  background: #737e91;
+  background: var(--header-gradient);
   color: #fff;
 }
 
@@ -461,8 +461,8 @@
 }
 
 .rarity-chips .chip.active {
-  background: #c7a4ff;
-  border-color: #c7a4ff;
+  background: var(--header-gradient);
+  border-color: #6f79d9;
   color: #fff;
 }
 
@@ -781,7 +781,7 @@
 }
 
 .pack-badge {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: var(--header-gradient);
   color: white;
   padding: 2px 6px;
   border-radius: 10px;
@@ -1079,22 +1079,22 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid #3a5f8f;
-  background: linear-gradient(135deg, rgb(91, 168, 255), rgba(34, 46, 70, 0.85));
-  color: #e7eefc;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: var(--header-gradient);
+  color: #ffffff;
   font-size: 18px;
   cursor: pointer;
   box-shadow: 0 10px 24px rgba(7, 12, 24, 0.35);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, filter 140ms ease;
 }
 
 .fab:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 28px rgba(7, 12, 24, 0.45);
-  border-color: rgba(91, 168, 255, 0.6);
+  filter: brightness(1.05);
 }
 
 /* Left-side FAB stack for filter toggle (mobile) */

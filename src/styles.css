@@ -57,6 +57,7 @@ body:not(.signin-page) .wrapper {
   --success: #2ecc71;
   --warning: #f1c40f;
   --danger: #ff6b6b;
+  --header-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 /* Rarity color variables */
