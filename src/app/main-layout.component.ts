@@ -15,15 +15,13 @@ import { APP_VERSION } from './version';
 
           <!-- Desktop nav -->
           <div class="nav-center desktop-only">
-            <div class="nav-links">
-              <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
-                📊 Dashboard
+            <div class="nav-links">              
+              <a routerLink="/suggestion" routerLinkActive="active" class="nav-link">
+                📊 Suggestion
               </a>
+
               <a routerLink="/collection" routerLinkActive="active" class="nav-link">
                 🗂️ Collection
-              </a>
-              <a routerLink="/suggestion" routerLinkActive="active" class="nav-link">
-                📊 New Dashboard (Beta)
               </a>
               
             </div>

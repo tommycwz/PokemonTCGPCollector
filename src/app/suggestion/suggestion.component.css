@@ -223,7 +223,7 @@
 
 .suggestion-item {
   display: block;
-  background: var(--surface);
+  background: rgb(14 21 37 / 85%);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 20px;
