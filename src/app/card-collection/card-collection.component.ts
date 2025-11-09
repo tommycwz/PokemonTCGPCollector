@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { PokemonDataService } from '../../services/pokemon-data.service';
 import { DataManagerService } from '../../services/data-manager.service';
 import { ImageService } from '../services/image.service';
@@ -275,9 +275,13 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         this.loading = false;
 
         this.cdr.detectChanges();
-        // Apply query params (if any) after data is available
-        this.applyQueryParamsIfAny();
-        this.loadOwnedCards();
+        // Apply query params (if any) after data is available (may trigger viewing other user)
+        this.applyQueryParamsIfAny().then(() => {
+          // Only load current user's cards if we're not viewing another user
+          if (!this.isViewingOther) {
+            this.loadOwnedCards();
+          }
+        });
       },
       error: (error) => {
         this.error = 'Failed to load card collection';
@@ -288,12 +292,13 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     });
   }
 
-  private applyQueryParamsIfAny(): void {
+  private async applyQueryParamsIfAny(): Promise<void> {
     const qp = this.route.snapshot.queryParams || {};
     const qpSeries = qp['series'];
     const qpSet = qp['set'];
     const qpPack = qp['pack'];
     const qpRarity = qp['rarity']; // symbol expected (e.g., ◊, ☆, ✵)
+    const qpOtherUser = qp['otherUser']; // username of another user's collection to view
 
     let changed = false;
 
@@ -326,6 +331,14 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     if (changed) {
       this.applyFilters();
       this.cdr.detectChanges();
+    }
+
+    // Handle viewing another user's collection if query param provided
+    if (typeof qpOtherUser === 'string' && qpOtherUser.trim()) {
+      // Set the otherUsername field so existing logic can reuse it
+      this.otherUsername = qpOtherUser.trim();
+      // If it's the same as current user, we'll just load own collection (viewOtherCollection handles this)
+      await this.viewOtherCollection();
     }
   }
 
@@ -805,16 +818,66 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   }
 
   async viewOtherCollectionFromModal(): Promise<void> {
-    await this.viewOtherCollection();
+    // Open in a new browser tab with query param
+    this.openOtherCollectionInNewTab();
     this.closeViewOthersModal();
+  }
+
+  /**
+   * Open another user's collection in a new browser tab using query param otherUser
+   */
+  openOtherCollectionInNewTab(): void {
+    const username = (this.otherUsername || '').trim();
+    if (!username) {
+      alert('Please enter a username');
+      return;
+    }
+    // Build relative app URL and respect <base href> for different hosting contexts
+    const tree = this.router.createUrlTree(['/collection'], { queryParams: { otherUser: username } });
+    const url = this.router.serializeUrl(tree); // e.g. "/collection?otherUser=..."
+
+    const baseEl = document.querySelector('base');
+    const baseAttr = (baseEl?.getAttribute('href') || '/').trim();
+
+    // Normalize base and construct final URL
+    let finalUrl: string;
+    if (/^https?:\/\//i.test(baseAttr)) {
+      // Absolute base (e.g., GitHub Pages). Avoid double slashes.
+      finalUrl = baseAttr.replace(/\/$/, '') + url;
+    } else {
+      // Relative base (dev: '/')
+      finalUrl = baseAttr.replace(/\/$/, '') + url;
+    }
+
+    window.open(finalUrl, '_blank', 'noopener');
+  }
+
+  // Close trade set dropdowns when clicking outside their containers
+  @HostListener('document:click', ['$event'])
+  onDocumentClickCloseTradeDropdowns(event: MouseEvent): void {
+    if (!this.showTradeModal) return;
+    const target = event.target as Node | null;
+    const lfContainer = document.getElementById('lf-set-multiselect');
+    const ftContainer = document.getElementById('ft-set-multiselect');
+
+    const insideLF = !!(lfContainer && target && lfContainer.contains(target));
+    const insideFT = !!(ftContainer && target && ftContainer.contains(target));
+
+    if (!insideLF && this.lfSetDropdownOpen) {
+      this.lfSetDropdownOpen = false;
+      this.cdr.detectChanges();
+    }
+    if (!insideFT && this.ftSetDropdownOpen) {
+      this.ftSetDropdownOpen = false;
+      this.cdr.detectChanges();
+    }
   }
 
   async generateAndCopyTradeText(): Promise<void> {
     try {
       const tradeText = this.generateTradeText();
       await navigator.clipboard.writeText(tradeText);
-
-      this.closeTradeModal();
+      // Leave modal open so user can refine filters or copy again.
     } catch (error) {
       console.error('Failed to copy to clipboard:', error);
       alert('Failed to copy to clipboard. Please try again.');
