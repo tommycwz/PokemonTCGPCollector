@@ -1,0 +1,173 @@
+[
+    {
+        "code": "A1",
+        "name": "Genetic Apex",
+        "shortName": "GA",
+        "series": "A",
+        "count": 286,
+        "releaseDate": "2024-10-30",
+        "packs": [
+            "Charizard",
+            "Mewtwo",
+            "Pikachu"
+        ]
+    },
+    {
+        "code": "A1A",
+        "name": "Mythical Island",
+        "shortName": "MI",
+        "series": "A",
+        "count": 86,
+        "releaseDate": "2024-12-17",
+        "packs": [
+            "Mew"
+        ]
+    },
+    {
+        "code": "A2",
+        "name": "Space-Time Smackdown",
+        "shortName": "STS",
+        "series": "A",
+        "count": 207,
+        "releaseDate": "2025-01-29",
+        "packs": [
+            "Dialga",
+            "Palkia"
+        ]
+    },
+    {
+        "code": "A2A",
+        "name": "Triumphant Light",
+        "shortName": "TL",
+        "series": "A",
+        "count": 96,
+        "releaseDate": "2025-02-28",
+        "packs": [
+            "Arceus"
+        ]
+    },
+    {
+        "code": "A2B",
+        "name": "Shining Revelry",
+        "shortName": "SR",
+        "series": "A",
+        "count": 111,
+        "releaseDate": "2025-03-27",
+        "packs": [
+            "Shining"
+        ]
+    },
+    {
+        "code": "A3",
+        "name": "Celestial Guardians",
+        "shortName": "CG",
+        "series": "A",
+        "count": 239,
+        "releaseDate": "2025-04-30",
+        "packs": [
+            "Lunala",
+            "Solgaleo"
+        ]
+    },
+    {
+        "code": "A3A",
+        "name": "Extradimensional Crisis",
+        "shortName": "EC",
+        "series": "A",
+        "count": 103,
+        "releaseDate": "2025-05-29",
+        "packs": [
+            "Extradimensional"
+        ]
+    },
+    {
+        "code": "A3B",
+        "name": "Eevee Grove",
+        "shortName": "EG",
+        "series": "A",
+        "count": 107,
+        "releaseDate": "2025-06-26",
+        "packs": [
+            "Eevee"
+        ]
+    },
+    {
+        "code": "A4",
+        "name": "Wisdom of Sea and Sky",
+        "shortName": "WSS",
+        "series": "A",
+        "count": 241,
+        "releaseDate": "2025-07-30",
+        "packs": [
+            "Ho-Oh",
+            "Lugia"
+        ]
+    },
+    {
+        "code": "A4A",
+        "name": "Secluded Springs",
+        "shortName": "SS",
+        "series": "A",
+        "count": 105,
+        "releaseDate": "2025-08-28",
+        "packs": [
+            "Secluded"
+        ]
+    },
+    {
+        "code": "A4B",
+        "name": "Deluxe Pack: ex",
+        "shortName": "DPE",
+        "series": "A",
+        "count": 0,
+        "releaseDate": "2025-09-30",
+        "packs": [
+            "Deluxe"
+        ]
+    },
+    {
+        "code": "P-A",
+        "name": "Promo A",
+        "shortName": "PA",
+        "series": "A",
+        "count": 100,
+        "releaseDate": "2024-10-30",
+        "packs": [
+            "Vol. 1",
+            "Vol. 2",
+            "Vol. 3",
+            "Vol. 4",
+            "Vol. 5",
+            "Vol. 6",
+            "Vol. 7",
+            "Vol. 8",
+            "Vol. 9",
+            "Vol. 10",
+            "Vol. 11",
+            "Vol. 12",
+            "Vol. 13"
+        ]
+    },
+    {
+        "code": "B1",
+        "name": "Mega Rising",
+        "shortName": "MR",
+        "series": "B",
+        "count": 331,
+        "releaseDate": "2025-10-30",
+        "packs": [
+            "Mega Altaria",
+            "Mega Blaziken",
+            "Mega Gyarados"
+        ]
+    },
+    {
+        "code": "P-B",
+        "name": "Promo B",
+        "shortName": "PB",
+        "series": "B",
+        "count": 0,
+        "releaseDate": "2025-10-30",
+        "packs": []
+    }
+]
