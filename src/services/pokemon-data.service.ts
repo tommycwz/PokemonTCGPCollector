@@ -51,10 +51,6 @@ export class PokemonDataService {
    * Load sets data from local assets
    */
   loadSets(): Observable<SetInfo[]> {
-    return this.http.get<SetInfo[]>(`${this.BASE_PATH}sets2.json`);
-  }
-
-  loadSets2(): Observable<SetInfo[]> {
     return this.http.get<SetInfo[]>(`${this.BASE_PATH}sets.json`);
   }
 
