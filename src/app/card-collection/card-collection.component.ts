@@ -7,7 +7,6 @@ import { Card } from '../../services/card-data.service';
 import { SetInfo, RarityMapping } from '../../services/pokemon-data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RarityService } from '../services/rarity.service';
-import test from 'node:test';
 
 @Component({
   selector: 'app-card-collection',

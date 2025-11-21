@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CardCollectionComponent } from './card-collection/card-collection.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SuggestionComponent } from './suggestion/suggestion.component';
 import { MainLayoutComponent } from './main-layout.component';
 import { SigninComponent } from './signin/signin.component';
@@ -17,7 +16,6 @@ import { LazyImageDirective } from './directives/lazy-image.directive';
   declarations: [
     AppComponent,
     CardCollectionComponent,
-    DashboardComponent,
     SuggestionComponent,
     MainLayoutComponent,
     SigninComponent,
@@ -25,9 +23,9 @@ import { LazyImageDirective } from './directives/lazy-image.directive';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     HttpClientModule,
     FormsModule,
-    RouterModule,
     AppRoutingModule
   ],
   providers: [],
