@@ -482,6 +482,7 @@
 /* Floating Action Buttons */
 .fab {
   position: fixed;
+  right: 20px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -495,28 +496,46 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.algorithm-fab {
-  bottom: 90px;
-  right: 20px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.algorithm-fab:hover {
-  background: #34495e;
-  transform: scale(1.1);
-}
-
-.help-fab {
+.fab-special {
   bottom: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.help-fab:hover {
-  background: #2980b9;
+.fab-rarity {
+  bottom: 90px;
+}
+
+.fab:hover {
   transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.fab.active {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+/* Rarity filter mode colors */
+.fab-tradable {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+}
+
+.fab-common {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.fab-all {
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+}
+
+/* Special packs filter colors */
+.fab-excluding {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.fab-including {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
 }
 
 .fab:active {

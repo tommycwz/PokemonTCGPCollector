@@ -16,7 +16,6 @@ export interface PackSuggestion {
   setCode: string;
   setName: string;
   packName: string;
-  score: number;
   missingCards: number;
   totalCards: number;
   percentage: number;
@@ -24,7 +23,7 @@ export interface PackSuggestion {
   rarityBreakdown: RarityBreakdown[];
 }
 
-export type SuggestionAlgorithm = 'all-cards' | 'tradables-only' | 'priority-easy';
+export type SuggestionAlgorithm = 'new-card-chance';
 
 @Component({
   selector: 'app-suggestion',
@@ -39,21 +38,15 @@ export class SuggestionComponent implements OnInit {
   currentUser: Profile | null = null;
   ownedCards: { [key: string]: number } = {};
 
-  selectedAlgorithm: SuggestionAlgorithm = 'all-cards';
+  selectedAlgorithm: SuggestionAlgorithm = 'new-card-chance';
   excludeSpecialPacks = true; // Default to true to exclude A4b and promo packs
+  rarityFilterMode: 'tradable' | 'common' | 'all' = 'tradable'; // 'tradable' = diamonds + ☆ + ☆☆, 'common' = diamonds + ☆, 'all' = no filter
   selectedSeriesFilter: string = 'top-3'; // 'top-3' or a series name
   seriesList: string[] = [];
-  showAlgorithmSelection = false;
-  showAlgorithmExplanation = false;
   packSuggestions: PackSuggestion[] = [];
   isLoading = true;
 
-  // Rarity priorities (from easiest to hardest)
-  private readonly RARITY_PRIORITIES = {
-    'all-cards': ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆', '☆☆☆', '👑', '✵', '✵✵'],
-    'tradables-only': ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆', '☆☆☆', '✵', '✵✵'],
-    'priority-easy': ['◊', '◊◊', '◊◊◊', '◊◊◊◊'] // Will be dynamic based on completion
-  };
+
 
   constructor(
     private pokemonDataService: PokemonDataService,
@@ -114,28 +107,26 @@ export class SuggestionComponent implements OnInit {
     }
   }
 
-  onAlgorithmChange() {
+  onExcludeSpecialPacksChange() {
     this.calculateSuggestions();
     this.cdr.markForCheck();
   }
 
-  onExcludeSpecialPacksChange() {
+  onRarityFilterChange() {
+    // Cycle through: tradable -> common -> all -> tradable
+    if (this.rarityFilterMode === 'tradable') {
+      this.rarityFilterMode = 'common';
+    } else if (this.rarityFilterMode === 'common') {
+      this.rarityFilterMode = 'all';
+    } else {
+      this.rarityFilterMode = 'tradable';
+    }
     this.calculateSuggestions();
     this.cdr.markForCheck();
   }
 
   onSeriesFilterChange() {
     this.calculateSuggestions();
-    this.cdr.markForCheck();
-  }
-
-  toggleAlgorithmSelection() {
-    this.showAlgorithmSelection = !this.showAlgorithmSelection;
-    this.cdr.markForCheck();
-  }
-
-  toggleAlgorithmExplanation() {
-    this.showAlgorithmExplanation = !this.showAlgorithmExplanation;
     this.cdr.markForCheck();
   }
 
@@ -170,8 +161,8 @@ export class SuggestionComponent implements OnInit {
       }
     });
 
-    // Sort by score (higher is better)
-  const sorted = suggestions.sort((a, b) => b.score - a.score);
+    // Sort by new card chance (higher percentage is better)
+    const sorted = suggestions.sort((a, b) => b.newCardChance - a.newCardChance);
 
     // Apply Top 3 limit if selected
     this.packSuggestions =
@@ -180,7 +171,7 @@ export class SuggestionComponent implements OnInit {
 
   private calculatePackSuggestion(packName: string): PackSuggestion | null {
     // Get all cards available in this pack
-    const packCards = this.cards.filter(card => 
+    let packCards = this.cards.filter(card => 
       card.packs && card.packs.includes(packName)
     );
 
@@ -193,8 +184,20 @@ export class SuggestionComponent implements OnInit {
 
     if (!parentSet) return null;
 
-    // Filter cards based on algorithm
-    const relevantCards = this.getRelevantCards(packCards);
+    // Filter by rarity mode
+    if (this.rarityFilterMode === 'tradable') {
+      // All tradable: diamonds + ☆ + ☆☆
+      const tradableRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆'];
+      packCards = packCards.filter(card => tradableRarities.includes(card.rarity));
+    } else if (this.rarityFilterMode === 'common') {
+      // Only diamonds + ☆
+      const commonRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆'];
+      packCards = packCards.filter(card => commonRarities.includes(card.rarity));
+    }
+    // 'all' mode: no filter
+
+    // Get all cards in the pack
+    const relevantCards = packCards;
     
     // Calculate missing cards
     const missingCards = relevantCards.filter(card => 
@@ -208,9 +211,6 @@ export class SuggestionComponent implements OnInit {
     // Calculate new card chance (percentage of missing cards in pack)
     const newCardChance = totalCount > 0 ? (missingCount / totalCount) * 100 : 0;
 
-    // Calculate score based on algorithm
-    const score = this.calculateScore(missingCards, relevantCards, packCards);
-
     // Calculate rarity breakdown
     const rarityBreakdown = this.calculateRarityBreakdown(relevantCards);
 
@@ -218,107 +218,12 @@ export class SuggestionComponent implements OnInit {
       setCode: parentSet.code,
       setName: parentSet.name,
       packName,
-      score,
       missingCards: missingCount,
       totalCards: totalCount,
       percentage,
       newCardChance,
       rarityBreakdown
     };
-  }
-
-  private getRelevantCards(cards: Card[]): Card[] {
-    switch (this.selectedAlgorithm) {
-      case 'all-cards':
-        return cards;
-      
-      case 'tradables-only':
-        // Exclude crown cards (👑)
-        return cards.filter(card => !card.rarity.includes('👑'));
-      
-      case 'priority-easy':
-        // Only include cards from current priority level
-        const currentPriorityRarities = this.getCurrentPriorityRarities();
-        return cards.filter(card => 
-          currentPriorityRarities.includes(card.rarity)
-        );
-      
-      default:
-        return cards;
-    }
-  }
-
-  private getCurrentPriorityRarities(): string[] {
-    // For priority-easy algorithm, determine current priority level
-    const diamondRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊'];
-    const starRarities = ['☆', '☆☆', '☆☆☆'];
-    const shinyRarities = ['✵', '✵✵'];
-    const crownRarities = ['👑'];
-
-    // Check completion of each rarity group
-    const diamondComplete = this.isRarityGroupComplete(diamondRarities);
-    const starComplete = this.isRarityGroupComplete(starRarities);
-    const shinyComplete = this.isRarityGroupComplete(shinyRarities);
-
-    if (!diamondComplete) {
-      return diamondRarities;
-    } else if (!starComplete) {
-      return starRarities;
-    } else if (!shinyComplete) {
-      return shinyRarities;
-    } else {
-      return crownRarities;
-    }
-  }
-
-  private isRarityGroupComplete(rarities: string[]): boolean {
-    const relevantCards = this.cards.filter(card => 
-      rarities.includes(card.rarity)
-    );
-    
-    return relevantCards.every(card => this.getOwnedCount(card) > 0);
-  }
-
-  private calculateScore(missingCards: Card[], relevantCards: Card[], allPackCards: Card[]): number {
-    if (relevantCards.length === 0) return 0;
-
-    let score = 0;
-
-    // Base score: higher percentage of missing cards = better score
-    const missingPercentage = (missingCards.length / relevantCards.length) * 100;
-    score += missingPercentage;
-
-    // Bonus for rarity distribution
-    const rarityBonus = this.calculateRarityBonus(missingCards);
-    score += rarityBonus;
-
-    // Bonus for pack density (more relevant cards in pack)
-    const densityBonus = (relevantCards.length / allPackCards.length) * 10;
-    score += densityBonus;
-
-    return Math.round(score * 100) / 100;
-  }
-
-  private calculateRarityBonus(missingCards: Card[]): number {
-    let bonus = 0;
-    
-    missingCards.forEach(card => {
-      switch (card.rarity) {
-        case '◊': bonus += 1; break;
-        case '◊◊': bonus += 2; break;
-        case '◊◊◊': bonus += 4; break;
-        case '◊◊◊◊': bonus += 6; break;
-        case '☆': bonus += 8; break;
-        case '☆☆': bonus += 12; break;
-        case '☆☆☆': bonus += 16; break;
-        case '👑': bonus += 20; break;
-        case '✵': bonus += 10; break;
-        case '✵✵': bonus += 15; break;
-        default: bonus += 1; break;
-      }
-    });
-
-    return bonus;
   }
 
   private calculateRarityBreakdown(relevantCards: Card[]): RarityBreakdown[] {
@@ -387,16 +292,4 @@ export class SuggestionComponent implements OnInit {
     return rarity;
   }
 
-  getAlgorithmDescription(algorithm: SuggestionAlgorithm): string {
-    switch (algorithm) {
-      case 'all-cards':
-        return 'Considers all cards including crown cards';
-      case 'tradables-only':
-        return 'Prioritizes tradable cards (excludes crown cards)';
-      case 'priority-easy':
-        return 'Focuses on completing easier rarities first (diamond → star → shiny → crown)';
-      default:
-        return '';
-    }
-  }
 }
