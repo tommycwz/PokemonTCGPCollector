@@ -136,6 +136,11 @@
           (click)="setOwnership('missing')">MISSING</button>
         <button type="button" [class.active]="ownershipFilter==='owned'" (click)="setOwnership('owned')">OWNED</button>
       </div>
+      <div class="segmented foil" role="tablist" aria-label="Foil filter">
+        <button type="button" [class.active]="foilFilter==='all'" (click)="setFoilFilter('all')">ALL</button>
+        <button type="button" [class.active]="foilFilter==='no-foil'" (click)="setFoilFilter('no-foil')">NO FOIL</button>
+        <button type="button" [class.active]="foilFilter==='foil-only'" (click)="setFoilFilter('foil-only')">FOIL ONLY</button>
+      </div>
       <div class="row-spacer"></div>
       <button type="button" class="btn btn-outline reset-btn" (click)="clearFilters()"
         aria-label="Reset filters">Reset</button>
@@ -315,6 +320,12 @@
             <label class="config-label" for="exclude-special-toggle">
               <input type="checkbox" id="exclude-special-toggle" [(ngModel)]="excludeSpecialPacks" (ngModelChange)="onExcludeSpecialPacksToggle()" />
               Exclude "PROMO" and "Deluxe packs"
+            </label>
+          </div>
+          <div class="config-section" *ngIf="!excludeSpecialPacks">
+            <label class="config-label" for="deluxe-special-toggle">
+              <input type="checkbox" id="deluxe-special-toggle" [(ngModel)]="tradeDeluxeSpecialOnly" (ngModelChange)="onDeluxeSpecialToggle()" />
+              [SPECIAL] - Deluxe packs only
             </label>
           </div>
           <!-- Looking For sets -->

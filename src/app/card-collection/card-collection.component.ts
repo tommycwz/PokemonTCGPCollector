@@ -160,6 +160,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   sortBy: 'latest' | 'oldest' = 'latest';
   ownershipFilter: 'all' | 'missing' | 'owned' = 'all';
+  foilFilter: 'all' | 'no-foil' | 'foil-only' = 'all';
   groupBy: 'none' | 'rarity' | 'pack' | 'type' = 'none';
   // Advanced modal removed
 
@@ -222,6 +223,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   private readonly excludedTradeSymbols = new Set<string>(['☆☆☆', '👑']);
   // Exclude special packs toggle (Trade modal only)
   excludeSpecialPacks: boolean = true;
+  // Deluxe & Special packs only toggle (Trade modal only, shown when excludeSpecialPacks is unchecked)
+  tradeDeluxeSpecialOnly: boolean = false;
   // Trade modal: output format ('discord' for compact LF/FT, 'details' for per-card lines)
   outputFormat: 'discord' | 'details' = 'discord';
 
@@ -551,6 +554,15 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       if (this.ownershipFilter === 'missing' && this.getOwnedCount(card) > 0) return false;
       if (this.ownershipFilter === 'owned' && this.getOwnedCount(card) === 0) return false;
 
+      // Foil filter
+      const isFoil = (card as any).isFoil === true;
+      if (this.foilFilter === 'no-foil' && isFoil) {
+        return false; // Hide foil cards when "NO FOIL" is selected
+      }
+      if (this.foilFilter === 'foil-only' && !isFoil) {
+        return false; // Hide non-foil cards when "FOIL ONLY" is selected
+      }
+
       return true;
     });
 
@@ -640,6 +652,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     this.searchTerm = '';
     this.sortBy = 'latest';
     this.ownershipFilter = 'all';
+    this.foilFilter = 'all';
     this.groupBy = 'none';
 
     // Re-extract available options when clearing filters
@@ -768,6 +781,17 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
+  onDeluxeSpecialToggle(): void {
+    // When Deluxe & Special is checked, default LF to A4B (Deluxe A)
+    if (this.tradeDeluxeSpecialOnly) {
+      const a4bSet = this.availableTradeSets.find(s => s.toUpperCase() === 'A4B');
+      if (a4bSet) {
+        this.selectedLFsets = [a4bSet];
+      }
+    }
+    this.cdr.detectChanges();
+  }
+
   // LF sets helpers
   isLFSetSelected(setCode: string): boolean {
     return this.selectedLFsets.includes(setCode);
@@ -893,12 +917,21 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
     // Looking for: missing cards (owned = 0), matching active rarities, excluding blocked sets (and optional special packs)
     const lookingForCards = this.cards.filter(card => {
-      if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
+      // When Deluxe & Special mode is active, don't exclude special sets
+      if (this.excludeSpecialPacks && !this.tradeDeluxeSpecialOnly && this.isSpecialSet(card.set)) return false;
+      
+      // If Deluxe & Special only mode, ONLY show cards from special sets
+      if (this.tradeDeluxeSpecialOnly && !this.isSpecialSet(card.set)) return false;
+      
       const cardRarityCode = this.getCardRarityCode(card);
       const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
       if (sym && !activeRarities.includes(sym)) return false;
       // Set inclusion filter (LF): if some sets selected, require card.set to be selected
       if (this.selectedLFsets.length > 0 && !this.selectedLFsets.includes(card.set)) return false;
+      // If Deluxe & Special only mode, show only foil cards in LF
+      if (this.tradeDeluxeSpecialOnly) {
+        if ((card as any).isFoil !== true) return false;
+      }
       return this.getOwnedCount(card) === 0;
     });
 
@@ -945,6 +978,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       if (sym && this.excludedTradeSymbols.has(sym)) return false;
       // Set inclusion filter (FT)
       if (this.selectedFTsets.length > 0 && !this.selectedFTsets.includes(card.set)) return false;
+      // No foil filter in FT - show all cards >= trade quantity
       return this.getOwnedCount(card) >= this.tradeQuantityMin;
     });
 
@@ -1835,6 +1869,15 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   setOwnership(val: 'all' | 'missing' | 'owned') {
     if (this.ownershipFilter !== val) {
       this.ownershipFilter = val;
+      this.applyFilters();
+      this.cdr.detectChanges();
+    }
+  }
+
+  // Foil filter control
+  setFoilFilter(val: 'all' | 'no-foil' | 'foil-only') {
+    if (this.foilFilter !== val) {
+      this.foilFilter = val;
       this.applyFilters();
       this.cdr.detectChanges();
     }

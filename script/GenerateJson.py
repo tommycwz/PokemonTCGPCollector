@@ -15,6 +15,30 @@ EXPORT_SET_PATH = r"D:\\Project\\Angular\\PokemonTCGPCollector\\src\\assets\\car
 EXPORT_CARD_PATH = r"D:\\Project\\Angular\\PokemonTCGPCollector\\src\\assets\\cards\\cards.json"
 DETAILS_CACHE_PATH = r"D:\\Project\\Angular\\PokemonTCGPCollector\\script\\cards\\tcgdx_cache.json"
 
+# Foiled card IDs (A4B set)
+FOILED_CARD_IDS = {
+    'A4B-002', 'A4B-004', 'A4B-007', 'A4B-009', 'A4B-012', 'A4B-015', 'A4B-017', 'A4B-019',
+    'A4B-021', 'A4B-026', 'A4B-028', 'A4B-031', 'A4B-033', 'A4B-035', 'A4B-037', 'A4B-039',
+    'A4B-041', 'A4B-046', 'A4B-048', 'A4B-050', 'A4B-052', 'A4B-054', 'A4B-056', 'A4B-058',
+    'A4B-062', 'A4B-065', 'A4B-070', 'A4B-072', 'A4B-074', 'A4B-077', 'A4B-079', 'A4B-081',
+    'A4B-084', 'A4B-086', 'A4B-089', 'A4B-091', 'A4B-094', 'A4B-097', 'A4B-100', 'A4B-103',
+    'A4B-105', 'A4B-109', 'A4B-111', 'A4B-113', 'A4B-115', 'A4B-117', 'A4B-119',
+    'A4B-123', 'A4B-126', 'A4B-129', 'A4B-134', 'A4B-136', 'A4B-138', 'A4B-141',
+    'A4B-144', 'A4B-147', 'A4B-150', 'A4B-152', 'A4B-154', 'A4B-157', 'A4B-162',
+    'A4B-165', 'A4B-167', 'A4B-169', 'A4B-171', 'A4B-174', 'A4B-176', 'A4B-179',
+    'A4B-181', 'A4B-183', 'A4B-186', 'A4B-188', 'A4B-190', 'A4B-192', 'A4B-195',
+    'A4B-199', 'A4B-201', 'A4B-204', 'A4B-206', 'A4B-208', 'A4B-211', 'A4B-213',
+    'A4B-217', 'A4B-219', 'A4B-221', 'A4B-225', 'A4B-227', 'A4B-229', 'A4B-231',
+    'A4B-234', 'A4B-237', 'A4B-240', 'A4B-243', 'A4B-247', 'A4B-250', 'A4B-256',
+    'A4B-258', 'A4B-261', 'A4B-263', 'A4B-265', 'A4B-268', 'A4B-270', 'A4B-273',
+    'A4B-275', 'A4B-278', 'A4B-281', 'A4B-283', 'A4B-286', 'A4B-291', 'A4B-293',
+    'A4B-295', 'A4B-298', 'A4B-301', 'A4B-303', 'A4B-305', 'A4B-307', 'A4B-309',
+    'A4B-311', 'A4B-313', 'A4B-315', 'A4B-317', 'A4B-319', 'A4B-321', 'A4B-323',
+    'A4B-325', 'A4B-327', 'A4B-329', 'A4B-331', 'A4B-333', 'A4B-335', 'A4B-337',
+    'A4B-339', 'A4B-341', 'A4B-343', 'A4B-345', 'A4B-347', 'A4B-349', 'A4B-351',
+    'A4B-353'
+}
+
 POCKETDB_SET_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/sets.json"
 POCKETDB_CARD_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.json"
 TCGDX_SETS_URL = "https://api.tcgdex.net/v2/en/series/tcgp"
@@ -249,6 +273,11 @@ def generate_cards():
                 for k, v in card.items():
                     if k not in reordered:
                         reordered[k] = v
+                
+                # Add isFoiled attribute for matching A4B cards
+                if card_id in FOILED_CARD_IDS:
+                    reordered["isFoil"] = True
+                
                 cards_data[i] = reordered
 
         if ENABLE_TCGDX_ENRICHMENT:
@@ -260,8 +289,7 @@ def generate_cards():
             for card, card_id in card_tasks:
                 if card_id in cache:
                     tcgdx_details = cache[card_id]
-                    tcgdx_fields = ["hp", "types", "description", "stage", "attacks",
-                                    "weaknesses", "retreat", "abilities", "evolveFrom"]
+                    tcgdx_fields = ["types", "stage"]
                     for field in tcgdx_fields:
                         if field in tcgdx_details:
                             card[field] = tcgdx_details[field]
@@ -294,8 +322,7 @@ def generate_cards():
                         tcgdx_details = future.result()
                         if tcgdx_details:
                             updated_cache[card_id] = tcgdx_details
-                            tcgdx_fields = ["hp", "types", "description", "stage", "attacks",
-                                            "weaknesses", "retreat", "abilities", "evolveFrom"]
+                            tcgdx_fields = ["types", "stage"]
                             for field in tcgdx_fields:
                                 if field in tcgdx_details:
                                     card[field] = tcgdx_details[field]

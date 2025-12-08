@@ -29,6 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## To build production
 ng build --output-path docs --base-href /PokemonTCGPCollector/
 
-npm version X.X.X
 npm run build:docs
 
