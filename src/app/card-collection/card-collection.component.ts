@@ -946,8 +946,13 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     }
 
     // Helper to format card name list per rules: 1 -> single name, 2 -> 'A & B', >2 -> 'A, B, C'
+    // Add (foil) suffix for foil cards
     const formatNames = (cards: Card[]) => {
-      const names = cards.map(c => (c.label?.eng || ''));
+      const names = cards.map(c => {
+        const name = c.label?.eng || '';
+        const isFoil = (c as any).isFoil === true;
+        return isFoil ? `${name} (foil)` : name;
+      });
       if (names.length === 0) return '';
       if (names.length === 1) return names[0];
       if (names.length === 2) return `${names[0]} & ${names[1]}`;
