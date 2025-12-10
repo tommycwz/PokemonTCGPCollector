@@ -148,6 +148,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
   // Collection tracking
   ownedCards: { [key: string]: number } = {};
+  cardTradeStatus: { [key: string]: boolean } = {}; // Track allow_trade status for each card
 
   // Filter options
   selectedSet: string = 'all';
@@ -983,6 +984,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       if (sym && this.excludedTradeSymbols.has(sym)) return false;
       // Set inclusion filter (FT)
       if (this.selectedFTsets.length > 0 && !this.selectedFTsets.includes(card.set)) return false;
+      // Filter by allow_trade status
+      if (!this.getCardTradeStatus(card)) return false;
       // No foil filter in FT - show all cards >= trade quantity
       return this.getOwnedCount(card) >= this.tradeQuantityMin;
     });
@@ -1121,7 +1124,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
     try {
       // Load from Supabase with progress callback
-      const collection = await this.supabaseService.syncUserCollection(
+      const { quantities, tradeStatus } = await this.supabaseService.syncUserCollection(
         userId,
         (loaded: number) => {
           this.syncProgress = loaded;
@@ -1130,9 +1133,10 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         }
       );
 
-      this.ownedCards = collection;
+      this.ownedCards = quantities;
+      this.cardTradeStatus = tradeStatus;
       this.calculateStatistics();
-      this.syncMessage = `Sync completed! ${Object.keys(collection).length} cards loaded`;
+      this.syncMessage = `Sync completed! ${Object.keys(quantities).length} cards loaded`;
       this.cdr.detectChanges();
 
       // Hide sync message after a short delay
@@ -1178,6 +1182,38 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
   getOwnedCount(card: Card): number {
     return this.ownedCards[this.getCardId(card)] || 0;
+  }
+
+  getCardTradeStatus(card: Card): boolean {
+    const cardId = this.getCardId(card);
+    return this.cardTradeStatus[cardId] !== false; // Default to true if not set
+  }
+
+  async toggleCardTradeStatus(card: Card): Promise<void> {
+    if (this.isViewingOther) return; // read-only when viewing others
+    if (!this.currentUser) return;
+
+    const cardId = this.getCardId(card);
+    const currentStatus = this.getCardTradeStatus(card);
+    const newStatus = !currentStatus;
+
+    // Update locally
+    this.cardTradeStatus[cardId] = newStatus;
+    this.cdr.detectChanges();
+
+    // Persist to database
+    const result = await this.supabaseService.updateCardTradeStatus(
+      this.currentUser.id,
+      cardId,
+      newStatus
+    );
+
+    if (!result.success) {
+      console.error('Failed to update trade status:', result.error);
+      // Revert on error
+      this.cardTradeStatus[cardId] = currentStatus;
+      this.cdr.detectChanges();
+    }
   }
 
   async increaseOwned(card: Card): Promise<void> {
@@ -1285,8 +1321,13 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   private updateLocalQuantity(cardId: string, quantity: number): void {
     if (quantity <= 0) {
       delete this.ownedCards[cardId];
+      delete this.cardTradeStatus[cardId];
     } else {
       this.ownedCards[cardId] = quantity;
+      // Set default trade status to true for new cards
+      if (this.cardTradeStatus[cardId] === undefined) {
+        this.cardTradeStatus[cardId] = true;
+      }
     }
 
     this.saveOwnedCards();

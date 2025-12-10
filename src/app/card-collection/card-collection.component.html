@@ -221,6 +221,8 @@
           <div class="card-info">
             <div class="card-title">{{ getCardDisplayName(card) }}</div>
 
+
+
             <!-- Ownership Controls -->
             <div class="ownership-controls">
               <button (click)="decreaseOwned(card)" class="count-btn decrease"
@@ -245,6 +247,16 @@
                 +
               </button>
             </div>
+
+            <!-- Trade Status Toggle (only show if card is owned) -->
+            <button *ngIf="getOwnedCount(card) > 0 && !isViewingOther" 
+                    (click)="toggleCardTradeStatus(card)"
+                    class="trade-status-btn"
+                    [class.tradeable]="getCardTradeStatus(card)"
+                    [class.untradeable]="!getCardTradeStatus(card)"
+                    [title]="getCardTradeStatus(card) ? 'Click to mark as untradeable' : 'Click to mark as tradeable'">
+              {{ getCardTradeStatus(card) ? 'Tradeable' : 'Untradeable' }}
+            </button>
           </div>
         </div>
       </div>

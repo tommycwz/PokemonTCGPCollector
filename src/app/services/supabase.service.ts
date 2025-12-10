@@ -17,6 +17,7 @@ export interface UserCard {
   user_id: string;
   card_def_key: string;
   quantity: number;
+  allow_trade: boolean;
   created_at: string;
 }
 
@@ -330,13 +331,14 @@ export class SupabaseService {
             return { success: false, error: error.message };
           }
         } else {
-          // Insert new card
+          // Insert new card (default allow_trade to true)
           const { error } = await this.supabase
             .from('user_cards')
             .insert({
               user_id: userIdInt,
               card_def_key: cardDefKey,
-              quantity
+              quantity,
+              allow_trade: true
             });
 
           if (error) {
@@ -378,25 +380,57 @@ export class SupabaseService {
   /**
    * Sync local collection with database
    */
-  async syncUserCollection(userId: string, progressCallback?: (loaded: number) => void): Promise<{ [key: string]: number }> {
+  async syncUserCollection(userId: string, progressCallback?: (loaded: number) => void): Promise<{ 
+    quantities: { [key: string]: number }, 
+    tradeStatus: { [key: string]: boolean } 
+  }> {
     try {
       const { cards, error } = await this.getUserCards(userId, progressCallback);
 
       if (error) {
         console.error('Error syncing user collection:', error);
-        return {};
+        return { quantities: {}, tradeStatus: {} };
       }
 
       // Convert to the format expected by the collection component
-      const collection: { [key: string]: number } = {};
+      const quantities: { [key: string]: number } = {};
+      const tradeStatus: { [key: string]: boolean } = {};
       cards.forEach(card => {
-        collection[card.card_def_key] = card.quantity;
+        quantities[card.card_def_key] = card.quantity;
+        tradeStatus[card.card_def_key] = card.allow_trade !== false; // Default to true if undefined
       });
 
-      return collection;
+      return { quantities, tradeStatus };
     } catch (error) {
       console.error('Error syncing user collection:', error);
-      return {};
+      return { quantities: {}, tradeStatus: {} };
+    }
+  }
+
+  /**
+   * Update allow_trade status for a card
+   */
+  async updateCardTradeStatus(userId: string, cardDefKey: string, allowTrade: boolean): Promise<{ success: boolean, error: string | null }> {
+    try {
+      const userIdInt = parseInt(userId);
+      if (isNaN(userIdInt)) {
+        return { success: false, error: 'Invalid user ID format' };
+      }
+
+      const { error } = await this.supabase
+        .from('user_cards')
+        .update({ allow_trade: allowTrade })
+        .eq('user_id', userIdInt)
+        .eq('card_def_key', cardDefKey);
+
+      if (error) {
+        return { success: false, error: error.message };
+      }
+
+      return { success: true, error: null };
+    } catch (error) {
+      console.error('Error updating card trade status:', error);
+      return { success: false, error: 'Failed to update card trade status' };
     }
   }
 
@@ -427,7 +461,8 @@ export class SupabaseService {
         .map(([cardDefKey, quantity]) => ({
           user_id: userIdInt,
           card_def_key: cardDefKey,
-          quantity: quantity
+          quantity: quantity,
+          allow_trade: true
         }));
 
       // Step 3: Bulk insert new cards (if any)
