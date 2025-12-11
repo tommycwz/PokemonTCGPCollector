@@ -616,6 +616,149 @@
   transform: translateY(-5px);
 }
 
+/* Cards List View */
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-list-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.6) 0%, rgba(20, 20, 30, 0.6) 100%);
+  border: 1px solid rgba(100, 100, 120, 0.3);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.card-list-item:hover {
+  background: linear-gradient(135deg, rgba(40, 40, 50, 0.7) 0%, rgba(30, 30, 40, 0.7) 100%);
+  border-color: rgba(120, 120, 150, 0.5);
+  transform: translateX(4px);
+}
+
+.card-list-item.no-quantity {
+  opacity: 0.5;
+}
+
+.card-list-item.no-quantity:hover {
+  opacity: 0.7;
+}
+
+.card-list-image {
+  flex-shrink: 0;
+  width: 60px;
+  height: 84px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.card-list-image:hover {
+  transform: scale(1.05);
+}
+
+.card-list-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.card-list-img.no-quantity {
+  filter: grayscale(100%) opacity(0.5);
+}
+
+.card-list-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-list-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-list-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.card-list-set {
+  font-weight: 500;
+  color: #7a9bff;
+}
+
+.card-list-packs {
+  color: #999;
+}
+
+.card-list-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.card-list-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-list-keep {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: rgba(30, 30, 40, 0.8);
+  border: 1px solid rgba(100, 100, 120, 0.3);
+  border-radius: 6px;
+}
+
+.card-list-keep .keep-icon {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.minimum-keep-input-list {
+  width: 45px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(100, 120, 150, 0.4);
+  background: rgba(40, 40, 50, 0.9);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.minimum-keep-input-list:focus {
+  border-color: #4a9eff;
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+.minimum-keep-input-list:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .card-image {
   position: relative;
   width: 100%;
@@ -802,43 +945,90 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Trade Status Button */
-.trade-status-btn {
-  margin-top: 6px;
+/* Minimum Keep Count Controls */
+.minimum-keep-controls {
+  margin-top: 8px;
   width: 100%;
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid;
-  font-size: 11px;
-  font-weight: 600;
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%);
+  border: 1px solid rgba(100, 100, 120, 0.4);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.keep-icon {
+  font-size: 13px;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.lock-toggle-btn {
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: 16px;
+  padding: 0;
+  margin: 0 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.lock-toggle-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.lock-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.minimum-keep-label {
+  font-size: 11px;
+  color: #b8b8c8;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 
-.trade-status-btn.tradeable {
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  border-color: #28a745;
+.minimum-keep-input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(100, 120, 150, 0.5);
+  background: rgba(40, 40, 50, 0.9);
   color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.trade-status-btn.tradeable:hover {
-  background: linear-gradient(135deg, #218838 0%, #1aa179 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
+.minimum-keep-input:focus {
+  border-color: #4a9eff;
+  background: rgba(45, 45, 60, 1);
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.trade-status-btn.untradeable {
-  background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
-  border-color: #6c757d;
-  color: #fff;
+.minimum-keep-input:hover:not(:disabled) {
+  border-color: rgba(120, 140, 170, 0.7);
+  background: rgba(45, 45, 55, 0.95);
 }
 
-.trade-status-btn.untradeable:hover {
-  background: linear-gradient(135deg, #5a6268 0%, #545b62 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.4);
+.minimum-keep-input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: rgba(30, 30, 35, 0.7);
 }
 
 .count-input:focus {
@@ -953,6 +1143,28 @@
     gap: 12px;
   }
 
+  .card-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .card-list-image {
+    width: 80px;
+    height: 112px;
+  }
+
+  .card-list-details {
+    width: 100%;
+  }
+
+  .card-list-controls {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .ownership-controls {
     gap: 8px;
   }
@@ -992,6 +1204,18 @@
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+  }
+
+  .card-list-item {
+    padding: 10px 12px;
+  }
+
+  .card-list-name {
+    font-size: 14px;
+  }
+
+  .card-list-meta {
+    font-size: 11px;
   }
 
   .filters-row {

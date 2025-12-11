@@ -260,8 +260,9 @@ export class SuggestionComponent implements OnInit {
 
   private async loadOwnedCardsForUser(userId: string): Promise<void> {
     try {
-      const { quantities, tradeStatus } = await this.supabaseService.syncUserCollection(userId);
+      const { quantities, minimumKeepCounts } = await this.supabaseService.syncUserCollection(userId);
       this.ownedCards = quantities;
+      // minimumKeepCounts not needed for suggestions page
     } catch (error) {
       console.error('Error loading owned cards:', error);
       this.ownedCards = {};

@@ -17,6 +17,7 @@ export interface UserCard {
   user_id: string;
   card_def_key: string;
   quantity: number;
+  minimum_keep_card: number;
   allow_trade: boolean;
   created_at: string;
 }
@@ -331,13 +332,14 @@ export class SupabaseService {
             return { success: false, error: error.message };
           }
         } else {
-          // Insert new card (default allow_trade to true)
+          // Insert new card (default minimum_keep_card to 0)
           const { error } = await this.supabase
             .from('user_cards')
             .insert({
               user_id: userIdInt,
               card_def_key: cardDefKey,
               quantity,
+              minimum_keep_card: 2,
               allow_trade: true
             });
 
@@ -382,35 +384,65 @@ export class SupabaseService {
    */
   async syncUserCollection(userId: string, progressCallback?: (loaded: number) => void): Promise<{ 
     quantities: { [key: string]: number }, 
-    tradeStatus: { [key: string]: boolean } 
+    minimumKeepCounts: { [key: string]: number },
+    allowTrade: { [key: string]: boolean }
   }> {
     try {
       const { cards, error } = await this.getUserCards(userId, progressCallback);
 
       if (error) {
         console.error('Error syncing user collection:', error);
-        return { quantities: {}, tradeStatus: {} };
+        return { quantities: {}, minimumKeepCounts: {}, allowTrade: {} };
       }
 
       // Convert to the format expected by the collection component
       const quantities: { [key: string]: number } = {};
-      const tradeStatus: { [key: string]: boolean } = {};
+      const minimumKeepCounts: { [key: string]: number } = {};
+      const allowTrade: { [key: string]: boolean } = {};
       cards.forEach(card => {
         quantities[card.card_def_key] = card.quantity;
-        tradeStatus[card.card_def_key] = card.allow_trade !== false; // Default to true if undefined
+        minimumKeepCounts[card.card_def_key] = card.minimum_keep_card || 0; // Default to 0 if undefined
+        allowTrade[card.card_def_key] = card.allow_trade !== false; // Default to true if undefined
       });
 
-      return { quantities, tradeStatus };
+      return { quantities, minimumKeepCounts, allowTrade };
     } catch (error) {
       console.error('Error syncing user collection:', error);
-      return { quantities: {}, tradeStatus: {} };
+      return { quantities: {}, minimumKeepCounts: {}, allowTrade: {} };
     }
   }
 
   /**
-   * Update allow_trade status for a card
+   * Update minimum_keep_card for a card
    */
-  async updateCardTradeStatus(userId: string, cardDefKey: string, allowTrade: boolean): Promise<{ success: boolean, error: string | null }> {
+  async updateCardMinimumKeepCount(userId: string, cardDefKey: string, minimumKeepCount: number): Promise<{ success: boolean, error: string | null }> {
+    try {
+      const userIdInt = parseInt(userId);
+      if (isNaN(userIdInt)) {
+        return { success: false, error: 'Invalid user ID format' };
+      }
+
+      const { error } = await this.supabase
+        .from('user_cards')
+        .update({ minimum_keep_card: minimumKeepCount })
+        .eq('user_id', userIdInt)
+        .eq('card_def_key', cardDefKey);
+
+      if (error) {
+        return { success: false, error: error.message };
+      }
+
+      return { success: true, error: null };
+    } catch (error) {
+      console.error('Error updating minimum keep count:', error);
+      return { success: false, error: 'Failed to update minimum keep count' };
+    }
+  }
+
+  /**
+   * Toggle allow_trade status for a card
+   */
+  async toggleAllowTrade(userId: string, cardDefKey: string, allowTrade: boolean): Promise<{ success: boolean, error: string | null }> {
     try {
       const userIdInt = parseInt(userId);
       if (isNaN(userIdInt)) {
@@ -429,8 +461,8 @@ export class SupabaseService {
 
       return { success: true, error: null };
     } catch (error) {
-      console.error('Error updating card trade status:', error);
-      return { success: false, error: 'Failed to update card trade status' };
+      console.error('Error toggling allow trade:', error);
+      return { success: false, error: 'Failed to toggle allow trade' };
     }
   }
 
@@ -462,7 +494,7 @@ export class SupabaseService {
           user_id: userIdInt,
           card_def_key: cardDefKey,
           quantity: quantity,
-          allow_trade: true
+          minimum_keep_card: 0
         }));
 
       // Step 3: Bulk insert new cards (if any)

@@ -1,0 +1,141 @@
+<div class="trade-gen-container">
+  <div class="trade-gen-content">
+    <!-- Left Panel - Configuration -->
+    <div class="config-panel">
+      <h2>Trade Generator</h2>
+
+      <!-- Pack Filters -->
+      <div class="config-section">
+        <label class="section-label">Pack Filters</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="excludePromo" (change)="updateAvailableTradeSets()" />
+            <span>Exclude Promo</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="excludeDeluxe" (change)="updateAvailableTradeSets()" />
+            <span>Exclude Deluxe Pack</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Looking For Sets -->
+      <div class="config-section">
+        <label class="section-label">Include sets (Looking For)</label>
+        <div class="multiselect-dropdown">
+          <button type="button" class="dropdown-trigger" (click)="lfSetDropdownOpen = !lfSetDropdownOpen">
+            <span *ngIf="selectedLFsets.length === 0">No sets selected</span>
+            <span *ngIf="selectedLFsets.length > 0">(Multiple select)</span>
+            <i class="fa" [ngClass]="{'fa-chevron-down': !lfSetDropdownOpen, 'fa-chevron-up': lfSetDropdownOpen}"></i>
+          </button>
+          <div *ngIf="lfSetDropdownOpen" class="dropdown-menu">
+            <div class="dropdown-actions">
+              <button type="button" class="btn-small" (click)="clearLFsets()">Clear</button>
+              <button type="button" class="btn-small" (click)="selectAllLFsets()">All</button>
+            </div>
+            <div class="dropdown-options">
+              <button type="button" *ngFor="let setCode of availableTradeSets" 
+                      (click)="toggleLFSet(setCode)"
+                      [class.selected]="isLFSetSelected(setCode)"
+                      class="dropdown-option">
+                <span class="checkmark">{{ isLFSetSelected(setCode) ? '✔' : '' }}</span>
+                <span>{{ setCode }} – {{ getSetName(setCode) }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- For Trade Sets -->
+      <div class="config-section">
+        <label class="section-label">Include sets (For Trade)</label>
+        <div class="multiselect-dropdown">
+          <button type="button" class="dropdown-trigger" (click)="ftSetDropdownOpen = !ftSetDropdownOpen">
+            <span *ngIf="selectedFTsets.length === 0">No sets selected</span>
+            <span *ngIf="selectedFTsets.length > 0">(Multiple select)</span>
+            <i class="fa" [ngClass]="{'fa-chevron-down': !ftSetDropdownOpen, 'fa-chevron-up': ftSetDropdownOpen}"></i>
+          </button>
+          <div *ngIf="ftSetDropdownOpen" class="dropdown-menu">
+            <div class="dropdown-actions">
+              <button type="button" class="btn-small" (click)="clearFTsets()">Clear</button>
+              <button type="button" class="btn-small" (click)="selectAllFTsets()">All</button>
+            </div>
+            <div class="dropdown-options">
+              <button type="button" *ngFor="let setCode of availableTradeSets" 
+                      (click)="toggleFTSet(setCode)"
+                      [class.selected]="isFTSetSelected(setCode)"
+                      class="dropdown-option">
+                <span class="checkmark">{{ isFTSetSelected(setCode) ? '✔' : '' }}</span>
+                <span>{{ setCode }} – {{ getSetName(setCode) }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Include Rarities -->
+      <div class="config-section">
+        <label class="section-label">Include rarities:</label>
+        <div class="rarity-chips">
+          <button type="button" class="chip" [class.active]="selectedTradeRarities.length === 0"
+                  (click)="clearTradeRarities()">ALL</button>
+          <button type="button" class="chip" *ngFor="let group of getAvailableTradeRaritySymbols()"
+                  [class.active]="isTradeRaritySelected(group.symbol)"
+                  (click)="toggleTradeRarity(group.symbol)"
+                  [title]="group.displayName">
+            {{ group.symbol }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Friend Code -->
+      <div class="config-section">
+        <label class="section-label" for="friend-code">Friend Code</label>
+        <input type="text" id="friend-code" class="text-input" [(ngModel)]="tradeFriendCode" 
+               placeholder="Friend code from your profile" />
+      </div>
+
+      <!-- Template Text -->
+      <div class="config-section">
+        <label class="section-label" for="template-text">Template text:</label>
+        <textarea id="template-text" class="textarea-input" rows="3" [(ngModel)]="tradeTemplateText"
+                  placeholder="Add an extra note..."></textarea>
+      </div>
+
+      <!-- Output Format -->
+      <div class="config-section">
+        <label class="section-label">Output Format</label>
+        <select class="select-input" [(ngModel)]="outputFormat">
+            <option value="details">Details Trade</option>
+            <option value="discord">Discord Trade</option>
+            <option value="foil-trade">Foil Trade</option>
+        </select>
+        <div class="warning-text" *ngIf="outputFormat == 'discord'">⚠️ For discord, please choose only 1 rarity.</div>
+        <div class="warning-text" *ngIf="outputFormat == 'foil-trade'">⚠️ For foil trade, please choose only 1 rarity. It will ignore the pack selection.</div>
+      </div>
+
+      <!-- Generate Button -->
+      <div class="config-section">
+        <button type="button" class="btn-primary" (click)="generateTradeText()" [disabled]="loading">
+          Generate
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Panel - Output -->
+    <div class="output-panel">
+      <div class="output-header">
+        <h3>Generated Trade Text</h3>
+        <button type="button" class="btn-copy" (click)="copyToClipboard()" [disabled]="!generatedText">
+          Copy to clipboard
+        </button>
+      </div>
+      <div class="output-content">
+        <pre *ngIf="generatedText" class="output-text">{{ generatedText }}</pre>
+        <div *ngIf="!generatedText" class="output-placeholder">
+          Click "Generate" to create trade text
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

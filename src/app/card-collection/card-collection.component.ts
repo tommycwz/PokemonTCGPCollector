@@ -148,7 +148,11 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
   // Collection tracking
   ownedCards: { [key: string]: number } = {};
-  cardTradeStatus: { [key: string]: boolean } = {}; // Track allow_trade status for each card
+  cardMinimumKeepCount: { [key: string]: number } = {}; // Track minimum keep count for each card
+  cardAllowTrade: { [key: string]: boolean } = {}; // Track allow_trade status for each card
+  
+  // Expose Math to template
+  Math = Math;
 
   // Filter options
   selectedSet: string = 'all';
@@ -984,10 +988,13 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       if (sym && this.excludedTradeSymbols.has(sym)) return false;
       // Set inclusion filter (FT)
       if (this.selectedFTsets.length > 0 && !this.selectedFTsets.includes(card.set)) return false;
-      // Filter by allow_trade status
-      if (!this.getCardTradeStatus(card)) return false;
-      // No foil filter in FT - show all cards >= trade quantity
-      return this.getOwnedCount(card) >= this.tradeQuantityMin;
+      // Filter by minimum keep count - only trade cards above minimum
+      const ownedCount = this.getOwnedCount(card);
+      const minKeep = this.getCardMinimumKeepCount(card);
+      const availableForTrade = ownedCount - minKeep;
+      if (availableForTrade < this.tradeQuantityMin) return false;
+      // No foil filter in FT - show all cards with enough quantity above minimum
+      return true;
     });
 
     const tradeBySet = forTradeCards.reduce((groups: { [key: string]: Card[] }, card) => {
@@ -1124,7 +1131,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
     try {
       // Load from Supabase with progress callback
-      const { quantities, tradeStatus } = await this.supabaseService.syncUserCollection(
+      const { quantities, minimumKeepCounts, allowTrade } = await this.supabaseService.syncUserCollection(
         userId,
         (loaded: number) => {
           this.syncProgress = loaded;
@@ -1134,7 +1141,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       );
 
       this.ownedCards = quantities;
-      this.cardTradeStatus = tradeStatus;
+      this.cardMinimumKeepCount = minimumKeepCounts;
+      this.cardAllowTrade = allowTrade;
       this.calculateStatistics();
       this.syncMessage = `Sync completed! ${Object.keys(quantities).length} cards loaded`;
       this.cdr.detectChanges();
@@ -1184,34 +1192,97 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     return this.ownedCards[this.getCardId(card)] || 0;
   }
 
-  getCardTradeStatus(card: Card): boolean {
+  getCardMinimumKeepCount(card: Card): number {
     const cardId = this.getCardId(card);
-    return this.cardTradeStatus[cardId] !== false; // Default to true if not set
+    return this.cardMinimumKeepCount[cardId] || 0; // Default to 0 if not set
   }
 
-  async toggleCardTradeStatus(card: Card): Promise<void> {
-    if (this.isViewingOther) return; // read-only when viewing others
-    if (!this.currentUser) return;
+  isCardAllowTrade(card: Card): boolean {
+    const cardId = this.getCardId(card);
+    return this.cardAllowTrade[cardId] !== false; // Default to true if not set
+  }
+
+  async toggleCardAllowTrade(card: Card): Promise<void> {
+    if (this.isViewingOther || !this.currentUser) {
+      return;
+    }
 
     const cardId = this.getCardId(card);
-    const currentStatus = this.getCardTradeStatus(card);
+    const currentStatus = this.isCardAllowTrade(card);
     const newStatus = !currentStatus;
+    const previousMinKeep = this.cardMinimumKeepCount[cardId] || 0;
 
-    // Update locally
-    this.cardTradeStatus[cardId] = newStatus;
+    // Update allow_trade status
+    this.cardAllowTrade[cardId] = newStatus;
+
+    // Update minimum keep count based on lock status
+    if (newStatus) {
+      // Unlocked: restore previous value or set default based on rarity if it was 0
+      if (previousMinKeep === 0) {
+        const cardRarityCode = this.getCardRarityCode(card);
+        const rarityOrder = this.rarityService.getRarityOrder(cardRarityCode);
+        console.log(rarityOrder);
+        this.cardMinimumKeepCount[cardId] = rarityOrder >= 5 ? 1 : 2;
+      }
+      // else keep the previous value (don't change it)
+    } else {
+      // Locked: set minimum keep to 0
+      this.cardMinimumKeepCount[cardId] = 0;
+    }
+
     this.cdr.detectChanges();
 
-    // Persist to database
-    const result = await this.supabaseService.updateCardTradeStatus(
+    // Persist allow_trade to database
+    const tradeResult = await this.supabaseService.toggleAllowTrade(
       this.currentUser.id,
       cardId,
       newStatus
     );
 
-    if (!result.success) {
-      console.error('Failed to update trade status:', result.error);
+    if (!tradeResult.success) {
+      console.error('Error toggling allow trade:', tradeResult.error);
       // Revert on error
-      this.cardTradeStatus[cardId] = currentStatus;
+      this.cardAllowTrade[cardId] = currentStatus;
+      this.cardMinimumKeepCount[cardId] = previousMinKeep;
+      this.cdr.detectChanges();
+      return;
+    }
+
+    // Persist minimum keep count to database
+    const minKeepResult = await this.supabaseService.updateCardMinimumKeepCount(
+      this.currentUser.id,
+      cardId,
+      this.cardMinimumKeepCount[cardId]
+    );
+
+    if (!minKeepResult.success) {
+      console.error('Error updating minimum keep count:', minKeepResult.error);
+    }
+  }
+
+  async updateCardMinimumKeepCount(card: Card, newMinimum: number): Promise<void> {
+    if (this.isViewingOther) return; // read-only when viewing others
+    if (!this.currentUser) return;
+    if (newMinimum < 0) return; // Don't allow negative values
+
+    const cardId = this.getCardId(card);
+    const currentMinimum = this.getCardMinimumKeepCount(card);
+
+    // Update locally
+    this.cardMinimumKeepCount[cardId] = newMinimum;
+    this.cdr.detectChanges();
+
+    // Persist to database
+    const result = await this.supabaseService.updateCardMinimumKeepCount(
+      this.currentUser.id,
+      cardId,
+      newMinimum
+    );
+
+    if (!result.success) {
+      console.error('Failed to update minimum keep count:', result.error);
+      // Revert on error
+      this.cardMinimumKeepCount[cardId] = currentMinimum;
       this.cdr.detectChanges();
     }
   }
@@ -1224,8 +1295,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     const currentQuantity = this.getOwnedCount(card);
     const newQuantity = currentQuantity + 1;
 
-    this.updateLocalQuantity(cardId, newQuantity);
-    await this.persistQuantity(cardId, newQuantity, currentQuantity);
+    this.updateLocalQuantity(cardId, newQuantity, card);
+    await this.persistQuantity(cardId, newQuantity, currentQuantity, card);
   }
 
   async decreaseOwned(card: Card): Promise<void> {
@@ -1240,8 +1311,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     }
 
     const newQuantity = currentQuantity - 1;
-    this.updateLocalQuantity(cardId, newQuantity);
-    await this.persistQuantity(cardId, newQuantity, currentQuantity);
+    this.updateLocalQuantity(cardId, newQuantity, card);
+    await this.persistQuantity(cardId, newQuantity, currentQuantity, card);
   }
 
   startEditingCount(card: Card): void {
@@ -1277,8 +1348,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.updateLocalQuantity(cardId, sanitizedValue);
-    await this.persistQuantity(cardId, sanitizedValue, previousQuantity);
+    this.updateLocalQuantity(cardId, sanitizedValue, card);
+    await this.persistQuantity(cardId, sanitizedValue, previousQuantity, card);
     this.cancelEditingCount();
   }
 
@@ -1318,15 +1389,23 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     return this.lastFlatOrder;
   }
 
-  private updateLocalQuantity(cardId: string, quantity: number): void {
+  private updateLocalQuantity(cardId: string, quantity: number, card: Card): void {
     if (quantity <= 0) {
       delete this.ownedCards[cardId];
-      delete this.cardTradeStatus[cardId];
+      delete this.cardMinimumKeepCount[cardId];
+      delete this.cardAllowTrade[cardId];
     } else {
       this.ownedCards[cardId] = quantity;
-      // Set default trade status to true for new cards
-      if (this.cardTradeStatus[cardId] === undefined) {
-        this.cardTradeStatus[cardId] = true;
+      // Set default minimum keep count based on rarity
+      if (this.cardMinimumKeepCount[cardId] === undefined) {
+        const cardRarityCode = this.getCardRarityCode(card);
+        const rarityOrder = this.rarityService.getRarityOrder(cardRarityCode);
+        // 1-star and above (order >= 5) gets minimum keep of 1, otherwise 2
+        this.cardMinimumKeepCount[cardId] = rarityOrder >= 5 ? 1 : 2;
+      }
+      // Set default allow_trade to true for new cards
+      if (this.cardAllowTrade[cardId] === undefined) {
+        this.cardAllowTrade[cardId] = true;
       }
     }
 
@@ -1334,13 +1413,21 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
-  private async persistQuantity(cardId: string, newQuantity: number, previousQuantity: number): Promise<void> {
+  private async persistQuantity(cardId: string, newQuantity: number, previousQuantity: number, card: Card): Promise<void> {
     if (!this.currentUser) {
       return;
     }
 
     try {
       await this.supabaseService.updateCardQuantity(this.currentUser.id, cardId, newQuantity);
+      
+      // For new cards, update the minimum_keep_card based on rarity
+      if (previousQuantity === 0 && newQuantity > 0) {
+        const cardRarityCode = this.getCardRarityCode(card);
+        const rarityOrder = this.rarityService.getRarityOrder(cardRarityCode);
+        const minKeep = rarityOrder >= 5 ? 1 : 2;
+        await this.supabaseService.updateCardMinimumKeepCount(this.currentUser.id, cardId, minKeep);
+      }
     } catch (error) {
       console.error('Error updating card quantity in database:', error);
 
@@ -1397,6 +1484,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
   toggleViewMode(): void {
     this.viewMode = this.viewMode === 'grid' ? 'list' : 'grid';
+    console.log('View mode toggled to:', this.viewMode);
+    this.cdr.detectChanges();
   }
 
   // Export/Import collection

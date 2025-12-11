@@ -11,6 +11,7 @@ import { MainLayoutComponent } from './main-layout.component';
 import { SigninComponent } from './signin/signin.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LazyImageDirective } from './directives/lazy-image.directive';
+import { TradeGenComponent } from './trade-gen/trade-gen.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LazyImageDirective } from './directives/lazy-image.directive';
     SuggestionComponent,
     MainLayoutComponent,
     SigninComponent,
-    LazyImageDirective
+    LazyImageDirective,
+    TradeGenComponent
   ],
   imports: [
     BrowserModule,

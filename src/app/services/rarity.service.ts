@@ -131,12 +131,22 @@ export class RarityService {
   }
 
   /**
-   * Get unified rarity information (merging SAR with SR)
+   * Get unified rarity information (merging SAR with SR and deduplicating by symbol)
    */
   getUnifiedRarities(): RarityInfo[] {
     const rarities = this.getAllRarities();
     // Remove SAR as it's merged with SR
-    return rarities.filter(r => r.code !== 'SAR');
+    const filtered = rarities.filter(r => r.code !== 'SAR');
+    
+    // Deduplicate by symbol (keep first occurrence of each symbol)
+    const seen = new Set<string>();
+    return filtered.filter(r => {
+      if (seen.has(r.symbol)) {
+        return false;
+      }
+      seen.add(r.symbol);
+      return true;
+    });
   }
 
   /**

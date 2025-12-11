@@ -23,6 +23,10 @@ import { APP_VERSION } from './version';
               <a routerLink="/collection" routerLinkActive="active" class="nav-link">
                 🗂️ Collection
               </a>
+
+              <a routerLink="/trade" routerLinkActive="active" class="nav-link">
+                🔄 Trade (Beta)
+              </a>
               
             </div>
           </div>
@@ -44,14 +48,14 @@ import { APP_VERSION } from './version';
           <div class="mobile-menu-header" *ngIf="currentUser">
             <span class="username">👤 {{ currentUser.username }}</span>
           </div>
-          <a routerLink="/dashboard" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
-            📊 Dashboard
-          </a>
           <a routerLink="/collection" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
             🗂️ Collection
           </a>
           <a routerLink="/suggestion" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
             📦 Suggestion
+          </a>
+          <a routerLink="/trade" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
+            📊 Trade (Beta)
           </a>
           
           <button *ngIf="currentUser" (click)="signOut(); closeMobileMenu()" class="mobile-link signout">
