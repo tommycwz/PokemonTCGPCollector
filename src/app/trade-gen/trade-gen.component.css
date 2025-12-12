@@ -71,6 +71,10 @@
   color: #fff;
 }
 
+.override-input-group {
+  margin-top: 12px;
+}
+
 /* Multiselect Dropdown */
 .multiselect-dropdown {
   position: relative;
@@ -344,10 +348,14 @@
 .output-content {
   flex: 1;
   padding: 24px;
-  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .output-text {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 20px;
   background: rgba(20, 20, 30, 0.8);
@@ -359,6 +367,14 @@
   line-height: 1.6;
   white-space: pre-wrap;
   word-wrap: break-word;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.output-text:focus {
+  border-color: #4a9eff;
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
 }
 
 .output-placeholder {

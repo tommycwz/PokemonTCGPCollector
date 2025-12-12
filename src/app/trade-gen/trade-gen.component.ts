@@ -25,9 +25,10 @@ export class TradeGenComponent implements OnInit {
   outputFormat: 'foil-trade' | 'discord' | 'details' = 'details'; // Default to details
   tradeFriendCode = ''; // Will be loaded from user profile
   tradeTemplateText = 'Please ping me if there is any possible trades. \nENGLISH cards only please.';
-  tradeQuantityMin = 2;
   excludePromo = true; // Default true
   excludeDeluxe = true; // Default true
+  overrideMinKeepEnabled = false; // Override minimum keep count
+  overrideMinKeepValue = 3; // Override value
   lfSetDropdownOpen = false;
   ftSetDropdownOpen = false;
   generatedText = '';
@@ -228,10 +229,11 @@ export class TradeGenComponent implements OnInit {
       const rarityCode = card.rarity;
       const sym = rarityCode ? this.rarityService.getSymbol(rarityCode) : '';
       if (activeRarities.length > 0 && (!sym || !activeRarities.includes(sym))) return false;
+
       const ownedCount = this.getOwnedCount(card);
-      const minKeep = this.getCardMinimumKeepCount(card);
-      const availableForTrade = ownedCount - minKeep;
-      return availableForTrade >= this.tradeQuantityMin;
+      const minKeep = this.overrideMinKeepEnabled ? this.overrideMinKeepValue : this.getCardMinimumKeepCount(card);
+
+      return ownedCount > minKeep;
     });
 
     this.generatedText = this.formatTradeText(lookingForCards, forTradeCards);
@@ -249,7 +251,7 @@ export class TradeGenComponent implements OnInit {
     }
 
     // Add footer section
-    text += '\n\n';
+    text += '\n';
     
     // Add template text if provided
     if (this.tradeTemplateText) {
@@ -373,7 +375,6 @@ export class TradeGenComponent implements OnInit {
 
   copyToClipboard() {
     navigator.clipboard.writeText(this.generatedText).then(() => {
-      alert('Trade text copied to clipboard!');
     }).catch(err => {
       console.error('Failed to copy:', err);
       alert('Failed to copy to clipboard');

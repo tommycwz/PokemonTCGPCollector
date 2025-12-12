@@ -88,6 +88,21 @@
         </div>
       </div>
 
+      <!-- Override Minimum Keep -->
+      <div class="config-section">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="overrideMinKeepEnabled" />
+          <span>Override minimum keep count</span>
+        </label>
+        <div *ngIf="overrideMinKeepEnabled" class="override-input-group">
+          <label class="section-label" for="override-min-keep">Minimum Keep Count (>)</label>
+          <input type="number" id="override-min-keep" class="text-input" 
+                 [(ngModel)]="overrideMinKeepValue" 
+                 min="0" 
+                 placeholder="0" />
+        </div>
+      </div>
+
       <!-- Friend Code -->
       <div class="config-section">
         <label class="section-label" for="friend-code">Friend Code</label>
@@ -131,7 +146,7 @@
         </button>
       </div>
       <div class="output-content">
-        <pre *ngIf="generatedText" class="output-text">{{ generatedText }}</pre>
+        <textarea *ngIf="generatedText" class="output-text" [(ngModel)]="generatedText"></textarea>
         <div *ngIf="!generatedText" class="output-placeholder">
           Click "Generate" to create trade text
         </div>
