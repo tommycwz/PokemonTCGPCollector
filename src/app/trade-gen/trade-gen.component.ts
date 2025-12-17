@@ -232,7 +232,6 @@ export class TradeGenComponent implements OnInit {
 
       const ownedCount = this.getOwnedCount(card);
       const minKeep = this.overrideMinKeepEnabled ? this.overrideMinKeepValue : this.getCardMinimumKeepCount(card);
-      console.log(`Card ${this.getCardId(card)} owned: ${ownedCount}, minKeep: ${minKeep}`);
       return ownedCount > minKeep;
     });
 

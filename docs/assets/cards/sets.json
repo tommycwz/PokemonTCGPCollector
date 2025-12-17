@@ -162,6 +162,17 @@
         ]
     },
     {
+        "code": "B1A",
+        "name": "Crimson Blaze",
+        "shortName": "CB",
+        "series": "B",
+        "count": 0,
+        "releaseDate": "2025-12-17",
+        "packs": [
+            "Crimson Blaze"
+        ]
+    },
+    {
         "code": "P-B",
         "name": "Promo B",
         "shortName": "PB",
