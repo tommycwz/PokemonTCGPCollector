@@ -469,7 +469,11 @@ export class SupabaseService {
   /**
    * Bulk replace user's entire collection
    */
-  async bulkReplaceUserCollection(userId: string, ownedCards: { [key: string]: number }): Promise<{ success: boolean, error: string | null }> {
+  async bulkReplaceUserCollection(
+    userId: string,
+    ownedCards: { [key: string]: number },
+    options?: { minKeep?: { [key: string]: number }, allowTrade?: { [key: string]: boolean } }
+  ): Promise<{ success: boolean, error: string | null }> {
     try {
       const userIdInt = parseInt(userId);
       if (isNaN(userIdInt)) {
@@ -494,7 +498,8 @@ export class SupabaseService {
           user_id: userIdInt,
           card_def_key: cardDefKey,
           quantity: quantity,
-          minimum_keep_card: 0
+          minimum_keep_card: options?.minKeep?.[cardDefKey] ?? 0,
+          allow_trade: options?.allowTrade?.[cardDefKey] ?? true
         }));
 
       // Step 3: Bulk insert new cards (if any)

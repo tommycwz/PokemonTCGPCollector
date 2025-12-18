@@ -1557,6 +1557,10 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
           let importedCount = 0;
           let errorCount = 0;
           let missingCardCount = 0;
+          // Track per-card updates for allow_trade and minimum_keep_card
+          const allowTradeUpdates: { [id: string]: boolean } = {};
+          const minKeepUpdates: { [id: string]: number } = {};
+          const updatedIds: string[] = [];
 
           for (let i = startIndex; i < lines.length; i++) {
             const line = lines[i];
@@ -1577,10 +1581,55 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
               const canonicalId = idIndex.get(this.normalizeId(cardId)) || null;
 
               if (canonicalId) {
+                // Determine allow_trade (optional column, default true)
+                const allowTradeStr = headerMap ? (() => {
+                  const keys = ['allowtrade', 'allow_trade', 'trade', 'allow'];
+                  for (const k of keys) {
+                    const idx = headerMap[k];
+                    if (idx !== undefined && idx >= 0 && idx < columns.length) {
+                      const v = (columns[idx] || '').trim();
+                      if (v) return v;
+                    }
+                  }
+                  return undefined;
+                })() : undefined;
+                const allowTradeVal = allowTradeStr !== undefined
+                  ? (this.parseBooleanLike(allowTradeStr) ?? true)
+                  : true;
+
+                // Determine minimum_keep_card (optional column, default by rarity rule)
+                const minKeepStr = headerMap ? (() => {
+                  const keys = ['minimumkeepcard', 'minimum_keep_card', 'min_keep', 'min_keep_count', 'minimum'];
+                  for (const k of keys) {
+                    const idx = headerMap[k];
+                    if (idx !== undefined && idx >= 0 && idx < columns.length) {
+                      const v = (columns[idx] || '').trim();
+                      if (v) return v;
+                    }
+                  }
+                  return undefined;
+                })() : undefined;
+
+                const cardObj = this.cards.find(c => this.getCardId(c) === canonicalId) || null;
+                const defaultMinKeep = cardObj ? this.getDefaultMinKeepForCard(cardObj) : 1;
+                const parsedMinKeep = minKeepStr !== undefined ? Math.max(0, Math.floor(Number(minKeepStr) || 0)) : undefined;
+                const minKeepVal = parsedMinKeep !== undefined ? parsedMinKeep : defaultMinKeep;
+
+                console.log(`Importing ${canonicalId}: owned=${numberOwn}, allow_trade=${allowTradeVal}, min_keep=${minKeepVal}`);
+
                 if (numberOwn > 0) {
                   this.ownedCards[canonicalId] = numberOwn;
+                  // Apply local flags for cards we own
+                  this.cardAllowTrade[canonicalId] = allowTradeVal;
+                  this.cardMinimumKeepCount[canonicalId] = minKeepVal;
+                  allowTradeUpdates[canonicalId] = allowTradeVal;
+                  minKeepUpdates[canonicalId] = minKeepVal;
+                  updatedIds.push(canonicalId);
                 } else {
+                  // Remove locally if zero
                   delete this.ownedCards[canonicalId];
+                  delete this.cardAllowTrade[canonicalId];
+                  delete this.cardMinimumKeepCount[canonicalId];
                 }
                 importedCount++;
               } else {
@@ -1601,11 +1650,11 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
             try {
               const result = await this.supabaseService.bulkReplaceUserCollection(
                 this.currentUser.id,
-                this.ownedCards
+                this.ownedCards,
+                { minKeep: minKeepUpdates, allowTrade: allowTradeUpdates }
               );
 
               if (result.success) {
-
                 // Show success message
                 let message = `Import completed!\n${importedCount} cards updated`;
                 message += `\nCollection synced to database successfully`;
@@ -1753,7 +1802,6 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         }
       }
     }
-
     // Fallback to column 0 as id if nothing else
     if (!cardId && columns.length > 0) {
       const c0 = (columns[0] || '').trim();
@@ -1793,6 +1841,22 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     // Apply set alias for PROMO-A within IDs like "PROMO-A-12" => "P-A-12"
     s = s.replace(/^PROMO-A(?=-)/, 'P-A');
     return s;
+  }
+
+  /** Parse boolean-like strings (true/false, 1/0, yes/no) */
+  private parseBooleanLike(val: string): boolean | null {
+    const s = (val || '').trim().toLowerCase();
+    if (['true', '1', 'yes', 'y'].includes(s)) return true;
+    if (['false', '0', 'no', 'n'].includes(s)) return false;
+    return null;
+  }
+
+  /** Default minimum keep: ◊..◊◊◊◊ => 2, else 1 */
+  private getDefaultMinKeepForCard(card: Card): number {
+    const rarityCode = this.getCardRarityCode(card);
+    const symbol = rarityCode ? this.rarityService.getSymbol(rarityCode) : '';
+    const diamondSymbols = new Set(['◊', '◊◊', '◊◊◊', '◊◊◊◊']);
+    return diamondSymbols.has(symbol) ? 2 : 1;
   }
 
   /**
