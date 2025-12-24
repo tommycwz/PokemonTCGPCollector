@@ -13346,7 +13346,7 @@
     "cardDefKey": "PK_10_012980_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/12/charmeleon/",
-    "amount": 1
+    "amount": 2
   },
   {
     "Id": "B1A-13",
@@ -13356,11 +13356,18 @@
     "amount": 4
   },
   {
+    "Id": "B1A-14",
+    "cardDefKey": "PK_10_013190_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/14/mega-charizard-y-ex/",
+    "amount": 1
+  },
+  {
     "Id": "B1A-15",
     "cardDefKey": "PK_10_013200_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/15/houndour/",
-    "amount": 1
+    "amount": 2
   },
   {
     "Id": "B1A-16",
@@ -13388,7 +13395,7 @@
     "cardDefKey": "PK_10_013080_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/2/ivysaur/",
-    "amount": 3
+    "amount": 4
   },
   {
     "Id": "B1A-20",
@@ -13416,14 +13423,21 @@
     "cardDefKey": "PK_10_013280_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/23/clawitzer/",
-    "amount": 2
+    "amount": 3
+  },
+  {
+    "Id": "B1A-24",
+    "cardDefKey": "PK_10_013290_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/24/magnemite/",
+    "amount": 1
   },
   {
     "Id": "B1A-25",
     "cardDefKey": "PK_10_013300_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/25/magneton/",
-    "amount": 3
+    "amount": 4
   },
   {
     "Id": "B1A-26",
@@ -13437,14 +13451,14 @@
     "cardDefKey": "PK_10_013320_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/27/emolga/",
-    "amount": 3
+    "amount": 4
   },
   {
     "Id": "B1A-28",
     "cardDefKey": "PK_10_013330_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/28/helioptile/",
-    "amount": 3
+    "amount": 4
   },
   {
     "Id": "B1A-29",
@@ -13454,11 +13468,18 @@
     "amount": 1
   },
   {
+    "Id": "B1A-3",
+    "cardDefKey": "PK_10_013090_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/3/venusaur/",
+    "amount": 1
+  },
+  {
     "Id": "B1A-30",
     "cardDefKey": "PK_10_013340_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/30/misdreavus/",
-    "amount": 3
+    "amount": 4
   },
   {
     "Id": "B1A-31",
@@ -13479,7 +13500,7 @@
     "cardDefKey": "PK_10_013370_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/33/duosion/",
-    "amount": 6
+    "amount": 7
   },
   {
     "Id": "B1A-34",
@@ -13493,7 +13514,7 @@
     "cardDefKey": "PK_10_013390_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/35/spritzee/",
-    "amount": 2
+    "amount": 3
   },
   {
     "Id": "B1A-36",
@@ -13521,7 +13542,21 @@
     "cardDefKey": "PK_10_013430_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/39/makuhita/",
-    "amount": 5
+    "amount": 6
+  },
+  {
+    "Id": "B1A-4",
+    "cardDefKey": "PK_10_013100_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/4/mega-venusaur-ex/",
+    "amount": 1
+  },
+  {
+    "Id": "B1A-40",
+    "cardDefKey": "PK_10_013440_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/40/hariyama/",
+    "amount": 1
   },
   {
     "Id": "B1A-41",
@@ -13531,11 +13566,18 @@
     "amount": 4
   },
   {
+    "Id": "B1A-42",
+    "cardDefKey": "PK_10_013460_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/42/mega-lopunny-ex/",
+    "amount": 1
+  },
+  {
     "Id": "B1A-43",
     "cardDefKey": "PK_10_013470_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/43/mienfoo/",
-    "amount": 5
+    "amount": 6
   },
   {
     "Id": "B1A-44",
@@ -13549,7 +13591,14 @@
     "cardDefKey": "PK_10_013490_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/45/grimer/",
-    "amount": 4
+    "amount": 6
+  },
+  {
+    "Id": "B1A-46",
+    "cardDefKey": "PK_10_013500_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/46/muk/",
+    "amount": 1
   },
   {
     "Id": "B1A-47",
@@ -13570,7 +13619,7 @@
     "cardDefKey": "PK_10_013530_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/49/trubbish/",
-    "amount": 2
+    "amount": 3
   },
   {
     "Id": "B1A-5",
@@ -13633,7 +13682,7 @@
     "cardDefKey": "PK_10_013610_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/59/starly/",
-    "amount": 1
+    "amount": 2
   },
   {
     "Id": "B1A-6",
@@ -13647,7 +13696,7 @@
     "cardDefKey": "PK_10_013620_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/60/staravia/",
-    "amount": 3
+    "amount": 4
   },
   {
     "Id": "B1A-61",
@@ -13678,6 +13727,13 @@
     "amount": 2
   },
   {
+    "Id": "B1A-65",
+    "cardDefKey": "PK_10_013660_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/65/furfrou/",
+    "amount": 1
+  },
+  {
     "Id": "B1A-66",
     "cardDefKey": "TR_10_001010_00",
     "expansionId": "B1a",
@@ -13689,7 +13745,7 @@
     "cardDefKey": "TR_10_001020_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/67/quick-grow-extract/",
-    "amount": 1
+    "amount": 2
   },
   {
     "Id": "B1A-68",
@@ -13710,7 +13766,7 @@
     "cardDefKey": "PK_10_013130_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/7/sunkern/",
-    "amount": 5
+    "amount": 7
   },
   {
     "Id": "B1A-70",
@@ -13734,18 +13790,39 @@
     "amount": 1
   },
   {
+    "Id": "B1A-74",
+    "cardDefKey": "PK_20_013530_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/74/trubbish/",
+    "amount": 1
+  },
+  {
     "Id": "B1A-8",
     "cardDefKey": "PK_10_013140_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/8/sunflora/",
-    "amount": 3
+    "amount": 4
+  },
+  {
+    "Id": "B1A-87",
+    "cardDefKey": "PK_20_013190_01",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/87/mega-charizard-y-ex/",
+    "amount": 1
   },
   {
     "Id": "B1A-9",
     "cardDefKey": "PK_10_013150_00",
     "expansionId": "B1a",
     "url": "/cards/b1a/9/burmy/",
-    "amount": 5
+    "amount": 7
+  },
+  {
+    "Id": "B1A-90",
+    "cardDefKey": "PK_20_000130_00",
+    "expansionId": "B1a",
+    "url": "/cards/b1a/90/vileplume/",
+    "amount": 1
   },
   {
     "Id": "B1A-94",

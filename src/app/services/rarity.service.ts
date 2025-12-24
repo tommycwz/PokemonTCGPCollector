@@ -19,8 +19,8 @@ export class RarityService {
     ['R', { code: 'R', symbol: '◊◊◊', name: 'Rare', displayName: '◊◊◊ - Rare', order: 3 }],
     ['RR', { code: 'RR', symbol: '◊◊◊◊', name: 'Double Rare', displayName: '◊◊◊◊ - Double Rare', order: 4 }],
     ['AR', { code: 'AR', symbol: '☆', name: 'Art Rare', displayName: '☆ - Art Rare', order: 5 }],
-    ['SR', { code: 'SR', symbol: '☆☆', name: 'Super Rare', displayName: '☆☆ - Super Rare /Special Art Rare', order: 6 }],
-    ['SAR', { code: 'SAR', symbol: '☆☆', name: 'Super Rare', displayName: '☆☆ - Super Rare /Special Art Rare', order: 6 }], // Same as SR
+    ['SR', { code: 'SR', symbol: '☆☆', name: 'Super Rare', displayName: '☆☆ - Super Rare', order: 6 }],
+    ['SAR', { code: 'SAR', symbol: '🌈', name: 'Special Art Rare', displayName: '🌈 - Special Art Rare', order: 6 }],
     ['IM', { code: 'IM', symbol: '☆☆☆', name: 'Immersive Rare', displayName: '☆☆☆ - Immersive Rare', order: 7 }],
     ['UR', { code: 'UR', symbol: '👑', name: 'Ultimate Rare', displayName: '👑 - Ultimate Rare', order: 8 }],
     ['CR', { code: 'CR', symbol: '👑', name: 'Crown Rare', displayName: '👑 - Crown Rare', order: 8 }], // Same level as UR
@@ -33,8 +33,8 @@ export class RarityService {
     ['Rare', { code: 'R', symbol: '◊◊◊', name: 'Rare', displayName: '◊◊◊ - Rare', order: 3 }],
     ['Double Rare', { code: 'RR', symbol: '◊◊◊◊', name: 'Double Rare', displayName: '◊◊◊◊ - Double Rare', order: 4 }],
     ['Art Rare', { code: 'AR', symbol: '☆', name: 'Art Rare', displayName: '☆ - Art Rare', order: 5 }],
-    ['Super Rare', { code: 'SR', symbol: '☆☆', name: 'Super Rare', displayName: '☆☆ - Super Rare /Special Art Rare', order: 6 }],
-    ['Special Art Rare', { code: 'SAR', symbol: '☆☆', name: 'Super Rare', displayName: '☆☆ - Super Rare /Special Art Rare', order: 6 }], // Merge with SR
+    ['Super Rare', { code: 'SR', symbol: '☆☆', name: 'Super Rare', displayName: '☆☆ - Super Rare', order: 6 }],
+    ['Special Art Rare', { code: 'SAR', symbol: '🌈', name: 'Special Art Rare', displayName: '🌈 - Special Art Rare', order: 6 }],
     ['Immersive Rare', { code: 'IM', symbol: '☆☆☆', name: 'Immersive Rare', displayName: '☆☆☆ - Immersive Rare', order: 7 }],
     ['Ultimate Rare', { code: 'UR', symbol: '👑', name: 'Ultimate Rare', displayName: '👑 - Ultimate Rare', order: 8 }],
     ['Crown Rare', { code: 'CR', symbol: '👑', name: 'Crown Rare', displayName: '👑 - Crown Rare', order: 8 }], // Same level as UR
@@ -113,11 +113,7 @@ export class RarityService {
     const info = this.getRarityInfo(rarityInput);
     if (!info) return rarityInput; // Return as-is if not found
     
-    // Merge SAR and Special Art Rare into SR for consistency
-    if (info.code === 'SAR' || rarityInput === 'Special Art Rare') {
-      return 'SR';
-    }
-    
+    // Keep SAR distinct
     return info.code;
   }
 
@@ -135,8 +131,7 @@ export class RarityService {
    */
   getUnifiedRarities(): RarityInfo[] {
     const rarities = this.getAllRarities();
-    // Remove SAR as it's merged with SR
-    const filtered = rarities.filter(r => r.code !== 'SAR');
+    const filtered = rarities;
     
     // Deduplicate by symbol (keep first occurrence of each symbol)
     const seen = new Set<string>();

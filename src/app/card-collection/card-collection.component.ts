@@ -24,7 +24,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     // Define grouped rarities
     const rarityGroups: Record<string, string[]> = {
       '◊': ['◊', '◊◊', '◊◊◊', '◊◊◊◊'],
-      '☆': ['☆', '☆☆', '☆☆☆'],
+      '☆': ['☆', '☆☆', '☆☆☆', '🌈'],
       '✵': ['✵', '✵✵'],
     };
 
@@ -236,6 +236,11 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   // View Others modal state
   showViewOthersModal = false;
 
+  // Helper: check if a rarity symbol is present in available chips
+  hasRaritySymbol(symbol: string): boolean {
+    return (this.availableRaritySymbols || []).some(g => g.symbol === symbol);
+  }
+
   constructor(
     private pokemonDataService: PokemonDataService,
     private dataManager: DataManagerService,
@@ -364,15 +369,14 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     // Use standardized rarity service to group rarities by symbols
     this.availableRaritySymbols = [];
 
-    // Get unique rarity codes from symbols
+    // Get unique rarity codes present in data, preferring explicit rarityCode when available
     const normalizedCodes = new Set<string>();
     this.cards.forEach(card => {
-      if (card.rarity) {
-        const code = rarityCodeMap.get(card.rarity);
-        if (code) {
-          const normalizedCode = this.rarityService.getNormalizedCode(code);
-          normalizedCodes.add(normalizedCode);
-        }
+      const explicitCode = (card as any).rarityCode as string | undefined;
+      const code = (explicitCode && explicitCode.trim()) ? explicitCode.trim() : rarityCodeMap.get(card.rarity);
+      if (code) {
+        const normalizedCode = this.rarityService.getNormalizedCode(code);
+        normalizedCodes.add(normalizedCode);
       }
     });
 
@@ -444,6 +448,11 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
    * Get rarity code from card's rarity symbol
    */
   private getCardRarityCode(card: Card): string {
+    // Prefer explicit rarityCode from data when present
+    const explicitCode = (card as any).rarityCode;
+    if (typeof explicitCode === 'string' && explicitCode.trim()) {
+      return explicitCode.trim();
+    }
     const rarityCodeMap = this.createRaritySymbolToCodeMap();
     return rarityCodeMap.get(card.rarity) || card.rarity;
   }
@@ -523,11 +532,23 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         return false;
       }
 
-      // Rarity filter (multi-select by symbol). If none selected -> no filter
+      // Rarity filter: expand selected symbols into codes (SR includes SAR, crown includes UR+CR)
       if (this.selectedRarities.length > 0) {
-        const cardRarityCode = this.getCardRarityCode(card);
-        const cardSymbol = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
-        if (!cardSymbol || !this.selectedRarities.includes(cardSymbol)) {
+        const selectedCodes = new Set<string>();
+        for (const sym of this.selectedRarities) {
+          if (sym === '🌈') {
+            selectedCodes.add('SAR');
+            continue;
+          }
+          const code = this.rarityService.getCodeFromSymbol(sym);
+          if (code) {
+            selectedCodes.add(code);
+            if (code === 'SR') selectedCodes.add('SAR');
+            if (code === 'UR') selectedCodes.add('CR');
+          }
+        }
+        const cardCode = this.getCardRarityCode(card);
+        if (!selectedCodes.has(cardCode)) {
           return false;
         }
       }

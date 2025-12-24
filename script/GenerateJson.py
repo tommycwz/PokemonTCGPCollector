@@ -254,7 +254,6 @@ def generate_cards():
                 if normalized_rarity != card.get("rarity", ""):
                     card["rarity"] = normalized_rarity
                     rarity_updates += 1
-                del card["rarityCode"]
 
             if "set" in card:
                 if card["set"].startswith("PROMO-"):

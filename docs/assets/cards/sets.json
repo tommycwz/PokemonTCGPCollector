@@ -166,7 +166,7 @@
         "name": "Crimson Blaze",
         "shortName": "CB",
         "series": "B",
-        "count": 0,
+        "count": 103,
         "releaseDate": "2025-12-17",
         "packs": [
             "Crimson Blaze"
@@ -179,6 +179,10 @@
         "series": "B",
         "count": 0,
         "releaseDate": "2025-10-30",
-        "packs": []
+        "packs": [
+            "B Series Vol. 1",
+            "B Series Vol. 2",
+            "B Series Vol. 3"
+        ]
     }
 ]

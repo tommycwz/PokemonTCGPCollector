@@ -150163,5 +150163,7296 @@
       "cardmarket": null,
       "tcgplayer": null
     }
+  },
+  "B1A-002": {
+    "category": "Pokemon",
+    "id": "B1a-002",
+    "illustrator": "Kanako Eo",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/002",
+    "localId": "002",
+    "name": "Ivysaur",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Bulbasaur",
+    "description": "The more sunlight Ivysaur bathes in, the more\nstrength wells up within it, allowing the bud\non its back to grow larger.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Synthesis",
+        "effect": "Take 2 {G} Energy from your Energy Zone and attach it to this Pokémon."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-001": {
+    "category": "Pokemon",
+    "id": "B1a-001",
+    "illustrator": "Sumiyoshi Kizuki",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/001",
+    "localId": "001",
+    "name": "Bulbasaur",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Grass"
+    ],
+    "description": "While it is young, it uses the nutrients that are\nstored in the seed on its back in order to grow.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Tackle",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-003": {
+    "category": "Pokemon",
+    "id": "B1a-003",
+    "illustrator": "Eske Yoshinob",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/003",
+    "localId": "003",
+    "name": "Venusaur",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 160,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Ivysaur",
+    "description": "A bewitching aroma wafts from its flower.\nThe fragrance becalms those engaged\nin a battle.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Grass",
+          "Grass",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Poisonous Whip",
+        "effect": "Your opponent's Active Pokémon is now Poisoned.",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-004": {
+    "category": "Pokemon",
+    "id": "B1a-004",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/004",
+    "localId": "004",
+    "name": "Mega Venusaur ex",
+    "rarity": "Four Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 240,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Ivysaur",
+    "description": "In order to support its flower, which has grown\nlarger due to Mega Evolution, its back and legs\nhave become stronger.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Grass",
+          "Grass",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Critical Bloom",
+        "effect": "Your opponent's Active Pokémon is now Poisoned and Asleep.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-005": {
+    "category": "Pokemon",
+    "id": "B1a-005",
+    "illustrator": "kodama",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/005",
+    "localId": "005",
+    "name": "Spinarak",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 50,
+    "types": [
+      "Grass"
+    ],
+    "description": "Although the poison from its fangs isn't that\nstrong, it's potent enough to weaken prey that\ngets caught in its web.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Sting",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-006": {
+    "category": "Pokemon",
+    "id": "B1a-006",
+    "illustrator": "Tika Matsuno",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/006",
+    "localId": "006",
+    "name": "Ariados",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Spinarak",
+    "description": "It spews threads from its mouth to catch its\nprey. When night falls, it leaves its web to go\nhunt aggressively.",
+    "stage": "Stage1",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Trap Territory",
+        "effect": "Your opponent's Active Pokémon's Retreat Cost is 1 more."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Pierce",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-009": {
+    "category": "Pokemon",
+    "id": "B1a-009",
+    "illustrator": "Miki Tanaka",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/009",
+    "localId": "009",
+    "name": "Burmy",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Grass"
+    ],
+    "description": "If its cloak is broken in battle, it quickly remakes\nthe cloak with materials nearby.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Hang Down",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-008": {
+    "category": "Pokemon",
+    "id": "B1a-008",
+    "illustrator": "Saboteri",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/008",
+    "localId": "008",
+    "name": "Sunflora",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Sunkern",
+    "description": "Since it converts sunlight into energy, it is always\nlooking in the direction of the sun.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Quick-Grow Beam",
+        "effect": "If Quick-Grow Extract is in your discard pile, this attack does 30 more damage.",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-007": {
+    "category": "Pokemon",
+    "id": "B1a-007",
+    "illustrator": "Saboteri",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/007",
+    "localId": "007",
+    "name": "Sunkern",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 50,
+    "types": [
+      "Grass"
+    ],
+    "description": "It is very weak. Its only means of defense is to\nshake its leaves desperately at its attacker.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Seed Bomb",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-010": {
+    "category": "Pokemon",
+    "id": "B1a-010",
+    "illustrator": "saino misaki",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/010",
+    "localId": "010",
+    "name": "Mothim",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Burmy",
+    "description": "It flutters around at night and steals honey from\nthe Combee hive.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Cutting Wind",
+        "damage": 70
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-011": {
+    "category": "Pokemon",
+    "id": "B1a-011",
+    "illustrator": "DOM",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/011",
+    "localId": "011",
+    "name": "Charmander",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Fire"
+    ],
+    "description": "From the time it is born, a flame burns at the tip\nof its tail. Its life would end if the flame were to\ngo out.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Fire",
+          "Colorless"
+        ],
+        "name": "Bite",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-012": {
+    "category": "Pokemon",
+    "id": "B1a-012",
+    "illustrator": "DOM",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/012",
+    "localId": "012",
+    "name": "Charmeleon",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Fire"
+    ],
+    "evolveFrom": "Charmander",
+    "description": "If it becomes agitated during battle, it spouts\nintense flames, incinerating its surroundings.",
+    "stage": "Stage1",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Ignition",
+        "effect": "Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, you may take a {R} Energy from your Energy Zone and attach it to your Active {R} Pokémon."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Fire",
+          "Fire",
+          "Colorless"
+        ],
+        "name": "Steady Firebreathing",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-013": {
+    "category": "Pokemon",
+    "id": "B1a-013",
+    "illustrator": "DOM",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/013",
+    "localId": "013",
+    "name": "Charizard",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 150,
+    "types": [
+      "Fire"
+    ],
+    "evolveFrom": "Charmeleon",
+    "description": "Its wings can carry this Pokémon close to an\naltitude of 4,600 feet. It blows out fire at very\nhigh temperatures.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Fire",
+          "Fire",
+          "Fire",
+          "Colorless"
+        ],
+        "name": "Inferno Onrush",
+        "effect": "This Pokémon also does 30 damage to itself.",
+        "damage": 150
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-014": {
+    "category": "Pokemon",
+    "id": "B1a-014",
+    "illustrator": "PLANETA Igarashi",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/014",
+    "localId": "014",
+    "name": "Mega Charizard Y ex",
+    "rarity": "Four Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 220,
+    "types": [
+      "Fire"
+    ],
+    "evolveFrom": "Charmeleon",
+    "description": "Its bond with its Trainer is the source of\nits power. It boasts speed and maneuverability\ngreater than that of a jet.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Fire",
+          "Fire",
+          "Fire",
+          "Colorless"
+        ],
+        "name": "Crimson Dive",
+        "effect": "This Pokémon also does 50 damage to itself.",
+        "damage": 250
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-015": {
+    "category": "Pokemon",
+    "id": "B1a-015",
+    "illustrator": "Naoyo Kimura",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/015",
+    "localId": "015",
+    "name": "Houndour",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Fire"
+    ],
+    "description": "It uses different kinds of cries for communicating\nwith others of its kind and for pursuing its prey.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Roar",
+        "effect": "Switch out your opponent's Active Pokémon to the Bench. (Your opponent chooses the new Active Pokémon.)"
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-018": {
+    "category": "Pokemon",
+    "id": "B1a-018",
+    "illustrator": "Taiga Kasai",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/018",
+    "localId": "018",
+    "name": "Wartortle",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Water"
+    ],
+    "evolveFrom": "Squirtle",
+    "description": "It cleverly controls its furry ears and tail to\nmaintain its balance while swimming.",
+    "stage": "Stage1",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Shell Shield",
+        "effect": "As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Water",
+          "Colorless"
+        ],
+        "name": "Waterfall",
+        "damage": 60
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-017": {
+    "category": "Pokemon",
+    "id": "B1a-017",
+    "illustrator": "Naoki Saito",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/017",
+    "localId": "017",
+    "name": "Squirtle",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Water"
+    ],
+    "description": "When it feels threatened, it draws its limbs inside\nits shell and sprays water from its mouth.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Colorless"
+        ],
+        "name": "Tail Whap",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-016": {
+    "category": "Pokemon",
+    "id": "B1a-016",
+    "illustrator": "Midori Harada",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/016",
+    "localId": "016",
+    "name": "Houndoom",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Fire"
+    ],
+    "evolveFrom": "Houndour",
+    "description": "Upon hearing its eerie howls, other Pokémon get\nthe shivers and head straight back to their nests.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Fire"
+        ],
+        "name": "Sharp Fang",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-020": {
+    "category": "Pokemon",
+    "id": "B1a-020",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/020",
+    "localId": "020",
+    "name": "Mega Blastoise ex",
+    "rarity": "Four Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 230,
+    "types": [
+      "Water"
+    ],
+    "evolveFrom": "Wartortle",
+    "description": "The cannon on its back is as powerful as a\ntank gun. Its tough legs and back enable it to\nwithstand the recoil from firing the cannon.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Water",
+          "Colorless"
+        ],
+        "name": "Triple Bombardment",
+        "effect": "If this Pokémon has at least 3 extra {W} Energy attached, this attack also does 50 damage to 2 of your opponent's Benched Pokémon.",
+        "damage": 130
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-019": {
+    "category": "Pokemon",
+    "id": "B1a-019",
+    "illustrator": "Hitoshi Ariga",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/019",
+    "localId": "019",
+    "name": "Blastoise",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 150,
+    "types": [
+      "Water"
+    ],
+    "evolveFrom": "Wartortle",
+    "description": "The rocket cannons on its shell fire jets of water\ncapable of punching holes through thick steel.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Water",
+          "Colorless"
+        ],
+        "name": "Double Splash",
+        "effect": "If this Pokémon has at least 2 extra {W} Energy attached, this attack also does 50 damage to 1 of your opponent's Benched Pokémon.",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-021": {
+    "category": "Pokemon",
+    "id": "B1a-021",
+    "illustrator": "Naoyo Kimura",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/021",
+    "localId": "021",
+    "name": "Basculin",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Water"
+    ],
+    "description": "Anglers love the fight this Pokémon puts up on\nthe hook. And there are always more to catch—\nmany people release them into lakes illicitly.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Colorless"
+        ],
+        "name": "Surprise Strike",
+        "effect": "If this Pokémon moved from your Bench to the Active Spot this turn, this attack does 40 more damage.",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-022": {
+    "category": "Pokemon",
+    "id": "B1a-022",
+    "illustrator": "Krgc",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/022",
+    "localId": "022",
+    "name": "Clauncher",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Water"
+    ],
+    "description": "Clauncher's claws will regrow if they fall off.\nThe meat inside the claws is edible, but it has a\ndistinct flavor that doesn't appeal to all tastes.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Water"
+        ],
+        "name": "Water Gun",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-023": {
+    "category": "Pokemon",
+    "id": "B1a-023",
+    "illustrator": "tetsuya koizumi",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/023",
+    "localId": "023",
+    "name": "Clawitzer",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Water"
+    ],
+    "evolveFrom": "Clauncher",
+    "description": "The cannonballs of seawater that Clawitzer\nlaunches from its claw are powerful enough to\npunch through tanker hulls.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Water"
+        ],
+        "name": "Aqua Shower",
+        "effect": "This attack does 20 damage to each of your opponent's Pokémon."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-024": {
+    "category": "Pokemon",
+    "id": "B1a-024",
+    "illustrator": "Hajime Kusajima",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/024",
+    "localId": "024",
+    "name": "Magnemite",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 50,
+    "types": [
+      "Lightning"
+    ],
+    "description": "The electromagnetic waves emitted by the units\nat the sides of its head expel antigravity, which\nallows it to float.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Lightning"
+        ],
+        "name": "Electro Ball",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-025": {
+    "category": "Pokemon",
+    "id": "B1a-025",
+    "illustrator": "Tomokazu Komiya",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/025",
+    "localId": "025",
+    "name": "Magneton",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Lightning"
+    ],
+    "evolveFrom": "Magnemite",
+    "description": "Three Magnemite are linked by a strong magnetic\nforce. Earaches will occur if you get too close.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Lightning"
+        ],
+        "name": "Spark",
+        "effect": "This attack also does 20 damage to 1 of your opponent's Benched Pokémon.",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-026": {
+    "category": "Pokemon",
+    "id": "B1a-026",
+    "illustrator": "Kagemaru Himeno",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/026",
+    "localId": "026",
+    "name": "Magnezone",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 150,
+    "types": [
+      "Lightning"
+    ],
+    "evolveFrom": "Magneton",
+    "description": "Exposure to a special magnetic field changed\nMagneton's molecular structure, turning it into\nMagnezone.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Lightning",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Mirror Shot",
+        "effect": "During your opponent's next turn, if the Defending Pokémon tries to use an attack, your opponent flips a coin. If tails, that attack doesn't happen.",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-027": {
+    "category": "Pokemon",
+    "id": "B1a-027",
+    "illustrator": "Megumi Mizutani",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/027",
+    "localId": "027",
+    "name": "Emolga",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Lightning"
+    ],
+    "description": "This Pokémon absolutely loves sweet berries.\nSometimes it stuffs its cheeks full of so much\nfood that it can't fly properly.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Lightning",
+          "Colorless"
+        ],
+        "name": "Mach Bolt",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-028": {
+    "category": "Pokemon",
+    "id": "B1a-028",
+    "illustrator": "Miki Tanaka",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/028",
+    "localId": "028",
+    "name": "Helioptile",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Lightning"
+    ],
+    "description": "The sun powers this Pokémon's electricity\ngeneration. Interruption of that process\nstresses Helioptile to the point of weakness.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Lightning"
+        ],
+        "name": "Thunder Shock",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed.",
+        "damage": 10
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-029": {
+    "category": "Pokemon",
+    "id": "B1a-029",
+    "illustrator": "kawayoo",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/029",
+    "localId": "029",
+    "name": "Heliolisk",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Lightning"
+    ],
+    "evolveFrom": "Helioptile",
+    "description": "One Heliolisk basking in the sun with its frill\noutspread is all it would take to produce enough\nelectricity to power a city.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Lightning",
+          "Lightning"
+        ],
+        "name": "Thunderbolt",
+        "effect": "Discard all Energy from this Pokémon.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-030": {
+    "category": "Pokemon",
+    "id": "B1a-030",
+    "illustrator": "sui",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/030",
+    "localId": "030",
+    "name": "Misdreavus",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 50,
+    "types": [
+      "Psychic"
+    ],
+    "description": "It loves to bite and yank people's hair from\nbehind without warning, just to see their\nshocked reactions.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic"
+        ],
+        "name": "Lead",
+        "effect": "Put a random Supporter card from your deck into your hand."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Darkness",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-031": {
+    "category": "Pokemon",
+    "id": "B1a-031",
+    "illustrator": "Ligton",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/031",
+    "localId": "031",
+    "name": "Mismagius",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Psychic"
+    ],
+    "evolveFrom": "Misdreavus",
+    "description": "Its cries sound like incantations to torment the\nfoe. It appears where you least expect it.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic",
+          "Psychic"
+        ],
+        "name": "Stored Power",
+        "effect": "Move all {P} Energy from this Pokémon to 1 of your Benched Pokémon.",
+        "damage": 60
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Darkness",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-032": {
+    "category": "Pokemon",
+    "id": "B1a-032",
+    "illustrator": "osare",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/032",
+    "localId": "032",
+    "name": "Solosis",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 40,
+    "types": [
+      "Psychic"
+    ],
+    "description": "Many say that the special liquid covering this\nPokémon's body would allow it to survive in\nthe vacuum of space.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic"
+        ],
+        "name": "Rollout",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Darkness",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-035": {
+    "category": "Pokemon",
+    "id": "B1a-035",
+    "illustrator": "Tika Matsuno",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/035",
+    "localId": "035",
+    "name": "Spritzee",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Psychic"
+    ],
+    "description": "The scent its body gives off enraptures those\nwho smell it. Noble ladies had no shortage of\nlove for Spritzee.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic"
+        ],
+        "name": "Sweet Scent",
+        "effect": "Heal 20 damage from 1 of your Pokémon."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Metal",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-036": {
+    "category": "Pokemon",
+    "id": "B1a-036",
+    "illustrator": "Mizue",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/036",
+    "localId": "036",
+    "name": "Aromatisse",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Psychic"
+    ],
+    "evolveFrom": "Spritzee",
+    "description": "The scents Aromatisse can produce range from\nsweet smells that bolster allies to foul smells\nthat sap an opponent's will to fight.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic",
+          "Colorless"
+        ],
+        "name": "Perfume Blast",
+        "effect": "During your opponent's next turn, attacks used by the Defending Pokémon cost 1 {C} more.",
+        "damage": 60
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Metal",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-033": {
+    "category": "Pokemon",
+    "id": "B1a-033",
+    "illustrator": "Pani Kobayashi",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/033",
+    "localId": "033",
+    "name": "Duosion",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Psychic"
+    ],
+    "evolveFrom": "Solosis",
+    "description": "Its brain has split into two, and the two\nhalves rarely think alike. Its actions are\nutterly unpredictable.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic",
+          "Colorless"
+        ],
+        "name": "Psyshot",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Darkness",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-037": {
+    "category": "Pokemon",
+    "id": "B1a-037",
+    "illustrator": "sui",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/037",
+    "localId": "037",
+    "name": "Xerneas",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 120,
+    "types": [
+      "Psychic"
+    ],
+    "description": "When the horns on its head shine\nin seven colors, it is said to be\nsharing everlasting life.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic",
+          "Psychic",
+          "Colorless"
+        ],
+        "name": "Geoburst",
+        "effect": "This attack's damage is reduced by the amount of damage this Pokémon has on it.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Metal",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-034": {
+    "category": "Pokemon",
+    "id": "B1a-034",
+    "illustrator": "Kagemaru Himeno",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/034",
+    "localId": "034",
+    "name": "Reuniclus",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Psychic"
+    ],
+    "evolveFrom": "Duosion",
+    "description": "It's said that drinking the liquid surrounding\nReuniclus grants wisdom. Problem is, the liquid is\nhighly toxic to anything besides Reuniclus itself.",
+    "stage": "Stage2",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Infinite Increase",
+        "effect": "This Pokémon gets +30 HP for each {P} Energy attached to it."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Psypunch",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Darkness",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-038": {
+    "category": "Pokemon",
+    "id": "B1a-038",
+    "illustrator": "Naoyo Kimura",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/038",
+    "localId": "038",
+    "name": "Onix",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Fighting"
+    ],
+    "description": "It rapidly bores through the ground at 50 mph by\nsquirming and twisting its massive, rugged body.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Dig",
+        "effect": "Flip a coin. If heads, during your opponent's next turn, prevent all damage from—and effects of—attacks done to this Pokémon.",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Grass",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-039": {
+    "category": "Pokemon",
+    "id": "B1a-039",
+    "illustrator": "Tomokazu Komiya",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/039",
+    "localId": "039",
+    "name": "Makuhita",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Fighting"
+    ],
+    "description": "It toughens up by slamming into thick trees\nover and over. It gains a sturdy body and\ndauntless spirit.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting",
+          "Fighting"
+        ],
+        "name": "Strength",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Psychic",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-040": {
+    "category": "Pokemon",
+    "id": "B1a-040",
+    "illustrator": "Naoyo Kimura",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/040",
+    "localId": "040",
+    "name": "Hariyama",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 120,
+    "types": [
+      "Fighting"
+    ],
+    "evolveFrom": "Makuhita",
+    "description": "It stomps on the ground to build power.\nIt can send a 10-ton truck flying with a\nstraight-arm punch.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting",
+          "Fighting",
+          "Fighting"
+        ],
+        "name": "Megaton Slap Push",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Psychic",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-041": {
+    "category": "Pokemon",
+    "id": "B1a-041",
+    "illustrator": "Miki Tanaka",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/041",
+    "localId": "041",
+    "name": "Nosepass",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Fighting"
+    ],
+    "description": "The magnet in Nosepass's nose provides an\nunerring compass, making it an excellent\npartner for Trainers going on a journey.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Rising Lunge",
+        "effect": "Flip a coin. If heads, this attack does 20 more damage.",
+        "damage": 10
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Grass",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-043": {
+    "category": "Pokemon",
+    "id": "B1a-043",
+    "illustrator": "yuu",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/043",
+    "localId": "043",
+    "name": "Mienfoo",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 50,
+    "types": [
+      "Fighting"
+    ],
+    "description": "Though small, Mienfoo's temperament is fierce.\nAny creature that approaches Mienfoo carelessly\nwill be greeted with a flurry of graceful attacks.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting"
+        ],
+        "name": "Chop",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Psychic",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-042": {
+    "category": "Pokemon",
+    "id": "B1a-042",
+    "illustrator": "PLANETA Yamashita",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/042",
+    "localId": "042",
+    "name": "Mega Lopunny ex",
+    "rarity": "Four Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 190,
+    "types": [
+      "Fighting"
+    ],
+    "evolveFrom": "Buneary",
+    "description": "It swings its ears like whips and strikes its\nenemies with them. It has an intensely\ncombative disposition.",
+    "stage": "Stage1",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting",
+          "Fighting"
+        ],
+        "name": "Rapid Smashers",
+        "effect": "Flip 2 coins. This attack does 90 damage for each heads. Your opponent's Active Pokémon is now Confused.",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Psychic",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-044": {
+    "category": "Pokemon",
+    "id": "B1a-044",
+    "illustrator": "Suwama Chiaki",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/044",
+    "localId": "044",
+    "name": "Mienshao",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Fighting"
+    ],
+    "evolveFrom": "Mienfoo",
+    "description": "Delivered at blinding speeds, kicks from this\nPokémon can shatter massive boulders into\ntiny pieces.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting"
+        ],
+        "name": "Low Sweep",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Psychic",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-045": {
+    "category": "Pokemon",
+    "id": "B1a-045",
+    "illustrator": "Kagemaru Himeno",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/045",
+    "localId": "045",
+    "name": "Grimer",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Darkness"
+    ],
+    "description": "Appears in filthy areas. It thrives by sucking up\npolluted sludge that is pumped out of factories.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Darkness",
+          "Darkness"
+        ],
+        "name": "Sludge Bomb",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-047": {
+    "category": "Pokemon",
+    "id": "B1a-047",
+    "illustrator": "Sumiyoshi Kizuki",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/047",
+    "localId": "047",
+    "name": "Purrloin",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Darkness"
+    ],
+    "description": "Opponents that get drawn in by its adorable\nbehavior come away with stinging scratches from\nits claws and stinging pride from its laughter.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Darkness"
+        ],
+        "name": "Trip Over",
+        "effect": "Flip a coin. If heads, this attack does 30 more damage.",
+        "damage": 10
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Grass",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-046": {
+    "category": "Pokemon",
+    "id": "B1a-046",
+    "illustrator": "Scav",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/046",
+    "localId": "046",
+    "name": "Muk",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 130,
+    "types": [
+      "Darkness"
+    ],
+    "evolveFrom": "Grimer",
+    "description": "They love to gather in smelly areas where sludge\naccumulates, making the stench around\nthem worse.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Darkness",
+          "Darkness",
+          "Darkness"
+        ],
+        "name": "Gunk Shot",
+        "effect": "Your opponent's Active Pokémon is now Poisoned.",
+        "damage": 70
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-052": {
+    "category": "Pokemon",
+    "id": "B1a-052",
+    "illustrator": "PLANETA Yamashita",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/052",
+    "localId": "052",
+    "name": "Mega Steelix ex",
+    "rarity": "Four Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 220,
+    "types": [
+      "Metal"
+    ],
+    "evolveFrom": "Onix",
+    "description": "To protect itself from opponents' attacks, it uses\nmagnetism to control pieces of its hard outer\nshell that have flaked off.",
+    "stage": "Stage1",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Metal",
+          "Metal",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Adamantine Rolling",
+        "effect": "During your opponent's next turn, this Pokémon takes  damage from attacks and has no Weakness.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-050": {
+    "category": "Pokemon",
+    "id": "B1a-050",
+    "illustrator": "Aya Kusube",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/050",
+    "localId": "050",
+    "name": "Garbodor",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 130,
+    "types": [
+      "Darkness"
+    ],
+    "evolveFrom": "Trubbish",
+    "description": "This Pokémon eats trash, which turns into poison\ninside its body. The main component of the\npoison depends on what sort of trash was eaten.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Darkness",
+          "Darkness",
+          "Colorless"
+        ],
+        "name": "Acid Spray",
+        "effect": "Flip a coin. If heads, discard a random Energy from your opponent's Active Pokémon.",
+        "damage": 70
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-051": {
+    "category": "Pokemon",
+    "id": "B1a-051",
+    "illustrator": "NC Empire",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/051",
+    "localId": "051",
+    "name": "Steelix",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 150,
+    "types": [
+      "Metal"
+    ],
+    "evolveFrom": "Onix",
+    "description": "It is thought its body transformed as a result of\niron accumulating internally from swallowing soil.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Metal",
+          "Metal",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Metal Defender",
+        "effect": "During your opponent's next turn, this Pokémon has no Weakness.",
+        "damage": 100
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-053": {
+    "category": "Pokemon",
+    "id": "B1a-053",
+    "illustrator": "Anesaki Dynamic",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/053",
+    "localId": "053",
+    "name": "Probopass",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 130,
+    "types": [
+      "Metal"
+    ],
+    "evolveFrom": "Nosepass",
+    "description": "It exudes strong magnetism from all over.\nIt controls three small units called Mini-Noses.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Metal",
+          "Metal"
+        ],
+        "name": "Metallic Turbo",
+        "effect": "Take 2 {M} Energy from your Energy Zone and attach it to 1 of your Benched Pokémon.",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-049": {
+    "category": "Pokemon",
+    "id": "B1a-049",
+    "illustrator": "Shibuzoh.",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/049",
+    "localId": "049",
+    "name": "Trubbish",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Darkness"
+    ],
+    "description": "Its favorite places are unsanitary ones. If you\nleave trash lying around, you could even find\none of these Pokémon living in your room.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Darkness",
+          "Colorless"
+        ],
+        "name": "Drool",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-048": {
+    "category": "Pokemon",
+    "id": "B1a-048",
+    "illustrator": "AKIRA EGAWA",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/048",
+    "localId": "048",
+    "name": "Liepard",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Darkness"
+    ],
+    "evolveFrom": "Purrloin",
+    "description": "Don't be fooled by its gorgeous fur and elegant\nfigure. This is a moody and vicious Pokémon.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Darkness"
+        ],
+        "name": "Snatch and Flee",
+        "effect": "Your opponent reveals a random card from their hand and shuffles it into their deck. Shuffle this Pokémon into your deck.",
+        "damage": 60
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Grass",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-054": {
+    "category": "Pokemon",
+    "id": "B1a-054",
+    "illustrator": "kawayoo",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/054",
+    "localId": "054",
+    "name": "Genesect",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 110,
+    "types": [
+      "Metal"
+    ],
+    "description": "This ancient bug Pokémon was altered by Team\nPlasma. They upgraded the cannon on its back.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Metal Blast",
+        "effect": "This attack does 20 more damage for each {M} Energy attached to this Pokémon.",
+        "damage": 10
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-056": {
+    "category": "Pokemon",
+    "id": "B1a-056",
+    "illustrator": "Hisao Nakamura",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/056",
+    "localId": "056",
+    "name": "Porygon",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Colorless"
+    ],
+    "description": "State-of-the-art technology was used to create\nPorygon. It was the first artificial Pokémon to be\ncreated via computer programming.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Stiffen",
+        "effect": "During your opponent's next turn, this Pokémon takes −20 damage from attacks."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-055": {
+    "category": "Pokemon",
+    "id": "B1a-055",
+    "illustrator": "Yuka Morii",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/055",
+    "localId": "055",
+    "name": "Ditto",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Colorless"
+    ],
+    "description": "It can freely recombine its own cellular structure\nto transform into other life-forms.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Copy a Friend",
+        "effect": "Choose 1 of your Benched Pokémon's attacks, except any Pokémon ex, and use it as this attack. If this Pokémon doesn't have the necessary Energy to use that attack, this attack does nothing."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-058": {
+    "category": "Pokemon",
+    "id": "B1a-058",
+    "illustrator": "Shibuzoh.",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/058",
+    "localId": "058",
+    "name": "Porygon-Z",
+    "rarity": "Three Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 140,
+    "types": [
+      "Colorless"
+    ],
+    "evolveFrom": "Porygon2",
+    "description": "Porygon-Z had a program installed to allow it to\nmove between dimensions, but the program also\ncaused instability in Porygon-Z's behavior.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Cyberjack",
+        "effect": "This attack does 20 more damage for each Trainer card in your opponent's deck.",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-057": {
+    "category": "Pokemon",
+    "id": "B1a-057",
+    "illustrator": "Kent Kanetsuna",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/057",
+    "localId": "057",
+    "name": "Porygon2",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Colorless"
+    ],
+    "evolveFrom": "Porygon",
+    "description": "This is a Porygon that was updated with special\ndata. Porygon2 develops itself by learning about\nmany different subjects all on its own.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Speed Attack",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-060": {
+    "category": "Pokemon",
+    "id": "B1a-060",
+    "illustrator": "Suwama Chiaki",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/060",
+    "localId": "060",
+    "name": "Staravia",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Colorless"
+    ],
+    "evolveFrom": "Starly",
+    "description": "They maintain huge flocks, although fierce\nscuffles break out between various flocks.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Quick Attack",
+        "effect": "Flip a coin. If heads, this attack does 30 more damage.",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-059": {
+    "category": "Pokemon",
+    "id": "B1a-059",
+    "illustrator": "Kyoko Umemoto",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/059",
+    "localId": "059",
+    "name": "Starly",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Colorless"
+    ],
+    "description": "Because they are weak individually, they form\ngroups. However, they bicker if the group grows\ntoo big.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Call for Family",
+        "effect": "Put 1 random Starly from your deck onto your Bench."
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-061": {
+    "category": "Pokemon",
+    "id": "B1a-061",
+    "illustrator": "AKIRA EGAWA",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/061",
+    "localId": "061",
+    "name": "Staraptor",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 140,
+    "types": [
+      "Colorless"
+    ],
+    "evolveFrom": "Staravia",
+    "description": "It never stops attacking even if it is injured.\nIt fusses over the shape of its comb.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Hurricane Wing",
+        "effect": "Flip 4 coins. This attack does 50 damage for each heads.",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-062": {
+    "category": "Pokemon",
+    "id": "B1a-062",
+    "illustrator": "Kouki Saitou",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/062",
+    "localId": "062",
+    "name": "Buneary",
+    "rarity": "One Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Colorless"
+    ],
+    "description": "Buneary can attack by rolling up their ears and\nthen striking with the force created by unrolling\nthem. This attack becomes stronger with training.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Double Kick",
+        "effect": "Flip 2 coins. This attack does 20 damage for each heads.",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-063": {
+    "category": "Pokemon",
+    "id": "B1a-063",
+    "illustrator": "Ryuta Fuse",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/063",
+    "localId": "063",
+    "name": "Lopunny",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Colorless"
+    ],
+    "evolveFrom": "Buneary",
+    "description": "Once hot seasons are over, Lopunny's coat will\nbe replaced with fur that holds a lot of insulating\nair in preparation for colder weather.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Double Kick",
+        "effect": "Flip 2 coins. This attack does 50 damage for each heads.",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-069": {
+    "category": "Trainer",
+    "id": "B1a-069",
+    "illustrator": "En Morikura",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/069",
+    "localId": "069",
+    "name": "Serena",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "effect": "Put a random Mega Evolution Pokémon ex from your deck into your hand.",
+    "trainerType": "Supporter",
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-064": {
+    "category": "Pokemon",
+    "id": "B1a-064",
+    "illustrator": "Sanosuke Sakuma",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/064",
+    "localId": "064",
+    "name": "Bouffalant",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Colorless"
+    ],
+    "description": "These Pokémon live in herds of about 20\nindividuals. Bouffalant that betray the herd will\nlose the hair on their heads for some reason.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Revenge",
+        "effect": "If any of your Pokémon were Knocked Out by damage from an attack during your opponent's last turn, this attack does 40 more damage.",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-068": {
+    "category": "Trainer",
+    "id": "B1a-068",
+    "illustrator": "Teeziro",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/068",
+    "localId": "068",
+    "name": "Clemont",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "effect": "Put 2 random cards from among Magneton, Heliolisk, and Clemont's Backpack from your deck into your hand.",
+    "trainerType": "Supporter",
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-065": {
+    "category": "Pokemon",
+    "id": "B1a-065",
+    "illustrator": "Kazumasa Yasukuni",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/065",
+    "localId": "065",
+    "name": "Furfrou",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Colorless"
+    ],
+    "description": "Left alone, its fur will grow longer and longer,\nbut it will only allow someone it trusts to cut it.",
+    "stage": "Basic",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Fur Coat",
+        "effect": "This Pokémon takes −20 damage from attacks."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Tackle",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-066": {
+    "category": "Trainer",
+    "id": "B1a-066",
+    "illustrator": "AYUMI ODASHIMA",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/066",
+    "localId": "066",
+    "name": "Clemont's Backpack",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "effect": "During this turn, attacks used by your Magneton or Heliolisk do +20 damage to your opponent's Pokémon.",
+    "trainerType": "Item",
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-067": {
+    "category": "Trainer",
+    "id": "B1a-067",
+    "illustrator": "Studio Bora Inc.",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/067",
+    "localId": "067",
+    "name": "Quick-Grow Extract",
+    "rarity": "Two Diamond",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "effect": "Choose 1 of your {G} Pokémon in play. Put a random {G} Pokémon from your deck that evolves from that Pokémon onto that Pokémon to evolve it. You can't use this card during your first turn or on a Pokémon that was put into play this turn.",
+    "trainerType": "Item",
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-071": {
+    "category": "Pokemon",
+    "id": "B1a-071",
+    "illustrator": "OKACHEKE",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/071",
+    "localId": "071",
+    "name": "Sunflora",
+    "rarity": "One Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 100,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Sunkern",
+    "description": "Since it converts sunlight into energy, it is always\nlooking in the direction of the sun.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Quick-Grow Beam",
+        "effect": "If Quick-Grow Extract is in your discard pile, this attack does 30 more damage.",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-070": {
+    "category": "Pokemon",
+    "id": "B1a-070",
+    "illustrator": "KEIICHIRO ITO",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/070",
+    "localId": "070",
+    "name": "Ariados",
+    "rarity": "One Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Spinarak",
+    "description": "It spews threads from its mouth to catch its\nprey. When night falls, it leaves its web to go\nhunt aggressively.",
+    "stage": "Stage1",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Trap Territory",
+        "effect": "Your opponent's Active Pokémon's Retreat Cost is 1 more."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Pierce",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-072": {
+    "category": "Pokemon",
+    "id": "B1a-072",
+    "illustrator": "chibi",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/072",
+    "localId": "072",
+    "name": "Reuniclus",
+    "rarity": "One Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Psychic"
+    ],
+    "evolveFrom": "Duosion",
+    "description": "It's said that drinking the liquid surrounding\nReuniclus grants wisdom. Problem is, the liquid is\nhighly toxic to anything besides Reuniclus itself.",
+    "stage": "Stage2",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Infinite Increase",
+        "effect": "This Pokémon gets +30 HP for each {P} Energy attached to it."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Psypunch",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Darkness",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-073": {
+    "category": "Pokemon",
+    "id": "B1a-073",
+    "illustrator": "mashu",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/073",
+    "localId": "073",
+    "name": "Xerneas",
+    "rarity": "One Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 120,
+    "types": [
+      "Psychic"
+    ],
+    "description": "When the horns on its head shine\nin seven colors, it is said to be\nsharing everlasting life.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Psychic",
+          "Psychic",
+          "Colorless"
+        ],
+        "name": "Geoburst",
+        "effect": "This attack's damage is reduced by the amount of damage this Pokémon has on it.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Metal",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-074": {
+    "category": "Pokemon",
+    "id": "B1a-074",
+    "illustrator": "Saboteri",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/074",
+    "localId": "074",
+    "name": "Trubbish",
+    "rarity": "One Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Darkness"
+    ],
+    "description": "Its favorite places are unsanitary ones. If you\nleave trash lying around, you could even find\none of these Pokémon living in your room.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Darkness",
+          "Colorless"
+        ],
+        "name": "Drool",
+        "damage": 30
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-075": {
+    "category": "Pokemon",
+    "id": "B1a-075",
+    "illustrator": "Terada Tera",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/075",
+    "localId": "075",
+    "name": "Buneary",
+    "rarity": "One Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Colorless"
+    ],
+    "description": "Buneary can attack by rolling up their ears and\nthen striking with the force created by unrolling\nthem. This attack becomes stronger with training.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Double Kick",
+        "effect": "Flip 2 coins. This attack does 20 damage for each heads.",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-076": {
+    "category": "Pokemon",
+    "id": "B1a-076",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/076",
+    "localId": "076",
+    "name": "Mega Venusaur ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 240,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Ivysaur",
+    "description": "In order to support its flower, which has grown\nlarger due to Mega Evolution, its back and legs\nhave become stronger.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Grass",
+          "Grass",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Critical Bloom",
+        "effect": "Your opponent's Active Pokémon is now Poisoned and Asleep.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-077": {
+    "category": "Pokemon",
+    "id": "B1a-077",
+    "illustrator": "PLANETA Igarashi",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/077",
+    "localId": "077",
+    "name": "Mega Charizard Y ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 220,
+    "types": [
+      "Fire"
+    ],
+    "evolveFrom": "Charmeleon",
+    "description": "Its bond with its Trainer is the source of\nits power. It boasts speed and maneuverability\ngreater than that of a jet.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Fire",
+          "Fire",
+          "Fire",
+          "Colorless"
+        ],
+        "name": "Crimson Dive",
+        "effect": "This Pokémon also does 50 damage to itself.",
+        "damage": 250
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-078": {
+    "category": "Pokemon",
+    "id": "B1a-078",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/078",
+    "localId": "078",
+    "name": "Mega Blastoise ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 230,
+    "types": [
+      "Water"
+    ],
+    "evolveFrom": "Wartortle",
+    "description": "The cannon on its back is as powerful as a\ntank gun. Its tough legs and back enable it to\nwithstand the recoil from firing the cannon.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Water",
+          "Colorless"
+        ],
+        "name": "Triple Bombardment",
+        "effect": "If this Pokémon has at least 3 extra {W} Energy attached, this attack also does 50 damage to 2 of your opponent's Benched Pokémon.",
+        "damage": 130
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-079": {
+    "category": "Pokemon",
+    "id": "B1a-079",
+    "illustrator": "PLANETA Yamashita",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/079",
+    "localId": "079",
+    "name": "Mega Lopunny ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 190,
+    "types": [
+      "Fighting"
+    ],
+    "evolveFrom": "Buneary",
+    "description": "It swings its ears like whips and strikes its\nenemies with them. It has an intensely\ncombative disposition.",
+    "stage": "Stage1",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting",
+          "Fighting"
+        ],
+        "name": "Rapid Smashers",
+        "effect": "Flip 2 coins. This attack does 90 damage for each heads. Your opponent's Active Pokémon is now Confused.",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Psychic",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-081": {
+    "category": "Trainer",
+    "id": "B1a-081",
+    "illustrator": "Teeziro",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/081",
+    "localId": "081",
+    "name": "Clemont",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "effect": "Put 2 random cards from among Magneton, Heliolisk, and Clemont's Backpack from your deck into your hand.",
+    "trainerType": "Supporter",
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-080": {
+    "category": "Pokemon",
+    "id": "B1a-080",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/080",
+    "localId": "080",
+    "name": "Mega Steelix ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 220,
+    "types": [
+      "Metal"
+    ],
+    "evolveFrom": "Onix",
+    "description": "To protect itself from opponents' attacks, it uses\nmagnetism to control pieces of its hard outer\nshell that have flaked off.",
+    "stage": "Stage1",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Metal",
+          "Metal",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Adamantine Rolling",
+        "effect": "During your opponent's next turn, this Pokémon takes  damage from attacks and has no Weakness.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-082": {
+    "category": "Trainer",
+    "id": "B1a-082",
+    "illustrator": "En Morikura",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/082",
+    "localId": "082",
+    "name": "Serena",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "effect": "Put a random Mega Evolution Pokémon ex from your deck into your hand.",
+    "trainerType": "Supporter",
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-083": {
+    "category": "Pokemon",
+    "id": "B1a-083",
+    "illustrator": "Mori Yuu",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/083",
+    "localId": "083",
+    "name": "Mega Venusaur ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 240,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Ivysaur",
+    "description": "In order to support its flower, which has grown\nlarger due to Mega Evolution, its back and legs\nhave become stronger.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Grass",
+          "Grass",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Critical Bloom",
+        "effect": "Your opponent's Active Pokémon is now Poisoned and Asleep.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-086": {
+    "category": "Pokemon",
+    "id": "B1a-086",
+    "illustrator": "matazo",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/086",
+    "localId": "086",
+    "name": "Mega Steelix ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 220,
+    "types": [
+      "Metal"
+    ],
+    "evolveFrom": "Onix",
+    "description": "To protect itself from opponents' attacks, it uses\nmagnetism to control pieces of its hard outer\nshell that have flaked off.",
+    "stage": "Stage1",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Metal",
+          "Metal",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Adamantine Rolling",
+        "effect": "During your opponent's next turn, this Pokémon takes  damage from attacks and has no Weakness.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-084": {
+    "category": "Pokemon",
+    "id": "B1a-084",
+    "illustrator": "Kazumasa Yasukuni",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/084",
+    "localId": "084",
+    "name": "Mega Blastoise ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 230,
+    "types": [
+      "Water"
+    ],
+    "evolveFrom": "Wartortle",
+    "description": "The cannon on its back is as powerful as a\ntank gun. Its tough legs and back enable it to\nwithstand the recoil from firing the cannon.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Water",
+          "Colorless"
+        ],
+        "name": "Triple Bombardment",
+        "effect": "If this Pokémon has at least 3 extra {W} Energy attached, this attack also does 50 damage to 2 of your opponent's Benched Pokémon.",
+        "damage": 130
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-085": {
+    "category": "Pokemon",
+    "id": "B1a-085",
+    "illustrator": "DOM",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/085",
+    "localId": "085",
+    "name": "Mega Lopunny ex",
+    "rarity": "Two Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 190,
+    "types": [
+      "Fighting"
+    ],
+    "evolveFrom": "Buneary",
+    "description": "It swings its ears like whips and strikes its\nenemies with them. It has an intensely\ncombative disposition.",
+    "stage": "Stage1",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting",
+          "Fighting"
+        ],
+        "name": "Rapid Smashers",
+        "effect": "Flip 2 coins. This attack does 90 damage for each heads. Your opponent's Active Pokémon is now Confused.",
+        "damage": 90
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Psychic",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-088": {
+    "category": "Pokemon",
+    "id": "B1a-088",
+    "illustrator": "Souichirou Gunjima",
+    "localId": "088",
+    "name": "Oddish",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 50,
+    "types": [
+      "Grass"
+    ],
+    "description": "If exposed to moonlight, it starts to move.\nIt roams far and wide at night to scatter its seeds.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Poison Powder",
+        "effect": "Your opponent's Active Pokémon is now Poisoned.",
+        "damage": 10
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-087": {
+    "category": "Pokemon",
+    "id": "B1a-087",
+    "illustrator": "Nurikabe",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/087",
+    "localId": "087",
+    "name": "Mega Charizard Y ex",
+    "rarity": "Three Star",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 220,
+    "types": [
+      "Fire"
+    ],
+    "evolveFrom": "Charmeleon",
+    "description": "Its bond with its Trainer is the source of\nits power. It boasts speed and maneuverability\ngreater than that of a jet.",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Fire",
+          "Fire",
+          "Fire",
+          "Colorless"
+        ],
+        "name": "Crimson Dive",
+        "effect": "This Pokémon also does 50 damage to itself.",
+        "damage": 250
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-089": {
+    "category": "Pokemon",
+    "id": "B1a-089",
+    "illustrator": "Souichirou Gunjima",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/089",
+    "localId": "089",
+    "name": "Gloom",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Oddish",
+    "description": "Its pistils exude an incredibly foul odor.\nThe horrid stench can cause fainting at a distance\nof 1.25 miles.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Grass",
+          "Grass"
+        ],
+        "name": "Leaf Step",
+        "damage": 40
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-091": {
+    "category": "Pokemon",
+    "id": "B1a-091",
+    "illustrator": "Taiga Kasai",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/091",
+    "localId": "091",
+    "name": "Charizard",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 150,
+    "types": [
+      "Fire"
+    ],
+    "evolveFrom": "Charmeleon",
+    "description": "Its wings can carry this Pokémon close to an\naltitude of 4,600 feet. It blows out fire at very\nhigh temperatures.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Fire",
+          "Fire",
+          "Fire",
+          "Colorless"
+        ],
+        "name": "Inferno Onrush",
+        "effect": "This Pokémon also does 30 damage to itself.",
+        "damage": 150
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Water",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-090": {
+    "category": "Pokemon",
+    "id": "B1a-090",
+    "illustrator": "Souichirou Gunjima",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/090",
+    "localId": "090",
+    "name": "Vileplume",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 140,
+    "types": [
+      "Grass"
+    ],
+    "evolveFrom": "Gloom",
+    "description": "It has the world's largest petals. With every step,\nthe petals shake out heavy clouds of toxic pollen.",
+    "stage": "Stage2",
+    "attacks": [
+      {
+        "cost": [
+          "Grass",
+          "Grass",
+          "Colorless"
+        ],
+        "name": "Soothing Scent",
+        "effect": "Your opponent's Active Pokémon is now Asleep.",
+        "damage": 80
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-092": {
+    "category": "Pokemon",
+    "id": "B1a-092",
+    "illustrator": "whomor Inc.",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/092",
+    "localId": "092",
+    "name": "Shellder",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 70,
+    "types": [
+      "Water"
+    ],
+    "description": "It is encased in a shell that is harder than diamond.\nInside, however, it is surprisingly tender.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Water"
+        ],
+        "name": "Tackle",
+        "damage": 10
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-093": {
+    "category": "Pokemon",
+    "id": "B1a-093",
+    "illustrator": "whomor Inc.",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/093",
+    "localId": "093",
+    "name": "Cloyster",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 110,
+    "types": [
+      "Water"
+    ],
+    "evolveFrom": "Shellder",
+    "description": "Cloyster that live in seas with harsh tidal currents\ngrow large, sharp spikes on their shells.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Water",
+          "Water"
+        ],
+        "name": "Guard Press",
+        "effect": "During your opponent's next turn, this Pokémon takes −20 damage from attacks.",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Lightning",
+        "value": "+20"
+      }
+    ],
+    "retreat": 3,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-094": {
+    "category": "Pokemon",
+    "id": "B1a-094",
+    "illustrator": "MAHOU",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/094",
+    "localId": "094",
+    "name": "Sandshrew",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 60,
+    "types": [
+      "Fighting"
+    ],
+    "description": "It burrows into the ground to create its nest. If\nhard stones impede its tunneling, it uses its sharp\nclaws to shatter them and then carries on digging.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting"
+        ],
+        "name": "Sand Spray",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Grass",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-095": {
+    "category": "Pokemon",
+    "id": "B1a-095",
+    "illustrator": "MAHOU",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/095",
+    "localId": "095",
+    "name": "Sandslash",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 90,
+    "types": [
+      "Fighting"
+    ],
+    "evolveFrom": "Sandshrew",
+    "description": "It climbs trees by hooking on with its sharp claws.\nSandslash shares the berries it gathers, dropping\nthem down to Sandshrew waiting below the tree.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Fighting"
+        ],
+        "name": "Cut",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Grass",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-097": {
+    "category": "Pokemon",
+    "id": "B1a-097",
+    "illustrator": "Taiga Kasai",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/097",
+    "localId": "097",
+    "name": "Silvally",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 110,
+    "types": [
+      "Colorless"
+    ],
+    "evolveFrom": "Type: Null",
+    "description": "This is its form once it has awakened and\nevolved. Freed from its heavy mask, its speed is\ngreatly increased.",
+    "stage": "Stage1",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Brave Buddies",
+        "effect": "If you played a Supporter card from your hand during this turn, this attack does 50 more damage.",
+        "damage": 50
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-096": {
+    "category": "Pokemon",
+    "id": "B1a-096",
+    "illustrator": "Taiga Kasai",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/096",
+    "localId": "096",
+    "name": "Type: Null",
+    "rarity": "One Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 80,
+    "types": [
+      "Colorless"
+    ],
+    "description": "A Pokémon weapon developed for a specific\nmission, it went berserk during an experiment,\nso it was cryogenically frozen.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless"
+        ],
+        "name": "Quick Blow",
+        "effect": "Flip a coin. If heads, this attack does 20 more damage.",
+        "damage": 20
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-098": {
+    "category": "Pokemon",
+    "id": "B1a-098",
+    "illustrator": "PLANETA Mochizuki",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/098",
+    "localId": "098",
+    "name": "Buzzwole ex",
+    "rarity": "Two Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 140,
+    "types": [
+      "Grass"
+    ],
+    "stage": "Basic",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Punch",
+        "damage": 30
+      },
+      {
+        "cost": [
+          "Grass",
+          "Grass",
+          "Colorless"
+        ],
+        "name": "Big Beat",
+        "effect": "During your next turn, this Pokémon can't use Big Beat.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-100": {
+    "category": "Pokemon",
+    "id": "B1a-100",
+    "illustrator": "PLANETA Yamashita",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/100",
+    "localId": "100",
+    "name": "Guzzlord ex",
+    "rarity": "Two Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 170,
+    "types": [
+      "Darkness"
+    ],
+    "stage": "Basic",
+    "suffix": "EX",
+    "attacks": [
+      {
+        "cost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Grindcore",
+        "effect": "Flip a coin until you get tails. For each heads, discard a random Energy from your opponent's Active Pokémon.",
+        "damage": 30
+      },
+      {
+        "cost": [
+          "Darkness",
+          "Darkness",
+          "Darkness",
+          "Colorless"
+        ],
+        "name": "Tyrannical Hole",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Grass",
+        "value": "+20"
+      }
+    ],
+    "retreat": 4,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-103": {
+    "category": "Trainer",
+    "id": "B1a-103",
+    "illustrator": "Studio Bora Inc.",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/103",
+    "localId": "103",
+    "name": "Quick-Grow Extract",
+    "rarity": "Crown",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "effect": "Choose 1 of your {G} Pokémon in play. Put a random {G} Pokémon from your deck that evolves from that Pokémon onto that Pokémon to evolve it. You can't use this card during your first turn or on a Pokémon that was put into play this turn.",
+    "trainerType": "Item",
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-099": {
+    "category": "Pokemon",
+    "id": "B1a-099",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/099",
+    "localId": "099",
+    "name": "Lunala ex",
+    "rarity": "Two Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 180,
+    "types": [
+      "Psychic"
+    ],
+    "evolveFrom": "Cosmoem",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Psychic Connect",
+        "effect": "Once during your turn, you may move all {P} Energy from 1 of your Benched {P} Pokémon to your Active Pokémon."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Psychic",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Lunar Blast",
+        "damage": 100
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Darkness",
+        "value": "+20"
+      }
+    ],
+    "retreat": 1,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-101": {
+    "category": "Pokemon",
+    "id": "B1a-101",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/101",
+    "localId": "101",
+    "name": "Solgaleo ex",
+    "rarity": "Two Shiny",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 180,
+    "types": [
+      "Metal"
+    ],
+    "evolveFrom": "Cosmoem",
+    "stage": "Stage2",
+    "suffix": "EX",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Rising Road",
+        "effect": "Once during your turn, if this Pokémon is on your Bench, you may switch it with your Active Pokémon."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Metal",
+          "Metal"
+        ],
+        "name": "Sol Breaker",
+        "effect": "This Pokémon also does 10 damage to itself.",
+        "damage": 120
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "B1A-102": {
+    "category": "Pokemon",
+    "id": "B1a-102",
+    "illustrator": "PLANETA CG Works",
+    "image": "https://assets.tcgdex.net/en/tcgp/B1a/102",
+    "localId": "102",
+    "name": "Aegislash",
+    "rarity": "Crown",
+    "set": {
+      "cardCount": {
+        "official": 69,
+        "total": 103
+      },
+      "id": "B1a",
+      "name": "Crimson Blaze"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": true,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard"
+      },
+      {
+        "type": "reverse",
+        "size": "standard"
+      },
+      {
+        "type": "holo",
+        "size": "standard"
+      }
+    ],
+    "hp": 140,
+    "types": [
+      "Metal"
+    ],
+    "evolveFrom": "Doublade",
+    "description": "Once upon a time, a king with an Aegislash\nreigned over the land. His Pokémon eventually\ndrained him of life, and his kingdom fell with him.",
+    "stage": "Stage2",
+    "abilities": [
+      {
+        "type": "Ability",
+        "name": "Cursed Metal",
+        "effect": "Attacks used by your {P} Pokémon and {M} Pokémon do +30 damage to your opponent's Active Pokémon."
+      }
+    ],
+    "attacks": [
+      {
+        "cost": [
+          "Metal",
+          "Colorless",
+          "Colorless"
+        ],
+        "name": "Slicing Blade",
+        "damage": 70
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "+20"
+      }
+    ],
+    "retreat": 2,
+    "legal": {
+      "standard": false,
+      "expanded": false
+    },
+    "updated": "2025-12-22T19:27:06Z",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
   }
 }

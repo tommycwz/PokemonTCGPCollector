@@ -75,6 +75,11 @@
       <div id="rarity-chips" class="segmented multi chips-scroll" aria-label="Rarity filter">
         <button type="button" class="chip" [class.active]="selectedRarities.length===0" (click)="clearRarity()"
           title="All rarities">ALL</button>
+        <!-- Ensure Rainbow SAR chip is visible even if data symbols are ☆☆ -->
+        <button type="button" class="chip" *ngIf="!hasRaritySymbol('🌈')"
+          [class.active]="isRaritySelected('🌈')" (click)="toggleRarity('🌈')" [title]="'🌈 - Special Art Rare'">
+          🌈
+        </button>
         <button type="button" class="chip" *ngFor="let group of availableRaritySymbols"
           [class.active]="isRaritySelected(group.symbol)" (click)="toggleRarity(group.symbol)"
           [title]="group.displayName">
