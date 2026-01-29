@@ -34,10 +34,12 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     // Get valid rarities
     const matchList = rarityGroups[rarity] || [rarity];
 
-    // Filter cards by rarity and set
+    // Filter cards by rarity and set (compare by symbol derived from code)
     const filtered = cards.filter((card: Card) => {
       if (!card) return false;
-      const matchesRarity = matchList.includes(card.rarity);
+      const code = this.getCardRarityCode(card);
+      const symbol = code ? this.rarityService.getSymbol(code) : '';
+      const matchesRarity = matchList.includes(symbol);
       const matchesSet = set === 'all' || (card.set && card.set.toUpperCase() === setId);
       return matchesRarity && matchesSet;
     });
@@ -141,6 +143,16 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     const groups = this.getGroupedCards();
     return Array.isArray(groups) ? groups.flatMap(group => group.cards) : [];
   }
+  /** Helper to get card name, supporting both old and new schema */
+  getCardName(card: Card): string {
+    const anyCard = card as any;
+    return (anyCard.name && typeof anyCard.name === 'string') ? anyCard.name : (card.label?.eng || '');
+  }
+  /** Helper to get image filename, supporting both old and new schema */
+  getCardImageName(card: Card): string {
+    const anyCard = card as any;
+    return (anyCard.image && typeof anyCard.image === 'string') ? anyCard.image : (anyCard.imageName || '');
+  }
   cards: Card[] = [];
   filteredCards: Card[] = [];
   sets: SetInfo[] = [];
@@ -209,29 +221,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   // Filters visibility (mobile toggle)
   filtersOpen = false;
 
-  // Trade modal state
-  showTradeModal = false;
-  selectedTradeRarities: string[] = [];
-  // Trade modal set selection (multi-select)
-  availableTradeSets: string[] = [];
-  // Separate selections for Looking For (LF) and For Trade (FT)
-  selectedLFsets: string[] = [];
-  selectedFTsets: string[] = [];
-  lfSetDropdownOpen: boolean = false;
-  ftSetDropdownOpen: boolean = false;
-  tradeQuantityMin = 2;
-  // Friend code shown/edited in Trade modal (not persisted)
-  tradeFriendCode: string = '';
-  // Optional template text appended to copied trade text (not persisted)
-  tradeTemplateText: string = 'Please ping me if there is any possible trades. \nENGLISH cards only please.';
-  // Rarity symbols that are not tradable
-  private readonly excludedTradeSymbols = new Set<string>(['☆☆☆', '👑']);
-  // Exclude special packs toggle (Trade modal only)
-  excludeSpecialPacks: boolean = true;
-  // Deluxe & Special packs only toggle (Trade modal only, shown when excludeSpecialPacks is unchecked)
-  tradeDeluxeSpecialOnly: boolean = false;
-  // Trade modal: output format ('discord' for compact LF/FT, 'details' for per-card lines)
-  outputFormat: 'discord' | 'details' = 'discord';
+  // Trade modal functionality removed
 
   // View Others modal state
   showViewOthersModal = false;
@@ -366,36 +356,10 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
     this.availableRarities = uniqueRaritySymbols.map(symbol => rarityCodeMap.get(symbol) || symbol);
 
-    // Use standardized rarity service to group rarities by symbols
-    this.availableRaritySymbols = [];
-
-    // Get unique rarity codes present in data, preferring explicit rarityCode when available
-    const normalizedCodes = new Set<string>();
-    this.cards.forEach(card => {
-      const explicitCode = (card as any).rarityCode as string | undefined;
-      const code = (explicitCode && explicitCode.trim()) ? explicitCode.trim() : rarityCodeMap.get(card.rarity);
-      if (code) {
-        const normalizedCode = this.rarityService.getNormalizedCode(code);
-        normalizedCodes.add(normalizedCode);
-      }
-    });
-
-    // Convert to available rarity symbols using unified rarities, ensuring no duplicates
-    const symbolMap = new Map<string, { symbol: string, rarities: string[], displayName: string }>();
-
+    // Show all standardized rarities from service (not limited by data presence)
     const unifiedRarities = this.rarityService.getUnifiedRarities();
-    unifiedRarities.forEach(rarityInfo => {
-      if (normalizedCodes.has(rarityInfo.code)) {
-        // Use symbol as key to prevent duplicates
-        symbolMap.set(rarityInfo.symbol, {
-          symbol: rarityInfo.symbol,
-          rarities: [rarityInfo.code],
-          displayName: rarityInfo.displayName
-        });
-      }
-    });
-
-    this.availableRaritySymbols = Array.from(symbolMap.values())
+    this.availableRaritySymbols = unifiedRarities
+      .map(r => ({ symbol: r.symbol, rarities: [r.code], displayName: r.displayName }))
       .sort((a, b) => {
         const orderA = this.rarityService.getRarityOrder(a.rarities[0]);
         const orderB = this.rarityService.getRarityOrder(b.rarities[0]);
@@ -503,21 +467,12 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
   }
 
   extractAvailableTypes(): void {
-    // Extract unique types from all cards
-    const allTypes = this.cards
-      .flatMap(card => Array.isArray(card.types) ? card.types : [])
-      .filter(type => typeof type === 'string' && type.trim());
+    // New schema: derive types from element (grass, fire, water, etc.)
+    const allElements = this.cards
+      .map(card => ((card as any).element as string | undefined)?.toLowerCase().trim())
+      .filter((el): el is string => !!el);
 
-    const specialLast = ['Item', 'Tool', 'Supporter'];
-
-    this.availableTypes = [...new Set(allTypes)].sort((a, b) => {
-      const isSpecialA = specialLast.includes(a);
-      const isSpecialB = specialLast.includes(b);
-
-      if (isSpecialA && !isSpecialB) return 1;   // A goes after B
-      if (!isSpecialA && isSpecialB) return -1;  // A goes before B
-      return a.localeCompare(b);                 // normal alphabetical order
-    });
+    this.availableTypes = [...new Set(allElements)].sort((a, b) => a.localeCompare(b));
   }
 
   applyFilters(): void {
@@ -553,11 +508,10 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         }
       }
 
-      // Types filter (multi-select). If none selected -> no filter
+      // Types filter (multi-select) using element field in new schema
       if (this.selectedTypes.length > 0) {
-        const cardTypes = Array.isArray(card.types) ? card.types : [];
-        const hasMatchingType = cardTypes.some(type => this.selectedTypes.includes(type));
-        if (!hasMatchingType) {
+        const element = ((card as any).element as string | undefined)?.toLowerCase().trim();
+        if (!element || !this.selectedTypes.includes(element)) {
           return false;
         }
       }
@@ -571,8 +525,9 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
         }
       }
 
-      // Search filter
-      if (this.searchTerm && !card.label.eng.toLowerCase().includes(this.searchTerm.toLowerCase())) {
+      // Search filter on name (new) or label.eng (old)
+      const nameToSearch = this.getCardName(card);
+      if (this.searchTerm && !nameToSearch.toLowerCase().includes(this.searchTerm.toLowerCase())) {
         return false;
       }
 
@@ -616,7 +571,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
           if (!aPromo && bPromo) return -1;
           const cmp = compareSetKeyAsc(a.set, b.set);
           if (cmp !== 0) return cmp;
-          return a.number - b.number;
+          if (a.number !== b.number) return a.number - b.number;
+          return this.getCardName(a).localeCompare(this.getCardName(b));
         });
         break;
       case 'latest':
@@ -628,7 +584,8 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
           if (!aPromo && bPromo) return -1;
           const cmp = compareSetKeyAsc(b.set, a.set);
           if (cmp !== 0) return cmp;
-          return b.number - a.number;
+          if (a.number !== b.number) return b.number - a.number;
+          return this.getCardName(a).localeCompare(this.getCardName(b));
         });
         break;
     }
@@ -713,146 +670,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     return c.startsWith('P-') || c.endsWith('-P') || c === 'P-A' || c.startsWith('PROMO') || c.startsWith('A4B');
   }
 
-  // Trade modal methods
-  openTradeModal(): void {
-    if (this.isViewingOther) return;
-    // Initialize modal friend code from current profile (do not persist changes)
-    this.tradeFriendCode = this.currentUser?.friend_code || '';
-    // Remove any excluded rarities from current selection
-    this.selectedTradeRarities = this.selectedTradeRarities.filter(s => !this.isTradeRarityDisabled(s));
-    // Initialize sets for trade modal based on current excludeSpecialPacks setting
-  this.refreshAvailableTradeSets();
-    // Ensure selection is valid for both LF and FT
-    // Default: select all sets if empty or mismatch with current availability
-    if (!this.selectedLFsets || this.selectedLFsets.length === 0 || this.selectedLFsets.length !== this.availableTradeSets.length) {
-      this.selectedLFsets = [...this.availableTradeSets];
-    } else {
-      this.selectedLFsets = this.selectedLFsets.filter(s => this.availableTradeSets.includes(s));
-    }
-    if (!this.selectedFTsets || this.selectedFTsets.length === 0 || this.selectedFTsets.length !== this.availableTradeSets.length) {
-      this.selectedFTsets = [...this.availableTradeSets];
-    } else {
-      this.selectedFTsets = this.selectedFTsets.filter(s => this.availableTradeSets.includes(s));
-    }
-    this.lfSetDropdownOpen = false;
-    this.ftSetDropdownOpen = false;
-    this.showTradeModal = true;
-    this.cdr.detectChanges();
-  }
-
-  closeTradeModal(): void {
-    this.showTradeModal = false;
-    this.cdr.detectChanges();
-  }
-
-  isTradeRaritySelected(symbol: string): boolean {
-    return this.selectedTradeRarities.includes(symbol);
-  }
-
-  toggleTradeRarity(symbol: string): void {
-    if (this.isTradeRarityDisabled(symbol)) { return; }
-    const idx = this.selectedTradeRarities.indexOf(symbol);
-    if (idx >= 0) {
-      this.selectedTradeRarities.splice(idx, 1);
-    } else {
-      this.selectedTradeRarities.push(symbol);
-    }
-    this.cdr.detectChanges();
-  }
-
-  isTradeRarityDisabled(symbol: string): boolean {
-    return this.excludedTradeSymbols.has(symbol);
-  }
-
-  // Rarity symbols to display in Trade modal (exclude non-tradable ones)
-  getAvailableTradeRaritySymbols(): { symbol: string, rarities: string[], displayName: string }[] {
-    return (this.availableRaritySymbols || []).filter(g => !this.excludedTradeSymbols.has(g.symbol));
-  }
-
-  clearTradeRarities(): void {
-    this.selectedTradeRarities = [];
-    this.cdr.detectChanges();
-  }
-
-  // ----- Trade modal: Set multi-select helpers -----
-  private refreshAvailableTradeSets(): void {
-    // Build list of set codes from loaded sets, optionally excluding special sets
-    const codes = (this.sets || []).map(s => s.code);
-    const filtered = codes.filter(code => !!code && (!this.excludeSpecialPacks || !this.isSpecialSet(code)));
-    // Sort by set code ascending using pattern (A1, A2, A4a, A4b, etc.)
-    const pattern = /^([A-Z]+)(\d+)([a-z]*)$/;
-    filtered.sort((a, b) => {
-      const ma = a.match(pattern); const mb = b.match(pattern);
-      if (ma && mb) {
-        if (ma[1] !== mb[1]) return ma[1].localeCompare(mb[1]);
-        const na = parseInt(ma[2], 10); const nb = parseInt(mb[2], 10);
-        if (na !== nb) return na - nb;
-        return (ma[3] || '').localeCompare(mb[3] || '');
-      }
-      return a.localeCompare(b);
-    });
-    this.availableTradeSets = filtered;
-  }
-
-  onExcludeSpecialPacksToggle(): void {
-    // When the exclude toggle changes, refresh available sets and sanitize selection
-    this.refreshAvailableTradeSets();
-    const lfHadAll = this.selectedLFsets && this.selectedLFsets.length === this.availableTradeSets.length;
-    const ftHadAll = this.selectedFTsets && this.selectedFTsets.length === this.availableTradeSets.length;
-    this.selectedLFsets = (this.selectedLFsets || []).filter(s => this.availableTradeSets.includes(s));
-    this.selectedFTsets = (this.selectedFTsets || []).filter(s => this.availableTradeSets.includes(s));
-    // If previously all were selected, continue selecting all after refresh
-    if (lfHadAll) this.selectedLFsets = [...this.availableTradeSets];
-    if (ftHadAll) this.selectedFTsets = [...this.availableTradeSets];
-    this.cdr.detectChanges();
-  }
-
-  onDeluxeSpecialToggle(): void {
-    // When Deluxe & Special is checked, default LF to A4B (Deluxe A)
-    if (this.tradeDeluxeSpecialOnly) {
-      const a4bSet = this.availableTradeSets.find(s => s.toUpperCase() === 'A4B');
-      if (a4bSet) {
-        this.selectedLFsets = [a4bSet];
-      }
-    }
-    this.cdr.detectChanges();
-  }
-
-  // LF sets helpers
-  isLFSetSelected(setCode: string): boolean {
-    return this.selectedLFsets.includes(setCode);
-  }
-  toggleLFSet(setCode: string): void {
-    const idx = this.selectedLFsets.indexOf(setCode);
-    if (idx >= 0) this.selectedLFsets.splice(idx, 1); else this.selectedLFsets.push(setCode);
-    this.cdr.detectChanges();
-  }
-  clearLFsets(): void {
-    this.selectedLFsets = [];
-    this.cdr.detectChanges();
-  }
-  selectAllLFsets(): void {
-    this.selectedLFsets = [...this.availableTradeSets];
-    this.cdr.detectChanges();
-  }
-
-  // FT sets helpers
-  isFTSetSelected(setCode: string): boolean {
-    return this.selectedFTsets.includes(setCode);
-  }
-  toggleFTSet(setCode: string): void {
-    const idx = this.selectedFTsets.indexOf(setCode);
-    if (idx >= 0) this.selectedFTsets.splice(idx, 1); else this.selectedFTsets.push(setCode);
-    this.cdr.detectChanges();
-  }
-  clearFTsets(): void {
-    this.selectedFTsets = [];
-    this.cdr.detectChanges();
-  }
-  selectAllFTsets(): void {
-    this.selectedFTsets = [...this.availableTradeSets];
-    this.cdr.detectChanges();
-  }
+  // Trade modal methods removed
 
   // View Others modal methods
   openViewOthersModal(): void {
@@ -881,256 +699,20 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       alert('Please enter a username');
       return;
     }
-    // Build relative app URL and respect <base href> for different hosting contexts
     const tree = this.router.createUrlTree(['/collection'], { queryParams: { otherUser: username } });
-    const url = this.router.serializeUrl(tree); // e.g. "/collection?otherUser=..."
+    const url = this.router.serializeUrl(tree);
 
     const baseEl = document.querySelector('base');
     const baseAttr = (baseEl?.getAttribute('href') || '/').trim();
 
-    // Normalize base and construct final URL
     let finalUrl: string;
     if (/^https?:\/\//i.test(baseAttr)) {
-      // Absolute base (e.g., GitHub Pages). Avoid double slashes.
       finalUrl = baseAttr.replace(/\/$/, '') + url;
     } else {
-      // Relative base (dev: '/')
       finalUrl = baseAttr.replace(/\/$/, '') + url;
     }
 
     window.open(finalUrl, '_blank', 'noopener');
-  }
-
-  // Close trade set dropdowns when clicking outside their containers
-  @HostListener('document:click', ['$event'])
-  onDocumentClickCloseTradeDropdowns(event: MouseEvent): void {
-    if (!this.showTradeModal) return;
-    const target = event.target as Node | null;
-    const lfContainer = document.getElementById('lf-set-multiselect');
-    const ftContainer = document.getElementById('ft-set-multiselect');
-
-    const insideLF = !!(lfContainer && target && lfContainer.contains(target));
-    const insideFT = !!(ftContainer && target && ftContainer.contains(target));
-
-    if (!insideLF && this.lfSetDropdownOpen) {
-      this.lfSetDropdownOpen = false;
-      this.cdr.detectChanges();
-    }
-    if (!insideFT && this.ftSetDropdownOpen) {
-      this.ftSetDropdownOpen = false;
-      this.cdr.detectChanges();
-    }
-  }
-
-  async generateAndCopyTradeText(): Promise<void> {
-    try {
-      const tradeText = this.generateTradeText();
-      await navigator.clipboard.writeText(tradeText);
-      // Leave modal open so user can refine filters or copy again.
-    } catch (error) {
-      console.error('Failed to copy to clipboard:', error);
-      alert('Failed to copy to clipboard. Please try again.');
-    }
-  }
-
-  private generateTradeText(): string {
-    // Determine active rarity filter without mutating component state
-    const defaultTradeRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆', '✵', '✵✵'];
-    const activeRarities = (this.selectedTradeRarities && this.selectedTradeRarities.length > 0)
-      ? this.selectedTradeRarities
-      : defaultTradeRarities;
-
-
-    // Looking for: missing cards (owned = 0), matching active rarities, excluding blocked sets (and optional special packs)
-    const lookingForCards = this.cards.filter(card => {
-      // When Deluxe & Special mode is active, don't exclude special sets
-      if (this.excludeSpecialPacks && !this.tradeDeluxeSpecialOnly && this.isSpecialSet(card.set)) return false;
-      
-      // If Deluxe & Special only mode, ONLY show cards from special sets
-      if (this.tradeDeluxeSpecialOnly && !this.isSpecialSet(card.set)) return false;
-      
-      const cardRarityCode = this.getCardRarityCode(card);
-      const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
-      if (sym && !activeRarities.includes(sym)) return false;
-      // Set inclusion filter (LF): if some sets selected, require card.set to be selected
-      if (this.selectedLFsets.length > 0 && !this.selectedLFsets.includes(card.set)) return false;
-      // If Deluxe & Special only mode, show only foil cards in LF
-      if (this.tradeDeluxeSpecialOnly) {
-        if ((card as any).isFoil !== true) return false;
-      }
-      return this.getOwnedCount(card) === 0;
-    });
-
-    const lookingBySet = lookingForCards.reduce((groups: { [key: string]: Card[] }, card) => {
-      (groups[card.set] ||= []).push(card);
-      return groups;
-    }, {} as { [key: string]: Card[] });
-
-    let result = '';
-    if (this.outputFormat === 'details') {
-      return this.generateDetailsTradeText();
-    }
-
-    // Helper to format card name list per rules: 1 -> single name, 2 -> 'A & B', >2 -> 'A, B, C'
-    // Add (foil) suffix for foil cards
-    const formatNames = (cards: Card[]) => {
-      const names = cards.map(c => {
-        const name = c.label?.eng || '';
-        const isFoil = (c as any).isFoil === true;
-        return isFoil ? `${name} (foil)` : name;
-      });
-      if (names.length === 0) return '';
-      if (names.length === 1) return names[0];
-      if (names.length === 2) return `${names[0]} & ${names[1]}`;
-      return names.join(', ');
-    };
-
-    result += 'LF:\n';
-    // Sort sets by their short name for consistent output
-    const lfEntries = Object.entries(lookingBySet).filter(([, cards]) => cards.length > 0)
-      .sort((a, b) => this.compareSetCodesAsc(a[0], b[0]));
-    for (const [setCode, setCards] of lfEntries) {
-      const setLabel = this.getSetShortName(setCode);
-      // Within set, order by card number then name
-      setCards.sort((a, b) => (a.number - b.number) || a.label.eng.localeCompare(b.label.eng));
-      // LF: keep the hyphen but do not include card ids
-      const line = formatNames(setCards);
-      if (!line) continue;
-      result += `[${setLabel}] ${line}\n`;
-    }
-
-    result += '\nFT:\n';
-    // For trade: quantity >= threshold, matching active rarities, excluding blocked/special sets and excluded symbols
-    const forTradeCards = this.cards.filter(card => {
-      if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
-      const cardRarityCode = this.getCardRarityCode(card);
-      const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
-      if (sym && !activeRarities.includes(sym)) return false;
-      if (sym && this.excludedTradeSymbols.has(sym)) return false;
-      // Set inclusion filter (FT)
-      if (this.selectedFTsets.length > 0 && !this.selectedFTsets.includes(card.set)) return false;
-      // Filter by minimum keep count - only trade cards above minimum
-      const ownedCount = this.getOwnedCount(card);
-      const minKeep = this.getCardMinimumKeepCount(card);
-      const availableForTrade = ownedCount - minKeep;
-      if (availableForTrade < this.tradeQuantityMin) return false;
-      // No foil filter in FT - show all cards with enough quantity above minimum
-      return true;
-    });
-
-    const tradeBySet = forTradeCards.reduce((groups: { [key: string]: Card[] }, card) => {
-      (groups[card.set] ||= []).push(card);
-      return groups;
-    }, {} as { [key: string]: Card[] });
-
-    // Format FT entries similarly to LF (one line per set)
-    const ftEntries = Object.entries(tradeBySet).filter(([, cards]) => cards.length > 0)
-      .sort((a, b) => this.compareSetCodesAsc(a[0], b[0]));
-    for (const [setCode, setCards] of ftEntries) {
-      const setLabel = this.getSetShortName(setCode);
-      // Within set, order by card number then name
-      setCards.sort((a, b) => (a.number - b.number) || a.label.eng.localeCompare(b.label.eng));
-      // FT: remove the hyphen and do not include card ids
-      const line = formatNames(setCards);
-      if (!line) continue;
-      result += `[${setLabel}] ${line}\n`;
-    }
-
-    const templateLine = (this.tradeTemplateText || '').trim();
-    const friendLine = (this.tradeFriendCode || '').trim();
-    const usernameLine = (this.currentUser?.username || '').trim();
-
-    result += '\n=============================================================================';
-    if (templateLine) {
-      result += `\n${templateLine}\n`;
-    }
-
-    if (friendLine || usernameLine) {
-      if (usernameLine) {
-        result += `\nIGN: ${usernameLine}`;
-      }
-      if (friendLine) {
-        result += `\nFriend code: ${friendLine}`;
-      }
-    }
-
-    return result.trim();
-  }
-
-  // Compare set codes like A1, A2, A4a, A4b in ascending logical order
-  private compareSetCodesAsc(as: string, bs: string): number {
-    const pattern = /^([A-Z]+)(\d+)([a-z]*)$/;
-    const pa = (as || '').match(pattern);
-    const pb = (bs || '').match(pattern);
-    if (pa && pb) {
-      if (pa[1] !== pb[1]) return pa[1].localeCompare(pb[1]);
-      const na = parseInt(pa[2], 10); const nb = parseInt(pb[2], 10);
-      if (na !== nb) return na - nb;
-      return (pa[3] || '').localeCompare(pb[3] || '');
-    }
-    return (as || '').localeCompare(bs || '');
-  }
-
-  // Generate detailed per-card output (missing cards only) grouped by set and rarity
-  private generateDetailsTradeText(): string {
-    // Active rarity symbols filter (like in discord mode) default selection if none chosen
-    const defaultTradeRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆', '✵', '✵✵'];
-    const activeRarities = (this.selectedTradeRarities && this.selectedTradeRarities.length > 0)
-      ? this.selectedTradeRarities
-      : defaultTradeRarities;
-
-    // Missing (Looking For) cards filtered by LF sets
-    const lfCards = this.cards.filter(card => {
-      if (this.excludeSpecialPacks && this.isSpecialSet(card.set)) return false;
-      if (this.selectedLFsets.length > 0 && !this.selectedLFsets.includes(card.set)) return false;
-      const cardRarityCode = this.getCardRarityCode(card);
-      const sym = cardRarityCode ? this.rarityService.getSymbol(cardRarityCode) : '';
-      if (sym && !activeRarities.includes(sym)) return false;
-      return this.getOwnedCount(card) === 0;
-    });
-
-    // Group by set then rarity symbol
-    interface RarityGroup { [raritySymbol: string]: Card[] }
-    const bySet: { [setCode: string]: RarityGroup } = {};
-    for (const card of lfCards) {
-      const setCode = card.set;
-      const rarityCode = this.getCardRarityCode(card);
-      const symbol = rarityCode ? this.rarityService.getSymbol(rarityCode) : 'Unknown';
-      if (!bySet[setCode]) bySet[setCode] = {};
-      if (!bySet[setCode][symbol]) bySet[setCode][symbol] = [];
-      bySet[setCode][symbol].push(card);
-    }
-
-    // Rarity ordering (descending emphasis similar to sample): diamonds (more) -> stars -> crowns/implied -> others
-    const rarityPriority = (sym: string): number => {
-      const order = ['◊◊◊◊', '◊◊◊', '◊◊', '◊', '☆☆', '☆', '✵✵', '✵'];
-      const idx = order.indexOf(sym);
-      return idx >= 0 ? idx : 999;
-    };
-
-    const lines: string[] = [];
-    const setCodes = Object.keys(bySet).sort((a, b) => this.compareSetCodesAsc(a, b));
-
-    const slugify = (shortName: string, setCode: string) => {
-      return `${(shortName || setCode).toLowerCase().replace(/\s+/g, '')}(${setCode.toLowerCase()}):`;
-    };
-
-    for (const setCode of setCodes) {
-      const setShort = this.getSetShortName(setCode);
-      const rarityGroups = bySet[setCode];
-      const symbols = Object.keys(rarityGroups).sort((a, b) => rarityPriority(a) - rarityPriority(b));
-      for (const sym of symbols) {
-        const header = slugify(setShort, setCode);
-        lines.push(header);
-        const cards = rarityGroups[sym]
-          .sort((a, b) => (a.number - b.number) || a.label.eng.localeCompare(b.label.eng));
-        for (const c of cards) {
-          lines.push(`${sym} ${c.set}-${c.number} - ${c.label.eng}`);
-        }
-        lines.push(''); // blank line after each rarity group
-      }
-    }
-    return lines.join('\n').trim();
   }
 
   // Card ownership management
@@ -1472,12 +1054,12 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
 
   // Utility methods
   getSetName(setCode: string): string {
-    const set = this.sets.find(s => s.code === setCode);
+    const set = this.sets.find(s => (s.code || '').toUpperCase() === (setCode || '').toUpperCase());
     return set ? set.name : setCode;
   }
 
   getSetShortName(setCode: string): string {
-    const set = this.sets.find(s => s.code === setCode);
+    const set = this.sets.find(s => (s.code || '').toUpperCase() === (setCode || '').toUpperCase());
     return set ? set.shortName : setCode;
   }
 
@@ -1528,7 +1110,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
       const primaryPack = (card.packs && card.packs.length > 0) ? card.packs[0] : '';
 
       // Escape commas in card names
-      const cardName = card.label.eng.replace(/,/g, '""');
+      const cardName = this.getCardName(card).replace(/,/g, '""');
 
       csvContent += `${cardId},"${cardName}",${ownedCount},${card.set},"${primaryPack}",${raritySymbol}\n`;
     });
@@ -1918,14 +1500,14 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
    * Get display name for card (format: "A4b-1 - Bulbasaur")
    */
   getCardDisplayName(card: Card): string {
-    return `${card.set}-${card.number} – ${card.label.eng}`;
+    return `${card.set}-${card.number} – ${this.getCardName(card)}`;
   }
 
   /**
    * Handle image error events
    */
   onImageError(event: Event, card: Card): void {
-    console.error('❌ Image failed to load:', card.imageName);
+    console.error('❌ Image failed to load:', this.getCardImageName(card));
     const imgElement = event.target as HTMLImageElement;
     imgElement.src = this.imageService.getPlaceholderImageUrl();
   }
@@ -1986,7 +1568,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     const cardComparator = (a: Card, b: Card) => {
       // Default within-set order: number ascending then name
       if (a.number !== b.number) return a.number - b.number;
-      return a.label.eng.localeCompare(b.label.eng);
+      return this.getCardName(a).localeCompare(this.getCardName(b));
     };
 
     // Convert to array honoring current sort mode
@@ -2020,7 +1602,10 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
           break;
 
         case 'type':
-          groupKey = (card.types && card.types.length > 0) ? card.types[0] : 'No Type';
+          {
+            const el = ((card as any).element as string | undefined)?.toLowerCase().trim();
+            groupKey = el || 'No Type';
+          }
           break;
 
         default:
@@ -2051,7 +1636,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
     // Sort cards within each group
     const cardComparator = (a: Card, b: Card) => {
       if (a.number !== b.number) return a.number - b.number;
-      return a.label.eng.localeCompare(b.label.eng);
+      return this.getCardName(a).localeCompare(this.getCardName(b));
     };
 
     return sortedGroupKeys.map(groupKey => ({

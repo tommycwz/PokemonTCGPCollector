@@ -9,9 +9,6 @@
         📥 Import Collection
         <input type="file" accept=".csv" (change)="importCollection($event)" hidden>
       </label>
-      <button class="btn btn-secondary" (click)="openTradeModal()" [disabled]="isViewingOther">
-        📋 Copy For Trade
-      </button>
       <button class="btn btn-secondary" (click)="openViewOthersModal()" [disabled]="isViewingOther">
         👤 View Others Collection
       </button>
@@ -221,7 +218,7 @@
 
           <!-- Card Image -->
           <div class="card-image" [class.no-quantity]="getOwnedCount(card) === 0">
-            <img [src]="getCardImageUrl(card.imageName)" [alt]="card.label.eng + ' Pokemon Card'"
+            <img [src]="getCardImageUrl(getCardImageName(card))" [alt]="getCardName(card) + ' Pokemon Card'"
               class="pokemon-card-img" [class.no-quantity]="getOwnedCount(card) === 0" loading="lazy"
               (error)="onImageError($event, card)" (click)="openCardModal(card)" style="cursor: pointer;" />
           </div>
@@ -280,7 +277,7 @@
           
           <!-- Card Image Thumbnail -->
           <div class="card-list-image" (click)="openCardModal(card)">
-            <img [src]="getCardImageUrl(card.imageName)" [alt]="card.label.eng + ' Pokemon Card'"
+            <img [src]="getCardImageUrl(getCardImageName(card))" [alt]="getCardName(card) + ' Pokemon Card'"
               class="card-list-img" [class.no-quantity]="getOwnedCount(card) === 0" loading="lazy"
               (error)="onImageError($event, card)" />
           </div>
@@ -362,8 +359,6 @@
   <div class="fab-stack-left" aria-label="Filter controls">
     <button type="button" class="fab mobile-only" [attr.aria-pressed]="filtersOpen" title="Filters"
       (click)="toggleFilters()"><i class="fa fa-filter" aria-hidden="true"></i></button>
-    <button type="button" class="fab mobile-only" title="Copy For Trade" [disabled]="isViewingOther"
-      (click)="openTradeModal()"><i class="fa fa-exchange-alt" aria-hidden="true"></i></button>
     <button type="button" class="fab mobile-only" title="View Others Collection" [disabled]="isViewingOther"
       (click)="openViewOthersModal()"><i class="fa fa-user" aria-hidden="true"></i></button>
   </div>
@@ -394,132 +389,6 @@
     </div>
   </div>
 
-  <!-- Trade Modal -->
-  <div class="modal-backdrop" *ngIf="showTradeModal" (click)="closeTradeModal()">
-    <div class="modal-content trade-modal" (click)="$event.stopPropagation()">
-      <div class="modal-header">
-        <h3>Copy For Trade</h3>
-        <button class="modal-close" (click)="closeTradeModal()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="trade-config">
-          <div class="config-section">
-            <label class="config-label" for="exclude-special-toggle">
-              <input type="checkbox" id="exclude-special-toggle" [(ngModel)]="excludeSpecialPacks" (ngModelChange)="onExcludeSpecialPacksToggle()" />
-              Exclude "PROMO" and "Deluxe packs"
-            </label>
-          </div>
-          <div class="config-section" *ngIf="!excludeSpecialPacks">
-            <label class="config-label" for="deluxe-special-toggle">
-              <input type="checkbox" id="deluxe-special-toggle" [(ngModel)]="tradeDeluxeSpecialOnly" (ngModelChange)="onDeluxeSpecialToggle()" />
-              [SPECIAL] - Deluxe packs only
-            </label>
-          </div>
-          <!-- Looking For sets -->
-          <div class="config-section">
-            <label class="config-label" for="lf-set-multiselect">Include sets (Looking For):</label>
-            <div id="lf-set-multiselect" style="position:relative; display:inline-block; width:100%;">
-              <button type="button" (click)="lfSetDropdownOpen = !lfSetDropdownOpen"
-                style="width:100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); padding: 6px 10px; border-radius: 8px; display:flex; align-items:center; justify-content: space-between; cursor:pointer; font-size:14px;">
-                <span *ngIf="selectedLFsets.length === availableTradeSets.length">All Sets Selected ({{ availableTradeSets.length }})</span>
-                <span *ngIf="selectedLFsets.length !== availableTradeSets.length && selectedLFsets.length === 0">No Sets Selected</span>
-                <span *ngIf="selectedLFsets.length !== availableTradeSets.length && selectedLFsets.length === 1">1 Set Selected</span>
-                <span *ngIf="selectedLFsets.length !== availableTradeSets.length && selectedLFsets.length > 1">{{ selectedLFsets.length }} Sets Selected</span>
-                <i class="fa" [ngClass]="{'fa-chevron-down': !lfSetDropdownOpen, 'fa-chevron-up': lfSetDropdownOpen}"></i>
-              </button>
-              <div *ngIf="lfSetDropdownOpen"
-                style="position:absolute; left:0; right:0; top: calc(100% + 4px); background: #1e2533; border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:8px 8px 10px; box-shadow:0 6px 16px rgba(0,0,0,0.45); z-index:50; max-height:260px; overflow-y:auto;">
-                <div style="display:flex; gap:8px; margin-bottom:6px;">
-                  <button type="button" class="btn btn-outline" style="padding:4px 8px; font-size:11px; line-height:1;" (click)="clearLFsets()">Clear</button>
-                  <button type="button" class="btn btn-outline" style="padding:4px 8px; font-size:11px; line-height:1;" (click)="selectAllLFsets()">All</button>
-                </div>
-                <div role="listbox" style="display:flex; flex-direction:column; gap:2px;">
-                  <button type="button" *ngFor="let setCode of availableTradeSets" (click)="toggleLFSet(setCode)"
-                    [attr.aria-selected]="isLFSetSelected(setCode)"
-                    [ngStyle]="isLFSetSelected(setCode) ? {'background': 'var(--header-gradient)', 'color': '#fff'} : {'background':'transparent', 'color':'var(--text)'}"
-                    style="border:none; text-align:left; padding:4px 6px; border-radius:6px; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:6px;">
-                    <span style="width:16px; display:inline-block;">{{ isLFSetSelected(setCode) ? '✔' : '' }}</span>
-                    <span>{{ setCode }} – {{ getSetName(setCode) }}</span>
-                  </button>
-                  <div *ngIf="availableTradeSets.length === 0" style="font-size:12px; opacity:0.7; padding:4px;">No sets available</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- For Trade sets -->
-          <div class="config-section">
-            <label class="config-label" for="ft-set-multiselect">Include sets (For Trade):</label>
-            <div id="ft-set-multiselect" style="position:relative; display:inline-block; width:100%;">
-              <button type="button" (click)="ftSetDropdownOpen = !ftSetDropdownOpen"
-                style="width:100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: var(--text); padding: 6px 10px; border-radius: 8px; display:flex; align-items:center; justify-content: space-between; cursor:pointer; font-size:14px;">
-                <span *ngIf="selectedFTsets.length === availableTradeSets.length">All Sets Selected ({{ availableTradeSets.length }})</span>
-                <span *ngIf="selectedFTsets.length !== availableTradeSets.length && selectedFTsets.length === 0">No Sets Selected</span>
-                <span *ngIf="selectedFTsets.length !== availableTradeSets.length && selectedFTsets.length === 1">1 Set Selected</span>
-                <span *ngIf="selectedFTsets.length !== availableTradeSets.length && selectedFTsets.length > 1">{{ selectedFTsets.length }} Sets Selected</span>
-                <i class="fa" [ngClass]="{'fa-chevron-down': !ftSetDropdownOpen, 'fa-chevron-up': ftSetDropdownOpen}"></i>
-              </button>
-              <div *ngIf="ftSetDropdownOpen"
-                style="position:absolute; left:0; right:0; top: calc(100% + 4px); background: #1e2533; border:1px solid rgba(255,255,255,0.18); border-radius:10px; padding:8px 8px 10px; box-shadow:0 6px 16px rgba(0,0,0,0.45); z-index:50; max-height:260px; overflow-y:auto;">
-                <div style="display:flex; gap:8px; margin-bottom:6px;">
-                  <button type="button" class="btn btn-outline" style="padding:4px 8px; font-size:11px; line-height:1;" (click)="clearFTsets()">Clear</button>
-                  <button type="button" class="btn btn-outline" style="padding:4px 8px; font-size:11px; line-height:1;" (click)="selectAllFTsets()">All</button>
-                </div>
-                <div role="listbox" style="display:flex; flex-direction:column; gap:2px;">
-                  <button type="button" *ngFor="let setCode of availableTradeSets" (click)="toggleFTSet(setCode)"
-                    [attr.aria-selected]="isFTSetSelected(setCode)"
-                    [ngStyle]="isFTSetSelected(setCode) ? {'background': 'var(--header-gradient)', 'color': '#fff'} : {'background':'transparent', 'color':'var(--text)'}"
-                    style="border:none; text-align:left; padding:4px 6px; border-radius:6px; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:6px;">
-                    <span style="width:16px; display:inline-block;">{{ isFTSetSelected(setCode) ? '✔' : '' }}</span>
-                    <span>{{ setCode }} – {{ getSetName(setCode) }}</span>
-                  </button>
-                  <div *ngIf="availableTradeSets.length === 0" style="font-size:12px; opacity:0.7; padding:4px;">No sets available</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="config-section">
-            <label class="config-label">Include rarities:</label>
-            <div class="rarity-chips">
-              <button type="button" class="chip" [class.active]="selectedTradeRarities.length === 0"
-                (click)="clearTradeRarities()">ALL</button>
-              <button type="button" class="chip" *ngFor="let group of getAvailableTradeRaritySymbols()"
-                [class.active]="isTradeRaritySelected(group.symbol)" (click)="toggleTradeRarity(group.symbol)"
-                [title]="group.displayName">
-                {{ group.symbol }}
-              </button>
-            </div>
-          </div>
-          <div class="config-section">
-            <label class="config-label">Output format:</label>
-            <div class="segmented" role="tablist" aria-label="Output format">
-              <button type="button" role="tab" [class.active]="outputFormat==='discord'" (click)="outputFormat='discord'">DISCORD</button>
-              <button type="button" role="tab" [class.active]="outputFormat==='details'" (click)="outputFormat='details'">DETAILS</button>
-            </div>
-          </div>
-          <div class="config-section">
-            <label class="config-label" for="trade-qty-min">Trade cards (quantity ≥):</label>
-            <input type="number" id="trade-qty-min" class="config-input" [(ngModel)]="tradeQuantityMin" min="1"
-              max="10">
-          </div>
-          <div class="config-section">
-            <label class="config-label" for="friend-code-input">Friend Code:</label>
-            <input type="text" id="friend-code-input" class="config-input-wide" [(ngModel)]="tradeFriendCode"
-              placeholder="Enter your friend code to include in the copy…" />
-          </div>
-          <div class="config-section">
-            <label class="config-label" for="trade-template-text">Template text:</label>
-            <textarea id="trade-template-text" class="config-input-wide" rows="2" [(ngModel)]="tradeTemplateText"
-              placeholder="Add an extra note to include in the copied text…"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline" (click)="closeTradeModal()">Cancel</button>
-        <button class="btn btn-primary" (click)="generateAndCopyTradeText()">📋 Copy Trade Text</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Card Image Modal -->
   <div class="modal-overlay" *ngIf="selectedCardForModal" (click)="closeCardModal()">
@@ -530,7 +399,7 @@
           style="font-size:2rem; color: white; background:none; border:none; cursor:pointer;">
           <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </button>
-        <img [src]="getCardImageUrl(selectedCardForModal.imageName)" [alt]="getCardDisplayName(selectedCardForModal)"
+        <img [src]="getCardImageUrl(getCardImageName(selectedCardForModal))" [alt]="getCardDisplayName(selectedCardForModal)"
           class="modal-card-image">
         <button class="modal-nav-btn" (click)="showNextCardInModal($event)" aria-label="Next card"
           style="font-size:2rem; color: white; background:none; border:none; cursor:pointer;">

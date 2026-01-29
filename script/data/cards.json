@@ -29521,8 +29521,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -29560,8 +29559,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Bulbasaur",
-    "isFoil": true
+    "evolvesFrom": "Bulbasaur"
   },
   {
     "series": "A",
@@ -29616,8 +29614,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -29655,8 +29652,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Weedle",
-    "isFoil": true
+    "evolvesFrom": "Weedle"
   },
   {
     "series": "A",
@@ -29711,8 +29707,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -29767,8 +29762,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -29806,8 +29800,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Hoppip",
-    "isFoil": true
+    "evolvesFrom": "Hoppip"
   },
   {
     "series": "A",
@@ -29845,8 +29838,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Skiploom",
-    "isFoil": true
+    "evolvesFrom": "Skiploom"
   },
   {
     "series": "A",
@@ -29882,8 +29874,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -29976,8 +29967,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -30015,8 +30005,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Cherubi",
-    "isFoil": true
+    "evolvesFrom": "Cherubi"
   },
   {
     "series": "A",
@@ -30073,8 +30062,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -30110,8 +30098,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -30149,8 +30136,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Snivy",
-    "isFoil": true
+    "evolvesFrom": "Snivy"
   },
   {
     "series": "A",
@@ -30188,8 +30174,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Servine",
-    "isFoil": true
+    "evolvesFrom": "Servine"
   },
   {
     "series": "A",
@@ -30225,8 +30210,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -30264,8 +30248,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Rowlet",
-    "isFoil": true
+    "evolvesFrom": "Rowlet"
   },
   {
     "series": "A",
@@ -30360,8 +30343,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -30399,8 +30381,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -30436,8 +30417,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire",
-    "isFoil": true
+    "weakness": "Fire"
   },
   {
     "series": "A",
@@ -30475,8 +30455,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Sprigatito",
-    "isFoil": true
+    "evolvesFrom": "Sprigatito"
   },
   {
     "series": "A",
@@ -30514,8 +30493,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fire",
-    "evolvesFrom": "Floragato",
-    "isFoil": true
+    "evolvesFrom": "Floragato"
   },
   {
     "series": "A",
@@ -30551,8 +30529,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Water",
-    "isFoil": true
+    "weakness": "Water"
   },
   {
     "series": "A",
@@ -30590,8 +30567,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Water",
-    "evolvesFrom": "Charmander",
-    "isFoil": true
+    "evolvesFrom": "Charmander"
   },
   {
     "series": "A",
@@ -30665,8 +30641,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Water",
-    "isFoil": true
+    "weakness": "Water"
   },
   {
     "series": "A",
@@ -30723,8 +30698,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Water",
-    "evolvesFrom": "Eevee",
-    "isFoil": true
+    "evolvesFrom": "Eevee"
   },
   {
     "series": "A",
@@ -30819,8 +30793,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Water",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -30856,8 +30829,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Water",
-    "isFoil": true
+    "weakness": "Water"
   },
   {
     "series": "A",
@@ -30895,8 +30867,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Water",
-    "evolvesFrom": "Chimchar",
-    "isFoil": true
+    "evolvesFrom": "Chimchar"
   },
   {
     "series": "A",
@@ -30953,8 +30924,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Water",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -30990,8 +30960,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Water",
-    "isFoil": true
+    "weakness": "Water"
   },
   {
     "series": "A",
@@ -31029,8 +30998,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Water",
-    "evolvesFrom": "Litten",
-    "isFoil": true
+    "evolvesFrom": "Litten"
   },
   {
     "series": "A",
@@ -31085,8 +31053,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31124,8 +31091,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": "Squirtle",
-    "isFoil": true
+    "evolvesFrom": "Squirtle"
   },
   {
     "series": "A",
@@ -31180,8 +31146,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31219,8 +31184,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": "Horsea",
-    "isFoil": true
+    "evolvesFrom": "Horsea"
   },
   {
     "series": "A",
@@ -31275,8 +31239,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31331,8 +31294,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31389,8 +31351,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": "Eevee",
-    "isFoil": true
+    "evolvesFrom": "Eevee"
   },
   {
     "series": "A",
@@ -31445,8 +31406,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31484,8 +31444,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": "Corphish",
-    "isFoil": true
+    "evolvesFrom": "Corphish"
   },
   {
     "series": "A",
@@ -31561,8 +31520,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -31598,8 +31556,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31637,8 +31594,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": "Froakie",
-    "isFoil": true
+    "evolvesFrom": "Froakie"
   },
   {
     "series": "A",
@@ -31676,8 +31632,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": "Frogadier",
-    "isFoil": true
+    "evolvesFrom": "Frogadier"
   },
   {
     "series": "A",
@@ -31713,8 +31668,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31752,8 +31706,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": "Popplio",
-    "isFoil": true
+    "evolvesFrom": "Popplio"
   },
   {
     "series": "A",
@@ -31829,8 +31782,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Lightning",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -31885,8 +31837,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning",
-    "isFoil": true
+    "weakness": "Lightning"
   },
   {
     "series": "A",
@@ -31941,8 +31892,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fighting",
-    "isFoil": true
+    "weakness": "Fighting"
   },
   {
     "series": "A",
@@ -32033,8 +31983,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fighting",
-    "isFoil": true
+    "weakness": "Fighting"
   },
   {
     "series": "A",
@@ -32072,8 +32021,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fighting",
-    "evolvesFrom": "Magnemite",
-    "isFoil": true
+    "evolvesFrom": "Magnemite"
   },
   {
     "series": "A",
@@ -32111,8 +32059,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fighting",
-    "evolvesFrom": "Magneton",
-    "isFoil": true
+    "evolvesFrom": "Magneton"
   },
   {
     "series": "A",
@@ -32167,8 +32114,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fighting",
-    "isFoil": true
+    "weakness": "Fighting"
   },
   {
     "series": "A",
@@ -32225,8 +32171,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fighting",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -32283,8 +32228,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fighting",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -32341,8 +32285,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fighting",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -32378,8 +32321,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Dark",
-    "isFoil": true
+    "weakness": "Dark"
   },
   {
     "series": "A",
@@ -32417,8 +32359,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": "Gastly",
-    "isFoil": true
+    "evolvesFrom": "Gastly"
   },
   {
     "series": "A",
@@ -32475,8 +32416,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -32569,8 +32509,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Dark",
-    "isFoil": true
+    "weakness": "Dark"
   },
   {
     "series": "A",
@@ -32625,8 +32564,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Dark",
-    "isFoil": true
+    "weakness": "Dark"
   },
   {
     "series": "A",
@@ -32664,8 +32602,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": "Ralts",
-    "isFoil": true
+    "evolvesFrom": "Ralts"
   },
   {
     "series": "A",
@@ -32703,8 +32640,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": "Kirlia",
-    "isFoil": true
+    "evolvesFrom": "Kirlia"
   },
   {
     "series": "A",
@@ -32742,8 +32678,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -32798,8 +32733,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Dark",
-    "isFoil": true
+    "weakness": "Dark"
   },
   {
     "series": "A",
@@ -32837,8 +32771,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": "Swirlix",
-    "isFoil": true
+    "evolvesFrom": "Swirlix"
   },
   {
     "series": "A",
@@ -32895,8 +32828,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -32932,8 +32864,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Dark",
-    "isFoil": true
+    "weakness": "Dark"
   },
   {
     "series": "A",
@@ -32971,8 +32902,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": "Cosmog",
-    "isFoil": true
+    "evolvesFrom": "Cosmog"
   },
   {
     "series": "A",
@@ -33027,8 +32957,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Dark",
-    "isFoil": true
+    "weakness": "Dark"
   },
   {
     "series": "A",
@@ -33066,8 +32995,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Dark",
-    "evolvesFrom": "Milcery",
-    "isFoil": true
+    "evolvesFrom": "Milcery"
   },
   {
     "series": "A",
@@ -33103,8 +33031,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33142,8 +33069,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Psychic",
-    "evolvesFrom": "Machop",
-    "isFoil": true
+    "evolvesFrom": "Machop"
   },
   {
     "series": "A",
@@ -33198,8 +33124,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33275,8 +33200,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Psychic",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -33312,8 +33236,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33368,8 +33291,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33405,8 +33327,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33444,8 +33365,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Psychic",
-    "evolvesFrom": "Gible",
-    "isFoil": true
+    "evolvesFrom": "Gible"
   },
   {
     "series": "A",
@@ -33502,8 +33422,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Psychic",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -33541,8 +33460,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Psychic",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -33616,8 +33534,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33653,8 +33570,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33690,8 +33606,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Psychic",
-    "isFoil": true
+    "weakness": "Psychic"
   },
   {
     "series": "A",
@@ -33767,8 +33682,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Psychic",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -33804,8 +33718,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -33843,8 +33756,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Zubat",
-    "isFoil": true
+    "evolvesFrom": "Zubat"
   },
   {
     "series": "A",
@@ -33882,8 +33794,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Golbat",
-    "isFoil": true
+    "evolvesFrom": "Golbat"
   },
   {
     "series": "A",
@@ -33938,8 +33849,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -33994,8 +33904,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -34052,8 +33961,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Eevee",
-    "isFoil": true
+    "evolvesFrom": "Eevee"
   },
   {
     "series": "A",
@@ -34108,8 +34016,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -34185,8 +34092,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -34241,8 +34147,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -34356,8 +34261,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Drilbur",
-    "isFoil": true
+    "evolvesFrom": "Drilbur"
   },
   {
     "series": "A",
@@ -34395,8 +34299,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -34453,8 +34356,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -34490,8 +34392,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -34529,8 +34430,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Tinkatink",
-    "isFoil": true
+    "evolvesFrom": "Tinkatink"
   },
   {
     "series": "A",
@@ -34585,8 +34485,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": null,
-    "isFoil": true
+    "weakness": null
   },
   {
     "series": "A",
@@ -34624,8 +34523,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": null,
-    "evolvesFrom": "Dratini",
-    "isFoil": true
+    "evolvesFrom": "Dratini"
   },
   {
     "series": "A",
@@ -34680,8 +34578,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -34719,8 +34616,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Pidgey",
-    "isFoil": true
+    "evolvesFrom": "Pidgey"
   },
   {
     "series": "A",
@@ -34775,8 +34671,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -34833,8 +34728,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -34870,8 +34764,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -34926,8 +34819,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -35019,8 +34911,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -35058,8 +34949,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Skitty",
-    "isFoil": true
+    "evolvesFrom": "Skitty"
   },
   {
     "series": "A",
@@ -35095,8 +34985,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -35153,8 +35042,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -35209,8 +35097,7 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire",
-    "isFoil": true
+    "weakness": "fire"
   },
   {
     "series": "A",
@@ -35248,8 +35135,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Type: Null",
-    "isFoil": true
+    "evolvesFrom": "Type: Null"
   },
   {
     "series": "A",
@@ -35287,8 +35173,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -35326,8 +35211,7 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": null,
-    "isFoil": true
+    "evolvesFrom": null
   },
   {
     "series": "A",
@@ -35359,8 +35243,7 @@
     "type": "item",
     "goodWith": [
       "Eevee"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35396,8 +35279,7 @@
       "Fire",
       "Water",
       "Lightning"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35425,8 +35307,7 @@
       "Deluxe"
     ],
     "type": "Fossil",
-    "stage": "basic",
-    "isFoil": true
+    "stage": "basic"
   },
   {
     "series": "A",
@@ -35458,8 +35339,7 @@
     "type": "item",
     "goodWith": [
       "Stage2"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35491,8 +35371,7 @@
     "type": "item",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35524,8 +35403,7 @@
     "type": "tool",
     "goodWith": [
       "Lightning"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35557,8 +35435,7 @@
     "type": "tool",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35590,8 +35467,7 @@
     "type": "tool",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35623,8 +35499,7 @@
     "type": "tool",
     "goodWith": [
       "Grass"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35656,8 +35531,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35689,8 +35563,7 @@
     "type": "supporter",
     "goodWith": [
       "Grass"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35722,8 +35595,7 @@
     "type": "supporter",
     "goodWith": [
       "Water"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35755,8 +35627,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35788,8 +35659,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35821,8 +35691,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35854,8 +35723,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35887,8 +35755,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35920,8 +35787,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35953,8 +35819,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -35986,8 +35851,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -36019,8 +35883,7 @@
     "type": "supporter",
     "goodWith": [
       "Stage2"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -36052,8 +35915,7 @@
     "type": "supporter",
     "goodWith": [
       "UltraBeast"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",
@@ -36085,8 +35947,7 @@
     "type": "supporter",
     "goodWith": [
       "All"
-    ],
-    "isFoil": true
+    ]
   },
   {
     "series": "A",

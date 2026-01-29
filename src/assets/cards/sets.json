@@ -119,7 +119,7 @@
         "name": "Deluxe Pack: ex",
         "shortName": "DPE",
         "series": "A",
-        "count": 0,
+        "count": 379,
         "releaseDate": "2025-09-30",
         "packs": [
             "Deluxe"
@@ -170,6 +170,17 @@
         "releaseDate": "2025-12-17",
         "packs": [
             "Crimson Blaze"
+        ]
+    },
+    {
+        "code": "B2",
+        "name": "Fantastical Parade",
+        "shortName": "FP",
+        "series": "B",
+        "count": 234,
+        "releaseDate": "2026-01-29",
+        "packs": [
+            "Gardevoir"
         ]
     },
     {
