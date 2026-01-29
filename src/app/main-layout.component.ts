@@ -25,7 +25,11 @@ import { APP_VERSION } from './version';
               </a>
 
               <a routerLink="/trade" routerLinkActive="active" class="nav-link">
-                🔄 Trade (Beta)
+                🔄 Trade
+              </a>
+
+              <a routerLink="/sync" routerLinkActive="active" class="nav-link">
+                🔄 Sync (Coming Soon)
               </a>
               
             </div>
@@ -55,7 +59,11 @@ import { APP_VERSION } from './version';
             📦 Suggestion
           </a>
           <a routerLink="/trade" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
-            📊 Trade (Beta)
+            🔄 Trade
+          </a>
+
+          <a routerLink="/sync" routerLinkActive="active" class="mobile-link" (click)="closeMobileMenu()">
+            🔄 Sync (Coming Soon)
           </a>
           
           <button *ngIf="currentUser" (click)="signOut(); closeMobileMenu()" class="mobile-link signout">

@@ -12,7 +12,8 @@ from urllib3.util.retry import Retry
 # ===============================================================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+# Write outputs directly into the app assets folder
+DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "src", "assets", "cards"))
 EXPORT_SET_PATH = os.path.join(DATA_DIR, "sets.json")
 EXPORT_CARD_PATH = os.path.join(DATA_DIR, "cards.json")
 

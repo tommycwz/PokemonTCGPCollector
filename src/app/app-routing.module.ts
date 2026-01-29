@@ -6,6 +6,7 @@ import { TradeGenComponent } from './trade-gen/trade-gen.component';
 import { SigninComponent } from './signin/signin.component';
 import { MainLayoutComponent } from './main-layout.component';
 import { AuthGuard } from './guards/auth.guard';
+import { SyncComponent } from './sync/sync.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: 'collection', component: CardCollectionComponent },
       { path: 'suggestion', component: SuggestionComponent },
-      { path: 'trade', component: TradeGenComponent }
+      { path: 'trade', component: TradeGenComponent },
+      { path: 'sync', component: SyncComponent }
     ]
   },
   { path: '**', redirectTo: '/signin' }
