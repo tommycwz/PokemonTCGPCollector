@@ -44581,6 +44581,2814 @@
     "type": "item"
   },
   {
+    "series": "B",
+    "set": "B2",
+    "number": 1,
+    "id": "B2-001",
+    "rarity": "C",
+    "image": "cPK_10_013670_00_REDIBA_C.webp",
+    "name": "Ledyba",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 2,
+    "id": "B2-002",
+    "rarity": "C",
+    "image": "cPK_10_013680_00_REDIAN_C.webp",
+    "name": "Ledian",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 3,
+    "id": "B2-003",
+    "rarity": "C",
+    "image": "cPK_10_013690_00_TSUBOTSUBO_C.webp",
+    "name": "Shuckle",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 4,
+    "id": "B2-004",
+    "rarity": "C",
+    "image": "cPK_10_013700_00_ROSELIA_C.webp",
+    "name": "Roselia",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 5,
+    "id": "B2-005",
+    "rarity": "R",
+    "image": "cPK_10_013710_00_ROSERADE_R.webp",
+    "name": "Roserade",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 6,
+    "id": "B2-006",
+    "rarity": "C",
+    "image": "cPK_10_013720_00_SABONEA_C.webp",
+    "name": "Cacnea",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 7,
+    "id": "B2-007",
+    "rarity": "U",
+    "image": "cPK_10_013730_00_NOCTUS_U.webp",
+    "name": "Cacturne",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 8,
+    "id": "B2-008",
+    "rarity": "C",
+    "image": "cPK_10_013740_00_HARIMARON_C.webp",
+    "name": "Chespin",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 9,
+    "id": "B2-009",
+    "rarity": "U",
+    "image": "cPK_10_013750_00_HARIBORG_U.webp",
+    "name": "Quilladin",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 10,
+    "id": "B2-010",
+    "rarity": "R",
+    "image": "cPK_10_013760_00_BRIGARRON_R.webp",
+    "name": "Chesnaught",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 11,
+    "id": "B2-011",
+    "rarity": "C",
+    "image": "cPK_10_013770_00_KOFUKIMUSHI_C.webp",
+    "name": "Scatterbug",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 12,
+    "id": "B2-012",
+    "rarity": "C",
+    "image": "cPK_10_013780_00_KOFUURAI_C.webp",
+    "name": "Spewpa",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 13,
+    "id": "B2-013",
+    "rarity": "U",
+    "image": "cPK_10_013790_00_VIVIYON_U.webp",
+    "name": "Vivillon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 14,
+    "id": "B2-014",
+    "rarity": "R",
+    "image": "cPK_10_013800_00_MASSIVOON_R.webp",
+    "name": "Buzzwole",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 15,
+    "id": "B2-015",
+    "rarity": "C",
+    "image": "cPK_10_013810_00_HIMENKA_C.webp",
+    "name": "Gossifleur",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 16,
+    "id": "B2-016",
+    "rarity": "U",
+    "image": "cPK_10_013820_00_WATASHIRAGA_U.webp",
+    "name": "Eldegoss",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 17,
+    "id": "B2-017",
+    "rarity": "RR",
+    "image": "cPK_10_013830_00_OGERPONMIDORINOMENex_RR.webp",
+    "name": "Teal Mask Ogerpon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 18,
+    "id": "B2-018",
+    "rarity": "U",
+    "image": "cPK_10_013840_00_ALOLAGARAGARA_U.webp",
+    "name": "Alolan Marowak",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 19,
+    "id": "B2-019",
+    "rarity": "R",
+    "image": "cPK_10_013850_00_RESHIRAM_R.webp",
+    "name": "Reshiram",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 20,
+    "id": "B2-020",
+    "rarity": "C",
+    "image": "cPK_10_013860_00_SHISHIKO_C.webp",
+    "name": "Litleo",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 21,
+    "id": "B2-021",
+    "rarity": "U",
+    "image": "cPK_10_013870_00_KAENJISHI_U.webp",
+    "name": "Pyroar",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 22,
+    "id": "B2-022",
+    "rarity": "U",
+    "image": "cPK_10_013880_00_ODORIDORI_U.webp",
+    "name": "Oricorio",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 23,
+    "id": "B2-023",
+    "rarity": "RR",
+    "image": "cPK_10_013890_00_ZUGADOONex_RR.webp",
+    "name": "Blacephalon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 24,
+    "id": "B2-024",
+    "rarity": "C",
+    "image": "cPK_10_013900_00_HIBANNY_C.webp",
+    "name": "Scorbunny",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 25,
+    "id": "B2-025",
+    "rarity": "U",
+    "image": "cPK_10_013910_00_RABBIFUTO_U.webp",
+    "name": "Raboot",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 26,
+    "id": "B2-026",
+    "rarity": "R",
+    "image": "cPK_10_013920_00_ACEBURN_R.webp",
+    "name": "Cinderace",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 27,
+    "id": "B2-027",
+    "rarity": "R",
+    "image": "cPK_10_013930_00_OGERPONKAMADONOMEN_R.webp",
+    "name": "Hearthflame Mask Ogerpon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 28,
+    "id": "B2-028",
+    "rarity": "C",
+    "image": "cPK_10_013940_00_ALOLAROKON_C.webp",
+    "name": "Alolan Vulpix",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 29,
+    "id": "B2-029",
+    "rarity": "RR",
+    "image": "cPK_10_013950_00_ALOLAKYUKONex_RR.webp",
+    "name": "Alolan Ninetales ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 30,
+    "id": "B2-030",
+    "rarity": "C",
+    "image": "cPK_10_013960_00_GALARBARRIERD_C.webp",
+    "name": "Galarian Mr. Mime",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 31,
+    "id": "B2-031",
+    "rarity": "U",
+    "image": "cPK_10_013970_00_GALARBARRIKOHRU_U.webp",
+    "name": "Galarian Mr. Rime",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 32,
+    "id": "B2-032",
+    "rarity": "U",
+    "image": "cPK_10_013980_00_DELIBIRD_U.webp",
+    "name": "Delibird",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 33,
+    "id": "B2-033",
+    "rarity": "C",
+    "image": "cPK_10_013990_00_MIZUGOROU_C.webp",
+    "name": "Mudkip",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 34,
+    "id": "B2-034",
+    "rarity": "U",
+    "image": "cPK_10_014000_00_NUMACRAW_U.webp",
+    "name": "Marshtomp",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 35,
+    "id": "B2-035",
+    "rarity": "R",
+    "image": "cPK_10_014010_00_LAGLARGE_R.webp",
+    "name": "Swampert",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 36,
+    "id": "B2-036",
+    "rarity": "RR",
+    "image": "cPK_10_014020_00_MEGALAGLARGEex_RR.webp",
+    "name": "Mega Swampert ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 37,
+    "id": "B2-037",
+    "rarity": "C",
+    "image": "cPK_10_014030_00_VANIPETI_C.webp",
+    "name": "Vanillite",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 38,
+    "id": "B2-038",
+    "rarity": "C",
+    "image": "cPK_10_014040_00_VANIRICH_C.webp",
+    "name": "Vanillish",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 39,
+    "id": "B2-039",
+    "rarity": "U",
+    "image": "cPK_10_014050_00_BAIVANILLA_U.webp",
+    "name": "Vanilluxe",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 40,
+    "id": "B2-040",
+    "rarity": "C",
+    "image": "cPK_10_014060_00_FREEGEO_C.webp",
+    "name": "Cryogonal",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 41,
+    "id": "B2-041",
+    "rarity": "U",
+    "image": "cPK_10_014070_00_AMARUS_U.webp",
+    "name": "Amaura",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 42,
+    "id": "B2-042",
+    "rarity": "R",
+    "image": "cPK_10_014080_00_AMARURUGA_R.webp",
+    "name": "Aurorus",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 43,
+    "id": "B2-043",
+    "rarity": "C",
+    "image": "cPK_10_014090_00_KAMUKAME_C.webp",
+    "name": "Chewtle",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 44,
+    "id": "B2-044",
+    "rarity": "U",
+    "image": "cPK_10_014100_00_KAJIRIGAME_U.webp",
+    "name": "Drednaw",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 45,
+    "id": "B2-045",
+    "rarity": "C",
+    "image": "cPK_10_014110_00_UU_C.webp",
+    "name": "Cramorant",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 46,
+    "id": "B2-046",
+    "rarity": "C",
+    "image": "cPK_10_014120_00_SASIKAMASU_C.webp",
+    "name": "Arrokuda",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 47,
+    "id": "B2-047",
+    "rarity": "C",
+    "image": "cPK_10_014130_00_KAMASUJAW_C.webp",
+    "name": "Barraskewda",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 48,
+    "id": "B2-048",
+    "rarity": "R",
+    "image": "cPK_10_014140_00_OGERPONIDONOMEN_R.webp",
+    "name": "Wellspring Mask Ogerpon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 49,
+    "id": "B2-049",
+    "rarity": "C",
+    "image": "cPK_10_014150_00_PIKACHU_C.webp",
+    "name": "Pikachu",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 50,
+    "id": "B2-050",
+    "rarity": "R",
+    "image": "cPK_10_014160_00_ALOLARAICHU_R.webp",
+    "name": "Alolan Raichu",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 51,
+    "id": "B2-051",
+    "rarity": "R",
+    "image": "cPK_10_014170_00_THUNDER_R.webp",
+    "name": "Zapdos",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 52,
+    "id": "B2-052",
+    "rarity": "C",
+    "image": "cPK_10_014180_00_PRASLE_C.webp",
+    "name": "Plusle",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 53,
+    "id": "B2-053",
+    "rarity": "C",
+    "image": "cPK_10_014190_00_MINUN_C.webp",
+    "name": "Minun",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 54,
+    "id": "B2-054",
+    "rarity": "C",
+    "image": "cPK_10_014200_00_ELESON_C.webp",
+    "name": "Toxel",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 55,
+    "id": "B2-055",
+    "rarity": "RR",
+    "image": "cPK_10_014210_00_STRINDERex_RR.webp",
+    "name": "Toxtricity ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 56,
+    "id": "B2-056",
+    "rarity": "C",
+    "image": "cPK_10_014220_00_ZUPIKA_C.webp",
+    "name": "Tadbulb",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 57,
+    "id": "B2-057",
+    "rarity": "U",
+    "image": "cPK_10_014230_00_HARABARIE_U.webp",
+    "name": "Bellibolt",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 58,
+    "id": "B2-058",
+    "rarity": "C",
+    "image": "cPK_10_014240_00_GALARPONYTA_C.webp",
+    "name": "Galarian Ponyta",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 59,
+    "id": "B2-059",
+    "rarity": "U",
+    "image": "cPK_10_014250_00_GALARGALLOP_U.webp",
+    "name": "Galarian Rapidash",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 60,
+    "id": "B2-060",
+    "rarity": "C",
+    "image": "cPK_10_014260_00_SONANS_C.webp",
+    "name": "Wobbuffet",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 61,
+    "id": "B2-061",
+    "rarity": "C",
+    "image": "cPK_10_014270_00_BULU_C.webp",
+    "name": "Snubbull",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 62,
+    "id": "B2-062",
+    "rarity": "U",
+    "image": "cPK_10_014280_00_GRANBULU_U.webp",
+    "name": "Granbull",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 63,
+    "id": "B2-063",
+    "rarity": "C",
+    "image": "cPK_10_014290_00_RALTS_C.webp",
+    "name": "Ralts",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 64,
+    "id": "B2-064",
+    "rarity": "U",
+    "image": "cPK_10_014300_00_KIRLIA_U.webp",
+    "name": "Kirlia",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 65,
+    "id": "B2-065",
+    "rarity": "R",
+    "image": "cPK_10_014310_00_SIRNIGHT_R.webp",
+    "name": "Gardevoir",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 66,
+    "id": "B2-066",
+    "rarity": "RR",
+    "image": "cPK_10_014320_00_MEGASIRNIGHTex_RR.webp",
+    "name": "Mega Gardevoir ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 67,
+    "id": "B2-067",
+    "rarity": "C",
+    "image": "cPK_10_014330_00_HITOMOSHI_C.webp",
+    "name": "Litwick",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 68,
+    "id": "B2-068",
+    "rarity": "U",
+    "image": "cPK_10_014340_00_LAMPLER_U.webp",
+    "name": "Lampent",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 69,
+    "id": "B2-069",
+    "rarity": "R",
+    "image": "cPK_10_014350_00_CHANDELA_R.webp",
+    "name": "Chandelure",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 70,
+    "id": "B2-070",
+    "rarity": "U",
+    "image": "cPK_10_014360_00_MELOETTA_U.webp",
+    "name": "Meloetta",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 71,
+    "id": "B2-071",
+    "rarity": "C",
+    "image": "cPK_10_014370_00_BAKECCHA_C.webp",
+    "name": "Pumpkaboo",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 72,
+    "id": "B2-072",
+    "rarity": "R",
+    "image": "cPK_10_014380_00_PUMPJIN_R.webp",
+    "name": "Gourgeist",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 73,
+    "id": "B2-073",
+    "rarity": "RR",
+    "image": "cPK_10_014390_00_MIMIKKYUex_RR.webp",
+    "name": "Mimikyu ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 74,
+    "id": "B2-074",
+    "rarity": "C",
+    "image": "cPK_10_014400_00_YABACHA_C.webp",
+    "name": "Sinistea",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 75,
+    "id": "B2-075",
+    "rarity": "U",
+    "image": "cPK_10_014410_00_POTDEATH_U.webp",
+    "name": "Polteageist",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 76,
+    "id": "B2-076",
+    "rarity": "C",
+    "image": "cPK_10_014420_00_YESSAN_C.webp",
+    "name": "Indeedee",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 77,
+    "id": "B2-077",
+    "rarity": "C",
+    "image": "cPK_10_014430_00_SAND_C.webp",
+    "name": "Sandshrew",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 78,
+    "id": "B2-078",
+    "rarity": "C",
+    "image": "cPK_10_014440_00_SANDPAN_C.webp",
+    "name": "Sandslash",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 79,
+    "id": "B2-079",
+    "rarity": "C",
+    "image": "cPK_10_014450_00_WANRIKY_C.webp",
+    "name": "Machop",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 80,
+    "id": "B2-080",
+    "rarity": "C",
+    "image": "cPK_10_014460_00_GORIKY_C.webp",
+    "name": "Machoke",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 81,
+    "id": "B2-081",
+    "rarity": "U",
+    "image": "cPK_10_014470_00_KAIRIKY_U.webp",
+    "name": "Machamp",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 82,
+    "id": "B2-082",
+    "rarity": "C",
+    "image": "cPK_10_014480_00_KARAKARA_C.webp",
+    "name": "Cubone",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 83,
+    "id": "B2-083",
+    "rarity": "C",
+    "image": "cPK_10_014490_00_ASANAN_C.webp",
+    "name": "Meditite",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 84,
+    "id": "B2-084",
+    "rarity": "U",
+    "image": "cPK_10_014500_00_CHAREM_U.webp",
+    "name": "Medicham",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 85,
+    "id": "B2-085",
+    "rarity": "C",
+    "image": "cPK_10_014510_00_DANGORO_C.webp",
+    "name": "Roggenrola",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 86,
+    "id": "B2-086",
+    "rarity": "U",
+    "image": "cPK_10_014520_00_GANTLE_U.webp",
+    "name": "Boldore",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 87,
+    "id": "B2-087",
+    "rarity": "RR",
+    "image": "cPK_10_014530_00_GIGAIATHex_RR.webp",
+    "name": "Gigalith ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 88,
+    "id": "B2-088",
+    "rarity": "C",
+    "image": "cPK_10_014540_00_MOGUREW_C.webp",
+    "name": "Drilbur",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 89,
+    "id": "B2-089",
+    "rarity": "U",
+    "image": "cPK_10_014550_00_CHIGORAS_U.webp",
+    "name": "Tyrunt",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 90,
+    "id": "B2-090",
+    "rarity": "R",
+    "image": "cPK_10_014560_00_GACHIGORAS_R.webp",
+    "name": "Tyrantrum",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 91,
+    "id": "B2-091",
+    "rarity": "C",
+    "image": "cPK_10_014570_00_NAGETUKESARU_C.webp",
+    "name": "Passimian",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 92,
+    "id": "B2-092",
+    "rarity": "U",
+    "image": "cPK_10_014580_00_TAIRETSU_U.webp",
+    "name": "Falinks",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 93,
+    "id": "B2-093",
+    "rarity": "R",
+    "image": "cPK_10_014590_00_OGERPONISHIZUENOMEN_R.webp",
+    "name": "Cornerstone Mask Ogerpon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 94,
+    "id": "B2-094",
+    "rarity": "C",
+    "image": "cPK_10_014600_00_ALOLANYARTH_C.webp",
+    "name": "Alolan Meowth",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 95,
+    "id": "B2-095",
+    "rarity": "U",
+    "image": "cPK_10_014610_00_ALOLAPERSIAN_U.webp",
+    "name": "Alolan Persian",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 96,
+    "id": "B2-096",
+    "rarity": "C",
+    "image": "cPK_10_014620_00_ALOLABETBETER_C.webp",
+    "name": "Alolan Grimer",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 97,
+    "id": "B2-097",
+    "rarity": "R",
+    "image": "cPK_10_014630_00_ALOLABETBETON_R.webp",
+    "name": "Alolan Muk",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 98,
+    "id": "B2-098",
+    "rarity": "C",
+    "image": "cPK_10_014640_00_GALARJIGUZAGUMA_C.webp",
+    "name": "Galarian Zigzagoon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 99,
+    "id": "B2-099",
+    "rarity": "U",
+    "image": "cPK_10_014650_00_GALARMASSUGUMA_U.webp",
+    "name": "Galarian Linoone",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 100,
+    "id": "B2-100",
+    "rarity": "R",
+    "image": "cPK_10_014660_00_GALARTACHIFUSAGUMA_R.webp",
+    "name": "Galarian Obstagoon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 101,
+    "id": "B2-101",
+    "rarity": "C",
+    "image": "cPK_10_014670_00_SKUNPUU_C.webp",
+    "name": "Stunky",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 102,
+    "id": "B2-102",
+    "rarity": "U",
+    "image": "cPK_10_014680_00_SKUTANK_U.webp",
+    "name": "Skuntank",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 103,
+    "id": "B2-103",
+    "rarity": "R",
+    "image": "cPK_10_014690_00_MIKARUGE_R.webp",
+    "name": "Spiritomb",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 104,
+    "id": "B2-104",
+    "rarity": "C",
+    "image": "cPK_10_014700_00_CHORONEKO_C.webp",
+    "name": "Purrloin",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 105,
+    "id": "B2-105",
+    "rarity": "U",
+    "image": "cPK_10_014710_00_LEPARDAS_U.webp",
+    "name": "Liepard",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 106,
+    "id": "B2-106",
+    "rarity": "C",
+    "image": "cPK_10_014720_00_ZURUGGU_C.webp",
+    "name": "Scraggy",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 107,
+    "id": "B2-107",
+    "rarity": "U",
+    "image": "cPK_10_014730_00_ZURUZUKIN_U.webp",
+    "name": "Scrafty",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 108,
+    "id": "B2-108",
+    "rarity": "R",
+    "image": "cPK_10_014740_00_YVELTAL_R.webp",
+    "name": "Yveltal",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 109,
+    "id": "B2-109",
+    "rarity": "R",
+    "image": "cPK_10_014750_00_AKUZIKING_R.webp",
+    "name": "Guzzlord",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 110,
+    "id": "B2-110",
+    "rarity": "C",
+    "image": "cPK_10_014760_00_GALARNYARTH_C.webp",
+    "name": "Galarian Meowth",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 111,
+    "id": "B2-111",
+    "rarity": "R",
+    "image": "cPK_10_014770_00_GALARNYAIKING_R.webp",
+    "name": "Galarian Perrserker",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 112,
+    "id": "B2-112",
+    "rarity": "C",
+    "image": "cPK_10_014780_00_KUCHEAT_C.webp",
+    "name": "Mawile",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 113,
+    "id": "B2-113",
+    "rarity": "RR",
+    "image": "cPK_10_014790_00_MEGAKUCHEATex_RR.webp",
+    "name": "Mega Mawile ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 114,
+    "id": "B2-114",
+    "rarity": "U",
+    "image": "cPK_10_014800_00_DORYUZU_U.webp",
+    "name": "Excadrill",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 115,
+    "id": "B2-115",
+    "rarity": "C",
+    "image": "cPK_10_014810_00_TESSEED_C.webp",
+    "name": "Ferroseed",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 116,
+    "id": "B2-116",
+    "rarity": "C",
+    "image": "cPK_10_014820_00_NUTREY_C.webp",
+    "name": "Ferrothorn",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 117,
+    "id": "B2-117",
+    "rarity": "U",
+    "image": "cPK_10_014830_00_GALARMAGGYO_U.webp",
+    "name": "Galarian Stunfisk",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 118,
+    "id": "B2-118",
+    "rarity": "C",
+    "image": "cPK_10_014840_00_HITOTSUKI_C.webp",
+    "name": "Honedge",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 119,
+    "id": "B2-119",
+    "rarity": "U",
+    "image": "cPK_10_014850_00_NIDANGILL_U.webp",
+    "name": "Doublade",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 120,
+    "id": "B2-120",
+    "rarity": "R",
+    "image": "cPK_10_014860_00_GILLGARD_R.webp",
+    "name": "Aegislash",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 121,
+    "id": "B2-121",
+    "rarity": "C",
+    "image": "cPK_10_014870_00_TATSUBAY_C.webp",
+    "name": "Bagon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 122,
+    "id": "B2-122",
+    "rarity": "U",
+    "image": "cPK_10_014880_00_KOMORUU_U.webp",
+    "name": "Shelgon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 123,
+    "id": "B2-123",
+    "rarity": "R",
+    "image": "cPK_10_014890_00_BOHMANDER_R.webp",
+    "name": "Salamence",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 124,
+    "id": "B2-124",
+    "rarity": "C",
+    "image": "cPK_10_014900_00_NYARTH_C.webp",
+    "name": "Meowth",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 125,
+    "id": "B2-125",
+    "rarity": "C",
+    "image": "cPK_10_014910_00_PERSIAN_C.webp",
+    "name": "Persian",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 126,
+    "id": "B2-126",
+    "rarity": "U",
+    "image": "cPK_10_014920_00_GARURA_U.webp",
+    "name": "Kangaskhan",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 127,
+    "id": "B2-127",
+    "rarity": "RR",
+    "image": "cPK_10_014930_00_MEGAGARURAex_RR.webp",
+    "name": "Mega Kangaskhan ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 128,
+    "id": "B2-128",
+    "rarity": "C",
+    "image": "cPK_10_014940_00_OTACHI_C.webp",
+    "name": "Sentret",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 129,
+    "id": "B2-129",
+    "rarity": "C",
+    "image": "cPK_10_014950_00_OOTACHI_C.webp",
+    "name": "Furret",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 130,
+    "id": "B2-130",
+    "rarity": "U",
+    "image": "cPK_10_014960_00_DOBLE_U.webp",
+    "name": "Smeargle",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 131,
+    "id": "B2-131",
+    "rarity": "R",
+    "image": "cPK_10_014970_00_LUGIA_R.webp",
+    "name": "Lugia",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 132,
+    "id": "B2-132",
+    "rarity": "C",
+    "image": "cPK_10_014980_00_SUBAME_C.webp",
+    "name": "Taillow",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 133,
+    "id": "B2-133",
+    "rarity": "R",
+    "image": "cPK_10_014990_00_OHSUBAME_R.webp",
+    "name": "Swellow",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 134,
+    "id": "B2-134",
+    "rarity": "C",
+    "image": "cPK_10_015000_00_NAMAKERO_C.webp",
+    "name": "Slakoth",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 135,
+    "id": "B2-135",
+    "rarity": "U",
+    "image": "cPK_10_015010_00_YARUKIMONO_U.webp",
+    "name": "Vigoroth",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 136,
+    "id": "B2-136",
+    "rarity": "R",
+    "image": "cPK_10_015020_00_KEKKING_R.webp",
+    "name": "Slaking",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 137,
+    "id": "B2-137",
+    "rarity": "C",
+    "image": "cPK_10_015030_00_PATCHEEL_C.webp",
+    "name": "Spinda",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 138,
+    "id": "B2-138",
+    "rarity": "R",
+    "image": "cPK_10_015040_00_TORNELOS_R.webp",
+    "name": "Tornadus",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 139,
+    "id": "B2-139",
+    "rarity": "C",
+    "image": "cPK_10_015050_00_HORUBEE_C.webp",
+    "name": "Bunnelby",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 140,
+    "id": "B2-140",
+    "rarity": "U",
+    "image": "cPK_10_015060_00_HORUDO_U.webp",
+    "name": "Diggersby",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 141,
+    "id": "B2-141",
+    "rarity": "U",
+    "image": "cPK_10_015070_00_TRIMMIEN_U.webp",
+    "name": "Furfrou",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 142,
+    "id": "B2-142",
+    "rarity": "C",
+    "image": "cPK_10_015080_00_WAKKANEZUMI_C.webp",
+    "name": "Tandemaus",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 143,
+    "id": "B2-143",
+    "rarity": "U",
+    "image": "cPK_10_015090_00_IKKANEZUMI_U.webp",
+    "name": "Maushold",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 144,
+    "id": "B2-144",
+    "rarity": "C",
+    "image": "cTR_10_001050_00_AGONOKASEKI_C.webp",
+    "name": "Jaw Fossil",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 145,
+    "id": "B2-145",
+    "rarity": "U",
+    "image": "cTR_10_001060_00_ATARITSUKIAISU_U.webp",
+    "name": "Lucky Ice Pop",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 146,
+    "id": "B2-146",
+    "rarity": "C",
+    "image": "cTR_10_001070_00_HIRENOKASEKI_C.webp",
+    "name": "Sail Fossil",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 147,
+    "id": "B2-147",
+    "rarity": "U",
+    "image": "cTR_10_001080_00_MAMORINOPONCHO_U.webp",
+    "name": "Protective Poncho",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 148,
+    "id": "B2-148",
+    "rarity": "U",
+    "image": "cTR_10_001090_00_METARUKOABARIA_U.webp",
+    "name": "Metal Core Barrier",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 149,
+    "id": "B2-149",
+    "rarity": "U",
+    "image": "cTR_10_001100_00_CARNE_U.webp",
+    "name": "Diantha",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 150,
+    "id": "B2-150",
+    "rarity": "U",
+    "image": "cTR_10_001110_00_KANKOUKYAKU_U.webp",
+    "name": "Sightseer",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 151,
+    "id": "B2-151",
+    "rarity": "U",
+    "image": "cTR_10_001120_00_JAGURA_U.webp",
+    "name": "Juggler",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 152,
+    "id": "B2-152",
+    "rarity": "U",
+    "image": "cTR_10_001130_00_NEZU_U.webp",
+    "name": "Piers",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 153,
+    "id": "B2-153",
+    "rarity": "U",
+    "image": "cTR_10_001140_00_TORENINGUERIA_U.webp",
+    "name": "Training Area",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 154,
+    "id": "B2-154",
+    "rarity": "U",
+    "image": "cTR_10_001150_00_HAJIMARINOHEIGEN_U.webp",
+    "name": "Starting Plains",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 155,
+    "id": "B2-155",
+    "rarity": "U",
+    "image": "cTR_10_001160_00_FUSHIGINAHIROBA_U.webp",
+    "name": "Peculiar Plaza",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 156,
+    "id": "B2-156",
+    "rarity": "AR",
+    "image": "cPK_20_013720_00_SABONEA_AR.webp",
+    "name": "Cacnea",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 157,
+    "id": "B2-157",
+    "rarity": "AR",
+    "image": "cPK_20_013710_00_ROSERADE_AR.webp",
+    "name": "Roserade",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 158,
+    "id": "B2-158",
+    "rarity": "AR",
+    "image": "cPK_20_013790_00_VIVIYON_AR.webp",
+    "name": "Vivillon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 159,
+    "id": "B2-159",
+    "rarity": "AR",
+    "image": "cPK_20_013800_00_MASSIVOON_AR.webp",
+    "name": "Buzzwole",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 160,
+    "id": "B2-160",
+    "rarity": "AR",
+    "image": "cPK_20_013850_00_RESHIRAM_AR.webp",
+    "name": "Reshiram",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 161,
+    "id": "B2-161",
+    "rarity": "AR",
+    "image": "cPK_20_013880_00_ODORIDORI_AR.webp",
+    "name": "Oricorio",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 162,
+    "id": "B2-162",
+    "rarity": "AR",
+    "image": "cPK_20_013900_00_HIBANNY_AR.webp",
+    "name": "Scorbunny",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 163,
+    "id": "B2-163",
+    "rarity": "AR",
+    "image": "cPK_20_014080_00_AMARURUGA_AR.webp",
+    "name": "Aurorus",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 164,
+    "id": "B2-164",
+    "rarity": "AR",
+    "image": "cPK_20_014110_00_UU_AR.webp",
+    "name": "Cramorant",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 165,
+    "id": "B2-165",
+    "rarity": "AR",
+    "image": "cPK_20_014190_00_MINUN_AR.webp",
+    "name": "Minun",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 166,
+    "id": "B2-166",
+    "rarity": "AR",
+    "image": "cPK_20_014200_00_ELESON_AR.webp",
+    "name": "Toxel",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 167,
+    "id": "B2-167",
+    "rarity": "AR",
+    "image": "cPK_20_014240_00_GALARPONYTA_AR.webp",
+    "name": "Galarian Ponyta",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 168,
+    "id": "B2-168",
+    "rarity": "AR",
+    "image": "cPK_20_014270_00_BULU_AR.webp",
+    "name": "Snubbull",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 169,
+    "id": "B2-169",
+    "rarity": "AR",
+    "image": "cPK_20_014420_00_YESSAN_AR.webp",
+    "name": "Indeedee",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 170,
+    "id": "B2-170",
+    "rarity": "AR",
+    "image": "cPK_20_014430_00_SAND_AR.webp",
+    "name": "Sandshrew",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 171,
+    "id": "B2-171",
+    "rarity": "AR",
+    "image": "cPK_20_014560_00_GACHIGORAS_AR.webp",
+    "name": "Tyrantrum",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 172,
+    "id": "B2-172",
+    "rarity": "AR",
+    "image": "cPK_20_014580_00_TAIRETSU_AR.webp",
+    "name": "Falinks",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 173,
+    "id": "B2-173",
+    "rarity": "AR",
+    "image": "cPK_20_014630_00_ALOLABETBETON_AR.webp",
+    "name": "Alolan Muk",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 174,
+    "id": "B2-174",
+    "rarity": "AR",
+    "image": "cPK_20_014700_00_CHORONEKO_AR.webp",
+    "name": "Purrloin",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 175,
+    "id": "B2-175",
+    "rarity": "AR",
+    "image": "cPK_20_014740_00_YVELTAL_AR.webp",
+    "name": "Yveltal",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 176,
+    "id": "B2-176",
+    "rarity": "AR",
+    "image": "cPK_20_014660_00_GALARTACHIFUSAGUMA_AR.webp",
+    "name": "Galarian Obstagoon",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 177,
+    "id": "B2-177",
+    "rarity": "AR",
+    "image": "cPK_20_014770_00_GALARNYAIKING_AR.webp",
+    "name": "Galarian Perrserker",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 178,
+    "id": "B2-178",
+    "rarity": "AR",
+    "image": "cPK_20_014890_00_BOHMANDER_AR.webp",
+    "name": "Salamence",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 179,
+    "id": "B2-179",
+    "rarity": "AR",
+    "image": "cPK_20_015000_00_NAMAKERO_AR.webp",
+    "name": "Slakoth",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 180,
+    "id": "B2-180",
+    "rarity": "SR",
+    "image": "cPK_20_013830_00_OGERPONMIDORINOMENex_SR.webp",
+    "name": "Teal Mask Ogerpon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 181,
+    "id": "B2-181",
+    "rarity": "SR",
+    "image": "cPK_20_013890_00_ZUGADOONex_SR.webp",
+    "name": "Blacephalon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 182,
+    "id": "B2-182",
+    "rarity": "SR",
+    "image": "cPK_20_013950_00_ALOLAKYUKONex_SR.webp",
+    "name": "Alolan Ninetales ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 183,
+    "id": "B2-183",
+    "rarity": "SR",
+    "image": "cPK_20_014020_00_MEGALAGLARGEex_SR.webp",
+    "name": "Mega Swampert ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 184,
+    "id": "B2-184",
+    "rarity": "SR",
+    "image": "cPK_20_014210_00_STRINDERex_SR.webp",
+    "name": "Toxtricity ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 185,
+    "id": "B2-185",
+    "rarity": "SR",
+    "image": "cPK_20_014320_00_MEGASIRNIGHTex_SR.webp",
+    "name": "Mega Gardevoir ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 186,
+    "id": "B2-186",
+    "rarity": "SR",
+    "image": "cPK_20_014390_00_MIMIKKYUex_SR.webp",
+    "name": "Mimikyu ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 187,
+    "id": "B2-187",
+    "rarity": "SR",
+    "image": "cPK_20_014530_00_GIGAIATHex_SR.webp",
+    "name": "Gigalith ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 188,
+    "id": "B2-188",
+    "rarity": "SR",
+    "image": "cPK_20_014790_00_MEGAKUCHEATex_SR.webp",
+    "name": "Mega Mawile ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 189,
+    "id": "B2-189",
+    "rarity": "SR",
+    "image": "cPK_20_014930_00_MEGAGARURAex_SR.webp",
+    "name": "Mega Kangaskhan ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 190,
+    "id": "B2-190",
+    "rarity": "SR",
+    "image": "cTR_20_001100_00_CARNE_SR.webp",
+    "name": "Diantha",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 191,
+    "id": "B2-191",
+    "rarity": "SR",
+    "image": "cTR_20_001110_00_KANKOUKYAKU_SR.webp",
+    "name": "Sightseer",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 192,
+    "id": "B2-192",
+    "rarity": "SR",
+    "image": "cTR_20_001120_00_JAGURA_SR.webp",
+    "name": "Juggler",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 193,
+    "id": "B2-193",
+    "rarity": "SR",
+    "image": "cTR_20_001130_00_NEZU_SR.webp",
+    "name": "Piers",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 194,
+    "id": "B2-194",
+    "rarity": "SAR",
+    "image": "cPK_20_013830_01_OGERPONMIDORINOMENex_SAR.webp",
+    "name": "Teal Mask Ogerpon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 195,
+    "id": "B2-195",
+    "rarity": "SAR",
+    "image": "cPK_20_013890_01_ZUGADOONex_SAR.webp",
+    "name": "Blacephalon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 196,
+    "id": "B2-196",
+    "rarity": "SAR",
+    "image": "cPK_20_013950_01_ALOLAKYUKONex_SAR.webp",
+    "name": "Alolan Ninetales ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 197,
+    "id": "B2-197",
+    "rarity": "SAR",
+    "image": "cPK_20_014020_01_MEGALAGLARGEex_SAR.webp",
+    "name": "Mega Swampert ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 198,
+    "id": "B2-198",
+    "rarity": "SAR",
+    "image": "cPK_20_014210_01_STRINDERex_SAR.webp",
+    "name": "Toxtricity ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 199,
+    "id": "B2-199",
+    "rarity": "SAR",
+    "image": "cPK_20_014390_01_MIMIKKYUex_SAR.webp",
+    "name": "Mimikyu ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 200,
+    "id": "B2-200",
+    "rarity": "SAR",
+    "image": "cPK_20_014530_01_GIGAIATHex_SAR.webp",
+    "name": "Gigalith ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 201,
+    "id": "B2-201",
+    "rarity": "SAR",
+    "image": "cPK_20_014790_01_MEGAKUCHEATex_SAR.webp",
+    "name": "Mega Mawile ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 202,
+    "id": "B2-202",
+    "rarity": "SAR",
+    "image": "cPK_20_014930_01_MEGAGARURAex_SAR.webp",
+    "name": "Mega Kangaskhan ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 203,
+    "id": "B2-203",
+    "rarity": "IM",
+    "image": "cPK_20_014320_01_MEGASIRNIGHTex_IM.webp",
+    "name": "Mega Gardevoir ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 204,
+    "id": "B2-204",
+    "rarity": "IM",
+    "image": "cPK_20_014900_00_NYARTH_IM.webp",
+    "name": "Meowth",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 205,
+    "id": "B2-205",
+    "rarity": "S",
+    "image": "cPK_20_008600_00_MONJARA_S.webp",
+    "name": "Tangela",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 206,
+    "id": "B2-206",
+    "rarity": "S",
+    "image": "cPK_20_008880_01_BUBY_S.webp",
+    "name": "Magby",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 207,
+    "id": "B2-207",
+    "rarity": "S",
+    "image": "cPK_20_003040_00_BOOBER_S.webp",
+    "name": "Magmar",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 208,
+    "id": "B2-208",
+    "rarity": "S",
+    "image": "cPK_20_008970_00_TATTU_S.webp",
+    "name": "Horsea",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 209,
+    "id": "B2-209",
+    "rarity": "S",
+    "image": "cPK_20_008980_00_SEADRA_S.webp",
+    "name": "Seadra",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 210,
+    "id": "B2-210",
+    "rarity": "S",
+    "image": "cPK_20_010420_01_TAMANTA_S.webp",
+    "name": "Mantyke",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 211,
+    "id": "B2-211",
+    "rarity": "S",
+    "image": "cPK_20_000810_00_OMNITE_S.webp",
+    "name": "Omanyte",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 212,
+    "id": "B2-212",
+    "rarity": "S",
+    "image": "cPK_20_000820_00_OMSTAR_S.webp",
+    "name": "Omastar",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 213,
+    "id": "B2-213",
+    "rarity": "S",
+    "image": "cPK_20_009220_01_PICHU_S.webp",
+    "name": "Pichu",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 214,
+    "id": "B2-214",
+    "rarity": "S",
+    "image": "cPK_20_001130_00_PIPPI_S.webp",
+    "name": "Clefairy",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 215,
+    "id": "B2-215",
+    "rarity": "S",
+    "image": "cPK_20_001140_00_PIXY_S.webp",
+    "name": "Clefable",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 216,
+    "id": "B2-216",
+    "rarity": "S",
+    "image": "cPK_20_010200_00_LATIAS_S.webp",
+    "name": "Latias",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 217,
+    "id": "B2-217",
+    "rarity": "S",
+    "image": "cPK_20_010550_01_LATIOS_S.webp",
+    "name": "Latios",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 218,
+    "id": "B2-218",
+    "rarity": "S",
+    "image": "cPK_20_001540_00_SAWAMULAR_S.webp",
+    "name": "Hitmonlee",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 219,
+    "id": "B2-219",
+    "rarity": "S",
+    "image": "cPK_20_001550_00_EBIWALAR_S.webp",
+    "name": "Hitmonchan",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 220,
+    "id": "B2-220",
+    "rarity": "S",
+    "image": "cPK_20_001580_00_KABUTO_S.webp",
+    "name": "Kabuto",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 221,
+    "id": "B2-221",
+    "rarity": "S",
+    "image": "cPK_20_001590_00_KABUTOPS_S.webp",
+    "name": "Kabutops",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 222,
+    "id": "B2-222",
+    "rarity": "S",
+    "image": "cPK_20_009550_00_GOMAZOU_S.webp",
+    "name": "Phanpy",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 223,
+    "id": "B2-223",
+    "rarity": "S",
+    "image": "cPK_20_009570_00_BALKIE_S.webp",
+    "name": "Tyrogue",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 224,
+    "id": "B2-224",
+    "rarity": "S",
+    "image": "cPK_20_002730_00_KENTAUROS_S.webp",
+    "name": "Tauros",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 225,
+    "id": "B2-225",
+    "rarity": "SSR",
+    "image": "cPK_20_008050_02_BOOSTERex_SSR.webp",
+    "name": "Flareon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 226,
+    "id": "B2-226",
+    "rarity": "SSR",
+    "image": "cPK_20_008900_04_HOUOUex_SSR.webp",
+    "name": "Ho-Oh ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 227,
+    "id": "B2-227",
+    "rarity": "SSR",
+    "image": "cPK_20_008990_02_KINGDRAex_SSR.webp",
+    "name": "Kingdra ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 228,
+    "id": "B2-228",
+    "rarity": "SSR",
+    "image": "cPK_20_009390_02_EIFIEex_SSR.webp",
+    "name": "Espeon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 229,
+    "id": "B2-229",
+    "rarity": "SSR",
+    "image": "cPK_20_008280_02_NYMPHIAex_SSR.webp",
+    "name": "Sylveon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 230,
+    "id": "B2-230",
+    "rarity": "SSR",
+    "image": "cPK_20_009560_02_DONFANex_SSR.webp",
+    "name": "Donphan ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 231,
+    "id": "B2-231",
+    "rarity": "SSR",
+    "image": "cPK_20_009680_02_BRACKYex_SSR.webp",
+    "name": "Umbreon ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 232,
+    "id": "B2-232",
+    "rarity": "SSR",
+    "image": "cPK_20_010050_04_LUGIAex_SSR.webp",
+    "name": "Lugia ex",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 233,
+    "id": "B2-233",
+    "rarity": "UR",
+    "image": "cPK_20_014360_00_MELOETTA_UR.webp",
+    "name": "Meloetta",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "B2",
+    "number": 234,
+    "id": "B2-234",
+    "rarity": "UR",
+    "image": "cTR_20_001080_00_MAMORINOPONCHO_UR.webp",
+    "name": "Protective Poncho",
+    "packs": [
+      "Gardevoir"
+    ]
+  },
+  {
     "series": "A",
     "set": "P-A",
     "number": 1,
@@ -46615,7 +49423,10 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Fire"
+    "weakness": "Fire",
+    "packs": [
+      "B Series Vol. 1"
+    ]
   },
   {
     "series": "B",
@@ -46630,7 +49441,10 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "Lightning"
+    "weakness": "Lightning",
+    "packs": [
+      "B Series Vol. 1"
+    ]
   },
   {
     "series": "B",
@@ -46646,7 +49460,10 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "Fighting",
-    "evolvesFrom": "Luxio"
+    "evolvesFrom": "Luxio",
+    "packs": [
+      "B Series Vol. 1"
+    ]
   },
   {
     "series": "B",
@@ -46661,7 +49478,10 @@
     "stage": "basic",
     "health": 50,
     "retreatCost": 1,
-    "weakness": "fire"
+    "weakness": "fire",
+    "packs": [
+      "B Series Vol. 1"
+    ]
   },
   {
     "series": "B",
@@ -46677,7 +49497,10 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire",
-    "evolvesFrom": "Pidgeotto"
+    "evolvesFrom": "Pidgeotto",
+    "packs": [
+      "B Series Vol. 1"
+    ]
   },
   {
     "series": "B",
@@ -46755,5 +49578,239 @@
     "health": 50,
     "retreatCost": 1,
     "weakness": "fire"
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 12,
+    "id": "P-B-012",
+    "rarity": "AR",
+    "image": "cPK_90_013060_00_METAMON_AR.webp",
+    "name": "Ditto"
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 13,
+    "id": "P-B-013",
+    "rarity": "C",
+    "image": "cPK_90_011110_00_WINDIE_C.webp",
+    "name": "Arcanine",
+    "packs": [
+      "B Series Vol. 2"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 14,
+    "id": "P-B-014",
+    "rarity": "C",
+    "image": "cPK_90_012960_00_KOIKING_C.webp",
+    "name": "Magikarp",
+    "packs": [
+      "B Series Vol. 2"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 15,
+    "id": "P-B-015",
+    "rarity": "AR",
+    "image": "cPK_90_011640_00_MERRIEP_AR.webp",
+    "name": "Mareep",
+    "packs": [
+      "B Series Vol. 2"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 16,
+    "id": "P-B-016",
+    "rarity": "R",
+    "image": "cPK_90_012140_00_WARUVIAL_R.webp",
+    "name": "Krookodile",
+    "packs": [
+      "B Series Vol. 2"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 17,
+    "id": "P-B-017",
+    "rarity": "C",
+    "image": "cPK_90_012970_00_TYLTTO_C.webp",
+    "name": "Swablu",
+    "packs": [
+      "B Series Vol. 2"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 18,
+    "id": "P-B-018",
+    "rarity": "R",
+    "image": "cPK_90_013030_00_ELEZARD_R.webp",
+    "name": "Heliolisk"
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 19,
+    "id": "P-B-019",
+    "rarity": "R",
+    "image": "cPK_90_013040_00_MIMIROL_R.webp",
+    "name": "Buneary"
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 20,
+    "id": "P-B-020",
+    "rarity": "C",
+    "image": "cPK_90_012980_00_LIZARDO_C.webp",
+    "name": "Charmeleon",
+    "packs": [
+      "B Series Vol. 3"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 21,
+    "id": "P-B-021",
+    "rarity": "C",
+    "image": "cPK_90_012990_00_IWARK_C.webp",
+    "name": "Onix",
+    "packs": [
+      "B Series Vol. 3"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 22,
+    "id": "P-B-022",
+    "rarity": "C",
+    "image": "cPK_90_013000_00_LUCHABULL_C.webp",
+    "name": "Hawlucha",
+    "packs": [
+      "B Series Vol. 3"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 23,
+    "id": "P-B-023",
+    "rarity": "R",
+    "image": "cPK_90_013010_00_GENESECT_R.webp",
+    "name": "Genesect",
+    "packs": [
+      "B Series Vol. 3"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 24,
+    "id": "P-B-024",
+    "rarity": "RR",
+    "image": "cPK_90_013020_00_MEGALATIOSex_RR.webp",
+    "name": "Mega Latios ex",
+    "packs": [
+      "B Series Vol. 3"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 25,
+    "id": "P-B-025",
+    "rarity": "AR",
+    "image": "cPK_90_011880_00_JIRACHI_AR.webp",
+    "name": "Jirachi"
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 26,
+    "id": "P-B-026",
+    "rarity": "C",
+    "image": "cPK_90_015950_00_MIZUGOROU_C.webp",
+    "name": "Mudkip",
+    "packs": [
+      "B Series Vol. 4"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 27,
+    "id": "P-B-027",
+    "rarity": "C",
+    "image": "cPK_90_014180_00_PRASLE_C.webp",
+    "name": "Plusle",
+    "packs": [
+      "B Series Vol. 4"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 28,
+    "id": "P-B-028",
+    "rarity": "C",
+    "image": "cPK_90_015960_00_RALTS_C.webp",
+    "name": "Ralts",
+    "packs": [
+      "B Series Vol. 4"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 29,
+    "id": "P-B-029",
+    "rarity": "RR",
+    "image": "cPK_90_015970_00_MEGACHAREMex_RR.webp",
+    "name": "Mega Medicham ex",
+    "packs": [
+      "B Series Vol. 4"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 30,
+    "id": "P-B-030",
+    "rarity": "R",
+    "image": "cPK_90_015040_00_TORNELOS_R.webp",
+    "name": "Tornadus",
+    "packs": [
+      "B Series Vol. 4"
+    ]
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 31,
+    "id": "P-B-031",
+    "rarity": "R",
+    "image": "cPK_90_013920_00_ACEBURN_R.webp",
+    "name": "Cinderace"
+  },
+  {
+    "series": "B",
+    "set": "P-B",
+    "number": 32,
+    "id": "P-B-032",
+    "rarity": "R",
+    "image": "cPK_90_013940_00_ALOLAROKON_R.webp",
+    "name": "Alolan Vulpix"
   }
 ]

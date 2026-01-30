@@ -36,7 +36,8 @@ def _load_foiled_ids(path: str) -> set:
 FOILED_CARD_IDS = _load_foiled_ids(FOILED_IDS_PATH)
 
 POCKETDB_SET_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/sets.json"
-POCKETDB_CARD_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.extra.json"
+POCKETDB_CARD_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.json"
+POCKETDB_EXTRA_CARD_URL = "https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.extra.json"
 
 REQUEST_TIMEOUT = (6, 30)
 MAX_WORKERS_CARDS = 16  # Adjust based on your internet speed
@@ -101,10 +102,6 @@ def normalize_rarity(rarity_code: str) -> str:
         "UR": "👑", "CR": "👑", "S": "✵", "SSR": "✵✵"
     }
     return rarity_mapping.get(rarity_code, rarity_code)
-
-# ===============================================================
-# FETCH FUNCTIONS
-# ===============================================================
 
 # ===============================================================
 # MAIN GENERATORS
@@ -179,54 +176,83 @@ def generate_sets():
 
 
 def generate_cards():
-    print("[generate_cards] Fetching cards data...")
+    print("[generate_cards] Fetching cards data (main + extra)...")
     try:
-        cards_data = fetch_json(POCKETDB_CARD_URL)
-        print(f"[generate_cards] Processing {len(cards_data)} cards...")
+        main_cards = fetch_json(POCKETDB_CARD_URL)
+        extra_cards = fetch_json(POCKETDB_EXTRA_CARD_URL)
 
-        rarity_updates = set_updates = 0
-        
+        print(f"[generate_cards] Main: {len(main_cards)} cards, Extra: {len(extra_cards)} cards")
 
-        for i, card in enumerate(cards_data):
+        def normalize_card(card: dict) -> dict:
+            """Normalize a card by fixing set code, building id and series, and copying other fields."""
+            set_code_raw = str(card.get("set", "")).strip()
+            if set_code_raw.startswith("PROMO-"):
+                set_code_raw = set_code_raw.replace("PROMO-", "P-")
+            set_code_upper = set_code_raw.upper()
 
-            if "set" in card:
-                # Normalize set code: replace PROMO- with P- then uppercase
-                set_code_raw = card["set"]
-                if set_code_raw.startswith("PROMO-"):
-                    set_code_raw = set_code_raw.replace("PROMO-", "P-")
-                    set_updates += 1
-                set_code_upper = str(set_code_raw).upper()
+            number_val = card.get("number", 0)
+            try:
+                number_int = int(number_val)
+            except Exception:
+                # Fallback if number not parseable
+                number_int = 0
 
-                series = extract_series(set_code_upper)
-                number = card.get("number", 0)
-                card_id_upper = generate_card_id(set_code_upper, number).upper()
-                reordered = {
-                    "series": series,
-                    "set": set_code_upper,
-                    "number": number,
-                    "id": card_id_upper
-                }
-                for k, v in card.items():
-                    if k not in reordered:
-                        reordered[k] = v
-                
-                # Add isFoil attribute for matching A4B cards (uppercase id)
-                if card_id_upper in FOILED_CARD_IDS:
-                    reordered["isFoil"] = True
+            series = extract_series(set_code_upper)
+            card_id_upper = generate_card_id(set_code_upper, number_int).upper()
 
-                # No external enrichment anymore; keep PocketDB-provided fields as-is
+            normalized = {
+                "series": series,
+                "set": set_code_upper,
+                "number": number_int,
+                "id": card_id_upper
+            }
 
-                cards_data[i] = reordered
+            # Copy remaining fields as-is (prefer existing ones in normalized)
+            for k, v in card.items():
+                if k not in normalized:
+                    normalized[k] = v
 
-        # No cache persistence needed
+            # Inject foil flag if in list
+            if card_id_upper in FOILED_CARD_IDS:
+                normalized["isFoil"] = True
+
+            return normalized
+
+        # Build dictionary: prefer extra over main when conflicts
+        by_id: dict[str, dict] = {}
+
+        # Load extra first so it takes precedence
+        for c in extra_cards:
+            if not isinstance(c, dict):
+                continue
+            nc = normalize_card(c)
+            by_id[nc["id"]] = nc
+
+        # Merge main, only filling missing keys without overriding
+        for c in main_cards:
+            if not isinstance(c, dict):
+                continue
+            nc = normalize_card(c)
+            existing = by_id.get(nc["id"]) 
+            if existing is None:
+                by_id[nc["id"]] = nc
+            else:
+                for k, v in nc.items():
+                    if k in ("series", "set", "number", "id"):
+                        continue
+                    if k not in existing:
+                        existing[k] = v
+
+        # Final list sorted by set then number
+        combined = list(by_id.values())
+        combined.sort(key=lambda x: (x.get("set", ""), x.get("number", 0)))
 
         os.makedirs(os.path.dirname(EXPORT_CARD_PATH), exist_ok=True)
         with open(EXPORT_CARD_PATH, "w", encoding="utf-8") as f:
-            json.dump(cards_data, f, ensure_ascii=False, indent=2)
+            json.dump(combined, f, ensure_ascii=False, indent=2)
 
-        print(f"[generate_cards] ✅ Wrote {len(cards_data)} cards to {EXPORT_CARD_PATH}")
-        print(f"  Updated rarity={rarity_updates}, sets={set_updates}")
-        return cards_data
+        print(f"[generate_cards] ✅ Wrote {len(combined)} merged cards to {EXPORT_CARD_PATH}")
+        return combined
 
     except Exception as e:
         print(f"[generate_cards] ❌ Error: {e}")
