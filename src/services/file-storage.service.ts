@@ -8,7 +8,7 @@ import { Card } from './card-data.service';
   providedIn: 'root'
 })
 export class FileStorageService {
-  private readonly CARDS_API_URL = 'https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.json';
+  private readonly CARDS_API_URL = 'https://raw.githubusercontent.com/tommycwz/PokemonTCGPDatabase/refs/heads/main/release/cards.json';
 
   constructor(private http: HttpClient) { }
 

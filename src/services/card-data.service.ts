@@ -35,8 +35,7 @@ export interface Card {
   providedIn: 'root'
 })
 export class CardDataService {
-  private readonly CARDS_API_URL = 'https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/cards.json';
-  private readonly LOCAL_CARDS_PATH = 'assets/cards/cards.json';
+  private readonly CARDS_API_URL = 'https://raw.githubusercontent.com/tommycwz/PokemonTCGPDatabase/refs/heads/main/release/cards.json';
 
   constructor(private http: HttpClient) { }
 
@@ -69,11 +68,11 @@ export class CardDataService {
   }
 
   /**
-   * Attempts to load cards from local assets, falls back to API if not available
+   * Loads cards from the remote source.
+   * Consider using localStorage via downloadAndStoreCards() as an optional cache.
    */
   loadCards(): Observable<Card[]> {
-    return this.http.get<Card[]>(this.LOCAL_CARDS_PATH).pipe(
-      // If local file doesn't exist, fetch from API
+    return this.fetchCardsFromAPI().pipe(
       map(cards => cards || [])
     );
   }

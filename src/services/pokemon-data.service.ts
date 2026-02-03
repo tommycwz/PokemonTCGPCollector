@@ -27,8 +27,9 @@ export interface PokemonTCGData {
   providedIn: 'root'
 })
 export class PokemonDataService {
-  private readonly BASE_PATH = 'assets/cards/';
-  private readonly API_BASE = 'https://raw.githubusercontent.com/flibustier/pokemon-tcg-pocket-database/main/dist/';
+  private readonly CARDS_URL = 'https://raw.githubusercontent.com/tommycwz/PokemonTCGPDatabase/refs/heads/main/release/cards.json';
+  private readonly RARITY_URL = 'https://raw.githubusercontent.com/tommycwz/PokemonTCGPDatabase/refs/heads/main/release/rarity.json';
+  private readonly SETS_URL = 'https://raw.githubusercontent.com/tommycwz/PokemonTCGPDatabase/refs/heads/main/release/sets.json';
 
   constructor(private http: HttpClient) { }
 
@@ -48,24 +49,24 @@ export class PokemonDataService {
   }
 
   /**
-   * Load sets data from local assets
+   * Load sets data from remote source
    */
   loadSets(): Observable<SetInfo[]> {
-    return this.http.get<SetInfo[]>(`${this.BASE_PATH}sets.json`);
+    return this.http.get<SetInfo[]>(this.SETS_URL);
   }
 
   /**
-   * Load rarity mapping from local assets
+   * Load rarity mapping from remote source
    */
   loadRarities(): Observable<RarityMapping> {
-    return this.http.get<RarityMapping>(`${this.BASE_PATH}rarity.json`);
+    return this.http.get<RarityMapping>(this.RARITY_URL);
   }
 
   /**
-   * Load cards data from local assets
+   * Load cards data from remote source
    */
   loadCards(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.BASE_PATH}cards.json`);
+    return this.http.get<any[]>(this.CARDS_URL);
   }
 
   /**

@@ -1493,7 +1493,7 @@ export class CardCollectionComponent implements OnInit, OnDestroy {
    * Get the image URL for a card
    */
   getCardImageUrl(imageName: string): string {
-    return this.imageService.getCardImageUrl(imageName);
+    return imageName;
   }
 
   /**
