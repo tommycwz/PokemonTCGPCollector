@@ -1,0 +1,141 @@
+.sync-container {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 16px;
+	/* Ensure base text is readable on dark app themes */
+	color: #eaeaea;
+}
+
+.controls label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.controls textarea {
+	width: 100%;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	resize: vertical;
+}
+
+.buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.buttons button {
+	padding: 8px 14px;
+	border: 0;
+	border-radius: 6px;
+	cursor: pointer;
+	background: #3f51b5;
+	color: white;
+}
+
+.buttons button[disabled] {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.status {
+	margin-top: 8px;
+	color: #555;
+}
+
+.error {
+	margin-top: 8px;
+	color: #c62828;
+	font-weight: 600;
+}
+
+.results {
+	margin-top: 16px;
+}
+
+.summary-row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.summary-card {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(120px, 1fr));
+	gap: 12px;
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	background: #fafafa;
+	/* Force dark text inside light card */
+	color: #212121;
+}
+
+.summary-stat .label {
+	display: block;
+	font-size: 12px;
+	color: #666;
+}
+.summary-stat .value {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.packs h4 {
+	margin: 16px 0 8px;
+}
+
+.pack-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 12px;
+}
+
+.pack-card {
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 12px;
+	background: white;
+	/* Force dark text inside light card */
+	color: #212121;
+}
+
+.pack-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.pack-name {
+	font-weight: 700;
+	color: #212121;
+}
+.pack-stats {
+	display: flex;
+	gap: 8px;
+}
+.badge {
+	border-radius: 999px;
+	padding: 4px 8px;
+	font-size: 12px;
+}
+.badge.updated { background: #e8f5e9; color: #2e7d32; }
+.badge.skipped { background: #fff3e0; color: #ef6c00; }
+.badge.failed { background: #ffebee; color: #c62828; }
+.badge.deleted { background: #e3f2fd; color: #1565c0; }
+
+.pack-details {
+	margin-top: 8px;
+}
+.pack-details h5 {
+	margin: 8px 0 4px;
+}
+.pack-details ul {
+	margin: 0;
+	padding-left: 18px;
+}
+.code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+.mapped { color: #555; margin-left: 6px; }
+.reason { color: #777; margin-left: 6px; }

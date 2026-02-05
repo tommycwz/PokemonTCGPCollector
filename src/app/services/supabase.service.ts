@@ -380,6 +380,55 @@ export class SupabaseService {
   }
 
   /**
+   * Delete user's cards whose `card_def_key` is NOT in the provided list.
+   * Returns the list of deleted card_def_keys for reporting.
+   */
+  async deleteUserCardsNotIn(userId: string, keepKeys: string[]): Promise<{ deletedKeys: string[], error: string | null }> {
+    try {
+      const userIdInt = parseInt(userId);
+      if (isNaN(userIdInt)) {
+        return { deletedKeys: [], error: 'Invalid user ID format' };
+      }
+
+      // Fetch existing keys
+      const { data: existing, error: selectError } = await this.supabase
+        .from('user_cards')
+        .select('card_def_key')
+        .eq('user_id', userIdInt);
+
+      if (selectError) {
+        return { deletedKeys: [], error: selectError.message };
+      }
+
+      const keepSet = new Set(keepKeys);
+      const toDelete = (existing || [])
+        .map((row: any) => row.card_def_key as string)
+        .filter((key) => !keepSet.has(key));
+
+      if (toDelete.length === 0) {
+        return { deletedKeys: [], error: null };
+      }
+
+      // Delete and return deleted rows
+      const { data: deletedRows, error: deleteError } = await this.supabase
+        .from('user_cards')
+        .delete()
+        .eq('user_id', userIdInt)
+        .in('card_def_key', toDelete)
+        .select('card_def_key');
+
+      if (deleteError) {
+        return { deletedKeys: [], error: deleteError.message };
+      }
+
+      const deletedKeys = (deletedRows || []).map((r: any) => r.card_def_key as string);
+      return { deletedKeys, error: null };
+    } catch (error) {
+      console.error('Error deleting cards not in keep list:', error);
+      return { deletedKeys: [], error: 'Failed to delete cards' };
+    }
+  }
+  /**
    * Sync local collection with database
    */
   async syncUserCollection(userId: string, progressCallback?: (loaded: number) => void): Promise<{ 

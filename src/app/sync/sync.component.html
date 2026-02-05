@@ -1,1 +1,76 @@
-<p>sync works!</p>
+<div class="sync-container">
+	<h2>Sync Mapper</h2>
+
+	<div class="controls">
+		<label for="syncInput">Paste JSON array</label>
+		<textarea id="syncInput" [(ngModel)]="inputText" rows="10" placeholder='Place your json code here'></textarea>
+
+		<div class="buttons">
+			<button (click)="submit()" [disabled]="loading || uploading">Upload</button>
+			<button (click)="clear()" [disabled]="loading">Clear</button>
+		</div>
+		<div class="status" *ngIf="loading">Loading mapping…</div>
+		<div class="status" *ngIf="uploading">Uploading to Supabase… ({{ processedCount }} processed, {{ skippedCount }} skipped, {{ failedCount }} failed)</div>
+		<div class="error" *ngIf="error">{{ error }}</div>
+	</div>
+
+	<div class="results" *ngIf="!uploading && results.length">
+		<h3>Upload Summary</h3>
+		<div class="summary-row">
+			<div class="summary-card">
+				<div class="summary-stat">
+					<span class="label">Total</span>
+					<span class="value">{{ results.length }}</span>
+				</div>
+				<div class="summary-stat">
+					<span class="label">Processed</span>
+					<span class="value">{{ processedCount }}</span>
+				</div>
+				<div class="summary-stat">
+					<span class="label">Skipped</span>
+					<span class="value">{{ skippedCount }}</span>
+				</div>
+				<div class="summary-stat">
+					<span class="label">Failed</span>
+					<span class="value">{{ failedCount }}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="packs">
+			<h4>By Pack</h4>
+			<div class="pack-grid">
+				<div class="pack-card" *ngFor="let pack of packOrder">
+					<div class="pack-header">
+						<span class="pack-name">{{ pack }}</span>
+						<div class="pack-stats">
+							<span class="badge updated">Updated: {{ packStats[pack].updated }}</span>
+							<span class="badge skipped">Skipped: {{ packStats[pack].skipped }}</span>
+							<span class="badge failed">Failed: {{ packStats[pack].failed }}</span>
+							<span class="badge deleted">Deleted: {{ packStats[pack].deleted }}</span>
+						</div>
+					</div>
+					<div class="pack-details" *ngIf="packStats[pack].skippedItems.length > 0">
+						<h5>Skipped</h5>
+						<ul>
+							<li *ngFor="let s of packStats[pack].skippedItems">
+								<span class="code">{{ s.cardId }}</span>
+								<span class="mapped" *ngIf="s.mappedId">→ {{ s.mappedId }}</span>
+								<span class="reason">({{ s.reason }})</span>
+							</li>
+						</ul>
+					</div>
+					<div class="pack-details" *ngIf="packStats[pack].failedItems.length > 0">
+						<h5>Failed</h5>
+						<ul>
+							<li *ngFor="let f of packStats[pack].failedItems">
+								<span class="code">{{ f.cardId }}</span>
+								<span class="mapped" *ngIf="f.mappedId">→ {{ f.mappedId }}</span>
+								<span class="reason" *ngIf="f.error">({{ f.error }})</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
