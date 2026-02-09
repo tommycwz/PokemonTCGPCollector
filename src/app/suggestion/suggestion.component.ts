@@ -4,6 +4,7 @@ import { PokemonDataService, SetInfo, RarityMapping } from '../../services/pokem
 import { DataManagerService } from '../../services/data-manager.service';
 import { Card } from '../../services/card-data.service';
 import { SupabaseService, Profile } from '../services/supabase.service';
+import { RarityService } from '../services/rarity.service';
 
 export interface RarityBreakdown {
   rarity: string;
@@ -53,7 +54,8 @@ export class SuggestionComponent implements OnInit {
     private dataManager: DataManagerService,
     private supabaseService: SupabaseService,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private rarityService: RarityService
   ) {}
 
   ngOnInit() {
@@ -65,12 +67,15 @@ export class SuggestionComponent implements OnInit {
     const set = this.sets.find(s => s.code === suggestion.setCode);
     const series = set?.series || 'all';
 
+    // Convert rarity code to symbol for collection page (expects symbol)
+    const raritySymbol = this.getRaritySymbol(breakdown.rarity);
+
     this.router.navigate(['/collection'], {
       queryParams: {
         series: series,
         set: suggestion.setCode,
         pack: suggestion.packName,
-        rarity: breakdown.rarity
+        rarity: raritySymbol
       }
     });
   }
@@ -79,29 +84,38 @@ export class SuggestionComponent implements OnInit {
     this.isLoading = true;
     
     try {
-      // Load current user
-      this.currentUser = await this.supabaseService.getCurrentUser();
-      
-      // Load Pokemon data
-      const data = await this.pokemonDataService.loadAllData().toPromise();
-      if (data) {
-        this.cards = data.cards;
-        this.sets = data.sets;
-        this.rarityMapping = data.rarities;
-      }
+      // Load current user (synchronous getter)
+      this.currentUser = this.supabaseService.getCurrentUser();
 
-      // Load user collection if signed in
-      if (this.currentUser) {
-        await this.loadOwnedCardsForUser(this.currentUser.id);
-      }
+      // Load Pokemon data via subscription (avoids deprecated toPromise)
+      this.pokemonDataService.loadAllData().subscribe({
+        next: async (data) => {
+          if (data) {
+            this.cards = data.cards as Card[];
+            this.sets = data.sets;
+            this.rarityMapping = data.rarities;
+          }
 
-      // Build unique series list
-      this.seriesList = Array.from(new Set(this.sets.map(s => s.series))).sort();
+          // Load user collection if signed in
+          if (this.currentUser) {
+            await this.loadOwnedCardsForUser(this.currentUser.id);
+          }
 
-      this.calculateSuggestions();
+          // Build unique series list
+          this.seriesList = Array.from(new Set(this.sets.map(s => s.series))).sort();
+
+          this.calculateSuggestions();
+          this.isLoading = false;
+          this.cdr.markForCheck();
+        },
+        error: (error) => {
+          console.error('Error loading data:', error);
+          this.isLoading = false;
+          this.cdr.markForCheck();
+        }
+      });
     } catch (error) {
-      console.error('Error loading data:', error);
-    } finally {
+      console.error('Error initiating data load:', error);
       this.isLoading = false;
       this.cdr.markForCheck();
     }
@@ -184,15 +198,16 @@ export class SuggestionComponent implements OnInit {
 
     if (!parentSet) return null;
 
-    // Filter by rarity mode
+    // Filter by rarity mode (support new symbols like 🌈, ☆☆☆)
     if (this.rarityFilterMode === 'tradable') {
-      // All tradable: diamonds + ☆ + ☆☆
-      const tradableRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆'];
-      packCards = packCards.filter(card => tradableRarities.includes(card.rarity));
+      const diamondSymbols = ['C', 'U', 'R', 'RR'];
+      const starSymbolsAll = ['AR', 'SR', 'SAR', 'IM'];
+      const tradableSymbols = [...diamondSymbols, ...starSymbolsAll];
+      packCards = packCards.filter(card => tradableSymbols.includes(card.rarity));
     } else if (this.rarityFilterMode === 'common') {
-      // Only diamonds + ☆
-      const commonRarities = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆'];
-      packCards = packCards.filter(card => commonRarities.includes(card.rarity));
+      const diamondSymbols = ['C', 'U', 'R', 'RR'];
+      const commonSymbols = [...diamondSymbols, 'AR'];
+      packCards = packCards.filter(card => commonSymbols.includes(card.rarity));
     }
     // 'all' mode: no filter
 
@@ -227,25 +242,24 @@ export class SuggestionComponent implements OnInit {
   }
 
   private calculateRarityBreakdown(relevantCards: Card[]): RarityBreakdown[] {
-    // Get all unique rarities in this pack
+    // Get all unique rarity codes in this pack
     const rarities = [...new Set(relevantCards.map(card => card.rarity))];
     
-    // Sort rarities by priority (common to rare)
-    const rarityOrder = ['◊', '◊◊', '◊◊◊', '◊◊◊◊', '☆', '☆☆', '☆☆☆', '👑', '✵', '✵✵'];
+    // Sort rarities using code order from RarityService
     rarities.sort((a, b) => {
-      const indexA = rarityOrder.indexOf(a);
-      const indexB = rarityOrder.indexOf(b);
-      return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+      const orderA = this.rarityService.getRarityOrder(a);
+      const orderB = this.rarityService.getRarityOrder(b);
+      return orderA - orderB;
     });
 
-    return rarities.map(rarity => {
-      const cardsOfRarity = relevantCards.filter(card => card.rarity === rarity);
+    return rarities.map(code => {
+      const cardsOfRarity = relevantCards.filter(card => card.rarity === code);
       const ownedCount = cardsOfRarity.filter(card => this.getOwnedCount(card) > 0).length;
       const totalCount = cardsOfRarity.length;
       const percentage = totalCount > 0 ? (ownedCount / totalCount) * 100 : 0;
 
       return {
-        rarity,
+        rarity: code,
         owned: ownedCount,
         total: totalCount,
         percentage
@@ -282,15 +296,21 @@ export class SuggestionComponent implements OnInit {
     return specialPackPatterns.some(pattern => pattern.test(packName));
   }
 
-  getRarityDisplayName(rarity: string): string {
-    // Find the rarity mapping entry that matches this symbol
-    for (const [code, description] of Object.entries(this.rarityMapping)) {
-      const symbol = description.split(' - ')[0];
-      if (symbol === rarity) {
-        return description;
-      }
+  getRarityDisplayName(rarityCode: string): string {
+    // Map code via remote rarity.json mapping (e.g. "◊ - Common")
+    return this.rarityMapping[rarityCode] || rarityCode;
+  }
+
+  getRaritySymbol(rarityCode: string): string {
+    // Prefer RarityService, fallback to parsing rarityMapping value "symbol - name"
+    const fromService = this.rarityService.getSymbol(rarityCode);
+    if (fromService && fromService !== rarityCode) return fromService;
+    const mapped = this.rarityMapping[rarityCode];
+    if (mapped && typeof mapped === 'string') {
+      const symbol = mapped.split(' - ')[0];
+      return symbol || rarityCode;
     }
-    return rarity;
+    return rarityCode;
   }
 
 }

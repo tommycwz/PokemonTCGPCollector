@@ -61,7 +61,7 @@
                         <div class="rarity-grid">
                             <div *ngFor="let breakdown of suggestion.rarityBreakdown" class="rarity-item clickable" [class.complete]="breakdown.percentage === 100" (click)="onRarityClick(suggestion, breakdown)" tabindex="0">
                                 <span class="rarity-symbol" [title]="getRarityDisplayName(breakdown.rarity)">
-                                    {{ breakdown.rarity }}
+                                    {{ getRaritySymbol(breakdown.rarity) }}
                                 </span>
                                 <span class="rarity-count">
                                     {{ breakdown.owned }}/{{ breakdown.total }}
