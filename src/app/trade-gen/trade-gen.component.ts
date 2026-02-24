@@ -276,7 +276,7 @@ export class TradeGenComponent implements OnInit {
       const grouped = this.groupBySet(lfCards);
       for (const [setCode, cards] of Object.entries(grouped)) {
         const shortName = this.getSetShortName(setCode);
-        const cardNames = cards.map(c => `${c.label.eng} (foil)`);
+        const cardNames = cards.map(c => `${this.getCardDisplayName(c)} (foil)`);
         text += `[${shortName}] ${cardNames.join(', ')}\n`;
       }
     } else {
@@ -290,7 +290,7 @@ export class TradeGenComponent implements OnInit {
       for (const [setCode, cards] of Object.entries(grouped)) {
         const shortName = this.getSetShortName(setCode);
         const cardNames = cards.map(c => {
-          const name = c.label.eng;
+          const name = this.getCardDisplayName(c);
           return c['isFoil'] ? `${name} (foil)` : name;
         });
         text += `[${shortName}] ${cardNames.join(', ')}\n`;
@@ -308,7 +308,7 @@ export class TradeGenComponent implements OnInit {
       const grouped = this.groupBySet(lfCards);
       for (const [setCode, cards] of Object.entries(grouped)) {
         const shortName = this.getSetShortName(setCode);
-        text += `[${shortName}] ${cards.map(c => c.label.eng).join(', ')}\n`;
+        text += `[${shortName}] ${cards.map(c => this.getCardDisplayName(c)).join(', ')}\n`;
       }
     } else {
       text += 'None\n';
@@ -319,7 +319,7 @@ export class TradeGenComponent implements OnInit {
       const grouped = this.groupBySet(ftCards);
       for (const [setCode, cards] of Object.entries(grouped)) {
         const shortName = this.getSetShortName(setCode);
-        text += `[${shortName}] ${cards.map(c => c.label.eng).join(', ')}\n`;
+        text += `[${shortName}] ${cards.map(c => this.getCardDisplayName(c)).join(', ')}\n`;
       }
     } else {
       text += 'None\n';
@@ -337,7 +337,7 @@ export class TradeGenComponent implements OnInit {
         text += `\n[${shortName}]\n`;
         cards.forEach(c => {
           const raritySymbol = this.rarityService.getSymbol(c.rarity);
-          text += `${raritySymbol} ${setCode}-${c.number} - ${c.label.eng}\n`;
+          text += `${raritySymbol} ${setCode}-${c.number} - ${this.getCardDisplayName(c)}\n`;
         });
       }
     } else {
@@ -352,7 +352,7 @@ export class TradeGenComponent implements OnInit {
         text += `\n[${shortName}]\n`;
         cards.forEach(c => {
           const raritySymbol = this.rarityService.getSymbol(c.rarity);
-          text += `${raritySymbol} ${setCode}-${c.number} - ${c.label.eng}\n`;
+          text += `${raritySymbol} ${setCode}-${c.number} - ${this.getCardDisplayName(c)}\n`;
         });
       }
     } else {
@@ -370,6 +370,28 @@ export class TradeGenComponent implements OnInit {
       acc[card.set].push(card);
       return acc;
     }, {} as { [key: string]: Card[] });
+  }
+
+  private getCardDisplayName(card: Card): string {
+    const cardAny = card as any;
+
+    if (typeof cardAny?.label?.eng === 'string' && cardAny.label.eng.trim()) {
+      return cardAny.label.eng;
+    }
+
+    if (typeof cardAny?.name?.eng === 'string' && cardAny.name.eng.trim()) {
+      return cardAny.name.eng;
+    }
+
+    if (typeof cardAny?.name === 'string' && cardAny.name.trim()) {
+      return cardAny.name;
+    }
+
+    if (typeof cardAny?.label === 'string' && cardAny.label.trim()) {
+      return cardAny.label;
+    }
+
+    return `${card.set}-${card.number}`;
   }
 
   copyToClipboard() {
